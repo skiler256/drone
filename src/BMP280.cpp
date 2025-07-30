@@ -11,15 +11,7 @@ BMP280::BMP280(uint8_t address, const char *bus) : addr(address) {
     exit(1);
   }
   init();
-}
 
-BMP280::~BMP280() {
-  if (file >= 0)
-    close(file);
-}
-
-void BMP280::init() {
-  // Lecture des 24 octets de coefficients depuis 0x88
   write(file, &COEF, 1);
   char calib[24];
   read(file, calib, 24);
@@ -44,7 +36,12 @@ void BMP280::init() {
   write(file, config, 2);
 }
 
-void BMP280::update() {
+BMP280::~BMP280() {
+  if (file >= 0)
+    close(file);
+}
+
+BMP280::data BMP280::getData() {
   // Lecture température brute
   write(file, &TEMP, 1);
   char dataT[3];
@@ -91,11 +88,12 @@ void BMP280::update() {
     pressure = (float)p / 25600.0; // en hPa
   }
 
-  std::cout << "Température : " << temp << " °C" << std::endl;
-  std::cout << "Pression : " << pressure << " hPa" << std::endl;
+  // std::cout << "Température : " << temp << " °C" << std::endl;
+  // std::cout << "Pression : " << pressure << " hPa" << std::endl;
 
   // Altitude estimée (optionnel)
   float P0 = 1013.25; // pression au niveau de la mer
   float altitude = 44330.0 * (1.0 - pow(pressure / P0, 0.1903));
-  std::cout << "Altitude estimée : " << altitude << " m" << std::endl;
+  // std::cout << "Altitude estimée : " << altitude << " m" << std::endl;
+  return {(double)temp, (double)pressure};
 }

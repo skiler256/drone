@@ -7,7 +7,6 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-
 const uint8_t CTRL_MEAS = 0xF4;
 const uint8_t TEMP = 0xFA;
 const uint8_t PRESS = 0xF7;
@@ -17,8 +16,13 @@ class BMP280 {
 public:
   BMP280(uint8_t address = 0x76, const char *bus = "/dev/i2c-1");
   ~BMP280();
-  void init();
-  void update();
+
+  struct data {
+    double temp;
+    double press;
+  };
+
+  data getData();
 
 private:
   int file;
