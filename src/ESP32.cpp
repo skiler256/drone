@@ -1,5 +1,6 @@
 #include "../inc/ESP32.hpp"
 #include <chrono>
+#include <cstdint>
 #include <fcntl.h>
 #include <fstream>
 #include <iostream>
@@ -103,10 +104,23 @@ void ESP32::handleESP32() {
       if (n != true)
         continue;
       if (buffer[0] == 0x20 && buffer[1] == 0x08) {
-        std::lock_guard<std::mutex> lock(mtx);
-        data = dataBuffer;
+        {
+          std::lock_guard<std::mutex> lock(mtx);
+          data = dataBuffer;
+        }
         std::cout << (int)data.event << std::endl;
+        switch (data.event) {
+        case 0x01:
+          const uint8_t message[1] = {0x02};
+          write(SerialPort, message, sizeof(disable_gga));
+          break;
+        }
       }
     }
   }
+}
+
+ESPdata ESP32::getData() {
+  std::lock_guard<std::mutex> lock(mtx);
+  return data;
 }

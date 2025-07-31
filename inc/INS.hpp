@@ -7,10 +7,15 @@
 #include <eigen3/Eigen/Dense>
 #include <mutex>
 
-
 class INS {
 public:
   INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps);
+
+  struct state3D {
+    Eigen::Matrix<double, 3, 1> att;
+    Eigen::Matrix<double, 3, 1> pos;
+    Eigen::Matrix<double, 3, 1> vel;
+  };
 
   void acquireESP();
 
