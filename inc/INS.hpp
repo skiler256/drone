@@ -7,11 +7,13 @@
 #include <eigen3/Eigen/Dense>
 #include <mutex>
 
-class INS {
+class INS
+{
 public:
   INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps);
 
-  struct state3D {
+  struct state3D
+  {
     Eigen::Matrix<double, 3, 1> att;
     Eigen::Matrix<double, 3, 1> pos;
     Eigen::Matrix<double, 3, 1> vel;
@@ -26,7 +28,8 @@ public:
   void printCalMag();
   Eigen::Matrix<double, 3, 1> calibratedMag;
 
-  struct Kalman1D {
+  struct Kalman1D
+  {
     Eigen::Matrix<double, 2, 1> x;
     Eigen::Matrix<double, 2, 2> P;
     Eigen::Matrix<double, 2, 2> Q;
