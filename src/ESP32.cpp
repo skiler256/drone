@@ -127,16 +127,19 @@ void ESP32::handleESP32()
           std::lock_guard<std::mutex> lock(mtx);
           data = dataBuffer;
         }
-        std::cout << (int)data.event << std::endl;
         switch (data.event)
         {
         case 0x01:
-          const uint8_t message[1] = {0x02};
-          write(SerialPort, message, 2);
+        {
+          const uint8_t data_[1] = {0x02};
+          write(SerialPort, data_, 1);
           break;
+        }
 
         case 0x02:
+        {
           break;
+        }
         }
       }
     }

@@ -1,15 +1,19 @@
-#include "../inc/header.hpp"
+#include "../inc/BMP280.hpp"
+#include "../inc/ESP32.hpp"
+#include "../inc/eventManager.hpp"
+#include "../inc/INS.hpp"
+#include "../inc/NEO6m.hpp"
+#include "../inc/PCA9685.hpp"
 
+#include <thread>
 
-int main() {
-MPU9250 mpu;
-IMU imu(mpu);
-std::vector<double> acc;
+int main()
+{
+  eventManager event;
+  ESP32 esp(event);
 
-while(true){
-  acc = imu.getAcc();
-  std::cout << acc[0] << " " << acc[1] << " " << acc[2] << std::endl;
-  usleep(10000);
-}
+  std::thread a(&ESP32::handleESP32, &esp);
+
+  a.join();
   return 0;
 }

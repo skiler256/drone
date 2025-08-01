@@ -297,6 +297,30 @@ src/USSensor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/USSensor.cpp.s
 .PHONY : src/USSensor.cpp.s
 
+src/eventManager.o: src/eventManager.cpp.o
+.PHONY : src/eventManager.o
+
+# target to build an object file
+src/eventManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o
+.PHONY : src/eventManager.cpp.o
+
+src/eventManager.i: src/eventManager.cpp.i
+.PHONY : src/eventManager.i
+
+# target to preprocess a source file
+src/eventManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/eventManager.cpp.i
+.PHONY : src/eventManager.cpp.i
+
+src/eventManager.s: src/eventManager.cpp.s
+.PHONY : src/eventManager.s
+
+# target to generate assembly for a file
+src/eventManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/eventManager.cpp.s
+.PHONY : src/eventManager.cpp.s
+
 src/gpio.o: src/gpio.cpp.o
 .PHONY : src/gpio.o
 
@@ -375,6 +399,9 @@ help:
 	@echo "... src/USSensor.o"
 	@echo "... src/USSensor.i"
 	@echo "... src/USSensor.s"
+	@echo "... src/eventManager.o"
+	@echo "... src/eventManager.i"
+	@echo "... src/eventManager.s"
 	@echo "... src/gpio.o"
 	@echo "... src/gpio.i"
 	@echo "... src/gpio.s"

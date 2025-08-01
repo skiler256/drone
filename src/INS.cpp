@@ -108,12 +108,12 @@ void INS::computeHeading()
       delta += 360;
 
     state.att(2) = state.att(2) + set.alphaHeading * delta;
-    state.att(2) = heading;
   }
 }
 
 void INS::printData()
 {
+  std::lock_guard<std::mutex> lock(mtxState3D);
   std::cout << "yaw : " << state.att(2) << "roll : " << state.att(0) << "pitch : " << state.att(1) << std::endl;
 }
 

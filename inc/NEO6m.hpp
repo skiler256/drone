@@ -7,24 +7,41 @@
 
 std::string charToHex(char c);
 
-struct coordPaket {
-  double longitude;
-  double latitude;
-};
-
-struct SatelliteInfo {
-  uint8_t ID;
-  uint8_t strenght;
-  uint8_t quality;
-};
-
-class NEO6m {
+class NEO6m
+{
 public:
   NEO6m(eventManager &event, const char *portName = "/dev/ttyAMA1");
 
   void handlNEO6m();
 
+  struct coordPaket
+  {
+    double longitude;
+    double latitude;
+  };
+
+  struct SatelliteInfo
+  {
+    uint8_t ID;
+    uint8_t strenght;
+    uint8_t quality;
+  };
+
+  struct gpsState
+  {
+    std::vector<SatelliteInfo> sats;
+    coordPaket coord;
+    int timeArray[6] = {0, 0, 0, 0, 0, 0};
+    bool gpsFixOk = false; // fix 3D only
+
+    int velNED[3] = {0, 0, 0}; // velned --> vNORTH vEAST vDOWN
+    uint32_t speed = 0;
+    uint32_t GS = 0;
+    double heading = 0.0;
+  };
+
   coordPaket getGPSCoord();
+  gpsState getGPSState();
 
 private:
   void handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize);
