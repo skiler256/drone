@@ -1,17 +1,18 @@
 #include "../inc/BMP280.hpp"
 
-BMP280::BMP280(uint8_t address, const char *bus) : addr(address) {
+BMP280::BMP280(uint8_t address, const char *bus) : addr(address)
+{
   file = open(bus, O_RDWR);
-  if (file < 0) {
+  if (file < 0)
+  {
     perror("Erreur ouverture I2C");
     exit(1);
   }
-  if (ioctl(file, I2C_SLAVE, addr) < 0) {
+  if (ioctl(file, I2C_SLAVE, addr) < 0)
+  {
     perror("Erreur configuration adresse I2C");
     exit(1);
   }
-  init();
-
   write(file, &COEF, 1);
   char calib[24];
   read(file, calib, 24);
@@ -36,12 +37,14 @@ BMP280::BMP280(uint8_t address, const char *bus) : addr(address) {
   write(file, config, 2);
 }
 
-BMP280::~BMP280() {
+BMP280::~BMP280()
+{
   if (file >= 0)
     close(file);
 }
 
-BMP280::data BMP280::getData() {
+BMP280::data BMP280::getData()
+{
   // Lecture température brute
   write(file, &TEMP, 1);
   char dataT[3];
@@ -77,9 +80,12 @@ BMP280::data BMP280::getData() {
   var1p = (((((int64_t)1) << 47) + var1p)) * ((int64_t)dig_P1) >> 33;
 
   float pressure;
-  if (var1p == 0) {
+  if (var1p == 0)
+  {
     pressure = 0; // division par zéro protection
-  } else {
+  }
+  else
+  {
     int64_t p = 1048576 - adc_P;
     p = (((p << 31) - var2p) * 3125) / var1p;
     var1p = (((int64_t)dig_P9) * (p >> 13) * (p >> 13)) >> 25;

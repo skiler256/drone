@@ -19,13 +19,8 @@ public:
     Eigen::Matrix<double, 3, 1> vel;
   };
 
-  void acquireESP();
+  void runINS();
 
-  void calibrateMag();
-
-  void computeHeading();
-
-  void printCalMag();
   Eigen::Matrix<double, 3, 1> calibratedMag;
 
   struct Kalman1D
@@ -47,16 +42,21 @@ private:
   BMP280 &baro;
   NEO6m &gps;
 
-  ESPdata dataESP;
+  state3D state;
 
   std::mutex mtxDataESP;
+  std::mutex mtxState3D;
+
+  void acquireSensor();
+  void computeHeading();
+  void printDebug();
 
   // clibration
   Eigen::Matrix<double, 3, 3> calMagMatrix;
   Eigen::Matrix<double, 3, 1> magBiasVec;
 
   // Sensor
-  double prevHeading = 0.0;
+  ESPdata dataESP;
 
   // filter
   std::chrono::_V2::steady_clock::time_point tMag;

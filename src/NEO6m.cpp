@@ -7,8 +7,10 @@
 #include <termios.h>
 #include <unistd.h>
 
-NEO6m::NEO6m(const char *portName)
-    : SerialPort(open(portName, O_RDWR | O_NOCTTY)), portName(portName) {
+NEO6m::NEO6m(eventManager &event, const char *portName)
+    : event(event),
+      SerialPort(open(portName, O_RDWR | O_NOCTTY)), portName(portName)
+{
   tcgetattr(SerialPort, &tty);
 
   cfsetospeed(&tty, B9600);
@@ -127,13 +129,15 @@ NEO6m::NEO6m(const char *portName)
   write(SerialPort, set_rate, sizeof(set_rate));
   tcdrain(SerialPort);
 }
-std::string charToHex(char c) {
+std::string charToHex(char c)
+{
   std::stringstream ss;
   ss << std::hex << std::setw(2) << std::setfill('0') << (int)(unsigned char)c;
   return ss.str();
 }
 
-int NEO6m::makeI4(const int cursor) {
+int NEO6m::makeI4(const int cursor)
+{
   return static_cast<int32_t>(
       (static_cast<uint32_t>(payloadBuffer[cursor])) |
       (static_cast<uint32_t>(payloadBuffer[cursor + 1]) << 8) |
@@ -141,7 +145,8 @@ int NEO6m::makeI4(const int cursor) {
       (static_cast<uint32_t>(payloadBuffer[cursor + 3]) << 24));
 }
 
-uint32_t NEO6m::makeU4(const int cursor) {
+uint32_t NEO6m::makeU4(const int cursor)
+{
   return static_cast<uint32_t>(
       (static_cast<uint32_t>(payloadBuffer[cursor])) |
       (static_cast<uint32_t>(payloadBuffer[cursor + 1]) << 8) |
@@ -149,7 +154,8 @@ uint32_t NEO6m::makeU4(const int cursor) {
       (static_cast<uint32_t>(payloadBuffer[cursor + 3]) << 24));
 }
 
-void NEO6m::handlNEO6m() {
+void NEO6m::handlNEO6m()
+{
 
   usleep(1000000);
 
@@ -161,10 +167,13 @@ void NEO6m::handlNEO6m() {
   // std::string paket = "B5 ";
 
   unsigned char byte;
-  while (true) {
+  while (true)
+  {
     int n = read(SerialPort, &byte, 1);
-    if (n > 0) {
-      switch (state) {
+    if (n > 0)
+    {
+      switch (state)
+      {
       case 1:
         if (byte == 0xB5)
           state++;
@@ -202,7 +211,8 @@ void NEO6m::handlNEO6m() {
         payloadSize = LENGHTL | (LENGHTM << 8);
         if (payloadSize > 1024)
           state = 1;
-        else {
+        else
+        {
           payloadCursor = 0;
           state++;
         }
@@ -210,7 +220,8 @@ void NEO6m::handlNEO6m() {
 
       case 7:
         payloadBuffer[payloadCursor++] = byte;
-        if (payloadCursor == payloadSize) {
+        if (payloadCursor == payloadSize)
+        {
           state++;
         }
         break;
@@ -235,15 +246,18 @@ void NEO6m::handlNEO6m() {
   }
 }
 
-void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize) {
+void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize)
+{
   std::cout << " Classe : " << charToHex(CLASS) << " ID : " << charToHex(ID)
             << " taille du payload : " << payloadSize << std::endl;
 
   if (CLASS == 0x01)
-    switch (ID) {
+    switch (ID)
+    {
 
     case 0x21:
-      if (payloadSize == 20) {
+      if (payloadSize == 20)
+      {
         timeArray[0] = (payloadBuffer[13] << 8) | payloadBuffer[12];
         timeArray[1] = payloadBuffer[14];
         timeArray[2] = payloadBuffer[15];
@@ -257,7 +271,8 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize) {
       break;
 
     case 0x03:
-      if (payloadSize == 16) {
+      if (payloadSize == 16)
+      {
         if (payloadBuffer[4] == 0x03)
           gpsFixOk = true;
         else
@@ -265,7 +280,8 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize) {
       }
 
     case 0x12:
-      if (payloadSize == 36) {
+      if (payloadSize == 36)
+      {
         velNED[0] = makeI4(4);
         velNED[1] = makeI4(8);
         velNED[2] = makeI4(12);
@@ -279,7 +295,8 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize) {
       break;
 
     case 0x02:
-      if (payloadSize == 28) {
+      if (payloadSize == 28)
+      {
 
         longitude = makeI4(4) * 1e-7;
         latitude = makeI4(8) * 1e-7;
@@ -292,7 +309,8 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize) {
     case 0x30:
       sats.clear();
       const uint8_t N = payloadBuffer[4];
-      for (int n = 0; n < N; n++) {
+      for (int n = 0; n < N; n++)
+      {
         sats.push_back({payloadBuffer[9 + 12 * n], payloadBuffer[12 + 12 * n],
                         payloadBuffer[11 + 12 * n]});
       }

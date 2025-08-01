@@ -2,10 +2,12 @@
 #include <cmath>
 #include <iostream>
 
-
 INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps)
-    : event(event), esp(esp), baro(baro), gps(gps), kx(100.0, 800.0),
-      ky(100.0, 800.0), kz(100.0, 800.0) {
+    : event(event), esp(esp), baro(baro), gps(gps),
+      kx(100.0, 800.0),
+      ky(100.0, 800.0),
+      kz(100.0, 800.0)
+{
   tMag = std::chrono::steady_clock::now();
   calibratedMag << 0.0, 0.0, 0.0;
   FilteredCalibratedMag << 0.0, 0.0, 0.0;
@@ -19,12 +21,21 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps)
       -0.005285, 0.001096, 1.207234;
 }
 
-void INS::acquireESP() {
-  std::lock_guard<std::mutex> lock(mtxDataESP);
-  dataESP = esp.getData();
+void INS::acquireSensor()
+{
+  {
+    std::lock_guard<std::mutex> lock(mtxDataESP);
+    dataESP = esp.getData();
+  }
+  {
+    std::lock_guard<std::mutex> lockState3D(mtxState3D);
+    state.att(0) = -dataESP.roll;
+    state.att(1) = dataESP.pitch;
+  }
 }
 
-void INS::calibrateMag() {
+void INS::computeHeading()
+{
   Eigen::Vector3d rawMag;
   {
     std::lock_guard<std::mutex> lock(mtxDataESP);
@@ -60,43 +71,45 @@ void INS::calibrateMag() {
 
   kz.update(calibratedMag(2), dt);
   FilteredCalibratedMag(2) = kz.getvalue();
-}
 
-void INS::computeHeading() {
   double heading =
       std::atan2(FilteredCalibratedMag(1), FilteredCalibratedMag(0));
   heading *= 180.0 / M_PI;
   // if (heading < 0)
   //     heading += 360.0;
 
-  double delta = heading - prevHeading;
-  if (delta > 180)
-    delta -= 360;
-  if (delta < -180)
-    delta += 360;
+  {
 
-  heading = prevHeading + alphaHeading * delta;
-  prevHeading = heading;
+    std::lock_guard<std::mutex> lockState3D(mtxState3D);
+    double delta = heading - state.att(2);
+    if (delta > 180)
+      delta -= 360;
+    if (delta < -180)
+      delta += 360;
 
-  std::cout << "Heading: " << heading << "°" << std::endl;
-  std::cout << "euler : " << dataESP.roll << " " << dataESP.pitch << std::endl;
+    state.att(2) = state.att(2) + alphaHeading * delta;
+    state.att(2) = heading;
+  }
 }
 
-void INS::printCalMag() {
-  std::cout << "calibrated : " << calibratedMag(0) << " " << calibratedMag(1)
+void INS::printDebug()
+{
+  std::cout << "yaw " << calibratedMag(0) << " " << calibratedMag(1)
             << " " << calibratedMag(2) << std::endl;
 }
 
 // Kalman 1D :
 
-INS::Kalman1D::Kalman1D(double q, double r) {
+INS::Kalman1D::Kalman1D(double q, double r)
+{
   x << 0, 0;
   P.setIdentity();
   Q << q, 0, 0, q;
   R = r;
 }
 
-void INS::Kalman1D::update(double z, double dt) {
+void INS::Kalman1D::update(double z, double dt)
+{
   // Matrices
   Eigen::Matrix2d A;
   A << 1, dt, 0, 1;
