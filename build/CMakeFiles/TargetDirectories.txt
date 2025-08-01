@@ -1,0 +1,3 @@
+/home/jules/code/drone/build/CMakeFiles/exemplecpp.dir
+/home/jules/code/drone/build/CMakeFiles/edit_cache.dir
+/home/jules/code/drone/build/CMakeFiles/rebuild_cache.dir
