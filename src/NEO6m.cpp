@@ -248,8 +248,8 @@ void NEO6m::handlNEO6m()
 
 void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize)
 {
-  std::cout << " Classe : " << charToHex(CLASS) << " ID : " << charToHex(ID)
-            << " taille du payload : " << payloadSize << std::endl;
+  // std::cout << " Classe : " << charToHex(CLASS) << " ID : " << charToHex(ID)
+  //           << " taille du payload : " << payloadSize << std::endl;
 
   if (CLASS == 0x01)
     switch (ID)
@@ -314,15 +314,16 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize)
         sats.push_back({payloadBuffer[9 + 12 * n], payloadBuffer[12 + 12 * n],
                         payloadBuffer[11 + 12 * n]});
       }
-      // std::cout<<(int)N<<std::endl;
+      // std::cout << (int)N << std::endl;
 
       // std::cout << "Liste des satellites visibles :\n";
       // std::cout << "-------------------------------\n";
       // std::cout << " ID  | Strenght | Quality\n";
       // std::cout << "-------------------------------\n";
 
-      // for (const auto& sat : sats) {
-      //     std::cout << " "
+      // for (const auto &sat : sats)
+      // {
+      //   std::cout << " "
       //             << std::setw(3) << static_cast<int>(sat.ID) << " | "
       //             << std::setw(8) << static_cast<int>(sat.strenght) << " | "
       //             << std::setw(7) << static_cast<int>(sat.quality) << "\n";

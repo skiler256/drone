@@ -1,4 +1,5 @@
 #pragma once
+#include "../inc/eventManager.hpp"
 #include <cmath>
 #include <cstdint>
 #include <fcntl.h>
@@ -12,12 +13,14 @@ const uint8_t TEMP = 0xFA;
 const uint8_t PRESS = 0xF7;
 const uint8_t COEF = 0x88;
 
-class BMP280 {
+class BMP280
+{
 public:
-  BMP280(uint8_t address = 0x76, const char *bus = "/dev/i2c-1");
+  BMP280(eventManager &event, uint8_t address = 0x76, const char *bus = "/dev/i2c-1");
   ~BMP280();
 
-  struct data {
+  struct data
+  {
     double temp;
     double press;
   };
@@ -26,6 +29,7 @@ public:
 
 private:
   int file;
+  eventManager &event;
   uint8_t addr;
   int32_t t_fine;
 

@@ -1,6 +1,6 @@
 #include "../inc/BMP280.hpp"
 
-BMP280::BMP280(uint8_t address, const char *bus) : addr(address)
+BMP280::BMP280(eventManager &event, uint8_t address, const char *bus) : event(event), addr(address)
 {
   file = open(bus, O_RDWR);
   if (file < 0)
