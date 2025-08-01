@@ -1,27 +1,27 @@
 #pragma once
+#include "../inc/eventManager.hpp"
 #include "../inc/BMP280.hpp"
 #include "../inc/ESP32.hpp"
 #include "../inc/NEO6m.hpp"
-#include "../inc/eventManager.hpp"
+#include <mutex>
 #include <chrono>
 #include <eigen3/Eigen/Dense>
-#include <mutex>
+
+struct state3D
+{
+  Eigen::Matrix<double, 3, 1> pos;
+  Eigen::Matrix<double, 3, 1> vel;
+  Eigen::Matrix<double, 3, 1> att;
+};
 
 class INS
 {
 public:
-  INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps);
-
-  struct state3D
+  struct settings
   {
-    Eigen::Matrix<double, 3, 1> att;
-    Eigen::Matrix<double, 3, 1> pos;
-    Eigen::Matrix<double, 3, 1> vel;
+    int refreshRate;
+    double alphaHeading;
   };
-
-  void runINS();
-
-  Eigen::Matrix<double, 3, 1> calibratedMag;
 
   struct Kalman1D
   {
@@ -36,27 +36,34 @@ public:
     double getvelocity();
   };
 
+  INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::settings &set);
+
+  void runINS();
+  state3D getState3D();
+  void printData();
+  bool doDebug = false;
+
 private:
   eventManager &event;
   ESP32 &esp;
   BMP280 &baro;
   NEO6m &gps;
 
+  void computeHeading();
+  void acquireSensor();
+
+  // data
   state3D state;
 
-  std::mutex mtxDataESP;
-  std::mutex mtxState3D;
-
-  void acquireSensor();
-  void computeHeading();
-  void printDebug();
+  // raw sensor data
+  ESPdata dataESP;
 
   // clibration
   Eigen::Matrix<double, 3, 3> calMagMatrix;
   Eigen::Matrix<double, 3, 1> magBiasVec;
 
   // Sensor
-  ESPdata dataESP;
+  Eigen::Matrix<double, 3, 1> calibratedMag;
 
   // filter
   std::chrono::_V2::steady_clock::time_point tMag;
@@ -64,5 +71,9 @@ private:
   Kalman1D kx, ky, kz;
 
   // setting
-  const double alphaHeading = 0.5;
+  settings set;
+
+  // mutex
+  std::mutex mtxDataESP;
+  std::mutex mtxState3D;
 };

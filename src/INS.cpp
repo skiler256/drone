@@ -1,9 +1,10 @@
 #include "../inc/INS.hpp"
 #include <cmath>
 #include <iostream>
+#include <thread>
 
-INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps)
-    : event(event), esp(esp), baro(baro), gps(gps),
+INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::settings &set)
+    : event(event), esp(esp), baro(baro), gps(gps), set(set),
       kx(100.0, 800.0),
       ky(100.0, 800.0),
       kz(100.0, 800.0)
@@ -19,6 +20,25 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps)
   magBiasVec << 192.046411, -68.294232, 508.612908;
   calMagMatrix << 1.110525, -0.009313, -0.005285, -0.009313, 1.148244, 0.001096,
       -0.005285, 0.001096, 1.207234;
+}
+
+void INS::runINS()
+{
+  while (true)
+  {
+    const auto start = std::chrono::steady_clock::now();
+
+    acquireSensor();
+    computeHeading();
+
+    const auto end = std::chrono::steady_clock::now();
+    int elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+
+    int target_period_ms = static_cast<int>(1000.0 / set.refreshRate);
+    int remaining_sleep_ms = std::max(0, target_period_ms - elapsed_ms);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
+  }
 }
 
 void INS::acquireSensor()
@@ -87,15 +107,14 @@ void INS::computeHeading()
     if (delta < -180)
       delta += 360;
 
-    state.att(2) = state.att(2) + alphaHeading * delta;
+    state.att(2) = state.att(2) + set.alphaHeading * delta;
     state.att(2) = heading;
   }
 }
 
-void INS::printDebug()
+void INS::printData()
 {
-  std::cout << "yaw " << calibratedMag(0) << " " << calibratedMag(1)
-            << " " << calibratedMag(2) << std::endl;
+  std::cout << "yaw : " << state.att(2) << "roll : " << state.att(0) << "pitch : " << state.att(1) << std::endl;
 }
 
 // Kalman 1D :
