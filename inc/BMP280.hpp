@@ -16,7 +16,7 @@ const uint8_t COEF = 0x88;
 class BMP280
 {
 public:
-  BMP280(eventManager &event, uint8_t address = 0x76, const char *bus = "/dev/i2c-1");
+  BMP280(eventManager &event, uint8_t address = 0x76, const char *bus = "/dev/i2c-4");
   ~BMP280();
 
   struct data

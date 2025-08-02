@@ -25,7 +25,9 @@ int main()
 
   while (true)
   {
-    ins.printData();
+    // ins.printData();
+    std::cout << "baro mise a jour " << std::endl;
+    std::cout << baro.getData().temp << std::endl;
     usleep(100000);
   }
 
