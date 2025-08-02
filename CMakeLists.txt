@@ -5,7 +5,6 @@ project(exemplecpp)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
 # Dossiers
 set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
 set(INC_DIR "${CMAKE_SOURCE_DIR}/inc")
@@ -19,18 +18,28 @@ file(GLOB_RECURSE SOURCES "${SRC_DIR}/*.cpp")
 message(STATUS "Sources trouvées: ${SOURCES}")
 
 # Inclure les headers
-include_directories(${INC_DIR} /usr/include/eigen3
-${EXT_LIB_DIR}/websocketpp )
+include_directories(
+    ${INC_DIR}
+    /usr/include/eigen3
+    /usr/local/include/uWebSockets
+    /usr/local/include
+    ${EXT_LIB_DIR}/websocketpp
+    /home/jules/code/drone/external/uWebSockets/uSockets/src 
+)
+
+# Ajouter le dossier contenant uSockets.a
+link_directories(/usr/local/lib)
 
 # Créer l'exécutable
 add_executable(exemplecpp ${SOURCES})
 
 # Lier les bibliothèques nécessaires
 target_link_libraries(exemplecpp
-    rt
+    uWS
+    z
+    ssl
+    crypto
     pthread
+    rt
     wiringPi
 )
-
-# (optionnel) chemin des libs
-link_directories(${LIB_DIR})

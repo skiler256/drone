@@ -4,12 +4,14 @@
 #include "../inc/INS.hpp"
 #include "../inc/NEO6m.hpp"
 #include "../inc/PCA9685.hpp"
+#include "/usr/local/include/uWebSockets/App.h"
 
 #include <thread>
 #include <iostream>
 
 int main()
 {
+
   eventManager event;
   event.doLog = true;
   ESP32 esp(event);

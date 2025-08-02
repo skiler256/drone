@@ -1,6 +1,8 @@
-CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
- /home/jules/code/drone/src/main.cpp /usr/include/stdc-predef.h \
- /home/jules/code/drone/src/../inc/BMP280.hpp /usr/include/c++/12/cstdint \
+CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: \
+ /home/jules/code/drone/src/sysMonitoring.cpp /usr/include/stdc-predef.h \
+ /home/jules/code/drone/src/../inc/sysMonitoring.hpp \
+ /home/jules/code/drone/src/../inc/../inc/BMP280.hpp \
+ /usr/include/c++/12/cstdint \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -173,7 +175,7 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
  /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
  /usr/include/asm-generic/posix_types.h \
- /home/jules/code/drone/src/../inc/eventManager.hpp \
+ /home/jules/code/drone/src/../inc/../inc/eventManager.hpp \
  /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
  /usr/include/c++/12/ext/aligned_buffer.h \
  /usr/include/c++/12/bits/node_handle.h \
@@ -181,8 +183,8 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/stl_multimap.h \
  /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/utility \
  /usr/include/c++/12/bits/stl_relops.h \
- /home/jules/code/drone/src/../inc/ESP32.hpp /usr/include/termios.h \
- /usr/include/aarch64-linux-gnu/bits/termios.h \
+ /home/jules/code/drone/src/../inc/../inc/ESP32.hpp \
+ /usr/include/termios.h /usr/include/aarch64-linux-gnu/bits/termios.h \
  /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
  /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
  /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
@@ -192,8 +194,8 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
  /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
  /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
- /home/jules/code/drone/src/../inc/INS.hpp \
- /home/jules/code/drone/src/../inc/../inc/NEO6m.hpp \
+ /home/jules/code/drone/src/../inc/../inc/INS.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/NEO6m.hpp \
  /usr/include/c++/12/fstream /usr/include/c++/12/istream \
  /usr/include/c++/12/ios /usr/include/c++/12/bits/ios_base.h \
  /usr/include/c++/12/bits/locale_classes.h \
@@ -463,57 +465,12 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
- /home/jules/code/drone/src/../inc/PCA9685.hpp \
- /usr/local/include/uWebSockets/App.h /usr/include/c++/12/charconv \
- /usr/include/c++/12/bit /usr/local/include/uWebSockets/HttpContext.h \
- /usr/local/include/uWebSockets/Loop.h \
- /usr/local/include/uWebSockets/LoopData.h /usr/include/c++/12/thread \
- /usr/include/c++/12/stop_token /usr/include/c++/12/bits/std_thread.h \
+ /home/jules/code/drone/src/../inc/../inc/PCA9685.hpp \
+ /usr/include/c++/12/thread /usr/include/c++/12/stop_token \
+ /usr/include/c++/12/bits/std_thread.h \
  /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/semaphore \
  /usr/include/c++/12/bits/semaphore_base.h \
  /usr/include/c++/12/bits/atomic_timed_wait.h \
  /usr/include/c++/12/bits/this_thread_sleep.h \
  /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
- /usr/include/aarch64-linux-gnu/bits/semaphore.h \
- /usr/local/include/uWebSockets/PerMessageDeflate.h /usr/include/zlib.h \
- /usr/include/zconf.h /usr/include/c++/12/optional \
- /usr/local/include/uWebSockets/MoveOnlyFunction.h \
- /usr/include/c++/12/memory \
- /usr/include/c++/12/bits/stl_raw_storage_iter.h \
- /usr/include/c++/12/bits/align.h /usr/include/c++/12/bits/shared_ptr.h \
- /usr/include/c++/12/bits/shared_ptr_base.h \
- /usr/include/c++/12/bits/allocated_ptr.h \
- /usr/include/c++/12/ext/concurrence.h \
- /usr/include/c++/12/bits/shared_ptr_atomic.h \
- /usr/include/c++/12/backward/auto_ptr.h \
- /usr/include/c++/12/bits/ranges_uninitialized.h \
- /usr/include/c++/12/bits/uses_allocator_args.h \
- /usr/include/c++/12/pstl/glue_memory_defs.h \
- /home/jules/code/drone/external/uWebSockets/uSockets/src/libusockets.h \
- /usr/include/c++/12/iostream \
- /usr/local/include/uWebSockets/HttpContextData.h \
- /usr/local/include/uWebSockets/HttpRouter.h \
- /usr/local/include/uWebSockets/HttpResponseData.h \
- /usr/local/include/uWebSockets/HttpParser.h \
- /usr/local/include/uWebSockets/ChunkedEncoding.h \
- /usr/local/include/uWebSockets/BloomFilter.h /usr/include/c++/12/bitset \
- /usr/local/include/uWebSockets/ProxyParser.h \
- /usr/local/include/uWebSockets/QueryParser.h \
- /usr/local/include/uWebSockets/HttpErrors.h \
- /usr/local/include/uWebSockets/AsyncSocketData.h \
- /usr/local/include/uWebSockets/AsyncSocket.h \
- /usr/local/include/uWebSockets/WebSocketData.h \
- /usr/local/include/uWebSockets/WebSocketProtocol.h \
- /usr/local/include/uWebSockets/TopicTree.h /usr/include/c++/12/list \
- /usr/include/c++/12/bits/stl_list.h /usr/include/c++/12/bits/list.tcc \
- /usr/include/c++/12/unordered_set \
- /usr/include/c++/12/bits/unordered_set.h /usr/include/c++/12/set \
- /usr/include/c++/12/bits/stl_set.h \
- /usr/include/c++/12/bits/stl_multiset.h \
- /usr/local/include/uWebSockets/HttpResponse.h \
- /usr/local/include/uWebSockets/Utilities.h \
- /usr/local/include/uWebSockets/WebSocketExtensions.h \
- /usr/local/include/uWebSockets/WebSocketHandshake.h \
- /usr/local/include/uWebSockets/WebSocket.h \
- /usr/local/include/uWebSockets/WebSocketContextData.h \
- /usr/local/include/uWebSockets/WebSocketContext.h
+ /usr/include/aarch64-linux-gnu/bits/semaphore.h

@@ -369,6 +369,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/sysMonitoring.o: src/sysMonitoring.cpp.o
+.PHONY : src/sysMonitoring.o
+
+# target to build an object file
+src/sysMonitoring.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o
+.PHONY : src/sysMonitoring.cpp.o
+
+src/sysMonitoring.i: src/sysMonitoring.cpp.i
+.PHONY : src/sysMonitoring.i
+
+# target to preprocess a source file
+src/sysMonitoring.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.i
+.PHONY : src/sysMonitoring.cpp.i
+
+src/sysMonitoring.s: src/sysMonitoring.cpp.s
+.PHONY : src/sysMonitoring.s
+
+# target to generate assembly for a file
+src/sysMonitoring.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.s
+.PHONY : src/sysMonitoring.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -408,6 +432,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/sysMonitoring.o"
+	@echo "... src/sysMonitoring.i"
+	@echo "... src/sysMonitoring.s"
 .PHONY : help
 
 

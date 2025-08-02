@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jules/code/drone/inc -I/usr/include/eigen3 -I/home/jules/libs/websocketpp
+CXX_INCLUDES = -I/home/jules/code/drone/inc -I/usr/include/eigen3 -I/usr/local/include/uWebSockets -I/home/jules/libs/websocketpp -I/home/jules/code/drone/external/uWebSockets/uSockets/src
 
 CXX_FLAGS = -std=gnu++20
 

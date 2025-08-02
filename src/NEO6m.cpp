@@ -348,8 +348,9 @@ NEO6m::coordPaket NEO6m::getGPSCoord()
   return {longitude, latitude};
 }
 
-// NEO6m::gpsState NEO6m::getGPSState(){
-//   std::lock_guard<std::mutex> lock(mtx);
-//   gpsState state;
-//   state.
-// }
+NEO6m::gpsState NEO6m::getGPSState()
+{
+  std::lock_guard<std::mutex> lock(mtx);
+  gpsState state;
+  return state;
+}
