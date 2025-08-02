@@ -4,15 +4,10 @@ BMP280::BMP280(eventManager &event, uint8_t address, const char *bus) : event(ev
 {
   file = open(bus, O_RDWR);
   if (file < 0)
-  {
-    perror("Erreur ouverture I2C");
-    exit(1);
-  }
-  if (ioctl(file, I2C_SLAVE, addr) < 0)
-  {
-    perror("Erreur configuration adresse I2C");
-    exit(1);
-  }
+    if (ioctl(file, I2C_SLAVE, addr) < 0)
+    {
+      event.reportEvent({component::BMP, subcomponent::i2c, eventSeverity::CRITICAL, "impossible d ouvrir le port i2c "});
+    }
   write(file, &COEF, 1);
   char calib[24];
   read(file, calib, 24);
@@ -95,12 +90,11 @@ BMP280::data BMP280::getData()
     pressure = (float)p / 25600.0; // en hPa
   }
 
-  // std::cout << "Température : " << temp << " °C" << std::endl;
-  // std::cout << "Pression : " << pressure << " hPa" << std::endl;
+  if (temp > 50 || temp < -10 || pressure < 900 || pressure > 1100)
+    event.reportEvent({component::BMP, subcomponent::computing, eventSeverity::CRITICAL, "valeur calculee anormale"});
 
-  // Altitude estimée (optionnel)
-  float P0 = 1013.25; // pression au niveau de la mer
-  float altitude = 44330.0 * (1.0 - pow(pressure / P0, 0.1903));
-  // std::cout << "Altitude estimée : " << altitude << " m" << std::endl;
+  else
+    event.reportEvent({component::BMP, subcomponent::computing, eventSeverity::INFO, "valeur calculee normale"});
+
   return {(double)temp, (double)pressure};
 }

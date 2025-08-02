@@ -1,16 +1,5 @@
 #include "../inc/eventManager.hpp"
-
-void eventManager::reportEvent(const event &event)
-{
-    std::lock_guard<std::mutex> lock(mtx);
-    events[{event.comp, event.subcomp}] = {event.severity, event.mess};
-}
-
-void eventManager::clearEvent(const event &event)
-{
-    std::lock_guard<std::mutex> lock(mtx);
-    events.erase({event.comp, event.subcomp});
-}
+#include <iostream>
 
 std::string toString(eventSeverity severity)
 {
@@ -61,4 +50,20 @@ std::string toString(subcomponent sub)
     default:
         return "UNKNOWN_SUBCOMPONENT";
     }
+}
+
+void eventManager::reportEvent(const event &event)
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    events[{event.comp, event.subcomp}] = {event.severity, event.mess};
+    if (doLog)
+    {
+        std::cout << toString(event.comp) << " " << toString(event.subcomp) << " " << toString(event.severity) << " " << event.mess << std::endl;
+    }
+}
+
+void eventManager::clearEvent(const event &event)
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    events.erase({event.comp, event.subcomp});
 }

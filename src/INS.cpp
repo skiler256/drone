@@ -46,6 +46,7 @@ void INS::acquireSensor()
   {
     std::lock_guard<std::mutex> lock(mtxDataESP);
     dataESP = esp.getData();
+    event.reportEvent({component::INS, subcomponent::dataLink, eventSeverity::INFO, "reception donne esp32"});
   }
   {
     std::lock_guard<std::mutex> lockState3D(mtxState3D);

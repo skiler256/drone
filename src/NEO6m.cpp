@@ -11,7 +11,10 @@ NEO6m::NEO6m(eventManager &event, const char *portName)
     : event(event),
       SerialPort(open(portName, O_RDWR | O_NOCTTY)), portName(portName)
 {
-  tcgetattr(SerialPort, &tty);
+  if (tcgetattr(SerialPort, &tty) < 0)
+    event.reportEvent({component::GPS, subcomponent::serial, eventSeverity::CRITICAL, "impossible d ouvrir le port serie"});
+  else
+    event.reportEvent({component::GPS, subcomponent::serial, eventSeverity::INFO, "port serie ouvert"});
 
   cfsetospeed(&tty, B9600);
   cfsetispeed(&tty, B9600);
@@ -250,6 +253,8 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize)
 {
   // std::cout << " Classe : " << charToHex(CLASS) << " ID : " << charToHex(ID)
   //           << " taille du payload : " << payloadSize << std::endl;
+
+  event.reportEvent({component::GPS, subcomponent::parser, eventSeverity::INFO, "reception d un paquet ID : " + std::to_string((int)ID)});
 
   std::lock_guard<std::mutex> lock(mtx);
 

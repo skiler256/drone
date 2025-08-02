@@ -11,24 +11,27 @@
 ESP32::ESP32(eventManager &event, const char *portName)
     : event(event), portName(portName)
 {
-
   uint8_t buffer[200];
   int attempt = 0;
   while (SerialPort < 0 && attempt < 50)
   {
-    conect();
     if (SerialPort < 0)
     {
+      attempt++;
+      std::cout << SerialPort << std::endl;
       usleep(10000);
       continue;
     }
+
     if (readSafe(SerialPort, reinterpret_cast<uint8_t *>(&buffer), 200, 50))
     {
+
       for (int i = 0; i < 199; i++)
       {
         if (buffer[i] == 0x24 && buffer[i + 1] == 0x09)
         {
-
+          std::cout << "vamos" << std::endl;
+          event.reportEvent({component::ESP, subcomponent::serial, eventSeverity::INFO, "port serie ouvert"});
           return;
         }
       }
@@ -49,6 +52,7 @@ ESP32::ESP32(eventManager &event, const char *portName)
     }
     attempt++;
   }
+  event.reportEvent({component::ESP, subcomponent::serial, eventSeverity::CRITICAL, "impossible d ouvrir le port serie"});
 }
 
 bool ESP32::conect()
@@ -77,28 +81,58 @@ bool ESP32::conect()
   return true;
 }
 
-bool readSafe(int fd, uint8_t *output, size_t size, int timeout)
+bool readSafe(int fd, uint8_t *output, size_t size, int timeoutMs)
 {
-  auto t1 = std::chrono::steady_clock::now();
   size_t totalRead = 0;
-  while (totalRead < size &&
-         std::chrono::duration_cast<std::chrono::milliseconds>(
-             std::chrono::steady_clock::now() - t1)
-                 .count() < timeout)
+  auto startTime = std::chrono::steady_clock::now();
+
+  while (totalRead < size)
   {
+    // Calcul du temps restant avant timeout
+    auto now = std::chrono::steady_clock::now();
+    int elapsedMs = std::chrono::duration_cast<std::chrono::milliseconds>(now - startTime).count();
+    int timeLeft = timeoutMs - elapsedMs;
+    if (timeLeft <= 0)
+      return false; // Timeout dépassé
+
+    // Préparation de la structure timeval pour select
+    struct timeval tv;
+    tv.tv_sec = timeLeft / 1000;
+    tv.tv_usec = (timeLeft % 1000) * 1000;
+
+    fd_set readfds;
+    FD_ZERO(&readfds);
+    FD_SET(fd, &readfds);
+
+    // Attend que fd soit prêt en lecture
+    int ret = select(fd + 1, &readfds, nullptr, nullptr, &tv);
+    if (ret < 0)
+    {
+      // Erreur select
+      return false;
+    }
+    else if (ret == 0)
+    {
+      // Timeout sur select
+      return false;
+    }
+
+    // fd prêt à la lecture
     ssize_t n = read(fd, output + totalRead, size - totalRead);
     if (n < 0)
     {
-      return false;
+      return false; // Erreur read
     }
     else if (n == 0)
     {
+      // EOF (ou rien à lire) — optionnel: faire une petite pause ?
       usleep(1000);
       continue;
     }
 
     totalRead += n;
   }
+
   return true;
 }
 
@@ -138,6 +172,7 @@ void ESP32::runESP32()
 
         case 0x02:
         {
+          event.reportEvent({component::ESP, subcomponent::parser, eventSeverity::INFO, "reception d un paquet"});
           break;
         }
         }

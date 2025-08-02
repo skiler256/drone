@@ -17,7 +17,8 @@ enum class component
     GPS,
     ESP,
     BMP,
-    INS
+    INS,
+    PCA
 };
 
 enum class subcomponent
@@ -25,7 +26,8 @@ enum class subcomponent
     serial,
     i2c,
     computing,
-    dataLink
+    dataLink,
+    parser
 };
 
 struct event
@@ -47,6 +49,8 @@ public:
         eventSeverity severity;
         std::string mess;
     };
+
+    bool doLog = false;
 
 private:
     std::mutex mtx;
