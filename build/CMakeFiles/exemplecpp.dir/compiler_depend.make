@@ -517,7 +517,10 @@ CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: /home/jules/code/drone/src/ESP32.cpp 
   /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
   /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
   /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
-  /usr/include/linux/close_range.h
+  /usr/include/linux/close_range.h \
+  /usr/include/c++/12/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h
 
 CMakeFiles/exemplecpp.dir/src/INS.cpp.o: /home/jules/code/drone/src/INS.cpp \
   /usr/include/stdc-predef.h \
@@ -3695,6 +3698,14 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
 
 /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h:
 
+/usr/include/string.h:
+
+/usr/include/aarch64-linux-gnu/bits/sched.h:
+
+/usr/include/strings.h:
+
+/usr/include/aarch64-linux-gnu/bits/syscall.h:
+
 /usr/include/eigen3/Eigen/src/Core/CoreEvaluators.h:
 
 /usr/include/c++/12/vector:
@@ -3800,14 +3811,6 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
 /usr/include/c++/12/bits/stl_algo.h:
 
 /usr/include/eigen3/Eigen/src/Core/DiagonalMatrix.h:
-
-/usr/include/string.h:
-
-/usr/include/aarch64-linux-gnu/bits/sched.h:
-
-/usr/include/strings.h:
-
-/usr/include/aarch64-linux-gnu/bits/syscall.h:
 
 /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h:
 

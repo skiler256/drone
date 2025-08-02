@@ -7,6 +7,7 @@
 #include <string>
 #include <termios.h>
 #include <unistd.h>
+#include <cstring>
 
 ESP32::ESP32(eventManager &event, const char *portName)
     : event(event), portName(portName)
@@ -15,6 +16,7 @@ ESP32::ESP32(eventManager &event, const char *portName)
   int attempt = 0;
   while (SerialPort < 0 && attempt < 50)
   {
+    conect();
     if (SerialPort < 0)
     {
       attempt++;
@@ -30,7 +32,6 @@ ESP32::ESP32(eventManager &event, const char *portName)
       {
         if (buffer[i] == 0x24 && buffer[i + 1] == 0x09)
         {
-          std::cout << "vamos" << std::endl;
           event.reportEvent({component::ESP, subcomponent::serial, eventSeverity::INFO, "port serie ouvert"});
           return;
         }
@@ -58,6 +59,7 @@ ESP32::ESP32(eventManager &event, const char *portName)
 bool ESP32::conect()
 {
   SerialPort = open(portName, O_RDWR | O_NOCTTY);
+  memset(&tty, 0, sizeof tty);
   if (tcgetattr(SerialPort, &tty) != 0)
     return false;
 
