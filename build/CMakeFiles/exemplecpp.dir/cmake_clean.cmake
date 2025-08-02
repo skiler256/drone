@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/exemplecpp.dir/src/BMP280.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/BMP280.cpp.o.d"
+  "CMakeFiles/exemplecpp.dir/src/COM.cpp.o"
+  "CMakeFiles/exemplecpp.dir/src/COM.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/INS.cpp.o"

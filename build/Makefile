@@ -153,6 +153,30 @@ src/BMP280.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/BMP280.cpp.s
 .PHONY : src/BMP280.cpp.s
 
+src/COM.o: src/COM.cpp.o
+.PHONY : src/COM.o
+
+# target to build an object file
+src/COM.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/COM.cpp.o
+.PHONY : src/COM.cpp.o
+
+src/COM.i: src/COM.cpp.i
+.PHONY : src/COM.i
+
+# target to preprocess a source file
+src/COM.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/COM.cpp.i
+.PHONY : src/COM.cpp.i
+
+src/COM.s: src/COM.cpp.s
+.PHONY : src/COM.s
+
+# target to generate assembly for a file
+src/COM.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/COM.cpp.s
+.PHONY : src/COM.cpp.s
+
 src/ESP32.o: src/ESP32.cpp.o
 .PHONY : src/ESP32.o
 
@@ -405,6 +429,9 @@ help:
 	@echo "... src/BMP280.o"
 	@echo "... src/BMP280.i"
 	@echo "... src/BMP280.s"
+	@echo "... src/COM.o"
+	@echo "... src/COM.i"
+	@echo "... src/COM.s"
 	@echo "... src/ESP32.o"
 	@echo "... src/ESP32.i"
 	@echo "... src/ESP32.s"

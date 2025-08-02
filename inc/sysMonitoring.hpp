@@ -28,6 +28,8 @@ public:
         std::map<std::pair<component, subcomponent>, eventManager::eventLog> events;
     };
 
+    sysData getData();
+
 private:
     eventManager &event;
     ESP32 &esp;

@@ -34,3 +34,8 @@ void sysMonitoring::runSysMonitoring()
         std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
     }
 }
+sysMonitoring::sysData sysMonitoring::getData()
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    return data;
+}

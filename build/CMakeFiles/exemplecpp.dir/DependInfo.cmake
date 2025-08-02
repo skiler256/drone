@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/jules/code/drone/src/BMP280.cpp" "CMakeFiles/exemplecpp.dir/src/BMP280.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/BMP280.cpp.o.d"
+  "/home/jules/code/drone/src/COM.cpp" "CMakeFiles/exemplecpp.dir/src/COM.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/COM.cpp.o.d"
   "/home/jules/code/drone/src/ESP32.cpp" "CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o.d"
   "/home/jules/code/drone/src/INS.cpp" "CMakeFiles/exemplecpp.dir/src/INS.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/INS.cpp.o.d"
   "/home/jules/code/drone/src/NEO6m.cpp" "CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o.d"
