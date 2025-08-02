@@ -67,3 +67,9 @@ void eventManager::clearEvent(const event &event)
     std::lock_guard<std::mutex> lock(mtx);
     events.erase({event.comp, event.subcomp});
 }
+
+std::map<std::pair<component, subcomponent>, eventManager::eventLog> eventManager::getEvents()
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    return events;
+}

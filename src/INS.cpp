@@ -154,3 +154,9 @@ void INS::Kalman1D::update(double z, double dt)
 
 double INS::Kalman1D::getvalue() { return x(0); }
 double INS::Kalman1D::getvelocity() { return x(1); }
+
+INS::state3D INS::getState3D()
+{
+  std::lock_guard<std::mutex> lock(mtxState3D);
+  return state;
+}

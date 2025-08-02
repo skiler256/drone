@@ -7,13 +7,6 @@
 #include <chrono>
 #include <eigen3/Eigen/Dense>
 
-struct state3D
-{
-  Eigen::Matrix<double, 3, 1> pos;
-  Eigen::Matrix<double, 3, 1> vel;
-  Eigen::Matrix<double, 3, 1> att;
-};
-
 class INS
 {
 public:
@@ -22,7 +15,12 @@ public:
     int refreshRate;
     double alphaHeading;
   };
-
+  struct state3D
+  {
+    Eigen::Matrix<double, 3, 1> pos;
+    Eigen::Matrix<double, 3, 1> vel;
+    Eigen::Matrix<double, 3, 1> att;
+  };
   struct Kalman1D
   {
     Eigen::Matrix<double, 2, 1> x;

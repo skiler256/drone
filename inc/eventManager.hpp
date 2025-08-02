@@ -50,6 +50,8 @@ public:
         std::string mess;
     };
 
+    std::map<std::pair<component, subcomponent>, eventLog> getEvents();
+
     bool doLog = false;
 
 private:
