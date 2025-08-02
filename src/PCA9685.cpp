@@ -39,9 +39,11 @@ void PCA9685::runPCA9685()
   while (true)
   {
 
-    std::lock_guard<std::mutex> lock(mtx);
+    {
+      std::lock_guard<std::mutex> lock(mtx);
 
-    write(file, OUTPUTregister, 33);
+      write(file, OUTPUTregister, 33);
+    }
 
     usleep(50000);
   }
