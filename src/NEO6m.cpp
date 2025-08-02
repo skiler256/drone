@@ -154,7 +154,7 @@ uint32_t NEO6m::makeU4(const int cursor)
       (static_cast<uint32_t>(payloadBuffer[cursor + 3]) << 24));
 }
 
-void NEO6m::handlNEO6m()
+void NEO6m::runNEO6m()
 {
 
   usleep(1000000);
@@ -250,6 +250,8 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize)
 {
   // std::cout << " Classe : " << charToHex(CLASS) << " ID : " << charToHex(ID)
   //           << " taille du payload : " << payloadSize << std::endl;
+
+  std::lock_guard<std::mutex> lock(mtx);
 
   if (CLASS == 0x01)
     switch (ID)

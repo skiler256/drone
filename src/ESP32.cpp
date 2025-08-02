@@ -102,7 +102,7 @@ bool readSafe(int fd, uint8_t *output, size_t size, int timeout)
   return true;
 }
 
-void ESP32::handleESP32()
+void ESP32::runESP32()
 {
 
   while (true)

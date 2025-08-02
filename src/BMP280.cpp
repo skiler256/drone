@@ -45,6 +45,7 @@ BMP280::~BMP280()
 
 BMP280::data BMP280::getData()
 {
+  std::lock_guard<std::mutex> lock(mtx);
   // Lecture température brute
   write(file, &TEMP, 1);
   char dataT[3];

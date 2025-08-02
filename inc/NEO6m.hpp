@@ -12,7 +12,7 @@ class NEO6m
 public:
   NEO6m(eventManager &event, const char *portName = "/dev/ttyAMA1");
 
-  void handlNEO6m();
+  void runNEO6m();
 
   struct coordPaket
   {

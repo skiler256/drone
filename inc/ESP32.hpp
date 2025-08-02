@@ -21,7 +21,7 @@ class ESP32
 public:
   ESP32(eventManager &event, const char *portName = "/dev/ttyAMA0");
 
-  void handleESP32();
+  void runESP32();
 
   ESPdata getData();
 

@@ -7,7 +7,8 @@
 
 PCA9685::PCA9685(eventManager &event, const uint8_t PCA9685_addr,
                  const char *bus)
-    : event(event), file(open(bus, O_RDWR)) {
+    : event(event), file(open(bus, O_RDWR))
+{
 
   std::lock_guard<std::mutex> lock(mtx);
 
@@ -23,14 +24,17 @@ PCA9685::PCA9685(eventManager &event, const uint8_t PCA9685_addr,
   usleep(100000);
 }
 
-PCA9685::~PCA9685() {
+PCA9685::~PCA9685()
+{
   std::lock_guard<std::mutex> lock(mtx);
   close(file);
 }
 
-void PCA9685::handlePCA9685() {
+void PCA9685::runPCA9685()
+{
 
-  while (true) {
+  while (true)
+  {
 
     std::lock_guard<std::mutex> lock(mtx);
 
@@ -40,7 +44,8 @@ void PCA9685::handlePCA9685() {
   }
 }
 
-void PCA9685::setPWM(const int output, double pwm) {
+void PCA9685::setPWM(const int output, double pwm)
+{
 
   std::lock_guard<std::mutex> lock(mtx);
 

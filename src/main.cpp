@@ -19,8 +19,8 @@ int main()
   INSsettings.refreshRate = 200;
   INS ins(event, esp, baro, gps, INSsettings);
 
-  std::thread a(&ESP32::handleESP32, &esp);
-  std::thread b(&NEO6m::handlNEO6m, &gps);
+  std::thread a(&ESP32::runESP32, &esp);
+  std::thread b(&NEO6m::runNEO6m, &gps);
   std::thread c(&INS::runINS, &ins);
 
   while (true)

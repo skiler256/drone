@@ -7,6 +7,7 @@
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <mutex>
 
 const uint8_t CTRL_MEAS = 0xF4;
 const uint8_t TEMP = 0xFA;
@@ -32,6 +33,8 @@ private:
   eventManager &event;
   uint8_t addr;
   int32_t t_fine;
+
+  std::mutex mtx;
 
   // Coefficients de calibration
   uint16_t dig_T1;
