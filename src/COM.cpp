@@ -1,5 +1,6 @@
 #include "../inc/COM.hpp"
 #include <thread>
+#include <signal.h>
 
 COM::COM(sysMonitoring &monitoring, const int refreshRate, const int port) : monitoring(monitoring), refreshRate(refreshRate), port(port)
 {
@@ -56,6 +57,7 @@ void COM::sendData()
 
     for (auto *client : clients)
     {
+
         std::string mess = std::to_string((int)dataSystem.state3D.att(2));
         client->send(mess, uWS::TEXT, false);
     }
@@ -63,10 +65,12 @@ void COM::sendData()
 
 void COM::runCOM()
 {
+    startNodeJS();
     std::thread server(&COM::startWS, this);
 
     while (true)
     {
+
         const auto start = std::chrono::steady_clock::now();
 
         aquireData();
@@ -82,4 +86,39 @@ void COM::runCOM()
     }
 
     server.join();
+}
+
+pid_t node_pid = -1; // processus serveur NodeJS
+
+void startNodeJS()
+{
+    if (node_pid < 0)
+    {
+        node_pid = fork();
+
+        if (node_pid == 0)
+        {
+            execlp("node", "node", "/home/jules/code/drone/app/server.js", (char *)nullptr);
+            exit(1);
+        }
+        else if (node_pid > 0)
+        {
+            std::cout << "Node.js lancé avec PID " << node_pid << std::endl;
+        }
+        else
+        {
+            std::cerr << "Erreur fork" << std::endl;
+        }
+    }
+}
+
+void killNodeJS()
+{
+    if (node_pid > 0)
+    {
+        std::cout << "Arrêt du serveur Node.js (PID " << node_pid << ")..." << std::endl;
+        kill(node_pid, SIGINT);
+        std::cout << "node js stop" << std::endl;
+        node_pid = -1;
+    }
 }

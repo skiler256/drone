@@ -1,6 +1,7 @@
 #include "../inc/sysMonitoring.hpp"
 #include <chrono>
 #include <thread>
+#include <iostream>
 
 sysMonitoring::sysMonitoring(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS &ins, const int refreshRate) : event(event),
                                                                                                                            esp(esp),

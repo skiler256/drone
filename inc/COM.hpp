@@ -4,6 +4,9 @@
 
 #include <mutex>
 
+void killNodeJS();
+void startNodeJS();
+
 class COM
 {
 public:

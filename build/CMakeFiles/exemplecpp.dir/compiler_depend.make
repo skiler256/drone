@@ -830,7 +830,37 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: /home/jules/code/drone/src/COM.cpp \
   /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
-  /home/jules/code/drone/inc/PCA9685.hpp
+  /home/jules/code/drone/inc/PCA9685.hpp \
+  /usr/include/signal.h \
+  /usr/include/aarch64-linux-gnu/bits/signum-generic.h \
+  /usr/include/aarch64-linux-gnu/bits/signum-arch.h \
+  /usr/include/aarch64-linux-gnu/bits/types/sig_atomic_t.h \
+  /usr/include/aarch64-linux-gnu/bits/types/siginfo_t.h \
+  /usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h \
+  /usr/include/aarch64-linux-gnu/bits/siginfo-arch.h \
+  /usr/include/aarch64-linux-gnu/bits/siginfo-consts.h \
+  /usr/include/aarch64-linux-gnu/bits/siginfo-consts-arch.h \
+  /usr/include/aarch64-linux-gnu/bits/types/sigval_t.h \
+  /usr/include/aarch64-linux-gnu/bits/types/sigevent_t.h \
+  /usr/include/aarch64-linux-gnu/bits/sigevent-consts.h \
+  /usr/include/aarch64-linux-gnu/bits/sigaction.h \
+  /usr/include/aarch64-linux-gnu/bits/sigcontext.h \
+  /usr/lib/linux/uapi/arm64/asm/sigcontext.h \
+  /usr/lib/linux/uapi/arm64/asm/sve_context.h \
+  /usr/include/aarch64-linux-gnu/bits/types/stack_t.h \
+  /usr/include/aarch64-linux-gnu/sys/ucontext.h \
+  /usr/include/aarch64-linux-gnu/sys/procfs.h \
+  /usr/include/aarch64-linux-gnu/sys/user.h \
+  /usr/include/aarch64-linux-gnu/bits/procfs.h \
+  /usr/include/aarch64-linux-gnu/bits/procfs-id.h \
+  /usr/include/aarch64-linux-gnu/bits/procfs-prregset.h \
+  /usr/include/aarch64-linux-gnu/bits/procfs-extra.h \
+  /usr/include/aarch64-linux-gnu/bits/sigstack.h \
+  /usr/include/aarch64-linux-gnu/bits/sigstksz.h \
+  /usr/include/aarch64-linux-gnu/bits/ss_flags.h \
+  /usr/include/aarch64-linux-gnu/bits/types/struct_sigstack.h \
+  /usr/include/aarch64-linux-gnu/bits/sigthread.h \
+  /usr/include/aarch64-linux-gnu/bits/signal_ext.h
 
 CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: /home/jules/code/drone/src/ESP32.cpp \
   /usr/include/stdc-predef.h \
@@ -3581,7 +3611,37 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/local/include/uWebSockets/WebSocketHandshake.h \
   /usr/local/include/uWebSockets/WebSocket.h \
   /usr/local/include/uWebSockets/WebSocketContextData.h \
-  /usr/local/include/uWebSockets/WebSocketContext.h
+  /usr/local/include/uWebSockets/WebSocketContext.h \
+  /usr/include/signal.h \
+  /usr/include/aarch64-linux-gnu/bits/signum-generic.h \
+  /usr/include/aarch64-linux-gnu/bits/signum-arch.h \
+  /usr/include/aarch64-linux-gnu/bits/types/sig_atomic_t.h \
+  /usr/include/aarch64-linux-gnu/bits/types/siginfo_t.h \
+  /usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h \
+  /usr/include/aarch64-linux-gnu/bits/siginfo-arch.h \
+  /usr/include/aarch64-linux-gnu/bits/siginfo-consts.h \
+  /usr/include/aarch64-linux-gnu/bits/siginfo-consts-arch.h \
+  /usr/include/aarch64-linux-gnu/bits/types/sigval_t.h \
+  /usr/include/aarch64-linux-gnu/bits/types/sigevent_t.h \
+  /usr/include/aarch64-linux-gnu/bits/sigevent-consts.h \
+  /usr/include/aarch64-linux-gnu/bits/sigaction.h \
+  /usr/include/aarch64-linux-gnu/bits/sigcontext.h \
+  /usr/lib/linux/uapi/arm64/asm/sigcontext.h \
+  /usr/lib/linux/uapi/arm64/asm/sve_context.h \
+  /usr/include/aarch64-linux-gnu/bits/types/stack_t.h \
+  /usr/include/aarch64-linux-gnu/sys/ucontext.h \
+  /usr/include/aarch64-linux-gnu/sys/procfs.h \
+  /usr/include/aarch64-linux-gnu/sys/user.h \
+  /usr/include/aarch64-linux-gnu/bits/procfs.h \
+  /usr/include/aarch64-linux-gnu/bits/procfs-id.h \
+  /usr/include/aarch64-linux-gnu/bits/procfs-prregset.h \
+  /usr/include/aarch64-linux-gnu/bits/procfs-extra.h \
+  /usr/include/aarch64-linux-gnu/bits/sigstack.h \
+  /usr/include/aarch64-linux-gnu/bits/sigstksz.h \
+  /usr/include/aarch64-linux-gnu/bits/ss_flags.h \
+  /usr/include/aarch64-linux-gnu/bits/types/struct_sigstack.h \
+  /usr/include/aarch64-linux-gnu/bits/sigthread.h \
+  /usr/include/aarch64-linux-gnu/bits/signal_ext.h
 
 CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sysMonitoring.cpp \
   /usr/include/stdc-predef.h \
@@ -4130,7 +4190,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
   /usr/include/c++/12/bits/this_thread_sleep.h \
   /usr/include/aarch64-linux-gnu/sys/time.h \
   /usr/include/semaphore.h \
-  /usr/include/aarch64-linux-gnu/bits/semaphore.h
+  /usr/include/aarch64-linux-gnu/bits/semaphore.h \
+  /usr/include/c++/12/iostream
 
 
 /home/jules/code/drone/src/sysMonitoring.cpp:
@@ -4164,6 +4225,48 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/iomanip:
 
 /home/jules/code/drone/src/ESP32.cpp:
+
+/usr/include/aarch64-linux-gnu/bits/signal_ext.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigthread.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_sigstack.h:
+
+/usr/include/aarch64-linux-gnu/bits/ss_flags.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigstksz.h:
+
+/usr/include/aarch64-linux-gnu/bits/procfs-id.h:
+
+/usr/include/aarch64-linux-gnu/sys/procfs.h:
+
+/usr/include/aarch64-linux-gnu/sys/ucontext.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/stack_t.h:
+
+/usr/lib/linux/uapi/arm64/asm/sigcontext.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigcontext.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigaction.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigevent-consts.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/sigevent_t.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/sigval_t.h:
+
+/usr/include/aarch64-linux-gnu/bits/siginfo-consts-arch.h:
+
+/usr/include/aarch64-linux-gnu/bits/siginfo-consts.h:
+
+/usr/include/aarch64-linux-gnu/bits/siginfo-arch.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h:
+
+/usr/include/aarch64-linux-gnu/bits/signum-generic.h:
+
+/usr/include/signal.h:
 
 /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
 
@@ -4264,6 +4367,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/bits/atomic_wait.h:
 
 /usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/siginfo_t.h:
 
 /usr/include/c++/12/atomic:
 
@@ -4553,6 +4658,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/node_handle.h:
 
+/usr/include/aarch64-linux-gnu/bits/procfs-extra.h:
+
 /usr/include/c++/12/string:
 
 /usr/include/c++/12/initializer_list:
@@ -4574,6 +4681,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/bits/nested_exception.h:
 
 /usr/include/aarch64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/aarch64-linux-gnu/bits/procfs.h:
 
 /usr/include/c++/12/bits/new_allocator.h:
 
@@ -4706,6 +4815,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/eigen3/Eigen/src/Householder/BlockHouseholder.h:
 
 /usr/include/eigen3/Eigen/src/Core/functors/TernaryFunctors.h:
+
+/usr/include/aarch64-linux-gnu/bits/procfs-prregset.h:
 
 /usr/include/aarch64-linux-gnu/bits/termios-misc.h:
 
@@ -5011,6 +5122,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/zlib.h:
 
+/usr/include/aarch64-linux-gnu/sys/user.h:
+
 /usr/include/zconf.h:
 
 /usr/include/c++/12/optional:
@@ -5095,6 +5208,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/list:
 
+/usr/lib/linux/uapi/arm64/asm/sve_context.h:
+
 /usr/local/include/uWebSockets/HttpParser.h:
 
 /usr/include/c++/12/bits/stl_list.h:
@@ -5146,6 +5261,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/bits/parse_numbers.h:
 
 /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigstack.h:
 
 /usr/include/eigen3/Eigen/src/Core/products/SelfadjointRank2Update.h:
 
@@ -5207,6 +5324,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/iscanonical.h:
 
+/usr/include/aarch64-linux-gnu/bits/types/sig_atomic_t.h:
+
 /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseBinaryOps.h:
 
 /usr/include/c++/12/ext/alloc_traits.h:
@@ -5218,6 +5337,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/bits/chrono.h:
 
 /usr/include/c++/12/tr1/exp_integral.tcc:
+
+/usr/include/aarch64-linux-gnu/bits/signum-arch.h:
 
 /usr/include/c++/12/tr1/legendre_function.tcc:
 

@@ -9,12 +9,21 @@
 
 #include <thread>
 #include <iostream>
+#include <signal.h>
+
+void handle_sigint(int signum)
+{
+  killNodeJS();
+  std::cout << "\nArret du programme" << std::endl;
+  exit(0);
+}
 
 int main()
 {
+  signal(SIGINT, handle_sigint);
 
   eventManager event;
-  event.doLog = true;
+  event.doLog = false;
   ESP32 esp(event);
   NEO6m gps(event);
   PCA9685 pca(event);
