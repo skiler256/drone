@@ -21,11 +21,17 @@ public:
         BMP280::Data baro;
         NEO6m::gpsState gps;
     };
+    struct PIperf
+    {
+        double CPUtemp;
+        double RAMusage;
+    };
     struct sysData
     {
         sensorData sensor;
         INS::state3D state3D;
         std::map<std::pair<component, subcomponent>, eventManager::eventLog> events;
+        PIperf perf;
     };
 
     sysData getData();
@@ -40,4 +46,7 @@ private:
 
     std::mutex mtx;
     sysData data;
+
+    double getCPUTemp();
+    double getRAMUsage();
 };

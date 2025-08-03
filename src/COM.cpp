@@ -1,6 +1,91 @@
 #include "../inc/COM.hpp"
 #include <thread>
 #include <signal.h>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
+void to_json(json &j, const ESPdata &d)
+{
+    j = json{
+        {"event", d.event},
+        {"roll", d.roll},
+        {"pitch", d.pitch},
+        {"yaw", d.yaw},
+        {"ax", d.ax},
+        {"ay", d.ay},
+        {"az", d.az},
+        {"mx", d.mx},
+        {"my", d.my},
+        {"mz", d.mz}};
+}
+
+void to_json(json &j, const BMP280::Data &d)
+{
+    j = json{
+        {"temp", d.temperature},
+        {"pressure", d.pressure}};
+}
+
+void to_json(json &j, const NEO6m::coordPaket &c)
+{
+    j = json{
+        {"longitude", c.longitude},
+        {"latitude", c.latitude}};
+}
+
+void to_json(json &j, const NEO6m::SatelliteInfo &s)
+{
+    j = json{
+        {"ID", s.ID},
+        {"strenght", s.strenght},
+        {"quality", s.quality}};
+}
+
+void to_json(json &j, const NEO6m::gpsState &g)
+{
+    j = json{
+        {"sats", g.sats},
+        {"coord", g.coord},
+        {"timeArray", g.timeArray},
+        {"gpsFixOk", g.gpsFixOk},
+        {"velNED", g.velNED},
+        {"speed", g.speed},
+        {"GS", g.GS},
+        {"heading", g.heading}};
+}
+
+void to_json(json &j, const INS::state3D &s)
+{
+    j = json{
+        {"pos", {s.pos(0), s.pos(1), s.pos(2)}},
+        {"vel", {s.vel(0), s.vel(1), s.vel(2)}},
+        {"att", {s.att(0), s.att(1), s.att(2)}}};
+}
+
+void to_json(json &j, const sysMonitoring::sensorData &s)
+{
+    j = json{
+        {"esp", s.esp},
+        {"baro", s.baro},
+        {"gps", s.gps}};
+}
+
+void to_json(json &j, const sysMonitoring::PIperf &p)
+{
+    j = json{
+        {"CPUtemp", p.CPUtemp},
+        {"RAMusage", p.RAMusage}};
+}
+
+void to_json(json &j, const sysMonitoring::sysData &s)
+{
+
+    j = json{
+        {"sensor", s.sensor},
+        {"state3D", s.state3D},
+        {"events", stringifyEventLogMap(s.events)},
+        {"perf", s.perf}};
+}
 
 COM::COM(sysMonitoring &monitoring, const int refreshRate, const int port) : monitoring(monitoring), refreshRate(refreshRate), port(port)
 {
@@ -58,8 +143,9 @@ void COM::sendData()
     for (auto *client : clients)
     {
 
-        std::string mess = std::to_string((int)dataSystem.state3D.att(2));
-        client->send(mess, uWS::TEXT, false);
+        json j = dataSystem;
+        std::string jsonStr = j.dump();
+        client->send(jsonStr, uWS::TEXT, false);
     }
 }
 

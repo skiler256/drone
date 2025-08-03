@@ -860,7 +860,88 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: /home/jules/code/drone/src/COM.cpp \
   /usr/include/aarch64-linux-gnu/bits/ss_flags.h \
   /usr/include/aarch64-linux-gnu/bits/types/struct_sigstack.h \
   /usr/include/aarch64-linux-gnu/bits/sigthread.h \
-  /usr/include/aarch64-linux-gnu/bits/signal_ext.h
+  /usr/include/aarch64-linux-gnu/bits/signal_ext.h \
+  /usr/include/nlohmann/json.hpp \
+  /usr/include/c++/12/iterator \
+  /usr/include/c++/12/bits/stream_iterator.h \
+  /usr/include/c++/12/numeric \
+  /usr/include/c++/12/bits/stl_numeric.h \
+  /usr/include/c++/12/pstl/glue_numeric_defs.h \
+  /usr/include/nlohmann/adl_serializer.hpp \
+  /usr/include/nlohmann/detail/abi_macros.hpp \
+  /usr/include/nlohmann/detail/conversions/from_json.hpp \
+  /usr/include/c++/12/forward_list \
+  /usr/include/c++/12/bits/forward_list.h \
+  /usr/include/c++/12/bits/forward_list.tcc \
+  /usr/include/c++/12/valarray \
+  /usr/include/c++/12/bits/valarray_array.h \
+  /usr/include/c++/12/bits/valarray_array.tcc \
+  /usr/include/c++/12/bits/valarray_before.h \
+  /usr/include/c++/12/bits/slice_array.h \
+  /usr/include/c++/12/bits/valarray_after.h \
+  /usr/include/c++/12/bits/gslice.h \
+  /usr/include/c++/12/bits/gslice_array.h \
+  /usr/include/c++/12/bits/mask_array.h \
+  /usr/include/c++/12/bits/indirect_array.h \
+  /usr/include/nlohmann/detail/exceptions.hpp \
+  /usr/include/nlohmann/detail/value_t.hpp \
+  /usr/include/nlohmann/detail/macro_scope.hpp \
+  /usr/include/nlohmann/detail/meta/detected.hpp \
+  /usr/include/nlohmann/detail/meta/void_t.hpp \
+  /usr/include/nlohmann/thirdparty/hedley/hedley.hpp \
+  /usr/include/c++/12/version \
+  /usr/include/nlohmann/detail/string_escape.hpp \
+  /usr/include/nlohmann/detail/input/position_t.hpp \
+  /usr/include/nlohmann/detail/meta/cpp_future.hpp \
+  /usr/include/nlohmann/detail/meta/type_traits.hpp \
+  /usr/include/nlohmann/detail/iterators/iterator_traits.hpp \
+  /usr/include/nlohmann/detail/meta/call_std/begin.hpp \
+  /usr/include/nlohmann/detail/meta/call_std/end.hpp \
+  /usr/include/nlohmann/json_fwd.hpp \
+  /usr/include/nlohmann/detail/string_concat.hpp \
+  /usr/include/nlohmann/detail/meta/identity_tag.hpp \
+  /usr/include/nlohmann/detail/meta/std_fs.hpp \
+  /usr/include/c++/12/filesystem \
+  /usr/include/c++/12/bits/fs_fwd.h \
+  /usr/include/c++/12/bits/fs_path.h \
+  /usr/include/c++/12/locale \
+  /usr/include/c++/12/bits/locale_facets_nonio.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/12/bits/locale_conv.h \
+  /usr/include/c++/12/iomanip \
+  /usr/include/c++/12/bits/quoted_string.h \
+  /usr/include/c++/12/codecvt \
+  /usr/include/c++/12/bits/fs_dir.h \
+  /usr/include/c++/12/bits/fs_ops.h \
+  /usr/include/nlohmann/detail/conversions/to_json.hpp \
+  /usr/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+  /usr/include/c++/12/ranges \
+  /usr/include/c++/12/span \
+  /usr/include/nlohmann/byte_container_with_subtype.hpp \
+  /usr/include/nlohmann/detail/hash.hpp \
+  /usr/include/nlohmann/detail/input/binary_reader.hpp \
+  /usr/include/nlohmann/detail/input/input_adapters.hpp \
+  /usr/include/nlohmann/detail/input/json_sax.hpp \
+  /usr/include/nlohmann/detail/input/lexer.hpp \
+  /usr/include/nlohmann/detail/meta/is_sax.hpp \
+  /usr/include/nlohmann/detail/input/parser.hpp \
+  /usr/include/nlohmann/detail/iterators/internal_iterator.hpp \
+  /usr/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+  /usr/include/nlohmann/detail/iterators/iter_impl.hpp \
+  /usr/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+  /usr/include/nlohmann/detail/json_pointer.hpp \
+  /usr/include/nlohmann/detail/json_ref.hpp \
+  /usr/include/nlohmann/detail/output/binary_writer.hpp \
+  /usr/include/nlohmann/detail/output/output_adapters.hpp \
+  /usr/include/nlohmann/detail/output/serializer.hpp \
+  /usr/include/nlohmann/detail/conversions/to_chars.hpp \
+  /usr/include/nlohmann/ordered_map.hpp \
+  /usr/include/c++/12/any \
+  /usr/include/nlohmann/detail/macro_unscope.hpp \
+  /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
 
 CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: /home/jules/code/drone/src/ESP32.cpp \
   /usr/include/stdc-predef.h \
@@ -4210,7 +4291,35 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /home/jules/code/drone/src/PCA9685.cpp:
 
+/home/jules/code/drone/src/ESP32.cpp:
+
+/usr/include/nlohmann/ordered_map.hpp:
+
+/usr/include/nlohmann/detail/output/serializer.hpp:
+
+/usr/include/nlohmann/detail/json_ref.hpp:
+
+/usr/include/nlohmann/detail/iterators/iter_impl.hpp:
+
+/usr/include/nlohmann/detail/iterators/internal_iterator.hpp:
+
+/usr/include/nlohmann/detail/input/lexer.hpp:
+
+/usr/include/nlohmann/detail/input/json_sax.hpp:
+
+/usr/include/nlohmann/detail/input/binary_reader.hpp:
+
+/usr/include/c++/12/ranges:
+
+/usr/include/nlohmann/detail/conversions/to_json.hpp:
+
+/usr/include/c++/12/bits/fs_dir.h:
+
+/usr/include/c++/12/codecvt:
+
 /usr/include/c++/12/bits/quoted_string.h:
+
+/usr/include/c++/12/iomanip:
 
 /usr/include/c++/12/bits/locale_conv.h:
 
@@ -4222,11 +4331,63 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/locale:
 
-/usr/include/c++/12/iomanip:
+/usr/include/c++/12/bits/fs_path.h:
 
-/home/jules/code/drone/src/ESP32.cpp:
+/usr/include/c++/12/filesystem:
+
+/usr/include/nlohmann/detail/meta/identity_tag.hpp:
+
+/usr/include/nlohmann/detail/string_concat.hpp:
+
+/usr/include/nlohmann/detail/meta/call_std/end.hpp:
+
+/usr/include/nlohmann/detail/meta/cpp_future.hpp:
+
+/usr/include/nlohmann/detail/input/position_t.hpp:
+
+/usr/include/nlohmann/detail/string_escape.hpp:
+
+/usr/include/nlohmann/detail/meta/void_t.hpp:
+
+/usr/include/nlohmann/detail/meta/detected.hpp:
+
+/usr/include/nlohmann/detail/value_t.hpp:
+
+/usr/include/c++/12/bits/gslice_array.h:
+
+/usr/include/c++/12/bits/gslice.h:
+
+/usr/include/c++/12/bits/slice_array.h:
+
+/usr/include/c++/12/bits/valarray_before.h:
+
+/usr/include/c++/12/bits/valarray_array.tcc:
+
+/usr/include/c++/12/bits/valarray_array.h:
+
+/usr/include/c++/12/valarray:
+
+/usr/include/c++/12/any:
+
+/usr/include/c++/12/bits/forward_list.tcc:
+
+/usr/include/c++/12/bits/forward_list.h:
+
+/usr/include/c++/12/pstl/glue_numeric_defs.h:
+
+/usr/include/c++/12/bits/stl_numeric.h:
+
+/usr/include/c++/12/numeric:
+
+/usr/include/c++/12/bits/stream_iterator.h:
+
+/usr/include/c++/12/iterator:
+
+/usr/include/nlohmann/json.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/signal_ext.h:
+
+/usr/include/nlohmann/detail/meta/call_std/begin.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/sigthread.h:
 
@@ -4239,6 +4400,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/aarch64-linux-gnu/bits/procfs-id.h:
 
 /usr/include/aarch64-linux-gnu/sys/procfs.h:
+
+/usr/include/nlohmann/adl_serializer.hpp:
 
 /usr/include/aarch64-linux-gnu/sys/ucontext.h:
 
@@ -4267,6 +4430,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/aarch64-linux-gnu/bits/signum-generic.h:
 
 /usr/include/signal.h:
+
+/usr/include/nlohmann/detail/macro_scope.hpp:
 
 /usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
 
@@ -4298,6 +4463,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Geometry/OrthoMethods.h:
 
+/usr/include/nlohmann/detail/macro_unscope.hpp:
+
 /usr/include/eigen3/Eigen/Geometry:
 
 /usr/include/eigen3/Eigen/src/SVD/JacobiSVD.h:
@@ -4326,17 +4493,25 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/Jacobi:
 
+/usr/include/nlohmann/detail/meta/is_sax.hpp:
+
 /usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h:
 
 /usr/include/eigen3/Eigen/src/LU/arch/InverseSize4.h:
 
 /usr/include/eigen3/Eigen/src/LU/Determinant.h:
 
+/usr/include/nlohmann/detail/conversions/to_chars.hpp:
+
 /usr/include/eigen3/Eigen/src/misc/Image.h:
+
+/usr/include/nlohmann/detail/output/binary_writer.hpp:
 
 /usr/include/eigen3/Eigen/src/misc/Kernel.h:
 
 /usr/include/c++/12/ostream:
+
+/usr/include/nlohmann/detail/hash.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/syscall.h:
 
@@ -4358,6 +4533,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/xopen_lim.h:
 
+/usr/include/c++/12/forward_list:
+
 /usr/include/aarch64-linux-gnu/bits/posix2_lim.h:
 
 /usr/include/eigen3/Eigen/src/Core/functors/StlFunctors.h:
@@ -4373,6 +4550,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/atomic:
 
 /usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/nlohmann/detail/iterators/json_reverse_iterator.hpp:
 
 /usr/include/c++/12/bit:
 
@@ -4409,6 +4588,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/typeinfo:
 
 /home/jules/code/drone/inc/TF-luna.hpp:
+
+/usr/include/nlohmann/thirdparty/hedley/hedley.hpp:
 
 /usr/include/c++/12/map:
 
@@ -4502,11 +4683,15 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/local/include/uWebSockets/PerMessageDeflate.h:
 
+/usr/include/c++/12/bits/valarray_after.h:
+
 /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h:
 
 /usr/include/c++/12/climits:
 
 /usr/lib/linux/uapi/arm64/asm/errno.h:
+
+/usr/include/nlohmann/detail/iterators/primitive_iterator.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/types/__fpos64_t.h:
 
@@ -4558,13 +4743,19 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/local/include/uWebSockets/Utilities.h:
 
+/usr/include/c++/12/bits/fs_fwd.h:
+
 /usr/include/eigen3/Eigen/src/Core/functors/UnaryFunctors.h:
+
+/usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
 
 /usr/include/errno.h:
 
 /usr/include/aarch64-linux-gnu/bits/waitflags.h:
 
 /usr/include/aarch64-linux-gnu/sys/ttydefaults.h:
+
+/usr/include/c++/12/span:
 
 /usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
 
@@ -4575,6 +4766,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /home/jules/code/drone/src/BMP280.cpp:
 
 /usr/include/c++/12/bits/stringfwd.h:
+
+/usr/include/nlohmann/detail/output/output_adapters.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h:
 
@@ -4706,6 +4899,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/fp-logb.h:
 
+/usr/include/nlohmann/json_fwd.hpp:
+
 /usr/include/c++/12/bits/hash_bytes.h:
 
 /usr/include/aarch64-linux-gnu/bits/stdint-uintn.h:
@@ -4734,6 +4929,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/lib/gcc/aarch64-linux-gnu/12/include/stdint.h:
 
+/usr/include/nlohmann/detail/iterators/iterator_traits.hpp:
+
 /usr/include/c++/12/mutex:
 
 /usr/include/eigen3/Eigen/src/Core/Reverse.h:
@@ -4749,6 +4946,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/eigen3/Eigen/src/Core/ArrayBase.h:
 
 /usr/include/c++/12/bits/stl_iterator.h:
+
+/usr/include/nlohmann/byte_container_with_subtype.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
@@ -4781,6 +4980,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/eigen3/Eigen/src/Core/util/Constants.h:
 
 /usr/include/c++/12/cwchar:
+
+/usr/include/nlohmann/detail/exceptions.hpp:
 
 /usr/include/wchar.h:
 
@@ -4860,6 +5061,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/long-double.h:
 
+/usr/include/nlohmann/detail/meta/std_fs.hpp:
+
 /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h:
 
 /usr/include/aarch64-linux-gnu/bits/posix_opt.h:
@@ -4912,7 +5115,11 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/products/TriangularMatrixMatrix.h:
 
+/usr/include/c++/12/bits/fs_ops.h:
+
 /usr/include/c++/12/debug/debug.h:
+
+/usr/include/c++/12/bits/mask_array.h:
 
 /usr/include/c++/12/bits/fstream.tcc:
 
@@ -5000,6 +5207,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/getopt_posix.h:
 
+/usr/include/c++/12/bits/indirect_array.h:
+
 /usr/include/alloca.h:
 
 /usr/include/c++/12/bits/exception_defines.h:
@@ -5025,6 +5234,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/eigen3/Eigen/src/Core/DiagonalProduct.h:
 
 /usr/include/c++/12/bits/basic_ios.h:
+
+/usr/include/nlohmann/detail/conversions/from_json.hpp:
 
 /usr/include/c++/12/sstream:
 
@@ -5150,6 +5361,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/ext/concurrence.h:
 
+/usr/include/nlohmann/detail/input/input_adapters.hpp:
+
 /usr/include/eigen3/Eigen/src/Core/arch/Default/TypeCasting.h:
 
 /usr/include/eigen3/Eigen/Cholesky:
@@ -5203,6 +5416,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/bits/ranges_cmp.h:
 
 /usr/local/include/uWebSockets/WebSocketProtocol.h:
+
+/usr/include/nlohmann/detail/iterators/iteration_proxy.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/ArrayWrapper.h:
 
@@ -5270,6 +5485,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/CoreEvaluators.h:
 
+/usr/include/nlohmann/detail/input/parser.hpp:
+
 /usr/include/c++/12/fstream:
 
 /usr/include/eigen3/Eigen/src/Core/CwiseUnaryOp.h:
@@ -5303,6 +5520,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/eigen3/Eigen/src/Core/util/Macros.h:
 
 /usr/include/math.h:
+
+/usr/include/c++/12/version:
 
 /usr/include/c++/12/bits/semaphore_base.h:
 
@@ -5406,6 +5625,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/IO.h:
 
+/usr/include/nlohmann/detail/meta/type_traits.hpp:
+
 /usr/include/eigen3/Eigen/src/Core/DenseCoeffsBase.h:
 
 /usr/include/aarch64-linux-gnu/sys/syscall.h:
@@ -5452,6 +5673,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/GeneralProduct.h:
 
+/usr/include/nlohmann/detail/abi_macros.hpp:
+
 /usr/include/eigen3/Eigen/src/Core/Solve.h:
 
 /usr/include/eigen3/Eigen/src/Core/PermutationMatrix.h:
@@ -5471,6 +5694,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/bits/align.h:
 
 /usr/include/eigen3/Eigen/src/Core/SolveTriangular.h:
+
+/usr/include/nlohmann/detail/json_pointer.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/products/SelfadjointMatrixVector.h:
 

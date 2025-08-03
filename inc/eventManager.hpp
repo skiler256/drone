@@ -60,3 +60,5 @@ private:
     // data
     std::map<std::pair<component, subcomponent>, eventLog> events;
 };
+
+std::string stringifyEventLogMap(const std::map<std::pair<component, subcomponent>, eventManager::eventLog> &events);

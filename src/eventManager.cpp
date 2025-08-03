@@ -73,3 +73,22 @@ std::map<std::pair<component, subcomponent>, eventManager::eventLog> eventManage
     std::lock_guard<std::mutex> lock(mtx);
     return events;
 }
+
+std::string stringifyEventLogMap(const std::map<std::pair<component, subcomponent>, eventManager::eventLog> &events)
+{
+    std::string result;
+
+    for (const auto &[key, log] : events)
+    {
+        if (log.mess.empty())
+            continue; // ignorer les logs vides
+
+        const auto &[comp, subcomp] = key;
+        result += toString(comp) + " | " +
+                  toString(subcomp) + " | " +
+                  toString(log.severity) + " | " +
+                  log.mess + "\n";
+    }
+
+    return result;
+}

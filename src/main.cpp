@@ -10,6 +10,7 @@
 #include <thread>
 #include <iostream>
 #include <signal.h>
+#include <fstream>
 
 void handle_sigint(int signum)
 {

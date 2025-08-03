@@ -352,5 +352,23 @@ NEO6m::gpsState NEO6m::getGPSState()
 {
   std::lock_guard<std::mutex> lock(mtx);
   gpsState state;
+
+  state.sats = sats;
+  state.coord = {longitude, latitude};
+  state.gpsFixOk = gpsFixOk;
+
+  for (int i = 0; i < 6; i++)
+  {
+    state.timeArray[i] = timeArray[i];
+  }
+  for (int i = 0; i < 3; i++)
+  {
+    state.velNED[i] = velNED[i];
+  }
+
+  state.speed = speed;
+  state.GS = GS;
+  state.heading = heading;
+
   return state;
 }

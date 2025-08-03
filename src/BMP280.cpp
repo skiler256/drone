@@ -13,7 +13,7 @@ BMP280::BMP280(eventManager &event, uint8_t address, const char *bus)
     return;
   }
   else
-    event.reportEvent({component::BMP, subcomponent::i2c, eventSeverity::CRITICAL, "port i2c ouvert"});
+    event.reportEvent({component::BMP, subcomponent::i2c, eventSeverity::INFO, "port i2c ouvert"});
 
   uint8_t reg = COEF;
   write(file, &reg, 1);
