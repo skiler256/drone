@@ -372,3 +372,9 @@ NEO6m::gpsState NEO6m::getGPSState()
 
   return state;
 }
+
+bool NEO6m::isFix()
+{
+  std::lock_guard<std::mutex> lock(mtx);
+  return gpsFixOk;
+}

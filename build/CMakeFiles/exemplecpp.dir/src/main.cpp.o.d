@@ -463,6 +463,10 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
+ /usr/include/GeographicLib/LocalCartesian.hpp \
+ /usr/include/GeographicLib/Geocentric.hpp \
+ /usr/include/GeographicLib/Constants.hpp \
+ /usr/include/GeographicLib/Config.h /usr/include/GeographicLib/Math.hpp \
  /home/jules/code/drone/src/../inc/PCA9685.hpp \
  /home/jules/code/drone/src/../inc/sysMonitoring.hpp \
  /home/jules/code/drone/src/../inc/COM.hpp \

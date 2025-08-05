@@ -6,6 +6,7 @@
 #include <mutex>
 #include <chrono>
 #include <eigen3/Eigen/Dense>
+#include <GeographicLib/LocalCartesian.hpp>
 
 class INS
 {
@@ -13,7 +14,10 @@ public:
   struct settings
   {
     int refreshRate;
+    int zRefreshRate = 1;
     double alphaHeading;
+    int NGPSattempt = 500;
+    int NmoyGPScalib = 10;
   };
   struct state3D
   {
@@ -48,13 +52,16 @@ private:
   NEO6m &gps;
 
   void computeHeading();
-  void acquireSensor();
+  void computeZ();
+  void acquireMPU();
+  void acquireZ();
 
   // data
   state3D state;
 
   // raw sensor data
   ESPdata dataESP;
+  NEO6m::coordPaket coord;
 
   // clibration
   Eigen::Matrix<double, 3, 3> calMagMatrix;
@@ -62,6 +69,9 @@ private:
 
   // Sensor
   Eigen::Matrix<double, 3, 1> calibratedMag;
+  Eigen::Matrix<double, 3, 1> z;
+  std::chrono::_V2::steady_clock::time_point tz;
+  GeographicLib::LocalCartesian projGPS;
 
   // filter
   std::chrono::_V2::steady_clock::time_point tMag;
@@ -74,4 +84,5 @@ private:
   // mutex
   std::mutex mtxDataESP;
   std::mutex mtxState3D;
+  std::mutex mtxZ;
 };

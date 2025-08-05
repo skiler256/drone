@@ -10,16 +10,41 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::setting
       kz(100.0, 800.0)
 {
   tMag = std::chrono::steady_clock::now();
+  tz = std::chrono::steady_clock::now();
+
   calibratedMag << 0.0, 0.0, 0.0;
   FilteredCalibratedMag << 0.0, 0.0, 0.0;
-  // Pmag << 1.0, 1.0, 1.0;
-  // Qmag << 100, 100, 100; // Faible incertitude modèle (on suppose peu de
-  // variation brute) Rmag << 800, 800.0, 800.0;
 
   // Magneto
   magBiasVec << 192.046411, -68.294232, 508.612908;
   calMagMatrix << 1.110525, -0.009313, -0.005285, -0.009313, 1.148244, 0.001096,
       -0.005285, 0.001096, 1.207234;
+
+  // calib GPS
+  int GPSattempt = 0;
+  while (!gps.isFix() || GPSattempt > set.NGPSattempt)
+  {
+    GPSattempt++;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::cout << "loiloi" << gps.isFix() << std::endl;
+  }
+  if (!gps.isFix())
+    event.reportEvent({component::INS, subcomponent::dataLink, eventSeverity::CRITICAL, "impossible d'obtenir un FIX 3D"});
+  double latitude = 0;
+  double longitude = 0;
+
+  for (int i = 0; i < set.NmoyGPScalib; i++)
+  {
+    NEO6m::coordPaket coord = gps.getGPSCoord();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    latitude += coord.latitude;
+    longitude += coord.longitude;
+  }
+  latitude /= set.NmoyGPScalib;
+  longitude /= set.NmoyGPScalib;
+  std::cout << latitude << std::endl;
+
+  projGPS.Reset(latitude, longitude, 120.0);
 }
 
 void INS::runINS()
@@ -28,8 +53,14 @@ void INS::runINS()
   {
     const auto start = std::chrono::steady_clock::now();
 
-    acquireSensor();
+    acquireMPU();
     computeHeading();
+
+    if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - tz).count() >= (1000 / set.refreshRate))
+    {
+      acquireZ();
+      computeZ();
+    }
 
     const auto end = std::chrono::steady_clock::now();
     int elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
@@ -41,7 +72,7 @@ void INS::runINS()
   }
 }
 
-void INS::acquireSensor()
+void INS::acquireMPU()
 {
   {
     std::lock_guard<std::mutex> lock(mtxDataESP);
@@ -53,6 +84,13 @@ void INS::acquireSensor()
     state.att(0) = -dataESP.roll;
     state.att(1) = dataESP.pitch;
   }
+}
+
+void INS::acquireZ()
+{
+  std::lock_guard<std::mutex> lock(mtxZ);
+
+  coord = gps.getGPSCoord();
 }
 
 void INS::computeHeading()
@@ -112,6 +150,13 @@ void INS::computeHeading()
   }
 }
 
+void INS::computeZ()
+{
+  std::lock_guard<std::mutex> lock(mtxZ);
+  NEO6m::coordPaket coord = gps.getGPSCoord();
+  projGPS.Forward(coord.latitude, coord.longitude, 120.0, z(0), z(1), z(2));
+}
+
 void INS::printData()
 {
   std::lock_guard<std::mutex> lock(mtxState3D);
@@ -158,5 +203,6 @@ double INS::Kalman1D::getvelocity() { return x(1); }
 INS::state3D INS::getState3D()
 {
   std::lock_guard<std::mutex> lock(mtxState3D);
+  state.pos = z; // A ENLEVER!!!
   return state;
 }

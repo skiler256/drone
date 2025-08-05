@@ -830,6 +830,11 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: /home/jules/code/drone/src/COM.cpp \
   /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
+  /usr/include/GeographicLib/LocalCartesian.hpp \
+  /usr/include/GeographicLib/Geocentric.hpp \
+  /usr/include/GeographicLib/Constants.hpp \
+  /usr/include/GeographicLib/Config.h \
+  /usr/include/GeographicLib/Math.hpp \
   /home/jules/code/drone/inc/PCA9685.hpp \
   /usr/include/signal.h \
   /usr/include/aarch64-linux-gnu/bits/signum-generic.h \
@@ -1728,6 +1733,11 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o: /home/jules/code/drone/src/INS.cpp \
   /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
+  /usr/include/GeographicLib/LocalCartesian.hpp \
+  /usr/include/GeographicLib/Geocentric.hpp \
+  /usr/include/GeographicLib/Constants.hpp \
+  /usr/include/GeographicLib/Config.h \
+  /usr/include/GeographicLib/Math.hpp \
   /usr/include/c++/12/iostream \
   /usr/include/c++/12/thread \
   /usr/include/c++/12/stop_token \
@@ -3624,6 +3634,11 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
+  /usr/include/GeographicLib/LocalCartesian.hpp \
+  /usr/include/GeographicLib/Geocentric.hpp \
+  /usr/include/GeographicLib/Constants.hpp \
+  /usr/include/GeographicLib/Config.h \
+  /usr/include/GeographicLib/Math.hpp \
   /home/jules/code/drone/inc/PCA9685.hpp \
   /home/jules/code/drone/inc/sysMonitoring.hpp \
   /home/jules/code/drone/inc/COM.hpp \
@@ -4260,6 +4275,11 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
   /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
+  /usr/include/GeographicLib/LocalCartesian.hpp \
+  /usr/include/GeographicLib/Geocentric.hpp \
+  /usr/include/GeographicLib/Constants.hpp \
+  /usr/include/GeographicLib/Config.h \
+  /usr/include/GeographicLib/Math.hpp \
   /home/jules/code/drone/inc/PCA9685.hpp \
   /usr/include/c++/12/thread \
   /usr/include/c++/12/stop_token \
@@ -4395,8 +4415,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/ss_flags.h:
 
-/usr/include/aarch64-linux-gnu/bits/sigstksz.h:
-
 /usr/include/aarch64-linux-gnu/bits/procfs-id.h:
 
 /usr/include/aarch64-linux-gnu/sys/procfs.h:
@@ -4430,6 +4448,18 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/aarch64-linux-gnu/bits/signum-generic.h:
 
 /usr/include/signal.h:
+
+/usr/include/GeographicLib/Math.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/sigstksz.h:
+
+/usr/include/GeographicLib/Config.h:
+
+/usr/include/GeographicLib/Constants.hpp:
+
+/usr/include/GeographicLib/Geocentric.hpp:
+
+/usr/include/GeographicLib/LocalCartesian.hpp:
 
 /usr/include/nlohmann/detail/macro_scope.hpp:
 

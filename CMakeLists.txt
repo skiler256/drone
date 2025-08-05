@@ -33,7 +33,7 @@ link_directories(/usr/local/lib)
 # Créer l'exécutable
 add_executable(exemplecpp ${SOURCES})
 
-# Lier les bibliothèques nécessaires
+
 target_link_libraries(exemplecpp
     uWS
     z
@@ -42,4 +42,5 @@ target_link_libraries(exemplecpp
     pthread
     rt
     wiringPi
+    GeographicLib
 )

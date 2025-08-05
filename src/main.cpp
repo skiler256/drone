@@ -30,18 +30,20 @@ int main()
   PCA9685 pca(event);
   BMP280 baro(event);
 
+  std::thread a(&ESP32::runESP32, &esp);
+  std::thread b(&NEO6m::runNEO6m, &gps);
+  std::thread d(&PCA9685::runPCA9685, &pca);
+
   INS::settings INSsettings;
   INSsettings.alphaHeading = 0.5;
   INSsettings.refreshRate = 200;
+  INSsettings.NmoyGPScalib = 100;
   INS ins(event, esp, baro, gps, INSsettings);
+  std::thread c(&INS::runINS, &ins);
 
   sysMonitoring monitoring(event, esp, baro, gps, ins, 10);
   COM com(monitoring, 5);
 
-  std::thread a(&ESP32::runESP32, &esp);
-  std::thread b(&NEO6m::runNEO6m, &gps);
-  std::thread c(&INS::runINS, &ins);
-  std::thread d(&PCA9685::runPCA9685, &pca);
   std::thread e(&sysMonitoring::runSysMonitoring, &monitoring);
   std::thread f(&COM::runCOM, &com);
   while (true)

@@ -110,7 +110,7 @@ void COM::startWS()
                            {
                   std::lock_guard<std::mutex> lock(wsMTX);
                   clients.push_back(ws);
-                    std::cout<< ws << std::endl; },
+                    /* std::cout<< ws << std::endl;*/ },
                            .message = [this](auto *ws, std::string_view message, uWS::OpCode opCode)
                            {
                     

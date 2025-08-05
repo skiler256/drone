@@ -42,6 +42,7 @@ public:
 
   coordPaket getGPSCoord();
   gpsState getGPSState();
+  bool isFix();
 
 private:
   void handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize);
