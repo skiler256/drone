@@ -1,6 +1,6 @@
-CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: \
- /home/jules/code/drone/src/sysMonitoring.cpp /usr/include/stdc-predef.h \
- /home/jules/code/drone/src/../inc/sysMonitoring.hpp \
+CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: \
+ /home/jules/code/drone/src/launcher.cpp /usr/include/stdc-predef.h \
+ /home/jules/code/drone/src/../inc/launcher.hpp \
  /home/jules/code/drone/src/../inc/../inc/BMP280.hpp \
  /usr/include/c++/12/cstdint \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
@@ -470,7 +470,13 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: \
  /usr/include/GeographicLib/Constants.hpp \
  /usr/include/GeographicLib/Config.h /usr/include/GeographicLib/Math.hpp \
  /home/jules/code/drone/src/../inc/../inc/PCA9685.hpp \
- /usr/include/c++/12/optional /usr/include/c++/12/thread \
+ /home/jules/code/drone/src/../inc/../inc/sysMonitoring.hpp \
+ /usr/include/c++/12/optional \
+ /home/jules/code/drone/src/../inc/../inc/COM.hpp \
+ /usr/local/include/uWebSockets/App.h /usr/include/c++/12/charconv \
+ /usr/include/c++/12/bit /usr/local/include/uWebSockets/HttpContext.h \
+ /usr/local/include/uWebSockets/Loop.h \
+ /usr/local/include/uWebSockets/LoopData.h /usr/include/c++/12/thread \
  /usr/include/c++/12/stop_token /usr/include/c++/12/bits/std_thread.h \
  /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/semaphore \
  /usr/include/c++/12/bits/semaphore_base.h \
@@ -478,4 +484,44 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: \
  /usr/include/c++/12/bits/this_thread_sleep.h \
  /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
  /usr/include/aarch64-linux-gnu/bits/semaphore.h \
- /usr/include/c++/12/iostream
+ /usr/local/include/uWebSockets/PerMessageDeflate.h /usr/include/zlib.h \
+ /usr/include/zconf.h /usr/local/include/uWebSockets/MoveOnlyFunction.h \
+ /usr/include/c++/12/memory \
+ /usr/include/c++/12/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/12/bits/align.h /usr/include/c++/12/bits/shared_ptr.h \
+ /usr/include/c++/12/bits/shared_ptr_base.h \
+ /usr/include/c++/12/bits/allocated_ptr.h \
+ /usr/include/c++/12/ext/concurrence.h \
+ /usr/include/c++/12/bits/shared_ptr_atomic.h \
+ /usr/include/c++/12/backward/auto_ptr.h \
+ /usr/include/c++/12/bits/ranges_uninitialized.h \
+ /usr/include/c++/12/bits/uses_allocator_args.h \
+ /usr/include/c++/12/pstl/glue_memory_defs.h \
+ /home/jules/code/drone/external/uWebSockets/uSockets/src/libusockets.h \
+ /usr/include/c++/12/iostream \
+ /usr/local/include/uWebSockets/HttpContextData.h \
+ /usr/local/include/uWebSockets/HttpRouter.h \
+ /usr/local/include/uWebSockets/HttpResponseData.h \
+ /usr/local/include/uWebSockets/HttpParser.h \
+ /usr/local/include/uWebSockets/ChunkedEncoding.h \
+ /usr/local/include/uWebSockets/BloomFilter.h /usr/include/c++/12/bitset \
+ /usr/local/include/uWebSockets/ProxyParser.h \
+ /usr/local/include/uWebSockets/QueryParser.h \
+ /usr/local/include/uWebSockets/HttpErrors.h \
+ /usr/local/include/uWebSockets/AsyncSocketData.h \
+ /usr/local/include/uWebSockets/AsyncSocket.h \
+ /usr/local/include/uWebSockets/WebSocketData.h \
+ /usr/local/include/uWebSockets/WebSocketProtocol.h \
+ /usr/local/include/uWebSockets/TopicTree.h /usr/include/c++/12/list \
+ /usr/include/c++/12/bits/stl_list.h /usr/include/c++/12/bits/list.tcc \
+ /usr/include/c++/12/unordered_set \
+ /usr/include/c++/12/bits/unordered_set.h /usr/include/c++/12/set \
+ /usr/include/c++/12/bits/stl_set.h \
+ /usr/include/c++/12/bits/stl_multiset.h \
+ /usr/local/include/uWebSockets/HttpResponse.h \
+ /usr/local/include/uWebSockets/Utilities.h \
+ /usr/local/include/uWebSockets/WebSocketExtensions.h \
+ /usr/local/include/uWebSockets/WebSocketHandshake.h \
+ /usr/local/include/uWebSockets/WebSocket.h \
+ /usr/local/include/uWebSockets/WebSocketContextData.h \
+ /usr/local/include/uWebSockets/WebSocketContext.h

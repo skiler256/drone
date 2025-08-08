@@ -3,6 +3,7 @@
 #include "../inc/sysMonitoring.hpp"
 
 #include <mutex>
+#include <atomic>
 
 void killNodeJS();
 void startNodeJS();
@@ -11,6 +12,7 @@ class COM
 {
 public:
     COM(sysMonitoring &monitoring, const int refreshRate, const int port = 9001);
+    ~COM();
     struct dataWS
     {
     };
@@ -31,4 +33,7 @@ private:
 
     std::list<uWS::WebSocket<false, true, dataWS> *> clients;
     sysMonitoring::sysData dataSystem;
+
+    struct us_listen_socket_t *listenSocket = nullptr;
+    std::atomic<bool> loop = true;
 };

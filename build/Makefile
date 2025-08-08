@@ -369,6 +369,30 @@ src/gpio.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/gpio.cpp.s
 .PHONY : src/gpio.cpp.s
 
+src/launcher.o: src/launcher.cpp.o
+.PHONY : src/launcher.o
+
+# target to build an object file
+src/launcher.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/launcher.cpp.o
+.PHONY : src/launcher.cpp.o
+
+src/launcher.i: src/launcher.cpp.i
+.PHONY : src/launcher.i
+
+# target to preprocess a source file
+src/launcher.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/launcher.cpp.i
+.PHONY : src/launcher.cpp.i
+
+src/launcher.s: src/launcher.cpp.s
+.PHONY : src/launcher.s
+
+# target to generate assembly for a file
+src/launcher.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/launcher.cpp.s
+.PHONY : src/launcher.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -456,6 +480,9 @@ help:
 	@echo "... src/gpio.o"
 	@echo "... src/gpio.i"
 	@echo "... src/gpio.s"
+	@echo "... src/launcher.o"
+	@echo "... src/launcher.i"
+	@echo "... src/launcher.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

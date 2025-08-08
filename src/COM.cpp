@@ -91,6 +91,12 @@ COM::COM(sysMonitoring &monitoring, const int refreshRate, const int port) : mon
 {
 }
 
+COM::~COM()
+{
+    loop = false;
+    us_listen_socket_close(0, listenSocket);
+}
+
 void COM::startWS()
 {
     uWS::App({.key_file_name = "misc/key.pem",
@@ -121,10 +127,11 @@ void COM::startWS()
                            {
                   std::lock_guard<std::mutex> lock(wsMTX);
                   clients.remove(ws); }})
-        .listen(port, [](auto *listen_socket)
+        .listen(port, [this](auto *listen_socket)
                 {
 if (listen_socket) {
-std::cout << "Listening on port " << 9001 << std::endl;
+    listenSocket = listen_socket;
+
 } })
         .run();
 }
@@ -154,7 +161,7 @@ void COM::runCOM()
     startNodeJS();
     std::thread server(&COM::startWS, this);
 
-    while (true)
+    while (loop)
     {
 
         const auto start = std::chrono::steady_clock::now();

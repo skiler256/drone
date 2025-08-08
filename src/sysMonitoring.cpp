@@ -3,26 +3,35 @@
 #include <thread>
 #include <iostream>
 
-sysMonitoring::sysMonitoring(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS &ins, const int refreshRate) : event(event),
-                                                                                                                           esp(esp),
-                                                                                                                           baro(baro),
-                                                                                                                           gps(gps),
-                                                                                                                           ins(ins),
-                                                                                                                           refreshRate(refreshRate) {}
+sysMonitoring::sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<BMP280> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins, const int refreshRate) : event(event),
+                                                                                                                                                                                       esp(esp),
+                                                                                                                                                                                       baro(baro),
+                                                                                                                                                                                       gps(gps),
+                                                                                                                                                                                       ins(ins),
+                                                                                                                                                                                       refreshRate(refreshRate) {}
+
+sysMonitoring::~sysMonitoring()
+{
+    loop = false;
+}
 
 void sysMonitoring::runSysMonitoring()
 {
-    while (true)
+    while (loop)
     {
         const auto start = std::chrono::steady_clock::now();
 
         {
             std::lock_guard<std::mutex> lock(mtx);
-            data.sensor.esp = esp.getData();
-            data.sensor.baro = baro.getData(); // peut etre ah .. voilou voilou
-            data.sensor.gps = gps.getGPSState();
+            if (esp)
+                data.sensor.esp = esp->getData();
+            if (baro)
+                data.sensor.baro = baro->getData(); // peut etre ah .. voilou voilou
+            if (gps)
+                data.sensor.gps = gps->getGPSState();
 
-            data.state3D = ins.getState3D();
+            if (ins)
+                data.state3D = ins->getState3D();
             data.events = event.getEvents();
 
             data.perf.CPUtemp = getCPUTemp();

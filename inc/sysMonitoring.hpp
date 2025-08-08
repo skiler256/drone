@@ -7,12 +7,14 @@
 #include "../inc/PCA9685.hpp"
 
 #include <mutex>
+#include <optional>
+#include <atomic>
 
 class sysMonitoring
 {
 public:
-    sysMonitoring(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS &ins, const int refreshRate);
-
+    sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<BMP280> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins, const int refreshRate);
+    ~sysMonitoring();
     void runSysMonitoring();
 
     struct sensorData
@@ -38,10 +40,10 @@ public:
 
 private:
     eventManager &event;
-    ESP32 &esp;
-    BMP280 &baro;
-    NEO6m &gps;
-    INS &ins;
+    std::optional<ESP32> &esp;
+    std::optional<BMP280> &baro;
+    std::optional<NEO6m> &gps;
+    std::optional<INS> &ins;
     int refreshRate;
 
     std::mutex mtx;
@@ -49,4 +51,6 @@ private:
 
     double getCPUTemp();
     double getRAMUsage();
+
+    std::atomic<bool> loop = true;
 };

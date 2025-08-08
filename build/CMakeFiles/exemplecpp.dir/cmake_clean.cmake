@@ -19,6 +19,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/gpio.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/gpio.cpp.o.d"
+  "CMakeFiles/exemplecpp.dir/src/launcher.cpp.o"
+  "CMakeFiles/exemplecpp.dir/src/launcher.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/main.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/main.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o"

@@ -13,12 +13,12 @@ class INS
 public:
   struct settings
   {
-    int refreshRate;
+    int refreshRate = 200;
     int zRefreshRate = 1;
-    double alphaHeading;
+    double alphaHeading = 0.5;
     int NGPSattempt = 500;
     int NmoyGPScalib = 10;
-    double baseAltitude;
+    double baseAltitude = 120;
   };
   struct state3D
   {
