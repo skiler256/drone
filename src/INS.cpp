@@ -20,7 +20,7 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::setting
   calMagMatrix << 1.110525, -0.009313, -0.005285, -0.009313, 1.148244, 0.001096,
       -0.005285, 0.001096, 1.207234;
 
-  // calib GPS
+  // calib GPS et BARO
   int GPSattempt = 0;
   while (!gps.isFix() || GPSattempt > set.NGPSattempt)
   {
@@ -32,6 +32,7 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::setting
     event.reportEvent({component::INS, subcomponent::dataLink, eventSeverity::CRITICAL, "impossible d'obtenir un FIX 3D"});
   double latitude = 0;
   double longitude = 0;
+  double pressure = 0;
 
   for (int i = 0; i < set.NmoyGPScalib; i++)
   {
@@ -39,12 +40,17 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::setting
     std::this_thread::sleep_for(std::chrono::seconds(1));
     latitude += coord.latitude;
     longitude += coord.longitude;
+
+    BMP280::Data bmp;
+    bmp = baro.getData();
+
+    pressure += bmp.pressure;
   }
   latitude /= set.NmoyGPScalib;
   longitude /= set.NmoyGPScalib;
-  std::cout << latitude << std::endl;
+  basePressure = pressure / set.NmoyGPScalib;
 
-  projGPS.Reset(latitude, longitude, 120.0);
+  projGPS.Reset(latitude, longitude, set.baseAltitude);
 }
 
 void INS::runINS()
@@ -56,8 +62,9 @@ void INS::runINS()
     acquireMPU();
     computeHeading();
 
-    if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - tz).count() >= (1000 / set.refreshRate))
+    if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - tz).count() >= (1000 / set.zRefreshRate))
     {
+      tz = std::chrono::steady_clock::now();
       acquireZ();
       computeZ();
     }
@@ -91,6 +98,8 @@ void INS::acquireZ()
   std::lock_guard<std::mutex> lock(mtxZ);
 
   coord = gps.getGPSCoord();
+
+  bmpData = baro.getData();
 }
 
 void INS::computeHeading()
@@ -153,8 +162,10 @@ void INS::computeHeading()
 void INS::computeZ()
 {
   std::lock_guard<std::mutex> lock(mtxZ);
-  NEO6m::coordPaket coord = gps.getGPSCoord();
-  projGPS.Forward(coord.latitude, coord.longitude, 120.0, z(0), z(1), z(2));
+
+  double altitude = ((bmpData.temperature + 273.15) / 0.0065) * (pow(basePressure / bmpData.pressure, 0.1903) - 1) + set.baseAltitude;
+  std::cout << altitude << std::endl;
+  projGPS.Forward(coord.latitude, coord.longitude, altitude, z(0), z(1), z(2));
 }
 
 void INS::printData()

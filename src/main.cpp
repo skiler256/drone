@@ -38,6 +38,7 @@ int main()
   INSsettings.alphaHeading = 0.5;
   INSsettings.refreshRate = 200;
   INSsettings.NmoyGPScalib = 100;
+  INSsettings.baseAltitude = 120;
   INS ins(event, esp, baro, gps, INSsettings);
   std::thread c(&INS::runINS, &ins);
 
@@ -46,13 +47,34 @@ int main()
 
   std::thread e(&sysMonitoring::runSysMonitoring, &monitoring);
   std::thread f(&COM::runCOM, &com);
-  while (true)
-  {
-    pca.setPWM(1, 50);
-    std::cout << baro.getData().pressure << std::endl;
-    std::cout << "boucle" << std::endl;
+std::fstream dataLOG("/home/jules/code/pos.txt");
+
+double x=0;
+double y=0;
+double z=0;
+
+for(int i = 0; i< 120; i++){
+  INS::state3D state = ins.getState3D();
+    dataLOG << state.pos(0) << " " << state.pos(1) << state.pos(2) << std::endl;
+    x += state.pos(0);
+    y += state.pos(1);
+    z += state.pos(2);
+    std::cout<< "coutjd " << i<<std::endl;
     usleep(1000000);
-  }
+}
+
+double X = x/120;
+double Y = y/120;
+double Z = z/120;
+
+std::cout<<X<<" "<< Y<< " "<< Z << std::endl;
+
+  // while (true)
+  // {
+  //   // pca.setPWM(1, 50);
+  //   // std::cout << baro.getData().pressure << std::endl;
+  //   // std::cout << "boucle" << std::endl;
+  // }
 
   a.join();
   b.join();

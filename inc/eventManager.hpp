@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <utility>
+#include <fstream>
 
 enum class eventSeverity
 {
@@ -41,6 +42,8 @@ struct event
 class eventManager
 {
 public:
+    eventManager();
+
     void reportEvent(const event &event);
     void clearEvent(const event &event);
 
@@ -56,6 +59,7 @@ public:
 
 private:
     std::mutex mtx;
+    std::ofstream logTXT;
 
     // data
     std::map<std::pair<component, subcomponent>, eventLog> events;

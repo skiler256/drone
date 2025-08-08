@@ -227,6 +227,31 @@ CMakeFiles/exemplecpp.dir/src/BMP280.cpp.o
  /usr/include/c++/12/bits/erase_if.h
  /usr/include/c++/12/utility
  /usr/include/c++/12/bits/stl_relops.h
+ /usr/include/c++/12/fstream
+ /usr/include/c++/12/istream
+ /usr/include/c++/12/ios
+ /usr/include/c++/12/bits/ios_base.h
+ /usr/include/c++/12/bits/locale_classes.h
+ /usr/include/c++/12/bits/locale_classes.tcc
+ /usr/include/c++/12/streambuf
+ /usr/include/c++/12/bits/streambuf.tcc
+ /usr/include/c++/12/bits/basic_ios.h
+ /usr/include/c++/12/bits/locale_facets.h
+ /usr/include/c++/12/cwctype
+ /usr/include/wctype.h
+ /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h
+ /usr/include/c++/12/bits/streambuf_iterator.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h
+ /usr/include/c++/12/bits/locale_facets.tcc
+ /usr/include/c++/12/bits/basic_ios.tcc
+ /usr/include/c++/12/ostream
+ /usr/include/c++/12/bits/ostream.tcc
+ /usr/include/c++/12/bits/istream.tcc
+ /usr/include/c++/12/bits/codecvt.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
+ /usr/include/c++/12/bits/fstream.tcc
 
 CMakeFiles/exemplecpp.dir/src/COM.cpp.o
  /home/jules/code/drone/src/COM.cpp
@@ -589,6 +614,11 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o
  /usr/lib/linux/uapi/arm64/asm/posix_types.h
  /usr/include/asm-generic/posix_types.h
  /home/jules/code/drone/inc/eventManager.hpp
+ /usr/include/c++/12/fstream
+ /usr/include/c++/12/bits/codecvt.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
+ /usr/include/c++/12/bits/fstream.tcc
  /home/jules/code/drone/inc/ESP32.hpp
  /usr/include/termios.h
  /usr/include/aarch64-linux-gnu/bits/termios.h
@@ -603,11 +633,6 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o
  /usr/include/aarch64-linux-gnu/bits/termios-misc.h
  /home/jules/code/drone/inc/INS.hpp
  /home/jules/code/drone/inc/NEO6m.hpp
- /usr/include/c++/12/fstream
- /usr/include/c++/12/bits/codecvt.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
- /usr/include/c++/12/bits/fstream.tcc
  /usr/include/c++/12/chrono
  /usr/include/c++/12/sstream
  /usr/include/c++/12/bits/sstream.tcc
@@ -1141,6 +1166,31 @@ CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o
  /usr/include/c++/12/bits/erase_if.h
  /usr/include/c++/12/utility
  /usr/include/c++/12/bits/stl_relops.h
+ /usr/include/c++/12/fstream
+ /usr/include/c++/12/istream
+ /usr/include/c++/12/ios
+ /usr/include/c++/12/bits/ios_base.h
+ /usr/include/c++/12/bits/locale_classes.h
+ /usr/include/c++/12/bits/locale_classes.tcc
+ /usr/include/c++/12/streambuf
+ /usr/include/c++/12/bits/streambuf.tcc
+ /usr/include/c++/12/bits/basic_ios.h
+ /usr/include/c++/12/bits/locale_facets.h
+ /usr/include/c++/12/cwctype
+ /usr/include/wctype.h
+ /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h
+ /usr/include/c++/12/bits/streambuf_iterator.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h
+ /usr/include/c++/12/bits/locale_facets.tcc
+ /usr/include/c++/12/bits/basic_ios.tcc
+ /usr/include/c++/12/ostream
+ /usr/include/c++/12/bits/ostream.tcc
+ /usr/include/c++/12/bits/istream.tcc
+ /usr/include/c++/12/bits/codecvt.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
+ /usr/include/c++/12/bits/fstream.tcc
  /usr/include/fcntl.h
  /usr/include/aarch64-linux-gnu/bits/fcntl.h
  /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h
@@ -1162,32 +1212,7 @@ CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o
  /usr/include/aarch64-linux-gnu/sys/ttydefaults.h
  /usr/include/c++/12/chrono
  /usr/include/c++/12/sstream
- /usr/include/c++/12/istream
- /usr/include/c++/12/ios
- /usr/include/c++/12/bits/ios_base.h
- /usr/include/c++/12/bits/locale_classes.h
- /usr/include/c++/12/bits/locale_classes.tcc
- /usr/include/c++/12/streambuf
- /usr/include/c++/12/bits/streambuf.tcc
- /usr/include/c++/12/bits/basic_ios.h
- /usr/include/c++/12/bits/locale_facets.h
- /usr/include/c++/12/cwctype
- /usr/include/wctype.h
- /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h
- /usr/include/c++/12/bits/streambuf_iterator.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h
- /usr/include/c++/12/bits/locale_facets.tcc
- /usr/include/c++/12/bits/basic_ios.tcc
- /usr/include/c++/12/ostream
- /usr/include/c++/12/bits/ostream.tcc
- /usr/include/c++/12/bits/istream.tcc
  /usr/include/c++/12/bits/sstream.tcc
- /usr/include/c++/12/fstream
- /usr/include/c++/12/bits/codecvt.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
- /usr/include/c++/12/bits/fstream.tcc
  /usr/include/c++/12/iostream
  /usr/include/unistd.h
  /usr/include/aarch64-linux-gnu/bits/posix_opt.h
@@ -1392,6 +1417,31 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o
  /usr/include/c++/12/bits/erase_if.h
  /usr/include/c++/12/utility
  /usr/include/c++/12/bits/stl_relops.h
+ /usr/include/c++/12/fstream
+ /usr/include/c++/12/istream
+ /usr/include/c++/12/ios
+ /usr/include/c++/12/bits/ios_base.h
+ /usr/include/c++/12/bits/locale_classes.h
+ /usr/include/c++/12/bits/locale_classes.tcc
+ /usr/include/c++/12/streambuf
+ /usr/include/c++/12/bits/streambuf.tcc
+ /usr/include/c++/12/bits/basic_ios.h
+ /usr/include/c++/12/bits/locale_facets.h
+ /usr/include/c++/12/cwctype
+ /usr/include/wctype.h
+ /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h
+ /usr/include/c++/12/bits/streambuf_iterator.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h
+ /usr/include/c++/12/bits/locale_facets.tcc
+ /usr/include/c++/12/bits/basic_ios.tcc
+ /usr/include/c++/12/ostream
+ /usr/include/c++/12/bits/ostream.tcc
+ /usr/include/c++/12/bits/istream.tcc
+ /usr/include/c++/12/bits/codecvt.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
+ /usr/include/c++/12/bits/fstream.tcc
  /home/jules/code/drone/inc/BMP280.hpp
  /usr/include/unistd.h
  /usr/include/aarch64-linux-gnu/bits/posix_opt.h
@@ -1441,31 +1491,6 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o
  /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h
  /usr/include/aarch64-linux-gnu/bits/termios-misc.h
  /home/jules/code/drone/inc/NEO6m.hpp
- /usr/include/c++/12/fstream
- /usr/include/c++/12/istream
- /usr/include/c++/12/ios
- /usr/include/c++/12/bits/ios_base.h
- /usr/include/c++/12/bits/locale_classes.h
- /usr/include/c++/12/bits/locale_classes.tcc
- /usr/include/c++/12/streambuf
- /usr/include/c++/12/bits/streambuf.tcc
- /usr/include/c++/12/bits/basic_ios.h
- /usr/include/c++/12/bits/locale_facets.h
- /usr/include/c++/12/cwctype
- /usr/include/wctype.h
- /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h
- /usr/include/c++/12/bits/streambuf_iterator.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h
- /usr/include/c++/12/bits/locale_facets.tcc
- /usr/include/c++/12/bits/basic_ios.tcc
- /usr/include/c++/12/ostream
- /usr/include/c++/12/bits/ostream.tcc
- /usr/include/c++/12/bits/istream.tcc
- /usr/include/c++/12/bits/codecvt.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
- /usr/include/c++/12/bits/fstream.tcc
  /usr/include/c++/12/vector
  /usr/include/c++/12/bits/stl_uninitialized.h
  /usr/include/c++/12/bits/stl_vector.h
@@ -2207,15 +2232,8 @@ CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o
  /usr/include/c++/12/bits/erase_if.h
  /usr/include/c++/12/utility
  /usr/include/c++/12/bits/stl_relops.h
- /usr/include/fcntl.h
- /usr/include/aarch64-linux-gnu/bits/fcntl.h
- /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h
- /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h
- /usr/include/linux/falloc.h
- /usr/include/aarch64-linux-gnu/bits/stat.h
- /usr/include/aarch64-linux-gnu/bits/struct_stat.h
- /usr/include/c++/12/iostream
- /usr/include/c++/12/ostream
+ /usr/include/c++/12/fstream
+ /usr/include/c++/12/istream
  /usr/include/c++/12/ios
  /usr/include/c++/12/bits/ios_base.h
  /usr/include/c++/12/bits/locale_classes.h
@@ -2232,9 +2250,21 @@ CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o
  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h
  /usr/include/c++/12/bits/locale_facets.tcc
  /usr/include/c++/12/bits/basic_ios.tcc
+ /usr/include/c++/12/ostream
  /usr/include/c++/12/bits/ostream.tcc
- /usr/include/c++/12/istream
  /usr/include/c++/12/bits/istream.tcc
+ /usr/include/c++/12/bits/codecvt.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
+ /usr/include/c++/12/bits/fstream.tcc
+ /usr/include/fcntl.h
+ /usr/include/aarch64-linux-gnu/bits/fcntl.h
+ /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h
+ /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h
+ /usr/include/linux/falloc.h
+ /usr/include/aarch64-linux-gnu/bits/stat.h
+ /usr/include/aarch64-linux-gnu/bits/struct_stat.h
+ /usr/include/c++/12/iostream
  /usr/include/linux/i2c-dev.h
  /usr/include/linux/types.h
  /usr/lib/linux/uapi/arm64/asm/types.h
@@ -2893,8 +2923,8 @@ CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o
  /usr/include/c++/12/bits/erase_if.h
  /usr/include/c++/12/utility
  /usr/include/c++/12/bits/stl_relops.h
- /usr/include/c++/12/iostream
- /usr/include/c++/12/ostream
+ /usr/include/c++/12/fstream
+ /usr/include/c++/12/istream
  /usr/include/c++/12/ios
  /usr/include/c++/12/bits/ios_base.h
  /usr/include/c++/12/bits/locale_classes.h
@@ -2911,9 +2941,14 @@ CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o
  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h
  /usr/include/c++/12/bits/locale_facets.tcc
  /usr/include/c++/12/bits/basic_ios.tcc
+ /usr/include/c++/12/ostream
  /usr/include/c++/12/bits/ostream.tcc
- /usr/include/c++/12/istream
  /usr/include/c++/12/bits/istream.tcc
+ /usr/include/c++/12/bits/codecvt.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
+ /usr/include/c++/12/bits/fstream.tcc
+ /usr/include/c++/12/iostream
 
 CMakeFiles/exemplecpp.dir/src/gpio.cpp.o
  /home/jules/code/drone/src/gpio.cpp
@@ -3335,20 +3370,6 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o
  /usr/include/c++/12/bits/erase_if.h
  /usr/include/c++/12/utility
  /usr/include/c++/12/bits/stl_relops.h
- /home/jules/code/drone/inc/ESP32.hpp
- /usr/include/termios.h
- /usr/include/aarch64-linux-gnu/bits/termios.h
- /usr/include/aarch64-linux-gnu/bits/termios-struct.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h
- /usr/include/aarch64-linux-gnu/bits/termios-baud.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h
- /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h
- /usr/include/aarch64-linux-gnu/bits/termios-misc.h
- /home/jules/code/drone/inc/INS.hpp
- /home/jules/code/drone/inc/NEO6m.hpp
  /usr/include/c++/12/fstream
  /usr/include/c++/12/istream
  /usr/include/c++/12/ios
@@ -3374,6 +3395,20 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o
  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
  /usr/include/c++/12/bits/fstream.tcc
+ /home/jules/code/drone/inc/ESP32.hpp
+ /usr/include/termios.h
+ /usr/include/aarch64-linux-gnu/bits/termios.h
+ /usr/include/aarch64-linux-gnu/bits/termios-struct.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h
+ /usr/include/aarch64-linux-gnu/bits/termios-baud.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h
+ /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h
+ /usr/include/aarch64-linux-gnu/bits/termios-misc.h
+ /home/jules/code/drone/inc/INS.hpp
+ /home/jules/code/drone/inc/NEO6m.hpp
  /usr/include/c++/12/vector
  /usr/include/c++/12/bits/stl_uninitialized.h
  /usr/include/c++/12/bits/stl_vector.h
@@ -3977,20 +4012,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o
  /usr/include/c++/12/bits/erase_if.h
  /usr/include/c++/12/utility
  /usr/include/c++/12/bits/stl_relops.h
- /home/jules/code/drone/inc/ESP32.hpp
- /usr/include/termios.h
- /usr/include/aarch64-linux-gnu/bits/termios.h
- /usr/include/aarch64-linux-gnu/bits/termios-struct.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h
- /usr/include/aarch64-linux-gnu/bits/termios-baud.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h
- /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h
- /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h
- /usr/include/aarch64-linux-gnu/bits/termios-misc.h
- /home/jules/code/drone/inc/INS.hpp
- /home/jules/code/drone/inc/NEO6m.hpp
  /usr/include/c++/12/fstream
  /usr/include/c++/12/istream
  /usr/include/c++/12/ios
@@ -4016,6 +4037,20 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o
  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
  /usr/include/c++/12/bits/fstream.tcc
+ /home/jules/code/drone/inc/ESP32.hpp
+ /usr/include/termios.h
+ /usr/include/aarch64-linux-gnu/bits/termios.h
+ /usr/include/aarch64-linux-gnu/bits/termios-struct.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h
+ /usr/include/aarch64-linux-gnu/bits/termios-baud.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h
+ /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h
+ /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h
+ /usr/include/aarch64-linux-gnu/bits/termios-misc.h
+ /home/jules/code/drone/inc/INS.hpp
+ /home/jules/code/drone/inc/NEO6m.hpp
  /usr/include/c++/12/vector
  /usr/include/c++/12/bits/stl_uninitialized.h
  /usr/include/c++/12/bits/stl_vector.h

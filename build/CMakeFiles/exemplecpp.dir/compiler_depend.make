@@ -225,7 +225,32 @@ CMakeFiles/exemplecpp.dir/src/BMP280.cpp.o: /home/jules/code/drone/src/BMP280.cp
   /usr/include/c++/12/bits/stl_multimap.h \
   /usr/include/c++/12/bits/erase_if.h \
   /usr/include/c++/12/utility \
-  /usr/include/c++/12/bits/stl_relops.h
+  /usr/include/c++/12/bits/stl_relops.h \
+  /usr/include/c++/12/fstream \
+  /usr/include/c++/12/istream \
+  /usr/include/c++/12/ios \
+  /usr/include/c++/12/bits/ios_base.h \
+  /usr/include/c++/12/bits/locale_classes.h \
+  /usr/include/c++/12/bits/locale_classes.tcc \
+  /usr/include/c++/12/streambuf \
+  /usr/include/c++/12/bits/streambuf.tcc \
+  /usr/include/c++/12/bits/basic_ios.h \
+  /usr/include/c++/12/bits/locale_facets.h \
+  /usr/include/c++/12/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h \
+  /usr/include/c++/12/bits/streambuf_iterator.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
+  /usr/include/c++/12/bits/locale_facets.tcc \
+  /usr/include/c++/12/bits/basic_ios.tcc \
+  /usr/include/c++/12/ostream \
+  /usr/include/c++/12/bits/ostream.tcc \
+  /usr/include/c++/12/bits/istream.tcc \
+  /usr/include/c++/12/bits/codecvt.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+  /usr/include/c++/12/bits/fstream.tcc
 
 CMakeFiles/exemplecpp.dir/src/COM.cpp.o: /home/jules/code/drone/src/COM.cpp \
   /usr/include/stdc-predef.h \
@@ -587,6 +612,11 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: /home/jules/code/drone/src/COM.cpp \
   /usr/lib/linux/uapi/arm64/asm/posix_types.h \
   /usr/include/asm-generic/posix_types.h \
   /home/jules/code/drone/inc/eventManager.hpp \
+  /usr/include/c++/12/fstream \
+  /usr/include/c++/12/bits/codecvt.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+  /usr/include/c++/12/bits/fstream.tcc \
   /home/jules/code/drone/inc/ESP32.hpp \
   /usr/include/termios.h \
   /usr/include/aarch64-linux-gnu/bits/termios.h \
@@ -601,11 +631,6 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: /home/jules/code/drone/src/COM.cpp \
   /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
   /home/jules/code/drone/inc/INS.hpp \
   /home/jules/code/drone/inc/NEO6m.hpp \
-  /usr/include/c++/12/fstream \
-  /usr/include/c++/12/bits/codecvt.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
-  /usr/include/c++/12/bits/fstream.tcc \
   /usr/include/c++/12/chrono \
   /usr/include/c++/12/sstream \
   /usr/include/c++/12/bits/sstream.tcc \
@@ -1138,6 +1163,31 @@ CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: /home/jules/code/drone/src/ESP32.cpp 
   /usr/include/c++/12/bits/erase_if.h \
   /usr/include/c++/12/utility \
   /usr/include/c++/12/bits/stl_relops.h \
+  /usr/include/c++/12/fstream \
+  /usr/include/c++/12/istream \
+  /usr/include/c++/12/ios \
+  /usr/include/c++/12/bits/ios_base.h \
+  /usr/include/c++/12/bits/locale_classes.h \
+  /usr/include/c++/12/bits/locale_classes.tcc \
+  /usr/include/c++/12/streambuf \
+  /usr/include/c++/12/bits/streambuf.tcc \
+  /usr/include/c++/12/bits/basic_ios.h \
+  /usr/include/c++/12/bits/locale_facets.h \
+  /usr/include/c++/12/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h \
+  /usr/include/c++/12/bits/streambuf_iterator.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
+  /usr/include/c++/12/bits/locale_facets.tcc \
+  /usr/include/c++/12/bits/basic_ios.tcc \
+  /usr/include/c++/12/ostream \
+  /usr/include/c++/12/bits/ostream.tcc \
+  /usr/include/c++/12/bits/istream.tcc \
+  /usr/include/c++/12/bits/codecvt.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+  /usr/include/c++/12/bits/fstream.tcc \
   /usr/include/fcntl.h \
   /usr/include/aarch64-linux-gnu/bits/fcntl.h \
   /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
@@ -1159,32 +1209,7 @@ CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: /home/jules/code/drone/src/ESP32.cpp 
   /usr/include/aarch64-linux-gnu/sys/ttydefaults.h \
   /usr/include/c++/12/chrono \
   /usr/include/c++/12/sstream \
-  /usr/include/c++/12/istream \
-  /usr/include/c++/12/ios \
-  /usr/include/c++/12/bits/ios_base.h \
-  /usr/include/c++/12/bits/locale_classes.h \
-  /usr/include/c++/12/bits/locale_classes.tcc \
-  /usr/include/c++/12/streambuf \
-  /usr/include/c++/12/bits/streambuf.tcc \
-  /usr/include/c++/12/bits/basic_ios.h \
-  /usr/include/c++/12/bits/locale_facets.h \
-  /usr/include/c++/12/cwctype \
-  /usr/include/wctype.h \
-  /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h \
-  /usr/include/c++/12/bits/streambuf_iterator.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
-  /usr/include/c++/12/bits/locale_facets.tcc \
-  /usr/include/c++/12/bits/basic_ios.tcc \
-  /usr/include/c++/12/ostream \
-  /usr/include/c++/12/bits/ostream.tcc \
-  /usr/include/c++/12/bits/istream.tcc \
   /usr/include/c++/12/bits/sstream.tcc \
-  /usr/include/c++/12/fstream \
-  /usr/include/c++/12/bits/codecvt.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
-  /usr/include/c++/12/bits/fstream.tcc \
   /usr/include/c++/12/iostream \
   /usr/include/unistd.h \
   /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
@@ -1388,6 +1413,31 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o: /home/jules/code/drone/src/INS.cpp \
   /usr/include/c++/12/bits/erase_if.h \
   /usr/include/c++/12/utility \
   /usr/include/c++/12/bits/stl_relops.h \
+  /usr/include/c++/12/fstream \
+  /usr/include/c++/12/istream \
+  /usr/include/c++/12/ios \
+  /usr/include/c++/12/bits/ios_base.h \
+  /usr/include/c++/12/bits/locale_classes.h \
+  /usr/include/c++/12/bits/locale_classes.tcc \
+  /usr/include/c++/12/streambuf \
+  /usr/include/c++/12/bits/streambuf.tcc \
+  /usr/include/c++/12/bits/basic_ios.h \
+  /usr/include/c++/12/bits/locale_facets.h \
+  /usr/include/c++/12/cwctype \
+  /usr/include/wctype.h \
+  /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h \
+  /usr/include/c++/12/bits/streambuf_iterator.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
+  /usr/include/c++/12/bits/locale_facets.tcc \
+  /usr/include/c++/12/bits/basic_ios.tcc \
+  /usr/include/c++/12/ostream \
+  /usr/include/c++/12/bits/ostream.tcc \
+  /usr/include/c++/12/bits/istream.tcc \
+  /usr/include/c++/12/bits/codecvt.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+  /usr/include/c++/12/bits/fstream.tcc \
   /home/jules/code/drone/inc/BMP280.hpp \
   /usr/include/unistd.h \
   /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
@@ -1437,31 +1487,6 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o: /home/jules/code/drone/src/INS.cpp \
   /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
   /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
   /home/jules/code/drone/inc/NEO6m.hpp \
-  /usr/include/c++/12/fstream \
-  /usr/include/c++/12/istream \
-  /usr/include/c++/12/ios \
-  /usr/include/c++/12/bits/ios_base.h \
-  /usr/include/c++/12/bits/locale_classes.h \
-  /usr/include/c++/12/bits/locale_classes.tcc \
-  /usr/include/c++/12/streambuf \
-  /usr/include/c++/12/bits/streambuf.tcc \
-  /usr/include/c++/12/bits/basic_ios.h \
-  /usr/include/c++/12/bits/locale_facets.h \
-  /usr/include/c++/12/cwctype \
-  /usr/include/wctype.h \
-  /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h \
-  /usr/include/c++/12/bits/streambuf_iterator.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
-  /usr/include/c++/12/bits/locale_facets.tcc \
-  /usr/include/c++/12/bits/basic_ios.tcc \
-  /usr/include/c++/12/ostream \
-  /usr/include/c++/12/bits/ostream.tcc \
-  /usr/include/c++/12/bits/istream.tcc \
-  /usr/include/c++/12/bits/codecvt.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
-  /usr/include/c++/12/bits/fstream.tcc \
   /usr/include/c++/12/vector \
   /usr/include/c++/12/bits/stl_uninitialized.h \
   /usr/include/c++/12/bits/stl_vector.h \
@@ -2201,15 +2226,8 @@ CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o: /home/jules/code/drone/src/PCA9685.
   /usr/include/c++/12/bits/erase_if.h \
   /usr/include/c++/12/utility \
   /usr/include/c++/12/bits/stl_relops.h \
-  /usr/include/fcntl.h \
-  /usr/include/aarch64-linux-gnu/bits/fcntl.h \
-  /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
-  /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
-  /usr/include/linux/falloc.h \
-  /usr/include/aarch64-linux-gnu/bits/stat.h \
-  /usr/include/aarch64-linux-gnu/bits/struct_stat.h \
-  /usr/include/c++/12/iostream \
-  /usr/include/c++/12/ostream \
+  /usr/include/c++/12/fstream \
+  /usr/include/c++/12/istream \
   /usr/include/c++/12/ios \
   /usr/include/c++/12/bits/ios_base.h \
   /usr/include/c++/12/bits/locale_classes.h \
@@ -2226,9 +2244,21 @@ CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o: /home/jules/code/drone/src/PCA9685.
   /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
   /usr/include/c++/12/bits/locale_facets.tcc \
   /usr/include/c++/12/bits/basic_ios.tcc \
+  /usr/include/c++/12/ostream \
   /usr/include/c++/12/bits/ostream.tcc \
-  /usr/include/c++/12/istream \
   /usr/include/c++/12/bits/istream.tcc \
+  /usr/include/c++/12/bits/codecvt.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+  /usr/include/c++/12/bits/fstream.tcc \
+  /usr/include/fcntl.h \
+  /usr/include/aarch64-linux-gnu/bits/fcntl.h \
+  /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
+  /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
+  /usr/include/linux/falloc.h \
+  /usr/include/aarch64-linux-gnu/bits/stat.h \
+  /usr/include/aarch64-linux-gnu/bits/struct_stat.h \
+  /usr/include/c++/12/iostream \
   /usr/include/linux/i2c-dev.h \
   /usr/include/linux/types.h \
   /usr/lib/linux/uapi/arm64/asm/types.h \
@@ -2884,8 +2914,8 @@ CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o: /home/jules/code/drone/src/eve
   /usr/include/c++/12/bits/erase_if.h \
   /usr/include/c++/12/utility \
   /usr/include/c++/12/bits/stl_relops.h \
-  /usr/include/c++/12/iostream \
-  /usr/include/c++/12/ostream \
+  /usr/include/c++/12/fstream \
+  /usr/include/c++/12/istream \
   /usr/include/c++/12/ios \
   /usr/include/c++/12/bits/ios_base.h \
   /usr/include/c++/12/bits/locale_classes.h \
@@ -2902,9 +2932,14 @@ CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o: /home/jules/code/drone/src/eve
   /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
   /usr/include/c++/12/bits/locale_facets.tcc \
   /usr/include/c++/12/bits/basic_ios.tcc \
+  /usr/include/c++/12/ostream \
   /usr/include/c++/12/bits/ostream.tcc \
-  /usr/include/c++/12/istream \
-  /usr/include/c++/12/bits/istream.tcc
+  /usr/include/c++/12/bits/istream.tcc \
+  /usr/include/c++/12/bits/codecvt.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+  /usr/include/c++/12/bits/fstream.tcc \
+  /usr/include/c++/12/iostream
 
 CMakeFiles/exemplecpp.dir/src/gpio.cpp.o: /home/jules/code/drone/src/gpio.cpp \
   /usr/include/stdc-predef.h \
@@ -3324,20 +3359,6 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/include/c++/12/bits/erase_if.h \
   /usr/include/c++/12/utility \
   /usr/include/c++/12/bits/stl_relops.h \
-  /home/jules/code/drone/inc/ESP32.hpp \
-  /usr/include/termios.h \
-  /usr/include/aarch64-linux-gnu/bits/termios.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
-  /home/jules/code/drone/inc/INS.hpp \
-  /home/jules/code/drone/inc/NEO6m.hpp \
   /usr/include/c++/12/fstream \
   /usr/include/c++/12/istream \
   /usr/include/c++/12/ios \
@@ -3363,6 +3384,20 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
   /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
   /usr/include/c++/12/bits/fstream.tcc \
+  /home/jules/code/drone/inc/ESP32.hpp \
+  /usr/include/termios.h \
+  /usr/include/aarch64-linux-gnu/bits/termios.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
+  /home/jules/code/drone/inc/INS.hpp \
+  /home/jules/code/drone/inc/NEO6m.hpp \
   /usr/include/c++/12/vector \
   /usr/include/c++/12/bits/stl_uninitialized.h \
   /usr/include/c++/12/bits/stl_vector.h \
@@ -3965,20 +4000,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
   /usr/include/c++/12/bits/erase_if.h \
   /usr/include/c++/12/utility \
   /usr/include/c++/12/bits/stl_relops.h \
-  /home/jules/code/drone/inc/ESP32.hpp \
-  /usr/include/termios.h \
-  /usr/include/aarch64-linux-gnu/bits/termios.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
-  /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
-  /home/jules/code/drone/inc/INS.hpp \
-  /home/jules/code/drone/inc/NEO6m.hpp \
   /usr/include/c++/12/fstream \
   /usr/include/c++/12/istream \
   /usr/include/c++/12/ios \
@@ -4004,6 +4025,20 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
   /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
   /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
   /usr/include/c++/12/bits/fstream.tcc \
+  /home/jules/code/drone/inc/ESP32.hpp \
+  /usr/include/termios.h \
+  /usr/include/aarch64-linux-gnu/bits/termios.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
+  /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
+  /home/jules/code/drone/inc/INS.hpp \
+  /home/jules/code/drone/inc/NEO6m.hpp \
   /usr/include/c++/12/vector \
   /usr/include/c++/12/bits/stl_uninitialized.h \
   /usr/include/c++/12/bits/stl_vector.h \
@@ -4539,57 +4574,43 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/misc/Kernel.h:
 
-/usr/include/c++/12/ostream:
-
-/usr/include/nlohmann/detail/hash.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/syscall.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
-
-/usr/include/eigen3/Eigen/src/LU/FullPivLU.h:
-
-/home/jules/code/drone/external/uWebSockets/uSockets/src/libusockets.h:
-
-/usr/include/c++/12/clocale:
-
-/home/jules/code/drone/inc/ESP32.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/uio_lim.h:
-
-/usr/include/c++/12/bits/atomic_lockfree_defines.h:
-
-/usr/include/aarch64-linux-gnu/bits/termios-c_cc.h:
-
-/usr/include/aarch64-linux-gnu/bits/xopen_lim.h:
-
-/usr/include/c++/12/forward_list:
-
-/usr/include/aarch64-linux-gnu/bits/posix2_lim.h:
-
-/usr/include/eigen3/Eigen/src/Core/functors/StlFunctors.h:
-
-/usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h:
-
-/usr/include/c++/12/bits/atomic_wait.h:
-
-/usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/siginfo_t.h:
-
-/usr/include/c++/12/atomic:
-
-/usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
-
 /usr/include/nlohmann/detail/iterators/json_reverse_iterator.hpp:
 
 /usr/include/c++/12/bit:
 
 /home/jules/code/drone/inc/COM.hpp:
 
-/usr/include/c++/12/unordered_set:
+/usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h:
 
-/usr/include/c++/12/bits/erase_if.h:
+/usr/include/c++/12/bits/codecvt.h:
+
+/usr/include/c++/12/bits/cpp_type_traits.h:
+
+/usr/include/eigen3/Eigen/src/Core/arch/Default/GenericPacketMathFunctionsFwd.h:
+
+/usr/include/eigen3/Eigen/src/Core/IndexedView.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/c++/12/ostream:
+
+/usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h:
+
+/usr/include/c++/12/bits/basic_ios.h:
+
+/usr/include/nlohmann/detail/conversions/from_json.hpp:
+
+/usr/include/c++/12/sstream:
+
+/usr/include/aarch64-linux-gnu/bits/local_lim.h:
+
+/usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:
+
+/usr/include/nlohmann/detail/input/parser.hpp:
+
+/usr/include/c++/12/fstream:
+
+/usr/include/eigen3/Eigen/src/Core/CwiseUnaryOp.h:
 
 /usr/include/c++/12/bits/stl_multimap.h:
 
@@ -4616,6 +4637,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/aarch64-linux-gnu/bits/byteswap.h:
 
 /usr/include/c++/12/typeinfo:
+
+/usr/include/c++/12/bits/streambuf_iterator.h:
 
 /home/jules/code/drone/inc/TF-luna.hpp:
 
@@ -4661,9 +4684,9 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/sys/single_threaded.h:
 
-/usr/include/c++/12/string_view:
-
 /usr/include/c++/12/bits/locale_facets.h:
+
+/usr/include/c++/12/string_view:
 
 /usr/include/aarch64-linux-gnu/c++/12/bits/atomic_word.h:
 
@@ -4685,6 +4708,10 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/cpu-set.h:
 
+/usr/include/c++/12/tr1/ell_integral.tcc:
+
+/usr/include/c++/12/charconv:
+
 /usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/eigen3/Eigen/src/Core/Assign.h:
@@ -4705,6 +4732,12 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_tm.h:
 
+/usr/include/c++/12/streambuf:
+
+/home/jules/code/drone/src/TF-luna.cpp:
+
+/usr/include/eigen3/Eigen/src/Core/DiagonalProduct.h:
+
 /usr/include/c++/12/limits:
 
 /usr/include/c++/12/ratio:
@@ -4713,13 +4746,15 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/local/include/uWebSockets/PerMessageDeflate.h:
 
-/usr/include/c++/12/bits/valarray_after.h:
+/usr/include/c++/12/clocale:
 
-/usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h:
+/home/jules/code/drone/inc/ESP32.hpp:
 
-/usr/include/c++/12/climits:
+/usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h:
 
-/usr/lib/linux/uapi/arm64/asm/errno.h:
+/usr/include/aarch64-linux-gnu/bits/wctype-wchar.h:
+
+/usr/include/time.h:
 
 /usr/include/nlohmann/detail/iterators/primitive_iterator.hpp:
 
@@ -4743,10 +4778,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/fcntl.h:
 
-/usr/include/eigen3/Eigen/src/Core/Transpose.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_timespec.h:
-
 /usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h:
@@ -4766,8 +4797,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/eigen3/Eigen/src/Core/NestByValue.h:
 
 /usr/include/c++/12/bits/max_size_type.h:
-
-/usr/include/asm-generic/errno.h:
 
 /usr/include/aarch64-linux-gnu/bits/errno.h:
 
@@ -4791,9 +4820,21 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/endianness.h:
 
+/usr/include/aarch64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/eigen3/Eigen/src/LU/FullPivLU.h:
+
+/home/jules/code/drone/external/uWebSockets/uSockets/src/libusockets.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/eigen3/Eigen/src/Core/Transpose.h:
+
 /usr/include/asm-generic/int-ll64.h:
 
 /home/jules/code/drone/src/BMP280.cpp:
+
+/usr/include/c++/12/bits/locale_classes.h:
 
 /usr/include/c++/12/bits/stringfwd.h:
 
@@ -4817,12 +4858,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
 
-/usr/include/strings.h:
-
-/usr/local/include/uWebSockets/App.h:
-
-/usr/include/aarch64-linux-gnu/bits/sched.h:
-
 /usr/include/eigen3/Eigen/src/Core/arch/NEON/Complex.h:
 
 /usr/include/eigen3/Eigen/src/Core/Diagonal.h:
@@ -4832,10 +4867,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/system_error:
 
 /usr/include/eigen3/Eigen/src/Core/Array.h:
-
-/usr/include/time.h:
-
-/usr/include/aarch64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/c++/12/bits/range_access.h:
 
@@ -4863,15 +4894,17 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/backward/binders.h:
 
-/usr/include/syscall.h:
+/usr/include/c++/12/bits/locale_classes.tcc:
 
-/usr/local/include/uWebSockets/Loop.h:
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:
 
 /usr/include/linux/errno.h:
 
-/usr/local/include/uWebSockets/LoopData.h:
+/usr/include/c++/12/ios:
 
-/usr/include/c++/12/bits/stl_iterator_base_types.h:
+/usr/include/eigen3/Eigen/src/Core/Random.h:
+
+/usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h:
 
 /usr/include/aarch64-linux-gnu/bits/time.h:
 
@@ -4919,15 +4952,29 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/local/include/uWebSockets/WebSocketExtensions.h:
 
+/usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h:
+
 /usr/include/aarch64-linux-gnu/c++/12/bits/c++allocator.h:
 
 /usr/include/eigen3/Eigen/src/Core/CwiseBinaryOp.h:
+
+/usr/include/c++/12/bits/basic_ios.tcc:
+
+/usr/local/include/uWebSockets/BloomFilter.h:
+
+/usr/include/c++/12/tr1/riemann_zeta.tcc:
 
 /usr/include/eigen3/Eigen/src/Geometry/EulerAngles.h:
 
 /usr/include/aarch64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/aarch64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/aarch64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/siginfo_t.h:
+
+/usr/include/c++/12/atomic:
 
 /usr/include/nlohmann/json_fwd.hpp:
 
@@ -4977,11 +5024,17 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/stl_iterator.h:
 
+/usr/include/c++/12/bits/ostream.tcc:
+
 /usr/include/nlohmann/byte_container_with_subtype.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/lib/gcc/aarch64-linux-gnu/12/include/arm_bf16.h:
+
+/usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/include/c++/12/bits/atomic_wait.h:
 
 /usr/include/c++/12/utility:
 
@@ -4991,25 +5044,17 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/stl_heap.h:
 
+/usr/include/c++/12/bits/ios_base.h:
+
+/usr/include/eigen3/Eigen/src/Core/arch/Default/Half.h:
+
+/usr/include/eigen3/Eigen/src/Core/arch/Default/Settings.h:
+
 /usr/include/c++/12/bits/move.h:
-
-/usr/include/c++/12/new:
-
-/usr/include/limits.h:
-
-/usr/include/c++/12/bits/alloc_traits.h:
-
-/usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h:
-
-/usr/include/aarch64-linux-gnu/sys/time.h:
 
 /usr/include/c++/12/ext/string_conversions.h:
 
 /usr/include/eigen3/Eigen/src/Core/Visitor.h:
-
-/usr/include/eigen3/Eigen/src/Core/util/Constants.h:
-
-/usr/include/c++/12/cwchar:
 
 /usr/include/nlohmann/detail/exceptions.hpp:
 
@@ -5021,15 +5066,17 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/c++/12/bits/cpu_defines.h:
 
+/usr/include/c++/12/bits/alloc_traits.h:
+
+/usr/include/c++/12/new:
+
+/usr/include/limits.h:
+
+/usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h:
+
+/usr/include/aarch64-linux-gnu/sys/time.h:
+
 /usr/include/aarch64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/c++/12/stop_token:
-
-/usr/include/c++/12/cmath:
-
-/usr/include/aarch64-linux-gnu/bits/types.h:
-
-/usr/include/eigen3/Eigen/src/Core/Product.h:
 
 /usr/include/eigen3/Eigen/src/Core/BooleanRedux.h:
 
@@ -5037,9 +5084,13 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/lib/gcc/aarch64-linux-gnu/12/include/stdarg.h:
 
-/usr/include/linux/ioctl.h:
+/usr/include/c++/12/cwctype:
 
-/usr/include/c++/12/bits/unique_ptr.h:
+/usr/include/c++/12/bits/vector.tcc:
+
+/usr/include/c++/12/tr1/hypergeometric.tcc:
+
+/usr/include/eigen3/Eigen/src/Core/arch/NEON/GeneralBlockPanelKernel.h:
 
 /usr/include/aarch64-linux-gnu/c++/12/bits/c++locale.h:
 
@@ -5087,10 +5138,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/local/include/uWebSockets/WebSocketData.h:
 
-/usr/include/aarch64-linux-gnu/bits/posix1_lim.h:
-
-/usr/include/aarch64-linux-gnu/bits/long-double.h:
-
 /usr/include/nlohmann/detail/meta/std_fs.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h:
@@ -5106,6 +5153,10 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/eigen3/Eigen/src/Core/util/XprHelper.h:
 
 /usr/include/c++/12/bits/refwrap.h:
+
+/usr/include/c++/12/bits/stl_iterator_base_types.h:
+
+/usr/local/include/uWebSockets/LoopData.h:
 
 /usr/lib/linux/uapi/arm64/asm/ioctls.h:
 
@@ -5127,6 +5178,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/types/clockid_t.h:
 
+/usr/include/c++/12/bits/locale_facets.tcc:
+
 /usr/include/aarch64-linux-gnu/bits/ioctl-types.h:
 
 /usr/include/c++/12/bits/uses_allocator.h:
@@ -5141,19 +5194,13 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/concept_check.h:
 
-/usr/include/c++/12/bits/std_thread.h:
-
-/usr/include/eigen3/Eigen/src/Core/products/TriangularMatrixMatrix.h:
-
 /usr/include/c++/12/bits/fs_ops.h:
 
 /usr/include/c++/12/debug/debug.h:
 
-/usr/include/c++/12/bits/mask_array.h:
+/usr/include/aarch64-linux-gnu/bits/long-double.h:
 
-/usr/include/c++/12/bits/fstream.tcc:
-
-/usr/include/eigen3/Eigen/src/Core/MathFunctionsImpl.h:
+/usr/include/aarch64-linux-gnu/bits/posix1_lim.h:
 
 /home/jules/code/drone/src/NEO6m.cpp:
 
@@ -5165,14 +5212,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/plugins/ArrayCwiseUnaryOps.h:
 
-/usr/include/c++/12/bits/cpp_type_traits.h:
-
-/usr/include/c++/12/bits/codecvt.h:
-
-/usr/include/eigen3/Eigen/src/Core/arch/Default/GenericPacketMathFunctionsFwd.h:
-
-/usr/include/eigen3/Eigen/src/Core/IndexedView.h:
-
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/__mbstate_t.h:
@@ -5183,19 +5222,11 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/pstl/glue_algorithm_defs.h:
 
+/usr/include/c++/12/istream:
+
 /usr/include/c++/12/stdexcept:
 
 /usr/include/c++/12/bits/stl_algobase.h:
-
-/usr/include/aarch64-linux-gnu/bits/local_lim.h:
-
-/usr/include/eigen3/Eigen/src/Core/arch/Default/Half.h:
-
-/usr/include/eigen3/Eigen/src/Core/arch/Default/Settings.h:
-
-/usr/include/c++/12/bits/ios_base.h:
-
-/usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:
 
 /usr/include/ctype.h:
 
@@ -5211,9 +5242,9 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/ext/numeric_traits.h:
 
-/usr/include/c++/12/debug/assertions.h:
-
 /usr/include/c++/12/thread:
+
+/usr/include/c++/12/debug/assertions.h:
 
 /usr/include/aarch64-linux-gnu/bits/endian.h:
 
@@ -5245,53 +5276,73 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/EigenBase.h:
 
-/usr/include/c++/12/bits/locale_classes.h:
+/usr/include/c++/12/stop_token:
 
-/usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h:
+/usr/include/c++/12/cmath:
 
-/usr/include/c++/12/ios:
+/usr/include/aarch64-linux-gnu/bits/types.h:
 
-/usr/include/eigen3/Eigen/src/Core/Random.h:
+/usr/include/eigen3/Eigen/src/Core/Product.h:
 
-/usr/include/c++/12/bits/locale_classes.tcc:
+/usr/include/c++/12/bits/atomic_lockfree_defines.h:
 
-/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:
+/usr/include/aarch64-linux-gnu/bits/uio_lim.h:
 
-/usr/include/c++/12/streambuf:
+/usr/include/aarch64-linux-gnu/bits/termios-c_cc.h:
 
-/home/jules/code/drone/src/TF-luna.cpp:
+/usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h:
 
-/usr/include/eigen3/Eigen/src/Core/DiagonalProduct.h:
+/usr/include/c++/12/cwchar:
 
-/usr/include/c++/12/bits/basic_ios.h:
+/usr/include/eigen3/Eigen/src/Core/util/Constants.h:
 
-/usr/include/nlohmann/detail/conversions/from_json.hpp:
+/usr/include/c++/12/bits/valarray_after.h:
 
-/usr/include/c++/12/sstream:
+/usr/lib/linux/uapi/arm64/asm/errno.h:
 
-/usr/include/c++/12/cwctype:
+/usr/include/c++/12/climits:
 
-/usr/include/c++/12/bits/vector.tcc:
+/usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h:
 
-/usr/include/c++/12/tr1/hypergeometric.tcc:
+/usr/include/eigen3/Eigen/src/Core/functors/StlFunctors.h:
 
-/usr/include/eigen3/Eigen/src/Core/arch/NEON/GeneralBlockPanelKernel.h:
+/usr/include/c++/12/forward_list:
 
-/usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h:
+/usr/include/aarch64-linux-gnu/bits/posix2_lim.h:
 
-/usr/include/c++/12/bits/streambuf_iterator.h:
+/usr/include/c++/12/bits/erase_if.h:
 
-/usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h:
+/usr/include/c++/12/unordered_set:
 
-/usr/include/c++/12/bits/locale_facets.tcc:
+/usr/include/aarch64-linux-gnu/bits/xopen_lim.h:
 
-/usr/include/c++/12/bits/basic_ios.tcc:
+/usr/local/include/uWebSockets/Loop.h:
 
-/usr/local/include/uWebSockets/BloomFilter.h:
+/usr/include/syscall.h:
 
-/usr/include/c++/12/tr1/riemann_zeta.tcc:
+/usr/include/c++/12/bits/mask_array.h:
 
-/usr/include/c++/12/bits/ostream.tcc:
+/usr/include/c++/12/bits/fstream.tcc:
+
+/usr/include/eigen3/Eigen/src/Core/MathFunctionsImpl.h:
+
+/usr/include/nlohmann/detail/hash.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/syscall.h:
+
+/usr/local/include/uWebSockets/App.h:
+
+/usr/include/aarch64-linux-gnu/bits/sched.h:
+
+/usr/include/strings.h:
+
+/usr/include/c++/12/bits/std_thread.h:
+
+/usr/include/eigen3/Eigen/src/Core/products/TriangularMatrixMatrix.h:
+
+/usr/include/linux/ioctl.h:
+
+/usr/include/c++/12/bits/unique_ptr.h:
 
 /usr/include/c++/12/semaphore:
 
@@ -5409,8 +5460,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/iostream:
 
-/usr/include/c++/12/istream:
-
 /usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/local/include/uWebSockets/HttpContextData.h:
@@ -5514,20 +5563,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /home/jules/code/drone/inc/INS.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/CoreEvaluators.h:
-
-/usr/include/nlohmann/detail/input/parser.hpp:
-
-/usr/include/c++/12/fstream:
-
-/usr/include/eigen3/Eigen/src/Core/CwiseUnaryOp.h:
-
-/usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h:
-
-/usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h:
-
-/usr/include/c++/12/charconv:
-
-/usr/include/c++/12/tr1/ell_integral.tcc:
 
 /usr/include/c++/12/chrono:
 

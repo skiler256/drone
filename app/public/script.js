@@ -62,7 +62,7 @@ const viewportCanva = document.getElementById('viewport');
 
 const viewport = new THREE.Scene();
 const cameraViewport = new THREE.PerspectiveCamera(45, viewportCanva.width / viewportCanva.height, 0.1, 1000);
-cameraViewport.position.set(4, 4, 3); // vue isométrique
+cameraViewport.position.set(14, 14, 9); // vue isométrique
 cameraViewport.lookAt(0, 0, 0);
 
 const rendererViewport = new THREE.WebGLRenderer({ canvas: viewportCanva });
@@ -130,6 +130,6 @@ socket.addEventListener("message", (event) => {
     updateAttitudeViewport(sysData.state3D.att)
     updateDronePOS(sysData.state3D.pos);
 
-    document.getElementById("console").innerHTML = sysData.events;
+    document.getElementById("console").innerHTML = sysData.state3D.pos[2];
   console.log("CAP ", sysData.state3D.pos);
 });

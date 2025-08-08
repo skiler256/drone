@@ -52,9 +52,19 @@ std::string toString(subcomponent sub)
     }
 }
 
+eventManager::eventManager() : logTXT("/home/jules/code/drone/app/public/logs/Glog.txt")
+{
+}
+
 void eventManager::reportEvent(const event &event)
 {
     std::lock_guard<std::mutex> lock(mtx);
+
+    if (events[{event.comp, event.subcomp}].mess != event.mess || event.severity != eventSeverity::INFO)
+    {
+        logTXT << toString(event.comp) << " " << toString(event.subcomp) << " " << toString(event.severity) << " " << event.mess << std::endl;
+    }
+
     events[{event.comp, event.subcomp}] = {event.severity, event.mess};
     if (doLog)
     {

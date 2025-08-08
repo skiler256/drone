@@ -18,6 +18,7 @@ public:
     double alphaHeading;
     int NGPSattempt = 500;
     int NmoyGPScalib = 10;
+    double baseAltitude;
   };
   struct state3D
   {
@@ -62,10 +63,12 @@ private:
   // raw sensor data
   ESPdata dataESP;
   NEO6m::coordPaket coord;
+  BMP280::Data bmpData;
 
   // clibration
   Eigen::Matrix<double, 3, 3> calMagMatrix;
   Eigen::Matrix<double, 3, 1> magBiasVec;
+  double basePressure;
 
   // Sensor
   Eigen::Matrix<double, 3, 1> calibratedMag;
