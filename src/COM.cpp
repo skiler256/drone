@@ -89,12 +89,17 @@ void to_json(json &j, const sysMonitoring::sysData &s)
 
 COM::COM(sysMonitoring &monitoring, const int refreshRate, const int port) : monitoring(monitoring), refreshRate(refreshRate), port(port)
 {
+    std::lock_guard<std::mutex> locka(dataMTX);
+    std::lock_guard<std::mutex> lockb(wsMTX);
 }
 
 COM::~COM()
 {
+    std::lock_guard<std::mutex> locka(dataMTX);
+    std::lock_guard<std::mutex> lockb(wsMTX);
     loop = false;
     us_listen_socket_close(0, listenSocket);
+    std::lock_guard<std::mutex> lockB(mtxLoop);
 }
 
 void COM::startWS()
@@ -163,6 +168,7 @@ void COM::runCOM()
 
     while (loop)
     {
+        std::lock_guard<std::mutex> lock(mtxLoop);
 
         const auto start = std::chrono::steady_clock::now();
 
@@ -176,6 +182,8 @@ void COM::runCOM()
         int remaining_sleep_ms = std::max(0, target_period_ms - elapsed_ms);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
+        if (!loop)
+            return;
     }
 
     server.join();

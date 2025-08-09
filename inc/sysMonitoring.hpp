@@ -53,4 +53,5 @@ private:
     double getRAMUsage();
 
     std::atomic<bool> loop = true;
+    std::mutex mtxLoop;
 };

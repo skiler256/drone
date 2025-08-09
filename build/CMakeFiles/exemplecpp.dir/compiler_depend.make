@@ -1207,10 +1207,20 @@ CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: /home/jules/code/drone/src/ESP32.cpp 
   /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
   /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
   /usr/include/aarch64-linux-gnu/sys/ttydefaults.h \
-  /usr/include/c++/12/chrono \
-  /usr/include/c++/12/sstream \
-  /usr/include/c++/12/bits/sstream.tcc \
-  /usr/include/c++/12/iostream \
+  /usr/include/c++/12/atomic \
+  /usr/include/c++/12/bits/atomic_base.h \
+  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/12/bits/atomic_wait.h \
+  /usr/include/c++/12/climits \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
   /usr/include/unistd.h \
   /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
   /usr/include/aarch64-linux-gnu/bits/environments.h \
@@ -1219,6 +1229,15 @@ CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: /home/jules/code/drone/src/ESP32.cpp 
   /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
   /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h \
+  /usr/include/syscall.h \
+  /usr/include/aarch64-linux-gnu/sys/syscall.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
+  /usr/include/aarch64-linux-gnu/bits/syscall.h \
+  /usr/include/c++/12/chrono \
+  /usr/include/c++/12/sstream \
+  /usr/include/c++/12/bits/sstream.tcc \
+  /usr/include/c++/12/iostream \
   /usr/include/c++/12/cstring \
   /usr/include/string.h \
   /usr/include/strings.h
@@ -1486,6 +1505,25 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o: /home/jules/code/drone/src/INS.cpp \
   /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
   /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
   /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
+  /usr/include/c++/12/atomic \
+  /usr/include/c++/12/bits/atomic_base.h \
+  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/12/bits/atomic_wait.h \
+  /usr/include/c++/12/climits \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
+  /usr/include/syscall.h \
+  /usr/include/aarch64-linux-gnu/sys/syscall.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
+  /usr/include/aarch64-linux-gnu/bits/syscall.h \
   /home/jules/code/drone/inc/NEO6m.hpp \
   /usr/include/c++/12/vector \
   /usr/include/c++/12/bits/stl_uninitialized.h \
@@ -1548,16 +1586,6 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o: /home/jules/code/drone/src/INS.cpp \
   /usr/include/c++/12/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /usr/include/c++/12/climits \
-  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
-  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
-  /usr/include/limits.h \
-  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
-  /usr/include/linux/limits.h \
-  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
   /usr/include/c++/12/algorithm \
   /usr/include/c++/12/bits/ranges_algo.h \
   /usr/include/c++/12/bits/ranges_algobase.h \
@@ -1660,15 +1688,6 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o: /home/jules/code/drone/src/INS.cpp \
   /usr/include/eigen3/Eigen/src/Core/SelfAdjointView.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h \
   /usr/include/eigen3/Eigen/src/Core/products/Parallelizer.h \
-  /usr/include/c++/12/atomic \
-  /usr/include/c++/12/bits/atomic_base.h \
-  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
-  /usr/include/c++/12/bits/atomic_wait.h \
-  /usr/include/syscall.h \
-  /usr/include/aarch64-linux-gnu/sys/syscall.h \
-  /usr/lib/linux/uapi/arm64/asm/unistd.h \
-  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
-  /usr/include/aarch64-linux-gnu/bits/syscall.h \
   /usr/include/eigen3/Eigen/src/Core/ProductEvaluators.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixVector.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrix.h \
@@ -2008,6 +2027,33 @@ CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o: /home/jules/code/drone/src/NEO6m.cpp 
   /usr/include/c++/12/bits/stl_vector.h \
   /usr/include/c++/12/bits/stl_bvector.h \
   /usr/include/c++/12/bits/vector.tcc \
+  /usr/include/c++/12/atomic \
+  /usr/include/c++/12/bits/atomic_base.h \
+  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/12/bits/atomic_wait.h \
+  /usr/include/c++/12/climits \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
+  /usr/include/unistd.h \
+  /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
+  /usr/include/aarch64-linux-gnu/bits/environments.h \
+  /usr/include/aarch64-linux-gnu/bits/confname.h \
+  /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
+  /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
+  /usr/include/linux/close_range.h \
+  /usr/include/syscall.h \
+  /usr/include/aarch64-linux-gnu/sys/syscall.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
+  /usr/include/aarch64-linux-gnu/bits/syscall.h \
   /usr/include/fcntl.h \
   /usr/include/aarch64-linux-gnu/bits/fcntl.h \
   /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
@@ -2026,15 +2072,7 @@ CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o: /home/jules/code/drone/src/NEO6m.cpp 
   /usr/include/c++/12/bits/quoted_string.h \
   /usr/include/c++/12/sstream \
   /usr/include/c++/12/bits/sstream.tcc \
-  /usr/include/c++/12/iostream \
-  /usr/include/unistd.h \
-  /usr/include/aarch64-linux-gnu/bits/posix_opt.h \
-  /usr/include/aarch64-linux-gnu/bits/environments.h \
-  /usr/include/aarch64-linux-gnu/bits/confname.h \
-  /usr/include/aarch64-linux-gnu/bits/getopt_posix.h \
-  /usr/include/aarch64-linux-gnu/bits/getopt_core.h \
-  /usr/include/aarch64-linux-gnu/bits/unistd_ext.h \
-  /usr/include/linux/close_range.h
+  /usr/include/c++/12/iostream
 
 CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o: /home/jules/code/drone/src/PCA9685.cpp \
   /usr/include/stdc-predef.h \
@@ -3397,6 +3435,25 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: /home/jules/code/drone/src/launche
   /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
   /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
   /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
+  /usr/include/c++/12/atomic \
+  /usr/include/c++/12/bits/atomic_base.h \
+  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/12/bits/atomic_wait.h \
+  /usr/include/c++/12/climits \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
+  /usr/include/syscall.h \
+  /usr/include/aarch64-linux-gnu/sys/syscall.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
+  /usr/include/aarch64-linux-gnu/bits/syscall.h \
   /home/jules/code/drone/inc/INS.hpp \
   /home/jules/code/drone/inc/NEO6m.hpp \
   /usr/include/c++/12/vector \
@@ -3460,16 +3517,6 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: /home/jules/code/drone/src/launche
   /usr/include/c++/12/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /usr/include/c++/12/climits \
-  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
-  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
-  /usr/include/limits.h \
-  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
-  /usr/include/linux/limits.h \
-  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
   /usr/include/c++/12/algorithm \
   /usr/include/c++/12/bits/ranges_algo.h \
   /usr/include/c++/12/bits/ranges_algobase.h \
@@ -3572,15 +3619,6 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: /home/jules/code/drone/src/launche
   /usr/include/eigen3/Eigen/src/Core/SelfAdjointView.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h \
   /usr/include/eigen3/Eigen/src/Core/products/Parallelizer.h \
-  /usr/include/c++/12/atomic \
-  /usr/include/c++/12/bits/atomic_base.h \
-  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
-  /usr/include/c++/12/bits/atomic_wait.h \
-  /usr/include/syscall.h \
-  /usr/include/aarch64-linux-gnu/sys/syscall.h \
-  /usr/lib/linux/uapi/arm64/asm/unistd.h \
-  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
-  /usr/include/aarch64-linux-gnu/bits/syscall.h \
   /usr/include/eigen3/Eigen/src/Core/ProductEvaluators.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixVector.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrix.h \
@@ -4008,6 +4046,25 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
   /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
   /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
+  /usr/include/c++/12/atomic \
+  /usr/include/c++/12/bits/atomic_base.h \
+  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/12/bits/atomic_wait.h \
+  /usr/include/c++/12/climits \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
+  /usr/include/syscall.h \
+  /usr/include/aarch64-linux-gnu/sys/syscall.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
+  /usr/include/aarch64-linux-gnu/bits/syscall.h \
   /home/jules/code/drone/inc/INS.hpp \
   /home/jules/code/drone/inc/NEO6m.hpp \
   /usr/include/c++/12/vector \
@@ -4071,16 +4128,6 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/include/c++/12/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /usr/include/c++/12/climits \
-  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
-  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
-  /usr/include/limits.h \
-  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
-  /usr/include/linux/limits.h \
-  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
   /usr/include/c++/12/algorithm \
   /usr/include/c++/12/bits/ranges_algo.h \
   /usr/include/c++/12/bits/ranges_algobase.h \
@@ -4183,15 +4230,6 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/include/eigen3/Eigen/src/Core/SelfAdjointView.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h \
   /usr/include/eigen3/Eigen/src/Core/products/Parallelizer.h \
-  /usr/include/c++/12/atomic \
-  /usr/include/c++/12/bits/atomic_base.h \
-  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
-  /usr/include/c++/12/bits/atomic_wait.h \
-  /usr/include/syscall.h \
-  /usr/include/aarch64-linux-gnu/sys/syscall.h \
-  /usr/lib/linux/uapi/arm64/asm/unistd.h \
-  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
-  /usr/include/aarch64-linux-gnu/bits/syscall.h \
   /usr/include/eigen3/Eigen/src/Core/ProductEvaluators.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixVector.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrix.h \
@@ -4649,6 +4687,25 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
   /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
   /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
   /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
+  /usr/include/c++/12/atomic \
+  /usr/include/c++/12/bits/atomic_base.h \
+  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/12/bits/atomic_wait.h \
+  /usr/include/c++/12/climits \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
+  /usr/include/syscall.h \
+  /usr/include/aarch64-linux-gnu/sys/syscall.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd.h \
+  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
+  /usr/include/aarch64-linux-gnu/bits/syscall.h \
   /home/jules/code/drone/inc/INS.hpp \
   /home/jules/code/drone/inc/NEO6m.hpp \
   /usr/include/c++/12/vector \
@@ -4712,16 +4769,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
   /usr/include/c++/12/cstring \
   /usr/include/string.h \
   /usr/include/strings.h \
-  /usr/include/c++/12/climits \
-  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
-  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
-  /usr/include/limits.h \
-  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/local_lim.h \
-  /usr/include/linux/limits.h \
-  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h \
-  /usr/include/aarch64-linux-gnu/bits/uio_lim.h \
   /usr/include/c++/12/algorithm \
   /usr/include/c++/12/bits/ranges_algo.h \
   /usr/include/c++/12/bits/ranges_algobase.h \
@@ -4824,15 +4871,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
   /usr/include/eigen3/Eigen/src/Core/SelfAdjointView.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h \
   /usr/include/eigen3/Eigen/src/Core/products/Parallelizer.h \
-  /usr/include/c++/12/atomic \
-  /usr/include/c++/12/bits/atomic_base.h \
-  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
-  /usr/include/c++/12/bits/atomic_wait.h \
-  /usr/include/syscall.h \
-  /usr/include/aarch64-linux-gnu/sys/syscall.h \
-  /usr/lib/linux/uapi/arm64/asm/unistd.h \
-  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
-  /usr/include/aarch64-linux-gnu/bits/syscall.h \
   /usr/include/eigen3/Eigen/src/Core/ProductEvaluators.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixVector.h \
   /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixMatrix.h \

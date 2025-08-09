@@ -31,14 +31,16 @@ PCA9685::~PCA9685()
 {
   std::lock_guard<std::mutex> lock(mtx);
   close(file);
+  loop = false;
+  std::lock_guard<std::mutex> lockb(mtxloop);
 }
 
 void PCA9685::runPCA9685()
 {
 
-  while (true)
+  while (loop)
   {
-
+    std::lock_guard<std::mutex> lockb(mtxloop);
     {
       std::lock_guard<std::mutex> lock(mtx);
 
@@ -46,6 +48,8 @@ void PCA9685::runPCA9685()
     }
 
     usleep(50000);
+    if (!loop)
+      return;
   }
 }
 

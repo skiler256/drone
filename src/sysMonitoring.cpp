@@ -12,7 +12,9 @@ sysMonitoring::sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std
 
 sysMonitoring::~sysMonitoring()
 {
+    std::lock_guard<std::mutex> lock(mtx);
     loop = false;
+    std::lock_guard<std::mutex> lockb(mtxLoop);
 }
 
 void sysMonitoring::runSysMonitoring()
@@ -45,6 +47,8 @@ void sysMonitoring::runSysMonitoring()
         int remaining_sleep_ms = std::max(0, target_period_ms - elapsed_ms);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
+        if (!loop)
+            return;
     }
 }
 sysMonitoring::sysData sysMonitoring::getData()

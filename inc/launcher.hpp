@@ -16,8 +16,11 @@ class launcher
 public:
     void startCOM();
 
-    void startSensor();
     void startINS();
+
+    void startESP();
+    void startGPS();
+    void startBARO();
 
     struct PARAMETERS
     {

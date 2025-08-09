@@ -12,6 +12,7 @@
 ESP32::ESP32(eventManager &event, const char *portName)
     : event(event), portName(portName)
 {
+  std::lock_guard<std::mutex> lock(mtx);
   uint8_t buffer[200];
   int attempt = 0;
   while (SerialPort < 0 && attempt < 50)
@@ -54,6 +55,14 @@ ESP32::ESP32(eventManager &event, const char *portName)
     attempt++;
   }
   event.reportEvent({component::ESP, subcomponent::serial, eventSeverity::CRITICAL, "impossible d ouvrir le port serie"});
+}
+
+ESP32::~ESP32()
+{
+  std::lock_guard<std::mutex> lock(mtx);
+
+  loop = false;
+  std::lock_guard<std::mutex> lockb(mtxLoop);
 }
 
 bool ESP32::conect()
@@ -141,8 +150,9 @@ bool readSafe(int fd, uint8_t *output, size_t size, int timeoutMs)
 void ESP32::runESP32()
 {
 
-  while (true)
+  while (loop)
   {
+    std::lock_guard<std::mutex> lockb(mtxLoop);
     ESPdata dataBuffer;
     uint8_t buffer[2] = {0x00, 0x00};
 
@@ -180,6 +190,8 @@ void ESP32::runESP32()
         }
       }
     }
+    if (!loop)
+      return;
   }
 }
 

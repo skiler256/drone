@@ -7,6 +7,7 @@
 #include <chrono>
 #include <eigen3/Eigen/Dense>
 #include <GeographicLib/LocalCartesian.hpp>
+#include <atomic>
 
 class INS
 {
@@ -40,7 +41,7 @@ public:
   };
 
   INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::settings &set);
-
+  ~INS();
   void runINS();
   state3D getState3D();
   void printData();
@@ -88,4 +89,7 @@ private:
   std::mutex mtxDataESP;
   std::mutex mtxState3D;
   std::mutex mtxZ;
+  std::mutex mtxLoop;
+
+  std::atomic<bool> loop = true;
 };

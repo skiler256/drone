@@ -5,13 +5,15 @@
 #include <termios.h>
 #include <vector>
 
+#include <atomic>
+
 std::string charToHex(char c);
 
 class NEO6m
 {
 public:
   NEO6m(eventManager &event, const char *portName = "/dev/ttyAMA1");
-
+  ~NEO6m();
   void runNEO6m();
 
   struct coordPaket
@@ -56,6 +58,8 @@ private:
   eventManager &event;
 
   std::mutex mtx;
+  std::mutex mtxLoop;
+  std::atomic<bool> loop = true;
 
   uint8_t payloadBuffer[1024];
 

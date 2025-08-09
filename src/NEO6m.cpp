@@ -11,6 +11,9 @@ NEO6m::NEO6m(eventManager &event, const char *portName)
     : event(event),
       SerialPort(open(portName, O_RDWR | O_NOCTTY)), portName(portName)
 {
+
+  std::lock_guard<std::mutex> lock(mtx);
+
   if (tcgetattr(SerialPort, &tty) < 0)
     event.reportEvent({component::GPS, subcomponent::serial, eventSeverity::CRITICAL, "impossible d ouvrir le port serie"});
   else
@@ -132,6 +135,14 @@ NEO6m::NEO6m(eventManager &event, const char *portName)
   write(SerialPort, set_rate, sizeof(set_rate));
   tcdrain(SerialPort);
 }
+
+NEO6m::~NEO6m()
+{
+  std::lock_guard<std::mutex> lock(mtx);
+  loop = false;
+  std::lock_guard<std::mutex> lockb(mtxLoop);
+}
+
 std::string charToHex(char c)
 {
   std::stringstream ss;
@@ -170,8 +181,9 @@ void NEO6m::runNEO6m()
   // std::string paket = "B5 ";
 
   unsigned char byte;
-  while (true)
+  while (loop)
   {
+    std::lock_guard<std::mutex> lockb(mtxLoop);
     int n = read(SerialPort, &byte, 1);
     if (n > 0)
     {
@@ -246,6 +258,8 @@ void NEO6m::runNEO6m()
       // }
       // else paket +=charToHex(byte) + " ";
     }
+    if (!loop)
+      return;
   }
 }
 

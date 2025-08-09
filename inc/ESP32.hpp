@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <mutex>
 #include <termios.h>
+#include <atomic>
 
 #pragma pack(push, 1) // désactive l'alignement mémoire
 struct ESPdata
@@ -20,6 +21,7 @@ class ESP32
 {
 public:
   ESP32(eventManager &event, const char *portName = "/dev/ttyAMA0");
+  ~ESP32();
 
   void runESP32();
 
@@ -33,6 +35,9 @@ private:
   termios tty;
 
   std::mutex mtx;
+  std::mutex mtxLoop;
 
   bool conect();
+
+  std::atomic<bool> loop = true;
 };

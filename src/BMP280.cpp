@@ -3,7 +3,7 @@
 BMP280::BMP280(eventManager &event, uint8_t address, const char *bus)
     : event(event), file(-1), addr(address)
 {
-
+  std::lock_guard<std::mutex> lock(mtx);
   file = open(bus, O_RDWR);
   if (ioctl(file, I2C_SLAVE, addr) < 0)
   {
@@ -52,6 +52,7 @@ BMP280::BMP280(eventManager &event, uint8_t address, const char *bus)
 
 BMP280::~BMP280()
 {
+  std::lock_guard<std::mutex> lock(mtx);
   if (file >= 0)
   {
     close(file);

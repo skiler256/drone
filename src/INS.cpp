@@ -9,6 +9,11 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::setting
       ky(100.0, 800.0),
       kz(100.0, 800.0)
 {
+
+  std::lock_guard<std::mutex> lockA(mtxState3D);
+  std::lock_guard<std::mutex> lockB(mtxDataESP);
+  std::lock_guard<std::mutex> lockC(mtxZ);
+
   tMag = std::chrono::steady_clock::now();
   tz = std::chrono::steady_clock::now();
 
@@ -53,10 +58,21 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::setting
   projGPS.Reset(latitude, longitude, set.baseAltitude);
 }
 
+INS::~INS()
+{
+  std::lock_guard<std::mutex> lockA(mtxState3D);
+  std::lock_guard<std::mutex> lockB(mtxDataESP);
+  std::lock_guard<std::mutex> lockC(mtxZ);
+
+  loop = false;
+  std::lock_guard<std::mutex> lockb(mtxLoop);
+}
+
 void INS::runINS()
 {
-  while (true)
+  while (loop)
   {
+    std::lock_guard<std::mutex> lockb(mtxLoop);
     const auto start = std::chrono::steady_clock::now();
 
     acquireMPU();
@@ -76,6 +92,8 @@ void INS::runINS()
     int remaining_sleep_ms = std::max(0, target_period_ms - elapsed_ms);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
+    if (!loop)
+      return;
   }
 }
 

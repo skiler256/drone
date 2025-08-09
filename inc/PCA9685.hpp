@@ -2,6 +2,7 @@
 #include "../inc/eventManager.hpp"
 #include <cstdint>
 #include <mutex>
+#include <atomic>
 
 class PCA9685
 {
@@ -19,6 +20,8 @@ private:
   int file;
 
   std::mutex mtx;
+  std::mutex mtxloop;
+  std::atomic<bool> loop = true;
 
   const uint8_t MODE1 = 0x00;
 

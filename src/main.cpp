@@ -102,6 +102,17 @@ int main()
   launcher launch;
 
   launch.startCOM();
+
+  launch.startBARO();
+  launch.startGPS();
+  launch.startESP();
+
+  launch.startINS();
+
+  usleep(20000000);
+
+  launch.startINS();
+
   while (true)
   {
     usleep(1000000);

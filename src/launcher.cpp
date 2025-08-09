@@ -18,14 +18,30 @@ void launcher::startCOM()
     b.detach();
 }
 
-void launcher::startSensor()
+void launcher::startBARO()
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    if (event)
+        baro.emplace(*event);
+}
+void launcher::startESP()
 {
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
         esp.emplace(*event);
+        std::thread a(&ESP32::runESP32, &(*esp));
+        a.detach();
+    }
+}
+void launcher::startGPS()
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    if (event)
+    {
         gps.emplace(*event);
-        baro.emplace(*event);
+        std::thread a(&NEO6m::runNEO6m, &(*gps));
+        a.detach();
     }
 }
 
@@ -33,5 +49,9 @@ void launcher::startINS()
 {
     std::lock_guard<std::mutex> lock(mtx);
     if (event && esp && baro && gps)
+    {
         ins.emplace(*event, *esp, *baro, *gps, parameters.insSettings);
+        std::thread a(&INS::runINS, &(*ins));
+        a.detach();
+    }
 }

@@ -30,6 +30,7 @@ private:
 
     std::mutex wsMTX;
     std::mutex dataMTX;
+    std::mutex mtxLoop;
 
     std::list<uWS::WebSocket<false, true, dataWS> *> clients;
     sysMonitoring::sysData dataSystem;
