@@ -55,3 +55,14 @@ void launcher::startINS()
         a.detach();
     }
 }
+
+void launcher::startPCA()
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    if (event)
+    {
+        pca.emplace(*event);
+        std::thread a(&PCA9685::runPCA9685, &(*pca));
+        a.detach();
+    }
+}

@@ -22,6 +22,8 @@ public:
     void startGPS();
     void startBARO();
 
+    void startPCA();
+
     struct PARAMETERS
     {
         int monitoringRefreshRate = 10;
@@ -31,7 +33,6 @@ public:
     };
     PARAMETERS parameters;
 
-private:
     std::optional<eventManager> event;
 
     std::optional<ESP32> esp;
@@ -45,5 +46,6 @@ private:
     std::optional<sysMonitoring> monitoring;
     std::optional<COM> com;
 
+private:
     std::mutex mtx;
 };

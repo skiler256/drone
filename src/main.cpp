@@ -85,38 +85,84 @@
 //   return 0;
 // }
 
-#include "../inc/launcher.hpp"
+// #include "../inc/launcher.hpp"
 
-#include <signal.h>
+// #include <signal.h>
 
-void handle_sigint(int signum)
-{
-  killNodeJS();
-  std::cout << "\nArret du programme" << std::endl;
-  exit(0);
-}
+// void handle_sigint(int signum)
+// {
+//   killNodeJS();
+//   std::cout << "\nArret du programme" << std::endl;
+//   exit(0);
+// }
+
+// int main()
+// {
+//   signal(SIGINT, handle_sigint);
+//   launcher launch;
+
+//   launch.startCOM();
+
+//   launch.startBARO();
+//   launch.startGPS();
+//   launch.startESP();
+
+//   launch.startPCA();
+
+//   // launch.startINS();
+//   // usleep(20000000);
+
+//   // launch.startINS();
+
+//   launch.pca->setPWM(0, 50);
+
+//   while (true)
+//   {
+//     usleep(1000000);
+//   }
+
+//   return 0;
+// }
+
+#include <wiringPi.h>
+#include <iostream>
+
+#define PWM_PIN 23 // WiringPi 26 = BCM GPIO12 (PWM0). Pour GPIO13, utiliser 23.
 
 int main()
 {
-  signal(SIGINT, handle_sigint);
-  launcher launch;
-
-  launch.startCOM();
-
-  launch.startBARO();
-  launch.startGPS();
-  launch.startESP();
-
-  launch.startINS();
-
-  usleep(20000000);
-
-  launch.startINS();
-
-  while (true)
+  if (wiringPiSetup() == -1)
   {
-    usleep(1000000);
+    std::cerr << "WiringPi init failed\n";
+    return 1;
   }
 
+  pinMode(23, PWM_OUTPUT);
+  pwmSetMode(PWM_MODE_MS); // Mark-Space
+  pwmSetClock(384);        // ex: 19.2MHz/384/1000 ≈ 50Hz
+  pwmSetRange(1000);
+
+  pinMode(26, PWM_OUTPUT);
+  pwmSetMode(PWM_MODE_MS); // Mark-Space
+  pwmSetClock(384);        // ex: 19.2MHz/384/1000 ≈ 50Hz
+  pwmSetRange(1000);
+  // Centre ≈ 1.5 ms -> 75/1000
+  while (true)
+  {
+    for (int i = 0; i < 20; i += 10)
+    {
+      pwmWrite(23, i);
+      pwmWrite(26, i);
+      delay(1000);
+    }
+  }
   return 0;
 }
+
+// #include "TF-luna.hpp"
+
+// int main()
+// {
+//   TFluna lidar;
+//   std::cout << lidar.getDist() << std::endl;
+// }

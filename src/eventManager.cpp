@@ -1,5 +1,8 @@
 #include "../inc/eventManager.hpp"
 #include <iostream>
+#include <chrono>
+
+std::chrono::_V2::steady_clock::time_point t;
 
 std::string toString(eventSeverity severity)
 {
@@ -54,6 +57,7 @@ std::string toString(subcomponent sub)
 
 eventManager::eventManager() : logTXT("/home/jules/code/drone/app/public/logs/Glog.txt")
 {
+    t = std::chrono::steady_clock::now();
 }
 
 void eventManager::reportEvent(const event &event)
@@ -69,6 +73,13 @@ void eventManager::reportEvent(const event &event)
     if (doLog)
     {
         std::cout << toString(event.comp) << " " << toString(event.subcomp) << " " << toString(event.severity) << " " << event.mess << std::endl;
+    }
+    if (event.comp == component::ESP)
+    {
+        std::cout << "ESP!!!!" << std::endl;
+        const int temps = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - t).count();
+        std::cout << temps << std::endl;
+        t = std::chrono::steady_clock::now();
     }
 }
 

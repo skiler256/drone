@@ -170,4 +170,6 @@ CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o: \
  /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/bits/codecvt.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
- /usr/include/c++/12/bits/fstream.tcc /usr/include/c++/12/iostream
+ /usr/include/c++/12/bits/fstream.tcc /usr/include/c++/12/iostream \
+ /usr/include/c++/12/chrono /usr/include/c++/12/sstream \
+ /usr/include/c++/12/bits/sstream.tcc
