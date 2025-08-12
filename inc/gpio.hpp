@@ -1,15 +1,19 @@
 #pragma once
 #include <wiringPi.h>
 #include <iostream>
+#include <mutex>
 
-class gpio {
+class GPIO
+{
 
-public :
-    gpio();
+public:
+    GPIO();
 
     void write(const int pin, const bool state);
     bool read(const int pin);
+    void writePWM(const int pin, int duty);
 
 private:
-    bool gpioIsInit[40]={false};
+    int gpioType[40] = {-1};
+    std::mutex mtx;
 };

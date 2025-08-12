@@ -345,6 +345,30 @@ src/eventManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/eventManager.cpp.s
 .PHONY : src/eventManager.cpp.s
 
+src/gimball.o: src/gimball.cpp.o
+.PHONY : src/gimball.o
+
+# target to build an object file
+src/gimball.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/gimball.cpp.o
+.PHONY : src/gimball.cpp.o
+
+src/gimball.i: src/gimball.cpp.i
+.PHONY : src/gimball.i
+
+# target to preprocess a source file
+src/gimball.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/gimball.cpp.i
+.PHONY : src/gimball.cpp.i
+
+src/gimball.s: src/gimball.cpp.s
+.PHONY : src/gimball.s
+
+# target to generate assembly for a file
+src/gimball.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/gimball.cpp.s
+.PHONY : src/gimball.cpp.s
+
 src/gpio.o: src/gpio.cpp.o
 .PHONY : src/gpio.o
 
@@ -477,6 +501,9 @@ help:
 	@echo "... src/eventManager.o"
 	@echo "... src/eventManager.i"
 	@echo "... src/eventManager.s"
+	@echo "... src/gimball.o"
+	@echo "... src/gimball.i"
+	@echo "... src/gimball.s"
 	@echo "... src/gpio.o"
 	@echo "... src/gpio.i"
 	@echo "... src/gpio.s"

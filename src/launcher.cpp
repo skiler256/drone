@@ -66,3 +66,14 @@ void launcher::startPCA()
         a.detach();
     }
 }
+
+void launcher::startGIMBALL()
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    if (event)
+    {
+        gimball.emplace(*event, gpio, ins, parameters.GIMBALLrate);
+        std::thread a(&GIMBALL::runGimball, &(*gimball));
+        a.detach();
+    }
+}

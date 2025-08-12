@@ -7,6 +7,7 @@
 #include "../inc/PCA9685.hpp"
 #include "../inc/sysMonitoring.hpp"
 #include "../inc/COM.hpp"
+#include "../inc/gimball.hpp"
 
 #include <optional>
 #include <mutex>
@@ -24,12 +25,15 @@ public:
 
     void startPCA();
 
+    void startGIMBALL();
+
     struct PARAMETERS
     {
         int monitoringRefreshRate = 10;
         int COMrefreshRate = 5;
         int COMport = 9001;
         INS::settings insSettings;
+        int GIMBALLrate = 10;
     };
     PARAMETERS parameters;
 
@@ -45,6 +49,10 @@ public:
 
     std::optional<sysMonitoring> monitoring;
     std::optional<COM> com;
+
+    std::optional<GIMBALL> gimball;
+
+    GPIO gpio;
 
 private:
     std::mutex mtx;

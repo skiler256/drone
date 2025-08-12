@@ -1,23 +1,56 @@
 #include "../inc/gpio.hpp"
 
-gpio::gpio(){
-    if (wiringPiSetupGpio() == -1) {
+GPIO::GPIO()
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    std::fill(std::begin(gpioType), std::end(gpioType), -1);
+    if (wiringPiSetupGpio() == -1)
+    {
         std::cerr << "Erreur d'initialisation de WiringPi\n";
     }
-}
-void gpio::write(const int pin, const bool state){
-    if(!gpioIsInit[pin]) {
-        pinMode(pin, OUTPUT);
-        gpioIsInit[pin] = true;
-    }
-    digitalWrite(pin,state);
+
+    pwmSetMode(PWM_MODE_MS);
+    pwmSetClock(384);
+    pwmSetRange(1000);
 }
 
-bool gpio::read(const int pin){
-    if(!gpioIsInit[pin]) {
-        pinMode(pin, INPUT);
-        pullUpDnControl(pin, PUD_DOWN);
-        gpioIsInit[pin] = true;
+void GPIO::write(const int pin, const bool state)
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    if (gpioType[pin] == -1)
+    {
+        pinMode(pin, OUTPUT);
+        gpioType[pin] = OUTPUT;
+        digitalWrite(pin, state);
     }
-    return digitalRead(pin);
+    else if (gpioType[pin] == OUTPUT)
+        digitalWrite(pin, state);
+}
+
+bool GPIO::read(const int pin)
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    if (gpioType[pin] == -1)
+    {
+        pinMode(pin, INPUT);
+        gpioType[pin] = INPUT;
+        return digitalRead(pin);
+    }
+    else if (gpioType[pin] == INPUT)
+        return digitalRead(pin);
+
+    return false;
+}
+
+void GPIO::writePWM(const int pin, int duty)
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    if (gpioType[pin] == -1)
+    {
+        pinMode(pin, PWM_OUTPUT);
+        gpioType[pin] = PWM_OUTPUT;
+        pwmWrite(pin, duty);
+    }
+    else if (gpioType[pin] == PWM_OUTPUT)
+        pwmWrite(pin, duty);
 }

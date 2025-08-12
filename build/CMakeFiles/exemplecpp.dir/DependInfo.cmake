@@ -17,6 +17,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/jules/code/drone/src/TF-luna.cpp" "CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o.d"
   "/home/jules/code/drone/src/USSensor.cpp" "CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o.d"
   "/home/jules/code/drone/src/eventManager.cpp" "CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o.d"
+  "/home/jules/code/drone/src/gimball.cpp" "CMakeFiles/exemplecpp.dir/src/gimball.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/gimball.cpp.o.d"
   "/home/jules/code/drone/src/gpio.cpp" "CMakeFiles/exemplecpp.dir/src/gpio.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/gpio.cpp.o.d"
   "/home/jules/code/drone/src/launcher.cpp" "CMakeFiles/exemplecpp.dir/src/launcher.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/launcher.cpp.o.d"
   "/home/jules/code/drone/src/main.cpp" "CMakeFiles/exemplecpp.dir/src/main.cpp.o" "gcc" "CMakeFiles/exemplecpp.dir/src/main.cpp.o.d"

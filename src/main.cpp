@@ -6,6 +6,8 @@
 // #include "../inc/PCA9685.hpp"
 // #include "../inc/sysMonitoring.hpp"
 // #include "../inc/COM.hpp"
+// #include "../inc/gpio.hpp"
+// #include "../inc/gimball.hpp"
 
 // #include <thread>
 // #include <iostream>
@@ -25,22 +27,22 @@
 
 //   eventManager event;
 //   event.doLog = false;
-//   ESP32 esp(event);
-//   NEO6m gps(event);
-//   PCA9685 pca(event);
-//   BMP280 baro(event);
+//   // ESP32 esp(event);
+//   // NEO6m gps(event);
+//   // PCA9685 pca(event);
+//   // BMP280 baro(event);
 
-//   std::thread a(&ESP32::runESP32, &esp);
-//   std::thread b(&NEO6m::runNEO6m, &gps);
-//   std::thread d(&PCA9685::runPCA9685, &pca);
+//   // std::thread a(&ESP32::runESP32, &esp);
+//   // std::thread b(&NEO6m::runNEO6m, &gps);
+//   // std::thread d(&PCA9685::runPCA9685, &pca);
 
-//   INS::settings INSsettings;
-//   INSsettings.alphaHeading = 0.5;
-//   INSsettings.refreshRate = 200;
-//   INSsettings.NmoyGPScalib = 100;
-//   INSsettings.baseAltitude = 120;
-//   INS ins(event, esp, baro, gps, INSsettings);
-//   std::thread c(&INS::runINS, &ins);
+//   // INS::settings INSsettings;
+//   // INSsettings.alphaHeading = 0.5;
+//   // INSsettings.refreshRate = 200;
+//   // INSsettings.NmoyGPScalib = 100;
+//   // INSsettings.baseAltitude = 120;
+//   // INS ins(event, esp, baro, gps, INSsettings);
+//   // std::thread c(&INS::runINS, &ins);
 
 //   sysMonitoring monitoring(event, esp, baro, gps, ins, 10);
 //   COM com(monitoring, 5);
@@ -49,25 +51,28 @@
 //   std::thread f(&COM::runCOM, &com);
 // std::fstream dataLOG("/home/jules/code/pos.txt");
 
-// double x=0;
-// double y=0;
-// double z=0;
+// GPIO gpio;
+// GIMBALL gimball(event)
 
-// for(int i = 0; i< 120; i++){
-//   INS::state3D state = ins.getState3D();
-//     dataLOG << state.pos(0) << " " << state.pos(1) << state.pos(2) << std::endl;
-//     x += state.pos(0);
-//     y += state.pos(1);
-//     z += state.pos(2);
-//     std::cout<< "coutjd " << i<<std::endl;
-//     usleep(1000000);
-// }
+// // double x=0;
+// // double y=0;
+// // double z=0;
 
-// double X = x/120;
-// double Y = y/120;
-// double Z = z/120;
+// // for(int i = 0; i< 120; i++){
+// //   INS::state3D state = ins.getState3D();
+// //     dataLOG << state.pos(0) << " " << state.pos(1) << state.pos(2) << std::endl;
+// //     x += state.pos(0);
+// //     y += state.pos(1);
+// //     z += state.pos(2);
+// //     std::cout<< "coutjd " << i<<std::endl;
+// //     usleep(1000000);
+// // }
 
-// std::cout<<X<<" "<< Y<< " "<< Z << std::endl;
+// // double X = x/120;
+// // double Y = y/120;
+// // double Z = z/120;
+
+// // std::cout<<X<<" "<< Y<< " "<< Z << std::endl;
 
 //   // while (true)
 //   // {
@@ -85,84 +90,96 @@
 //   return 0;
 // }
 
-// #include "../inc/launcher.hpp"
+#include "../inc/launcher.hpp"
 
-// #include <signal.h>
+#include <signal.h>
 
-// void handle_sigint(int signum)
-// {
-//   killNodeJS();
-//   std::cout << "\nArret du programme" << std::endl;
-//   exit(0);
-// }
-
-// int main()
-// {
-//   signal(SIGINT, handle_sigint);
-//   launcher launch;
-
-//   launch.startCOM();
-
-//   launch.startBARO();
-//   launch.startGPS();
-//   launch.startESP();
-
-//   launch.startPCA();
-
-//   // launch.startINS();
-//   // usleep(20000000);
-
-//   // launch.startINS();
-
-//   launch.pca->setPWM(0, 50);
-
-//   while (true)
-//   {
-//     usleep(1000000);
-//   }
-
-//   return 0;
-// }
-
-#include <wiringPi.h>
-#include <iostream>
-
-#define PWM_PIN 23 // WiringPi 26 = BCM GPIO12 (PWM0). Pour GPIO13, utiliser 23.
+void handle_sigint(int signum)
+{
+  killNodeJS();
+  std::cout << "\nArret du programme" << std::endl;
+  exit(0);
+}
 
 int main()
 {
-  if (wiringPiSetup() == -1)
-  {
-    std::cerr << "WiringPi init failed\n";
-    return 1;
-  }
+  signal(SIGINT, handle_sigint);
+  launcher launch;
 
-  pinMode(23, PWM_OUTPUT);
-  pwmSetMode(PWM_MODE_MS); // Mark-Space
-  pwmSetClock(384);        // ex: 19.2MHz/384/1000 ≈ 50Hz
-  pwmSetRange(1000);
+  launch.startCOM();
 
-  pinMode(26, PWM_OUTPUT);
-  pwmSetMode(PWM_MODE_MS); // Mark-Space
-  pwmSetClock(384);        // ex: 19.2MHz/384/1000 ≈ 50Hz
-  pwmSetRange(1000);
-  // Centre ≈ 1.5 ms -> 75/1000
+  launch.startBARO();
+  launch.startGPS();
+  launch.startESP();
+  launch.startGIMBALL();
+
+  // launch.startINS();
+  // usleep(20000000);
+
+  // launch.startINS();
+
+  launch.pca->setPWM(0, 50);
+
   while (true)
   {
-    for (int i = 0; i < 20; i += 10)
-    {
-      pwmWrite(23, i);
-      pwmWrite(26, i);
-      delay(1000);
-    }
+    usleep(1000000);
   }
+
   return 0;
 }
 
-// #include "TF-luna.hpp"
+// #include <wiringPi.h>
+// #include <iostream>
+
+// #define PWM_PIN 23 // WiringPi 26 = BCM GPIO12 (PWM0). Pour GPIO13, utiliser 23.
 
 // int main()
 // {
-//   TFluna lidar;
-//   std::cout << lidar.getDist() << std::endl;
+//   if (wiringPiSetup() == -1)
+//   {
+//     std::cerr << "WiringPi init failed\n";
+//     return 1;
+//   }
+
+//   pinMode(23, PWM_OUTPUT);
+//   pwmSetMode(PWM_MODE_MS); // Mark-Space
+//   pwmSetClock(384);        // ex: 19.2MHz/384/1000 ≈ 50Hz
+//   pwmSetRange(1000);
+
+//   pinMode(26, PWM_OUTPUT);
+//   pwmSetMode(PWM_MODE_MS); // Mark-Space
+//   pwmSetClock(384);        // ex: 19.2MHz/384/1000 ≈ 50Hz
+//   pwmSetRange(1000);
+//   // Centre ≈ 1.5 ms -> 75/1000
+//   pwmWrite(23, 25);
+//   delay(1000);
+//   while (true)
+//   {
+//     for (int i = 45; i <= 85; i += 5)
+//     {
+//       pwmWrite(26, i);
+//       std::cout << i << std::endl;
+//       // pwmWrite(26, i);
+//       delay(1000);
+//     }
+//   }
+//   return 0;
+// }
+
+// #include "../inc/gpio.hpp"
+// #include <iostream>
+
+// int main()
+// {
+
+//   GPIO gpio;
+//   for (int i = 45; i <= 85; i += 5)
+//   {
+//     gpio.writePWM(26, i);
+//     std::cout << i << std::endl;
+//     // pwmWrite(26, i);
+//     delay(1000);
+//   }
+
+//   return 0;
 // }

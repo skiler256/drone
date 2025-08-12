@@ -3,12 +3,13 @@
 #include <unistd.h>
 #include <chrono>
 
-class USSensor {
+class USSensor
+{
 public:
-    USSensor(const int pin, gpio& PIN);
+    USSensor(const int pin, GPIO &PIN);
     double measure(const int pin);
+
 private:
     int pinTrig;
-    gpio& PIN;
+    GPIO &PIN;
 };
-
