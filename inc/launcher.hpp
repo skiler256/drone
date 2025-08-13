@@ -15,6 +15,8 @@
 class launcher
 {
 public:
+    launcher();
+
     void startCOM();
 
     void startINS();

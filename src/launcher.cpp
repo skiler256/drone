@@ -2,6 +2,8 @@
 #include <iostream>
 #include <thread>
 
+launcher::launcher() : gpio() {}
+
 void launcher::startCOM()
 {
     std::lock_guard<std::mutex> lock(mtx);

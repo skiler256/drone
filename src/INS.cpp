@@ -26,36 +26,36 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::setting
       -0.005285, 0.001096, 1.207234;
 
   // calib GPS et BARO
-  int GPSattempt = 0;
-  while (!gps.isFix() || GPSattempt > set.NGPSattempt)
-  {
-    GPSattempt++;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    std::cout << "loiloi" << gps.isFix() << std::endl;
-  }
-  if (!gps.isFix())
-    event.reportEvent({component::INS, subcomponent::dataLink, eventSeverity::CRITICAL, "impossible d'obtenir un FIX 3D"});
-  double latitude = 0;
-  double longitude = 0;
-  double pressure = 0;
+  // int GPSattempt = 0;
+  // while (!gps.isFix() || GPSattempt > set.NGPSattempt)
+  // {
+  //   GPSattempt++;
+  //   std::this_thread::sleep_for(std::chrono::seconds(1));
+  //   std::cout << "loiloi" << gps.isFix() << std::endl;
+  // }
+  // if (!gps.isFix())
+  //   event.reportEvent({component::INS, subcomponent::dataLink, eventSeverity::CRITICAL, "impossible d'obtenir un FIX 3D"});
+  // double latitude = 0;
+  // double longitude = 0;
+  // double pressure = 0;
 
-  for (int i = 0; i < set.NmoyGPScalib; i++)
-  {
-    NEO6m::coordPaket coord = gps.getGPSCoord();
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    latitude += coord.latitude;
-    longitude += coord.longitude;
+  // for (int i = 0; i < set.NmoyGPScalib; i++)
+  // {
+  //   NEO6m::coordPaket coord = gps.getGPSCoord();
+  //   std::this_thread::sleep_for(std::chrono::seconds(1));
+  //   latitude += coord.latitude;
+  //   longitude += coord.longitude;
 
-    BMP280::Data bmp;
-    bmp = baro.getData();
+  //   BMP280::Data bmp;
+  //   bmp = baro.getData();
 
-    pressure += bmp.pressure;
-  }
-  latitude /= set.NmoyGPScalib;
-  longitude /= set.NmoyGPScalib;
-  basePressure = pressure / set.NmoyGPScalib;
+  //   pressure += bmp.pressure;
+  // }
+  // latitude /= set.NmoyGPScalib;
+  // longitude /= set.NmoyGPScalib;
+  // basePressure = pressure / set.NmoyGPScalib;
 
-  projGPS.Reset(latitude, longitude, set.baseAltitude);
+  // projGPS.Reset(latitude, longitude, set.baseAltitude);
 }
 
 INS::~INS()

@@ -113,12 +113,14 @@ int main()
   launch.startESP();
   launch.startGIMBALL();
 
-  // launch.startINS();
+  launch.startINS();
   // usleep(20000000);
 
   // launch.startINS();
 
-  launch.pca->setPWM(0, 50);
+  // launch.pca->setPWM(0, 50);
+
+  launch.gimball->set(CAM_STAB);
 
   while (true)
   {

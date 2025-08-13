@@ -74,13 +74,13 @@ void eventManager::reportEvent(const event &event)
     {
         std::cout << toString(event.comp) << " " << toString(event.subcomp) << " " << toString(event.severity) << " " << event.mess << std::endl;
     }
-    if (event.comp == component::ESP)
-    {
-        std::cout << "ESP!!!!" << std::endl;
-        const int temps = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - t).count();
-        std::cout << temps << std::endl;
-        t = std::chrono::steady_clock::now();
-    }
+    // if (event.comp == component::ESP)
+    // {
+    //     std::cout << "ESP!!!!" << std::endl;
+    //     const int temps = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - t).count();
+    //     std::cout << temps << std::endl;
+    //     t = std::chrono::steady_clock::now();
+    // }
 }
 
 void eventManager::clearEvent(const event &event)

@@ -11,6 +11,7 @@
 #define SERVO2 26
 
 #define CAM_LANDING 1
+#define CAM_STAB 2
 
 class GIMBALL
 {
@@ -20,7 +21,7 @@ public:
 
     void runGimball();
 
-    void set(const int mode, const int value = 0);
+    void set(const int MODE, const int value = 0);
 
 private:
     eventManager &event;
@@ -32,5 +33,11 @@ private:
     std::mutex mtxLoop;
     std::atomic<bool> loop = true;
 
-    void setAngle(const int servo, const int angle);
+    int mode = 0;
+    INS::state3D state;
+
+    void setServo1(int angle);
+    void setServo2(int angle);
+
+    void idle();
 };
