@@ -24,11 +24,29 @@
             <canvas id="horizonCanvas"></canvas>
             <img id="crosshair" src="texture/crosshair.png" />
         </div>
-        <div class="panel">felrzfh</div>
+        <div class="panel">dezf</div>
         <div class="panel" id="viewportDIV">
-            <canvas id="viewport">
+            <canvas id="viewport"></canvas>
+            <button id="switchView" onclick="switchView();">Changer de vue</button>
+            <img src="http://jean-drone.local:9002/" alt="Flux vidéo" id="videoView" />
 
-            </canvas>
+            <div id="videoLegend">
+                <div id="cameraCtrlDIV">
+                    <select id="gimballMode" name="mode">
+                        <option value="LAND">atterisage</option>
+                        <option value="STAB">stablisé</option>
+                        <option value="HORIZONTAL">horizontal</option>
+                    </select>
+                    <div class="dpad">
+                        <button class="btn up" onclick="socket.send('GIMUP');">▲</button>
+                        <div class="middle-row">
+                            <button class="btn left" onclick="socket.send('GIMLEFT');">◀</button>
+                            <button class="btn right" onclick="socket.send('GIMRIGHT');">▶</button>
+                        </div>
+                        <button class="btn down" onclick="socket.send('GIMDOWN');">▼</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

@@ -861,6 +861,134 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: /home/jules/code/drone/src/COM.cpp \
   /usr/include/GeographicLib/Config.h \
   /usr/include/GeographicLib/Math.hpp \
   /home/jules/code/drone/inc/PCA9685.hpp \
+  /home/jules/code/drone/inc/gimball.hpp \
+  /home/jules/code/drone/inc/gpio.hpp \
+  /usr/local/include/wiringPi.h \
+  /home/jules/code/drone/inc/TF-luna.hpp \
+  /usr/include/opencv4/opencv2/opencv.hpp \
+  /usr/include/opencv4/opencv2/opencv_modules.hpp \
+  /usr/include/opencv4/opencv2/core.hpp \
+  /usr/include/opencv4/opencv2/core/cvdef.h \
+  /usr/include/opencv4/opencv2/core/version.hpp \
+  /usr/include/opencv4/opencv2/core/hal/interface.h \
+  /usr/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /usr/include/opencv4/opencv2/core/base.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /usr/include/opencv4/opencv2/core/neon_utils.hpp \
+  /usr/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /usr/include/opencv4/opencv2/core/check.hpp \
+  /usr/include/opencv4/opencv2/core/traits.hpp \
+  /usr/include/opencv4/opencv2/core/matx.hpp \
+  /usr/include/opencv4/opencv2/core/saturate.hpp \
+  /usr/include/opencv4/opencv2/core/fast_math.hpp \
+  /usr/include/opencv4/opencv2/core/types.hpp \
+  /usr/include/c++/12/cfloat \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/float.h \
+  /usr/include/opencv4/opencv2/core/mat.hpp \
+  /usr/include/opencv4/opencv2/core/bufferpool.hpp \
+  /usr/include/opencv4/opencv2/core/mat.inl.hpp \
+  /usr/include/opencv4/opencv2/core/persistence.hpp \
+  /usr/include/opencv4/opencv2/core/operations.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /usr/include/opencv4/opencv2/core/utility.hpp \
+  /usr/include/opencv4/opencv2/core/optim.hpp \
+  /usr/include/opencv4/opencv2/core/ovx.hpp \
+  /usr/include/opencv4/opencv2/core/cvdef.h \
+  /usr/include/opencv4/opencv2/calib3d.hpp \
+  /usr/include/opencv4/opencv2/features2d.hpp \
+  /usr/include/opencv4/opencv2/flann/miniflann.hpp \
+  /usr/include/opencv4/opencv2/flann/defines.h \
+  /usr/include/opencv4/opencv2/flann/config.h \
+  /usr/include/opencv4/opencv2/core/affine.hpp \
+  /usr/include/opencv4/opencv2/dnn.hpp \
+  /usr/include/opencv4/opencv2/dnn/dnn.hpp \
+  /usr/include/opencv4/opencv2/core/async.hpp \
+  /usr/include/opencv4/opencv2/dnn/version.hpp \
+  /usr/include/opencv4/opencv2/dnn/dict.hpp \
+  /usr/include/opencv4/opencv2/dnn/layer.hpp \
+  /usr/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+  /usr/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+  /usr/include/opencv4/opencv2/dnn/dnn.hpp \
+  /usr/include/opencv4/opencv2/flann.hpp \
+  /usr/include/opencv4/opencv2/flann/flann_base.hpp \
+  /usr/include/opencv4/opencv2/flann/general.h \
+  /usr/include/opencv4/opencv2/flann/matrix.h \
+  /usr/include/opencv4/opencv2/flann/params.h \
+  /usr/include/opencv4/opencv2/flann/any.h \
+  /usr/include/opencv4/opencv2/flann/defines.h \
+  /usr/include/opencv4/opencv2/flann/saving.h \
+  /usr/include/opencv4/opencv2/flann/nn_index.h \
+  /usr/include/opencv4/opencv2/flann/result_set.h \
+  /usr/include/opencv4/opencv2/flann/all_indices.h \
+  /usr/include/opencv4/opencv2/flann/kdtree_index.h \
+  /usr/include/opencv4/opencv2/flann/dynamic_bitset.h \
+  /usr/include/opencv4/opencv2/flann/dist.h \
+  /usr/include/opencv4/opencv2/flann/heap.h \
+  /usr/include/opencv4/opencv2/flann/allocator.h \
+  /usr/include/c++/12/stdlib.h \
+  /usr/include/opencv4/opencv2/flann/random.h \
+  /usr/include/opencv4/opencv2/flann/kdtree_single_index.h \
+  /usr/include/opencv4/opencv2/flann/kmeans_index.h \
+  /usr/include/opencv4/opencv2/flann/logger.h \
+  /usr/include/opencv4/opencv2/flann/composite_index.h \
+  /usr/include/opencv4/opencv2/flann/linear_index.h \
+  /usr/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+  /usr/include/opencv4/opencv2/flann/lsh_index.h \
+  /usr/include/opencv4/opencv2/flann/lsh_table.h \
+  /usr/include/c++/12/iomanip \
+  /usr/include/c++/12/locale \
+  /usr/include/c++/12/bits/locale_facets_nonio.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/12/bits/locale_conv.h \
+  /usr/include/c++/12/bits/quoted_string.h \
+  /usr/include/c++/12/math.h \
+  /usr/include/opencv4/opencv2/flann/autotuned_index.h \
+  /usr/include/opencv4/opencv2/flann/ground_truth.h \
+  /usr/include/opencv4/opencv2/flann/index_testing.h \
+  /usr/include/opencv4/opencv2/flann/timer.h \
+  /usr/include/opencv4/opencv2/flann/sampling.h \
+  /usr/include/opencv4/opencv2/highgui.hpp \
+  /usr/include/opencv4/opencv2/imgcodecs.hpp \
+  /usr/include/opencv4/opencv2/videoio.hpp \
+  /usr/include/opencv4/opencv2/imgproc.hpp \
+  /usr/include/opencv4/opencv2/imgproc/segmentation.hpp \
+  /usr/include/opencv4/opencv2/ml.hpp \
+  /usr/include/opencv4/opencv2/ml/ml.inl.hpp \
+  /usr/include/opencv4/opencv2/objdetect.hpp \
+  /usr/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+  /usr/include/opencv4/opencv2/objdetect/face.hpp \
+  /usr/include/opencv4/opencv2/photo.hpp \
+  /usr/include/opencv4/opencv2/stitching.hpp \
+  /usr/include/opencv4/opencv2/stitching/warpers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /usr/include/opencv4/opencv2/core/cuda.hpp \
+  /usr/include/opencv4/opencv2/core/cuda_types.hpp \
+  /usr/include/opencv4/opencv2/core/cuda.inl.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/util.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+  /usr/include/c++/12/queue \
+  /usr/include/c++/12/deque \
+  /usr/include/c++/12/bits/stl_deque.h \
+  /usr/include/c++/12/bits/deque.tcc \
+  /usr/include/c++/12/bits/stl_queue.h \
+  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /usr/include/opencv4/opencv2/video.hpp \
+  /usr/include/opencv4/opencv2/video/tracking.hpp \
+  /usr/include/opencv4/opencv2/video/background_segm.hpp \
+  /home/jules/code/drone/inc/launcher.hpp \
   /usr/include/signal.h \
   /usr/include/aarch64-linux-gnu/bits/signum-generic.h \
   /usr/include/aarch64-linux-gnu/bits/signum-arch.h \
@@ -934,15 +1062,6 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: /home/jules/code/drone/src/COM.cpp \
   /usr/include/c++/12/filesystem \
   /usr/include/c++/12/bits/fs_fwd.h \
   /usr/include/c++/12/bits/fs_path.h \
-  /usr/include/c++/12/locale \
-  /usr/include/c++/12/bits/locale_facets_nonio.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
-  /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
-  /usr/include/libintl.h \
-  /usr/include/c++/12/bits/locale_facets_nonio.tcc \
-  /usr/include/c++/12/bits/locale_conv.h \
-  /usr/include/c++/12/iomanip \
-  /usr/include/c++/12/bits/quoted_string.h \
   /usr/include/c++/12/codecvt \
   /usr/include/c++/12/bits/fs_dir.h \
   /usr/include/c++/12/bits/fs_ops.h \
@@ -971,7 +1090,18 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: /home/jules/code/drone/src/COM.cpp \
   /usr/include/nlohmann/ordered_map.hpp \
   /usr/include/c++/12/any \
   /usr/include/nlohmann/detail/macro_unscope.hpp \
-  /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp
+  /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+  /usr/include/aarch64-linux-gnu/sys/socket.h \
+  /usr/include/aarch64-linux-gnu/bits/socket.h \
+  /usr/include/aarch64-linux-gnu/bits/socket_type.h \
+  /usr/include/aarch64-linux-gnu/bits/sockaddr.h \
+  /usr/lib/linux/uapi/arm64/asm/socket.h \
+  /usr/include/asm-generic/socket.h \
+  /usr/lib/linux/uapi/arm64/asm/sockios.h \
+  /usr/include/asm-generic/sockios.h \
+  /usr/include/aarch64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/netinet/in.h \
+  /usr/include/aarch64-linux-gnu/bits/in.h
 
 CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: /home/jules/code/drone/src/ESP32.cpp \
   /usr/include/stdc-predef.h \
@@ -2570,7 +2700,32 @@ CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o: /home/jules/code/drone/src/TF-luna.
   /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/linux/falloc.h \
   /usr/include/aarch64-linux-gnu/bits/stat.h \
-  /usr/include/aarch64-linux-gnu/bits/struct_stat.h
+  /usr/include/aarch64-linux-gnu/bits/struct_stat.h \
+  /usr/include/c++/12/mutex \
+  /usr/include/c++/12/tuple \
+  /usr/include/c++/12/bits/uses_allocator.h \
+  /usr/include/c++/12/bits/chrono.h \
+  /usr/include/c++/12/ratio \
+  /usr/include/c++/12/limits \
+  /usr/include/c++/12/ctime \
+  /usr/include/c++/12/bits/parse_numbers.h \
+  /usr/include/c++/12/bits/std_mutex.h \
+  /usr/include/c++/12/bits/unique_lock.h \
+  /home/jules/code/drone/inc/eventManager.hpp \
+  /usr/include/c++/12/map \
+  /usr/include/c++/12/bits/stl_tree.h \
+  /usr/include/c++/12/ext/aligned_buffer.h \
+  /usr/include/c++/12/bits/node_handle.h \
+  /usr/include/c++/12/bits/stl_map.h \
+  /usr/include/c++/12/bits/stl_multimap.h \
+  /usr/include/c++/12/bits/erase_if.h \
+  /usr/include/c++/12/utility \
+  /usr/include/c++/12/bits/stl_relops.h \
+  /usr/include/c++/12/fstream \
+  /usr/include/c++/12/bits/codecvt.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+  /usr/include/c++/12/bits/fstream.tcc
 
 CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o: /home/jules/code/drone/src/USSensor.cpp \
   /usr/include/stdc-predef.h \
@@ -4309,7 +4464,12 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: /home/jules/code/drone/src/launche
   /usr/include/GeographicLib/Math.hpp \
   /home/jules/code/drone/inc/PCA9685.hpp \
   /home/jules/code/drone/inc/sysMonitoring.hpp \
+  /home/jules/code/drone/inc/gimball.hpp \
+  /home/jules/code/drone/inc/gpio.hpp \
+  /usr/local/include/wiringPi.h \
+  /usr/include/c++/12/iostream \
   /usr/include/c++/12/optional \
+  /home/jules/code/drone/inc/TF-luna.hpp \
   /home/jules/code/drone/inc/COM.hpp \
   /usr/local/include/uWebSockets/App.h \
   /usr/include/c++/12/charconv \
@@ -4345,7 +4505,6 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: /home/jules/code/drone/src/launche
   /usr/include/c++/12/bits/uses_allocator_args.h \
   /usr/include/c++/12/pstl/glue_memory_defs.h \
   /home/jules/code/drone/external/uWebSockets/uSockets/src/libusockets.h \
-  /usr/include/c++/12/iostream \
   /usr/local/include/uWebSockets/HttpContextData.h \
   /usr/local/include/uWebSockets/HttpRouter.h \
   /usr/local/include/uWebSockets/HttpResponseData.h \
@@ -4376,9 +4535,129 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: /home/jules/code/drone/src/launche
   /usr/local/include/uWebSockets/WebSocket.h \
   /usr/local/include/uWebSockets/WebSocketContextData.h \
   /usr/local/include/uWebSockets/WebSocketContext.h \
-  /home/jules/code/drone/inc/gimball.hpp \
-  /home/jules/code/drone/inc/gpio.hpp \
-  /usr/local/include/wiringPi.h
+  /usr/include/opencv4/opencv2/opencv.hpp \
+  /usr/include/opencv4/opencv2/opencv_modules.hpp \
+  /usr/include/opencv4/opencv2/core.hpp \
+  /usr/include/opencv4/opencv2/core/cvdef.h \
+  /usr/include/opencv4/opencv2/core/version.hpp \
+  /usr/include/opencv4/opencv2/core/hal/interface.h \
+  /usr/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /usr/include/opencv4/opencv2/core/base.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /usr/include/opencv4/opencv2/core/neon_utils.hpp \
+  /usr/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /usr/include/opencv4/opencv2/core/check.hpp \
+  /usr/include/opencv4/opencv2/core/traits.hpp \
+  /usr/include/opencv4/opencv2/core/matx.hpp \
+  /usr/include/opencv4/opencv2/core/saturate.hpp \
+  /usr/include/opencv4/opencv2/core/fast_math.hpp \
+  /usr/include/opencv4/opencv2/core/types.hpp \
+  /usr/include/c++/12/cfloat \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/float.h \
+  /usr/include/opencv4/opencv2/core/mat.hpp \
+  /usr/include/opencv4/opencv2/core/bufferpool.hpp \
+  /usr/include/opencv4/opencv2/core/mat.inl.hpp \
+  /usr/include/opencv4/opencv2/core/persistence.hpp \
+  /usr/include/opencv4/opencv2/core/operations.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /usr/include/opencv4/opencv2/core/utility.hpp \
+  /usr/include/opencv4/opencv2/core/optim.hpp \
+  /usr/include/opencv4/opencv2/core/ovx.hpp \
+  /usr/include/opencv4/opencv2/core/cvdef.h \
+  /usr/include/opencv4/opencv2/calib3d.hpp \
+  /usr/include/opencv4/opencv2/features2d.hpp \
+  /usr/include/opencv4/opencv2/flann/miniflann.hpp \
+  /usr/include/opencv4/opencv2/flann/defines.h \
+  /usr/include/opencv4/opencv2/flann/config.h \
+  /usr/include/opencv4/opencv2/core/affine.hpp \
+  /usr/include/opencv4/opencv2/dnn.hpp \
+  /usr/include/opencv4/opencv2/dnn/dnn.hpp \
+  /usr/include/opencv4/opencv2/core/async.hpp \
+  /usr/include/opencv4/opencv2/dnn/version.hpp \
+  /usr/include/opencv4/opencv2/dnn/dict.hpp \
+  /usr/include/opencv4/opencv2/dnn/layer.hpp \
+  /usr/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+  /usr/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+  /usr/include/opencv4/opencv2/dnn/dnn.hpp \
+  /usr/include/opencv4/opencv2/flann.hpp \
+  /usr/include/opencv4/opencv2/flann/flann_base.hpp \
+  /usr/include/opencv4/opencv2/flann/general.h \
+  /usr/include/opencv4/opencv2/flann/matrix.h \
+  /usr/include/opencv4/opencv2/flann/params.h \
+  /usr/include/opencv4/opencv2/flann/any.h \
+  /usr/include/opencv4/opencv2/flann/defines.h \
+  /usr/include/opencv4/opencv2/flann/saving.h \
+  /usr/include/opencv4/opencv2/flann/nn_index.h \
+  /usr/include/opencv4/opencv2/flann/result_set.h \
+  /usr/include/opencv4/opencv2/flann/all_indices.h \
+  /usr/include/opencv4/opencv2/flann/kdtree_index.h \
+  /usr/include/opencv4/opencv2/flann/dynamic_bitset.h \
+  /usr/include/opencv4/opencv2/flann/dist.h \
+  /usr/include/opencv4/opencv2/flann/heap.h \
+  /usr/include/opencv4/opencv2/flann/allocator.h \
+  /usr/include/c++/12/stdlib.h \
+  /usr/include/opencv4/opencv2/flann/random.h \
+  /usr/include/opencv4/opencv2/flann/kdtree_single_index.h \
+  /usr/include/opencv4/opencv2/flann/kmeans_index.h \
+  /usr/include/opencv4/opencv2/flann/logger.h \
+  /usr/include/opencv4/opencv2/flann/composite_index.h \
+  /usr/include/opencv4/opencv2/flann/linear_index.h \
+  /usr/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+  /usr/include/opencv4/opencv2/flann/lsh_index.h \
+  /usr/include/opencv4/opencv2/flann/lsh_table.h \
+  /usr/include/c++/12/iomanip \
+  /usr/include/c++/12/locale \
+  /usr/include/c++/12/bits/locale_facets_nonio.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/12/bits/locale_conv.h \
+  /usr/include/c++/12/bits/quoted_string.h \
+  /usr/include/c++/12/math.h \
+  /usr/include/opencv4/opencv2/flann/autotuned_index.h \
+  /usr/include/opencv4/opencv2/flann/ground_truth.h \
+  /usr/include/opencv4/opencv2/flann/index_testing.h \
+  /usr/include/opencv4/opencv2/flann/timer.h \
+  /usr/include/opencv4/opencv2/flann/sampling.h \
+  /usr/include/opencv4/opencv2/highgui.hpp \
+  /usr/include/opencv4/opencv2/imgcodecs.hpp \
+  /usr/include/opencv4/opencv2/videoio.hpp \
+  /usr/include/opencv4/opencv2/imgproc.hpp \
+  /usr/include/opencv4/opencv2/imgproc/segmentation.hpp \
+  /usr/include/opencv4/opencv2/ml.hpp \
+  /usr/include/opencv4/opencv2/ml/ml.inl.hpp \
+  /usr/include/opencv4/opencv2/objdetect.hpp \
+  /usr/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+  /usr/include/opencv4/opencv2/objdetect/face.hpp \
+  /usr/include/opencv4/opencv2/photo.hpp \
+  /usr/include/opencv4/opencv2/stitching.hpp \
+  /usr/include/opencv4/opencv2/stitching/warpers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /usr/include/opencv4/opencv2/core/cuda.hpp \
+  /usr/include/opencv4/opencv2/core/cuda_types.hpp \
+  /usr/include/opencv4/opencv2/core/cuda.inl.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/util.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+  /usr/include/c++/12/queue \
+  /usr/include/c++/12/deque \
+  /usr/include/c++/12/bits/stl_deque.h \
+  /usr/include/c++/12/bits/deque.tcc \
+  /usr/include/c++/12/bits/stl_queue.h \
+  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /usr/include/opencv4/opencv2/video.hpp \
+  /usr/include/opencv4/opencv2/video/tracking.hpp \
+  /usr/include/opencv4/opencv2/video/background_segm.hpp
 
 CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/include/stdc-predef.h \
@@ -4923,7 +5202,12 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/include/GeographicLib/Math.hpp \
   /home/jules/code/drone/inc/PCA9685.hpp \
   /home/jules/code/drone/inc/sysMonitoring.hpp \
+  /home/jules/code/drone/inc/gimball.hpp \
+  /home/jules/code/drone/inc/gpio.hpp \
+  /usr/local/include/wiringPi.h \
+  /usr/include/c++/12/iostream \
   /usr/include/c++/12/optional \
+  /home/jules/code/drone/inc/TF-luna.hpp \
   /home/jules/code/drone/inc/COM.hpp \
   /usr/local/include/uWebSockets/App.h \
   /usr/include/c++/12/charconv \
@@ -4959,7 +5243,6 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/include/c++/12/bits/uses_allocator_args.h \
   /usr/include/c++/12/pstl/glue_memory_defs.h \
   /home/jules/code/drone/external/uWebSockets/uSockets/src/libusockets.h \
-  /usr/include/c++/12/iostream \
   /usr/local/include/uWebSockets/HttpContextData.h \
   /usr/local/include/uWebSockets/HttpRouter.h \
   /usr/local/include/uWebSockets/HttpResponseData.h \
@@ -4990,9 +5273,129 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp \
   /usr/local/include/uWebSockets/WebSocket.h \
   /usr/local/include/uWebSockets/WebSocketContextData.h \
   /usr/local/include/uWebSockets/WebSocketContext.h \
-  /home/jules/code/drone/inc/gimball.hpp \
-  /home/jules/code/drone/inc/gpio.hpp \
-  /usr/local/include/wiringPi.h \
+  /usr/include/opencv4/opencv2/opencv.hpp \
+  /usr/include/opencv4/opencv2/opencv_modules.hpp \
+  /usr/include/opencv4/opencv2/core.hpp \
+  /usr/include/opencv4/opencv2/core/cvdef.h \
+  /usr/include/opencv4/opencv2/core/version.hpp \
+  /usr/include/opencv4/opencv2/core/hal/interface.h \
+  /usr/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /usr/include/opencv4/opencv2/core/base.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /usr/include/opencv4/opencv2/core/neon_utils.hpp \
+  /usr/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /usr/include/opencv4/opencv2/core/check.hpp \
+  /usr/include/opencv4/opencv2/core/traits.hpp \
+  /usr/include/opencv4/opencv2/core/matx.hpp \
+  /usr/include/opencv4/opencv2/core/saturate.hpp \
+  /usr/include/opencv4/opencv2/core/fast_math.hpp \
+  /usr/include/opencv4/opencv2/core/types.hpp \
+  /usr/include/c++/12/cfloat \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/float.h \
+  /usr/include/opencv4/opencv2/core/mat.hpp \
+  /usr/include/opencv4/opencv2/core/bufferpool.hpp \
+  /usr/include/opencv4/opencv2/core/mat.inl.hpp \
+  /usr/include/opencv4/opencv2/core/persistence.hpp \
+  /usr/include/opencv4/opencv2/core/operations.hpp \
+  /usr/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /usr/include/opencv4/opencv2/core/utility.hpp \
+  /usr/include/opencv4/opencv2/core/optim.hpp \
+  /usr/include/opencv4/opencv2/core/ovx.hpp \
+  /usr/include/opencv4/opencv2/core/cvdef.h \
+  /usr/include/opencv4/opencv2/calib3d.hpp \
+  /usr/include/opencv4/opencv2/features2d.hpp \
+  /usr/include/opencv4/opencv2/flann/miniflann.hpp \
+  /usr/include/opencv4/opencv2/flann/defines.h \
+  /usr/include/opencv4/opencv2/flann/config.h \
+  /usr/include/opencv4/opencv2/core/affine.hpp \
+  /usr/include/opencv4/opencv2/dnn.hpp \
+  /usr/include/opencv4/opencv2/dnn/dnn.hpp \
+  /usr/include/opencv4/opencv2/core/async.hpp \
+  /usr/include/opencv4/opencv2/dnn/version.hpp \
+  /usr/include/opencv4/opencv2/dnn/dict.hpp \
+  /usr/include/opencv4/opencv2/dnn/layer.hpp \
+  /usr/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+  /usr/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+  /usr/include/opencv4/opencv2/dnn/dnn.hpp \
+  /usr/include/opencv4/opencv2/flann.hpp \
+  /usr/include/opencv4/opencv2/flann/flann_base.hpp \
+  /usr/include/opencv4/opencv2/flann/general.h \
+  /usr/include/opencv4/opencv2/flann/matrix.h \
+  /usr/include/opencv4/opencv2/flann/params.h \
+  /usr/include/opencv4/opencv2/flann/any.h \
+  /usr/include/opencv4/opencv2/flann/defines.h \
+  /usr/include/opencv4/opencv2/flann/saving.h \
+  /usr/include/opencv4/opencv2/flann/nn_index.h \
+  /usr/include/opencv4/opencv2/flann/result_set.h \
+  /usr/include/opencv4/opencv2/flann/all_indices.h \
+  /usr/include/opencv4/opencv2/flann/kdtree_index.h \
+  /usr/include/opencv4/opencv2/flann/dynamic_bitset.h \
+  /usr/include/opencv4/opencv2/flann/dist.h \
+  /usr/include/opencv4/opencv2/flann/heap.h \
+  /usr/include/opencv4/opencv2/flann/allocator.h \
+  /usr/include/c++/12/stdlib.h \
+  /usr/include/opencv4/opencv2/flann/random.h \
+  /usr/include/opencv4/opencv2/flann/kdtree_single_index.h \
+  /usr/include/opencv4/opencv2/flann/kmeans_index.h \
+  /usr/include/opencv4/opencv2/flann/logger.h \
+  /usr/include/opencv4/opencv2/flann/composite_index.h \
+  /usr/include/opencv4/opencv2/flann/linear_index.h \
+  /usr/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+  /usr/include/opencv4/opencv2/flann/lsh_index.h \
+  /usr/include/opencv4/opencv2/flann/lsh_table.h \
+  /usr/include/c++/12/iomanip \
+  /usr/include/c++/12/locale \
+  /usr/include/c++/12/bits/locale_facets_nonio.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/12/bits/locale_conv.h \
+  /usr/include/c++/12/bits/quoted_string.h \
+  /usr/include/c++/12/math.h \
+  /usr/include/opencv4/opencv2/flann/autotuned_index.h \
+  /usr/include/opencv4/opencv2/flann/ground_truth.h \
+  /usr/include/opencv4/opencv2/flann/index_testing.h \
+  /usr/include/opencv4/opencv2/flann/timer.h \
+  /usr/include/opencv4/opencv2/flann/sampling.h \
+  /usr/include/opencv4/opencv2/highgui.hpp \
+  /usr/include/opencv4/opencv2/imgcodecs.hpp \
+  /usr/include/opencv4/opencv2/videoio.hpp \
+  /usr/include/opencv4/opencv2/imgproc.hpp \
+  /usr/include/opencv4/opencv2/imgproc/segmentation.hpp \
+  /usr/include/opencv4/opencv2/ml.hpp \
+  /usr/include/opencv4/opencv2/ml/ml.inl.hpp \
+  /usr/include/opencv4/opencv2/objdetect.hpp \
+  /usr/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+  /usr/include/opencv4/opencv2/objdetect/face.hpp \
+  /usr/include/opencv4/opencv2/photo.hpp \
+  /usr/include/opencv4/opencv2/stitching.hpp \
+  /usr/include/opencv4/opencv2/stitching/warpers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /usr/include/opencv4/opencv2/core/cuda.hpp \
+  /usr/include/opencv4/opencv2/core/cuda_types.hpp \
+  /usr/include/opencv4/opencv2/core/cuda.inl.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/util.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+  /usr/include/c++/12/queue \
+  /usr/include/c++/12/deque \
+  /usr/include/c++/12/bits/stl_deque.h \
+  /usr/include/c++/12/bits/deque.tcc \
+  /usr/include/c++/12/bits/stl_queue.h \
+  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /usr/include/opencv4/opencv2/video.hpp \
+  /usr/include/opencv4/opencv2/video/tracking.hpp \
+  /usr/include/opencv4/opencv2/video/background_segm.hpp \
   /usr/include/signal.h \
   /usr/include/aarch64-linux-gnu/bits/signum-generic.h \
   /usr/include/aarch64-linux-gnu/bits/signum-arch.h \
@@ -5566,7 +5969,12 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
   /usr/include/GeographicLib/Config.h \
   /usr/include/GeographicLib/Math.hpp \
   /home/jules/code/drone/inc/PCA9685.hpp \
+  /home/jules/code/drone/inc/gimball.hpp \
+  /home/jules/code/drone/inc/gpio.hpp \
+  /usr/local/include/wiringPi.h \
+  /usr/include/c++/12/iostream \
   /usr/include/c++/12/optional \
+  /home/jules/code/drone/inc/TF-luna.hpp \
   /usr/include/c++/12/thread \
   /usr/include/c++/12/stop_token \
   /usr/include/c++/12/bits/std_thread.h \
@@ -5577,33 +5985,40 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
   /usr/include/c++/12/bits/this_thread_sleep.h \
   /usr/include/aarch64-linux-gnu/sys/time.h \
   /usr/include/semaphore.h \
-  /usr/include/aarch64-linux-gnu/bits/semaphore.h \
-  /usr/include/c++/12/iostream
+  /usr/include/aarch64-linux-gnu/bits/semaphore.h
 
 
 /home/jules/code/drone/src/sysMonitoring.cpp:
 
 /home/jules/code/drone/src/main.cpp:
 
-/home/jules/code/drone/inc/launcher.hpp:
-
 /home/jules/code/drone/src/gpio.cpp:
-
-/home/jules/code/drone/inc/gimball.hpp:
 
 /home/jules/code/drone/src/gimball.cpp:
 
 /home/jules/code/drone/src/eventManager.cpp:
-
-/usr/local/include/wiringPi.h:
-
-/home/jules/code/drone/inc/gpio.hpp:
 
 /home/jules/code/drone/inc/USSensor.hpp:
 
 /home/jules/code/drone/src/PCA9685.cpp:
 
 /home/jules/code/drone/src/ESP32.cpp:
+
+/usr/include/aarch64-linux-gnu/bits/in.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/lib/linux/uapi/arm64/asm/socket.h:
+
+/usr/include/aarch64-linux-gnu/bits/sockaddr.h:
+
+/usr/include/aarch64-linux-gnu/bits/socket_type.h:
+
+/usr/include/aarch64-linux-gnu/sys/socket.h:
 
 /usr/include/nlohmann/ordered_map.hpp:
 
@@ -5625,31 +6040,11 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/nlohmann/detail/conversions/to_json.hpp:
 
-/usr/include/c++/12/bits/fs_dir.h:
-
-/usr/include/c++/12/codecvt:
-
-/usr/include/c++/12/bits/quoted_string.h:
-
-/usr/include/c++/12/iomanip:
-
-/usr/include/c++/12/bits/locale_conv.h:
-
-/usr/include/c++/12/bits/locale_facets_nonio.tcc:
-
-/usr/include/libintl.h:
-
-/usr/include/c++/12/bits/locale_facets_nonio.h:
-
-/usr/include/c++/12/locale:
-
 /usr/include/c++/12/bits/fs_path.h:
 
 /usr/include/c++/12/filesystem:
 
 /usr/include/nlohmann/detail/meta/identity_tag.hpp:
-
-/usr/include/nlohmann/detail/string_concat.hpp:
 
 /usr/include/nlohmann/detail/meta/call_std/end.hpp:
 
@@ -5679,17 +6074,11 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/valarray:
 
-/usr/include/c++/12/any:
-
-/usr/include/c++/12/bits/forward_list.tcc:
-
 /usr/include/c++/12/bits/forward_list.h:
 
 /usr/include/c++/12/pstl/glue_numeric_defs.h:
 
 /usr/include/c++/12/bits/stl_numeric.h:
-
-/usr/include/c++/12/numeric:
 
 /usr/include/c++/12/bits/stream_iterator.h:
 
@@ -5708,8 +6097,6 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/aarch64-linux-gnu/bits/ss_flags.h:
 
 /usr/include/aarch64-linux-gnu/bits/procfs-id.h:
-
-/usr/include/aarch64-linux-gnu/sys/procfs.h:
 
 /usr/include/nlohmann/adl_serializer.hpp:
 
@@ -5741,6 +6128,170 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/signal.h:
 
+/home/jules/code/drone/inc/launcher.hpp:
+
+/usr/include/opencv4/opencv2/video/background_segm.hpp:
+
+/usr/include/opencv4/opencv2/video.hpp:
+
+/usr/include/opencv4/opencv2/stitching/detail/seam_finders.hpp:
+
+/usr/include/aarch64-linux-gnu/sys/procfs.h:
+
+/usr/include/opencv4/opencv2/stitching/detail/camera.hpp:
+
+/usr/include/c++/12/bits/stl_queue.h:
+
+/usr/include/c++/12/deque:
+
+/usr/include/c++/12/queue:
+
+/usr/include/opencv4/opencv2/stitching/detail/util_inl.hpp:
+
+/usr/include/opencv4/opencv2/stitching/detail/util.hpp:
+
+/usr/include/opencv4/opencv2/stitching/detail/matchers.hpp:
+
+/usr/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp:
+
+/usr/include/opencv4/opencv2/core/cuda.inl.hpp:
+
+/usr/include/nlohmann/detail/string_concat.hpp:
+
+/usr/include/opencv4/opencv2/core/cuda.hpp:
+
+/usr/include/opencv4/opencv2/stitching/warpers.hpp:
+
+/usr/include/opencv4/opencv2/photo.hpp:
+
+/usr/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp:
+
+/usr/include/opencv4/opencv2/ml.hpp:
+
+/usr/include/opencv4/opencv2/imgproc/segmentation.hpp:
+
+/usr/include/opencv4/opencv2/imgproc.hpp:
+
+/usr/include/opencv4/opencv2/videoio.hpp:
+
+/usr/include/c++/12/any:
+
+/usr/include/c++/12/bits/forward_list.tcc:
+
+/usr/include/opencv4/opencv2/flann/sampling.h:
+
+/usr/include/opencv4/opencv2/flann/timer.h:
+
+/usr/include/opencv4/opencv2/flann/index_testing.h:
+
+/usr/include/opencv4/opencv2/flann/ground_truth.h:
+
+/usr/include/c++/12/math.h:
+
+/usr/include/c++/12/bits/quoted_string.h:
+
+/usr/include/c++/12/bits/locale_facets_nonio.tcc:
+
+/usr/include/libintl.h:
+
+/usr/include/c++/12/locale:
+
+/usr/include/opencv4/opencv2/flann/lsh_table.h:
+
+/usr/include/opencv4/opencv2/flann/lsh_index.h:
+
+/usr/include/opencv4/opencv2/flann/hierarchical_clustering_index.h:
+
+/usr/include/c++/12/bits/locale_facets_nonio.h:
+
+/usr/include/opencv4/opencv2/flann/logger.h:
+
+/usr/include/opencv4/opencv2/flann/kdtree_single_index.h:
+
+/usr/include/c++/12/stdlib.h:
+
+/usr/include/opencv4/opencv2/flann/heap.h:
+
+/usr/include/c++/12/bits/fs_dir.h:
+
+/usr/include/opencv4/opencv2/flann/dynamic_bitset.h:
+
+/usr/include/c++/12/bits/locale_conv.h:
+
+/usr/include/opencv4/opencv2/flann/kdtree_index.h:
+
+/usr/include/opencv4/opencv2/flann/all_indices.h:
+
+/usr/include/opencv4/opencv2/flann/nn_index.h:
+
+/usr/include/opencv4/opencv2/flann/params.h:
+
+/usr/include/c++/12/numeric:
+
+/usr/include/opencv4/opencv2/flann.hpp:
+
+/usr/include/opencv4/opencv2/dnn/utils/inference_engine.hpp:
+
+/usr/include/opencv4/opencv2/dnn/layer.hpp:
+
+/usr/include/opencv4/opencv2/dnn/dict.hpp:
+
+/usr/include/opencv4/opencv2/dnn/version.hpp:
+
+/usr/include/opencv4/opencv2/core/async.hpp:
+
+/usr/include/opencv4/opencv2/dnn/dnn.hpp:
+
+/usr/include/opencv4/opencv2/flann/config.h:
+
+/usr/include/opencv4/opencv2/flann/defines.h:
+
+/usr/include/opencv4/opencv2/features2d.hpp:
+
+/usr/include/opencv4/opencv2/calib3d.hpp:
+
+/usr/include/opencv4/opencv2/core/ovx.hpp:
+
+/usr/include/opencv4/opencv2/core/operations.hpp:
+
+/usr/include/opencv4/opencv2/core/mat.inl.hpp:
+
+/usr/include/opencv4/opencv2/core/mat.hpp:
+
+/usr/lib/gcc/aarch64-linux-gnu/12/include/float.h:
+
+/usr/include/c++/12/codecvt:
+
+/usr/include/opencv4/opencv2/flann/saving.h:
+
+/usr/include/c++/12/cfloat:
+
+/usr/include/opencv4/opencv2/core/saturate.hpp:
+
+/usr/include/opencv4/opencv2/core/check.hpp:
+
+/usr/include/opencv4/opencv2/core/neon_utils.hpp:
+
+/usr/include/opencv4/opencv2/core/cvstd.hpp:
+
+/usr/include/c++/12/iomanip:
+
+/usr/include/opencv4/opencv2/core/cv_cpu_dispatch.h:
+
+/usr/include/opencv4/opencv2/dnn.hpp:
+
+/usr/include/opencv4/opencv2/core/hal/interface.h:
+
+/usr/include/opencv4/opencv2/core.hpp:
+
+/usr/include/opencv4/opencv2/opencv_modules.hpp:
+
+/usr/local/include/wiringPi.h:
+
+/home/jules/code/drone/inc/gpio.hpp:
+
+/home/jules/code/drone/inc/gimball.hpp:
+
 /usr/include/GeographicLib/Math.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/sigstksz.h:
@@ -5771,11 +6322,15 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Geometry/ParametrizedLine.h:
 
+/usr/include/opencv4/opencv2/core/base.hpp:
+
 /usr/include/eigen3/Eigen/src/Geometry/Scaling.h:
 
 /usr/include/eigen3/Eigen/src/Geometry/Transform.h:
 
 /usr/include/eigen3/Eigen/src/Geometry/AngleAxis.h:
+
+/usr/include/opencv4/opencv2/core/matx.hpp:
 
 /usr/include/eigen3/Eigen/src/Geometry/Quaternion.h:
 
@@ -5792,6 +6347,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/eigen3/Eigen/src/SVD/JacobiSVD.h:
 
 /usr/include/eigen3/Eigen/src/SVD/UpperBidiagonalization.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_osockaddr.h:
 
 /usr/include/eigen3/Eigen/SVD:
 
@@ -5817,6 +6374,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/nlohmann/detail/meta/is_sax.hpp:
 
+/usr/include/opencv4/opencv2/stitching/detail/blenders.hpp:
+
 /usr/include/eigen3/Eigen/src/Eigenvalues/Tridiagonalization.h:
 
 /usr/include/eigen3/Eigen/src/LU/arch/InverseSize4.h:
@@ -5833,6 +6392,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/nlohmann/detail/iterators/json_reverse_iterator.hpp:
 
+/usr/include/opencv4/opencv2/opencv.hpp:
+
 /usr/include/c++/12/bit:
 
 /home/jules/code/drone/inc/COM.hpp:
@@ -5844,6 +6405,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/bits/cpp_type_traits.h:
 
 /usr/include/eigen3/Eigen/src/Core/arch/Default/GenericPacketMathFunctionsFwd.h:
+
+/usr/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/IndexedView.h:
 
@@ -5889,6 +6452,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/asm-generic/types.h:
 
+/usr/include/opencv4/opencv2/dnn/dnn.inl.hpp:
+
 /usr/lib/linux/uapi/arm64/asm/bitsperlong.h:
 
 /usr/include/aarch64-linux-gnu/bits/byteswap.h:
@@ -5897,9 +6462,9 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/streambuf_iterator.h:
 
-/home/jules/code/drone/inc/TF-luna.hpp:
-
 /usr/include/nlohmann/thirdparty/hedley/hedley.hpp:
+
+/home/jules/code/drone/inc/TF-luna.hpp:
 
 /usr/include/c++/12/map:
 
@@ -5969,6 +6534,10 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/charconv:
 
+/usr/include/opencv4/opencv2/flann/autotuned_index.h:
+
+/usr/include/opencv4/opencv2/flann/random.h:
+
 /usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/eigen3/Eigen/src/Core/Assign.h:
@@ -6015,6 +6584,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/nlohmann/detail/iterators/primitive_iterator.hpp:
 
+/usr/include/opencv4/opencv2/objdetect/face.hpp:
+
 /usr/include/aarch64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h:
@@ -6027,6 +6598,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/asm-generic/ioctls.h:
 
+/usr/include/opencv4/opencv2/flann/linear_index.h:
+
 /usr/include/eigen3/Eigen/src/Core/util/Meta.h:
 
 /usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h:
@@ -6034,6 +6607,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/lib/linux/uapi/arm64/asm/types.h:
 
 /usr/include/aarch64-linux-gnu/bits/fcntl.h:
+
+/usr/include/opencv4/opencv2/flann/result_set.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
 
@@ -6061,6 +6636,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/fs_fwd.h:
 
+/usr/include/opencv4/opencv2/imgcodecs.hpp:
+
 /usr/include/eigen3/Eigen/src/Core/functors/UnaryFunctors.h:
 
 /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp:
@@ -6072,6 +6649,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/aarch64-linux-gnu/sys/ttydefaults.h:
 
 /usr/include/c++/12/span:
+
+/usr/include/opencv4/opencv2/core/cvdef.h:
 
 /usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
 
@@ -6103,6 +6682,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/select.h:
 
+/usr/include/opencv4/opencv2/flann/allocator.h:
+
 /usr/include/c++/12/cctype:
 
 /usr/include/aarch64-linux-gnu/bits/timesize.h:
@@ -6116,6 +6697,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/eigen3/Eigen/src/Core/arch/NEON/Complex.h:
+
+/usr/include/opencv4/opencv2/highgui.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/Diagonal.h:
 
@@ -6183,9 +6766,13 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/exception_ptr.h:
 
+/usr/include/opencv4/opencv2/ml/ml.inl.hpp:
+
 /usr/include/aarch64-linux-gnu/sys/cdefs.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
+
+/usr/include/opencv4/opencv2/core/fast_math.hpp:
 
 /usr/include/locale.h:
 
@@ -6202,6 +6789,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /usr/include/eigen3/Eigen/src/Core/BandMatrix.h:
+
+/usr/include/opencv4/opencv2/core/utility.hpp:
 
 /usr/include/aarch64-linux-gnu/gnu/stubs-lp64.h:
 
@@ -6220,6 +6809,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/local/include/uWebSockets/BloomFilter.h:
 
 /usr/include/c++/12/tr1/riemann_zeta.tcc:
+
+/usr/include/opencv4/opencv2/flann/any.h:
 
 /usr/include/eigen3/Eigen/src/Geometry/EulerAngles.h:
 
@@ -6265,11 +6856,17 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/nlohmann/detail/iterators/iterator_traits.hpp:
 
+/usr/include/opencv4/opencv2/core/optim.hpp:
+
 /usr/include/c++/12/mutex:
+
+/usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/Reverse.h:
 
 /usr/include/c++/12/exception:
+
+/usr/include/opencv4/opencv2/flann/matrix.h:
 
 /usr/include/c++/12/bits/utility.h:
 
@@ -6288,6 +6885,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/aarch64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/lib/gcc/aarch64-linux-gnu/12/include/arm_bf16.h:
+
+/usr/include/c++/12/bits/stl_deque.h:
 
 /usr/include/aarch64-linux-gnu/bits/struct_rwlock.h:
 
@@ -6339,6 +6938,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/locale.h:
 
+/usr/include/opencv4/opencv2/core/bufferpool.hpp:
+
 /usr/lib/gcc/aarch64-linux-gnu/12/include/stdarg.h:
 
 /usr/include/c++/12/cwctype:
@@ -6348,6 +6949,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/tr1/hypergeometric.tcc:
 
 /usr/include/eigen3/Eigen/src/Core/arch/NEON/GeneralBlockPanelKernel.h:
+
+/usr/include/opencv4/opencv2/core/types.hpp:
 
 /usr/include/aarch64-linux-gnu/c++/12/bits/c++locale.h:
 
@@ -6403,6 +7006,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/plugins/ReshapedMethods.h:
 
+/usr/include/opencv4/opencv2/flann/general.h:
+
 /usr/include/c++/12/cerrno:
 
 /usr/include/c++/12/cstddef:
@@ -6426,6 +7031,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/bits/stl_tempbuf.h:
 
 /usr/include/c++/12/cstdlib:
+
+/usr/include/opencv4/opencv2/core/cuda_types.hpp:
 
 /usr/include/c++/12/bits/ptr_traits.h:
 
@@ -6452,6 +7059,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/bits/concept_check.h:
 
 /usr/include/c++/12/bits/fs_ops.h:
+
+/usr/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp:
 
 /usr/include/c++/12/debug/debug.h:
 
@@ -6545,6 +7154,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/aarch64-linux-gnu/bits/uio_lim.h:
 
+/usr/include/opencv4/opencv2/stitching.hpp:
+
 /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h:
 
 /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h:
@@ -6579,6 +7190,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/mask_array.h:
 
+/usr/include/opencv4/opencv2/core/affine.hpp:
+
 /usr/include/c++/12/bits/fstream.tcc:
 
 /usr/include/eigen3/Eigen/src/Core/MathFunctionsImpl.h:
@@ -6601,6 +7214,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/unique_ptr.h:
 
+/usr/include/opencv4/opencv2/core/version.hpp:
+
 /usr/include/c++/12/semaphore:
 
 /usr/include/eigen3/Eigen/src/plugins/MatrixCwiseUnaryOps.h:
@@ -6612,6 +7227,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/iosfwd:
 
 /usr/include/semaphore.h:
+
+/usr/include/c++/12/bits/deque.tcc:
 
 /usr/include/aarch64-linux-gnu/bits/types/error_t.h:
 
@@ -6649,6 +7266,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/bits/stl_uninitialized.h:
 
+/usr/include/opencv4/opencv2/objdetect.hpp:
+
 /usr/include/c++/12/bits/streambuf.tcc:
 
 /usr/include/c++/12/bits/stl_bvector.h:
@@ -6684,6 +7303,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/c++/12/type_traits:
 
 /usr/include/c++/12/memory:
+
+/usr/include/opencv4/opencv2/core/traits.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/util/BlasUtil.h:
 
@@ -6801,6 +7422,10 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h:
 
+/usr/include/opencv4/opencv2/flann/dist.h:
+
+/usr/include/opencv4/opencv2/core/persistence.hpp:
+
 /usr/local/include/uWebSockets/WebSocketContext.h:
 
 /home/jules/code/drone/inc/sysMonitoring.hpp:
@@ -6835,6 +7460,10 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/ReturnByValue.h:
 
+/usr/lib/linux/uapi/arm64/asm/sockios.h:
+
+/usr/include/opencv4/opencv2/flann/kmeans_index.h:
+
 /usr/include/eigen3/Eigen/src/Core/CwiseTernaryOp.h:
 
 /usr/include/eigen3/Eigen/src/Core/products/GeneralMatrixVector.h:
@@ -6842,6 +7471,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /home/jules/code/drone/inc/NEO6m.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/util/Macros.h:
+
+/usr/include/opencv4/opencv2/flann/flann_base.hpp:
 
 /usr/include/math.h:
 
@@ -6885,9 +7516,13 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/c++/12/tr1/legendre_function.tcc:
 
+/usr/include/opencv4/opencv2/stitching/detail/warpers.hpp:
+
 /usr/include/eigen3/Eigen/src/Geometry/arch/Geometry_SIMD.h:
 
 /usr/include/c++/12/tr1/poly_laguerre.tcc:
+
+/usr/include/opencv4/opencv2/flann/miniflann.hpp:
 
 /usr/lib/gcc/aarch64-linux-gnu/12/include/arm_neon.h:
 
@@ -6921,6 +7556,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/SolverBase.h:
 
+/usr/include/opencv4/opencv2/core/vsx_utils.hpp:
+
 /usr/include/eigen3/Eigen/src/Core/NumTraits.h:
 
 /usr/include/eigen3/Eigen/src/plugins/CommonCwiseUnaryOps.h:
@@ -6943,6 +7580,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/functors/NullaryFunctors.h:
 
+/usr/include/opencv4/opencv2/video/tracking.hpp:
+
 /usr/include/eigen3/Eigen/src/Core/util/IndexedViewHelper.h:
 
 /usr/include/eigen3/Eigen/src/Core/util/ReshapedHelper.h:
@@ -6962,6 +7601,8 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 /usr/include/eigen3/Eigen/src/plugins/BlockMethods.h:
 
 /usr/include/eigen3/Eigen/src/Core/AssignEvaluator.h:
+
+/usr/include/opencv4/opencv2/core/cvstd.inl.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/DenseStorage.h:
 
@@ -6991,11 +7632,15 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sy
 
 /usr/include/eigen3/Eigen/src/Core/Redux.h:
 
+/usr/include/opencv4/opencv2/flann/composite_index.h:
+
 /usr/include/eigen3/Eigen/src/Core/Swap.h:
 
 /usr/include/eigen3/Eigen/src/Core/CommaInitializer.h:
 
 /usr/include/eigen3/Eigen/src/Core/GeneralProduct.h:
+
+/usr/include/aarch64-linux-gnu/bits/socket.h:
 
 /usr/include/nlohmann/detail/abi_macros.hpp:
 

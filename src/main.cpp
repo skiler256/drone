@@ -112,6 +112,7 @@ int main()
   launch.startGPS();
   launch.startESP();
   launch.startGIMBALL();
+  launch.startTele();
 
   launch.startINS();
   // usleep(20000000);
@@ -119,69 +120,138 @@ int main()
   // launch.startINS();
 
   // launch.pca->setPWM(0, 50);
-
+  launch.gimball->set(CAM_LANDING);
+  usleep(10000000);
   launch.gimball->set(CAM_STAB);
 
   while (true)
   {
+
+    // GIMBALL::config conf = launch.gimball->getConfig();
+    // std::cout << conf.mode << "\n";
     usleep(1000000);
   }
 
   return 0;
 }
 
-// #include <wiringPi.h>
+// #include <opencv2/opencv.hpp>
 // #include <iostream>
+// #include <vector>
+// #include <thread>
+// #include <string>
+// #include <sstream>
+// #include <sys/socket.h>
+// #include <netinet/in.h>
+// #include <unistd.h>
 
-// #define PWM_PIN 23 // WiringPi 26 = BCM GPIO12 (PWM0). Pour GPIO13, utiliser 23.
+// const int PORT = 8080;
+
+// void clientHandler(int clientSocket, cv::VideoCapture &cap)
+// {
+//   std::string header =
+//       "HTTP/1.0 200 OK\r\n"
+//       "Server: DIYDroneMJPEG\r\n"
+//       "Cache-Control: no-cache\r\n"
+//       "Pragma: no-cache\r\n"
+//       "Content-Type: multipart/x-mixed-replace; boundary=frame\r\n\r\n";
+
+//   send(clientSocket, header.c_str(), header.size(), 0);
+
+//   cv::Mat frame;
+//   double vbat = 15.2; // exemple de variable
+//   std::vector<int> jpegParams = {cv::IMWRITE_JPEG_QUALITY, 80};
+
+//   while (true)
+//   {
+//     if (!cap.read(frame))
+//     {
+//       std::cerr << "Erreur lecture frame\n";
+//       break;
+//     }
+
+//     // Ajouter légende
+//     cv::putText(frame, "DIY Drone", {20, 40},
+//                 cv::FONT_HERSHEY_SIMPLEX, 1.0, {0, 255, 0}, 2);
+//     char buf[64];
+//     snprintf(buf, sizeof(buf), "Vbat: %.2f V", vbat);
+//     cv::putText(frame, buf, {20, 80}, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
+
+//     // Encoder en JPEG
+//     std::vector<uchar> jpegBuffer;
+//     cv::imencode(".jpg", frame, jpegBuffer, jpegParams);
+
+//     // Envoyer la frame au client
+//     std::ostringstream oss;
+//     oss << "--frame\r\n"
+//         << "Content-Type: image/jpeg\r\n"
+//         << "Content-Length: " << jpegBuffer.size() << "\r\n\r\n";
+//     send(clientSocket, oss.str().c_str(), oss.str().size(), 0);
+//     send(clientSocket, reinterpret_cast<char *>(jpegBuffer.data()), jpegBuffer.size(), 0);
+//     send(clientSocket, "\r\n", 2, 0);
+//   }
+
+//   close(clientSocket);
+// }
 
 // int main()
 // {
-//   if (wiringPiSetup() == -1)
+//   // Pipeline GStreamer pour caméra NV12
+//   std::string pipeline =
+//       "libcamerasrc ! "
+//       "video/x-raw,width=1920,height=1080,format=NV12,framerate=20/1 ! "
+//       "videoconvert ! video/x-raw,format=BGR ! appsink";
+
+//   cv::VideoCapture cap(pipeline, cv::CAP_GSTREAMER);
+//   if (!cap.isOpened())
 //   {
-//     std::cerr << "WiringPi init failed\n";
+//     std::cerr << "Impossible d'ouvrir la caméra.\n";
 //     return 1;
 //   }
 
-//   pinMode(23, PWM_OUTPUT);
-//   pwmSetMode(PWM_MODE_MS); // Mark-Space
-//   pwmSetClock(384);        // ex: 19.2MHz/384/1000 ≈ 50Hz
-//   pwmSetRange(1000);
+//   std::cout << "Caméra ouverte ! MJPEG serveur sur port " << PORT << "\n";
 
-//   pinMode(26, PWM_OUTPUT);
-//   pwmSetMode(PWM_MODE_MS); // Mark-Space
-//   pwmSetClock(384);        // ex: 19.2MHz/384/1000 ≈ 50Hz
-//   pwmSetRange(1000);
-//   // Centre ≈ 1.5 ms -> 75/1000
-//   pwmWrite(23, 25);
-//   delay(1000);
+//   // Créer socket serveur
+//   int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+//   if (serverSocket == -1)
+//   {
+//     perror("socket");
+//     return 1;
+//   }
+
+//   sockaddr_in serverAddr{};
+//   serverAddr.sin_family = AF_INET;
+//   serverAddr.sin_addr.s_addr = INADDR_ANY;
+//   serverAddr.sin_port = htons(PORT);
+
+//   int opt = 1;
+//   setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+
+//   if (bind(serverSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0)
+//   {
+//     perror("bind");
+//     return 1;
+//   }
+//   if (listen(serverSocket, 5) < 0)
+//   {
+//     perror("listen");
+//     return 1;
+//   }
+
+//   std::cout << "En attente de clients...\n";
+
 //   while (true)
 //   {
-//     for (int i = 45; i <= 85; i += 5)
+//     sockaddr_in clientAddr{};
+//     socklen_t clientLen = sizeof(clientAddr);
+//     int clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientLen);
+//     if (clientSocket >= 0)
 //     {
-//       pwmWrite(26, i);
-//       std::cout << i << std::endl;
-//       // pwmWrite(26, i);
-//       delay(1000);
+//       std::thread(clientHandler, clientSocket, std::ref(cap)).detach();
 //     }
 //   }
-//   return 0;
-// }
 
-// #include "../inc/gpio.hpp"
-// #include <iostream>
-
-// int main()
-// {
-
-//   GPIO gpio;
-//   for (int i = 45; i <= 85; i += 5)
-//   {
-//     gpio.writePWM(26, i);
-//     std::cout << i << std::endl;
-//     // pwmWrite(26, i);
-//     delay(1000);
-//   }
-
+//   cap.release();
+//   close(serverSocket);
 //   return 0;
 // }

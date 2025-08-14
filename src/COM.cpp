@@ -1,7 +1,15 @@
 #include "../inc/COM.hpp"
+#include "../inc/launcher.hpp"
 #include <thread>
 #include <signal.h>
 #include <nlohmann/json.hpp>
+
+#include <string>
+#include <vector>
+#include <sstream>
+#include <sys/socket.h>
+#include <netinet/in.h>
+
 using json = nlohmann::json;
 
 void to_json(json &j, const ESPdata &d)
@@ -87,7 +95,7 @@ void to_json(json &j, const sysMonitoring::sysData &s)
         {"perf", s.perf}};
 }
 
-COM::COM(sysMonitoring &monitoring, const int refreshRate, const int port) : monitoring(monitoring), refreshRate(refreshRate), port(port)
+COM::COM(sysMonitoring &monitoring, launcher &launch, const int refreshRate, const int port) : monitoring(monitoring), launch(launch), refreshRate(refreshRate), port(port)
 {
     std::lock_guard<std::mutex> locka(dataMTX);
     std::lock_guard<std::mutex> lockb(wsMTX);
@@ -124,9 +132,8 @@ void COM::startWS()
                     /* std::cout<< ws << std::endl;*/ },
                            .message = [this](auto *ws, std::string_view message, uWS::OpCode opCode)
                            {
-                    
-                    std::string mess = "ta geule";
-                    ws->send(mess, opCode, false); },
+                               std::cout << message << std::endl;
+                               handleCommand(std::string(message)); },
 
                            .close = [this](auto *ws, int code, std::string_view message)
                            {
@@ -139,6 +146,17 @@ if (listen_socket) {
 
 } })
         .run();
+}
+
+void COM::handleCommand(std::string command)
+{
+    if (command.size() > 3)
+    {
+        std::string ID = command.substr(0, 3);
+        std::string commandCore = command.erase(0, 3);
+        if (ID == "GIM" || launch.gimball)
+            launch.gimball->doCommand(commandCore);
+    }
 }
 
 void COM::aquireData()
@@ -165,6 +183,7 @@ void COM::runCOM()
 {
     startNodeJS();
     std::thread server(&COM::startWS, this);
+    std::thread(&COM::handleVideoClients, this).detach();
 
     while (loop)
     {
@@ -188,6 +207,181 @@ void COM::runCOM()
 
     server.join();
 }
+
+void COM::handleVideoClients()
+{
+
+    std::string pipeline =
+        "libcamerasrc ! "
+        "video/x-raw,width=1280,height=720,format=NV12,framerate=20/1 ! "
+        "videoconvert ! video/x-raw,format=BGR ! appsink";
+
+    cv::VideoCapture cap(pipeline, cv::CAP_GSTREAMER);
+    if (!cap.isOpened())
+        std::cerr << "Impossible d'ouvrir la caméra.\n";
+
+    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+
+    sockaddr_in serverAddr{};
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin_port = htons(9002);
+
+    int opt = 1;
+    setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+
+    bind(serverSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0;
+    listen(serverSocket, 5) < 0;
+
+    std::cout << "En attente de clients VIDEO...\n";
+
+    std::thread(&COM::handleVideoServer, this, std::ref(clientsVideo), std::ref(cap)).detach();
+    while (loop)
+    {
+
+        sockaddr_in clientAddr{};
+        socklen_t clientLen = sizeof(clientAddr);
+        int clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientLen);
+        if (clientSocket >= 0)
+        {
+
+            std::lock_guard<std::mutex> lockB(clientVideo);
+            clientsVideo.push_back(clientSocket);
+            std::string header =
+                "HTTP/1.0 200 OK\r\n"
+                "Server: DIYDroneMJPEG\r\n"
+                "Cache-Control: no-cache\r\n"
+                "Pragma: no-cache\r\n"
+                "Content-Type: multipart/x-mixed-replace; boundary=frame\r\n\r\n";
+
+            send(clientSocket, header.c_str(), header.size(), 0);
+        }
+
+        if (!loop)
+        {
+            cap.release();
+            close(serverSocket);
+            return;
+        }
+    }
+    return;
+}
+
+void COM::handleVideoServer(std::list<int> &clientsVideo, cv::VideoCapture &cap)
+{
+    cv::Mat frame;
+    std::vector<int> jpegParams = {cv::IMWRITE_JPEG_QUALITY, 80};
+
+    // Taille cible (format 16:9)
+    int targetWidth = 1280;
+    int targetHeight = 720;
+
+    while (loop)
+    {
+        if (!cap.read(frame))
+        {
+            std::cout << "Erreur capture caméra\n";
+            continue;
+        }
+
+        // Créer un canvas noir (format fixe)
+        cv::Mat output(targetHeight, targetWidth, frame.type(), cv::Scalar(0, 0, 0));
+
+        // Rotation dynamique
+        cv::Mat rotated;
+        switch (dataSystem.gimball.mode)
+        {
+        // case CAM_STAB: // 90°
+        //     cv::rotate(frame, rotated, cv::ROTATE_90_CLOCKWISE);
+        //     break;
+        // case 2: // 180°
+        //     cv::rotate(frame, rotated, cv::ROTATE_180);
+        //     break;
+        case CAM_STAB: // 270°
+            cv::rotate(frame, rotated, cv::ROTATE_90_COUNTERCLOCKWISE);
+            break;
+        case CAM_LANDING: // 270°
+            cv::rotate(frame, rotated, cv::ROTATE_90_COUNTERCLOCKWISE);
+            break;
+        default:
+            rotated = frame;
+        }
+
+        // Adapter dans le canvas (ratio conservé)
+        double scaleX = (double)targetWidth / rotated.cols;
+        double scaleY = (double)targetHeight / rotated.rows;
+        double scale = std::min(scaleX, scaleY); // on garde le ratio
+
+        cv::Mat resized;
+        cv::resize(rotated, resized, cv::Size(), scale, scale);
+
+        // Calcul position pour centrer
+        int x = (targetWidth - resized.cols) / 2;
+        int y = (targetHeight - resized.rows) / 2;
+
+        // Copier dans le canvas
+        resized.copyTo(output(cv::Rect(x, y, resized.cols, resized.rows)));
+
+        // Ajouter la légende (toujours au même endroit du canvas)
+        {
+            std::lock_guard<std::mutex> lock(dataMTX);
+
+            char buf[64];
+            snprintf(buf, sizeof(buf), "Vbat: %.2f V", dataSystem.state3D.att(2));
+            cv::putText(output, buf, {20, 80}, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
+
+            int cx = frame.cols / 2;
+            int cy = frame.rows / 2;
+            int crossSize = 20; // longueur des bras en pixels
+            int thickness = 2;
+            cv::line(output, cv::Point(cx - crossSize, cy), cv::Point(cx + crossSize, cy), {255, 255, 255}, thickness);
+            cv::line(output, cv::Point(cx, cy - crossSize), cv::Point(cx, cy + crossSize), {255, 255, 255}, thickness);
+
+            std::string text = convertToStringAndPrecision(dataSystem.sensor.Tele, 1) + "m";
+            cv::Point textPos(cx + 30, cy + crossSize + 30);
+            cv::putText(output, text, textPos, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
+        }
+
+        // Encoder en JPEG
+        std::vector<uchar> jpegBuffer;
+        cv::imencode(".jpg", output, jpegBuffer, jpegParams);
+
+        // Préparer header HTTP MJPEG
+        std::ostringstream oss;
+        oss << "--frame\r\n"
+            << "Content-Type: image/jpeg\r\n"
+            << "Content-Length: " << jpegBuffer.size() << "\r\n\r\n";
+
+        // Envoi aux clients
+        std::list<int> clientsVideoSUP;
+        for (int i : clientsVideo)
+        {
+            if (
+                send(i, oss.str().c_str(), oss.str().size(), MSG_NOSIGNAL) < 0 ||
+                send(i, reinterpret_cast<char *>(jpegBuffer.data()), jpegBuffer.size(), MSG_NOSIGNAL) < 0 ||
+                send(i, "\r\n", 2, MSG_NOSIGNAL) < 0)
+                clientsVideoSUP.push_back(i);
+        }
+
+        if (!clientsVideoSUP.empty())
+            for (int i : clientsVideoSUP)
+            {
+                close(i);
+                clientsVideo.remove(i);
+            }
+
+        if (!loop)
+        {
+            for (int i : clientsVideo)
+                close(i);
+        }
+    }
+
+    for (int i : clientsVideo)
+        close(i);
+}
+
+// NODE JS SERVER
 
 pid_t node_pid = -1; // processus serveur NodeJS
 
@@ -222,4 +416,11 @@ void killNodeJS()
         std::cout << "node js stop" << std::endl;
         node_pid = -1;
     }
+}
+
+std::string convertToStringAndPrecision(double value, const int precision)
+{
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(precision) << value;
+    return ss.str();
 }

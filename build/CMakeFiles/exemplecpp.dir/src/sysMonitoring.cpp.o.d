@@ -470,12 +470,16 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: \
  /usr/include/GeographicLib/Constants.hpp \
  /usr/include/GeographicLib/Config.h /usr/include/GeographicLib/Math.hpp \
  /home/jules/code/drone/src/../inc/../inc/PCA9685.hpp \
- /usr/include/c++/12/optional /usr/include/c++/12/thread \
- /usr/include/c++/12/stop_token /usr/include/c++/12/bits/std_thread.h \
+ /home/jules/code/drone/src/../inc/../inc/gimball.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/gpio.hpp \
+ /usr/local/include/wiringPi.h /usr/include/c++/12/iostream \
+ /usr/include/c++/12/optional \
+ /home/jules/code/drone/src/../inc/../inc/TF-luna.hpp \
+ /usr/include/c++/12/thread /usr/include/c++/12/stop_token \
+ /usr/include/c++/12/bits/std_thread.h \
  /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/semaphore \
  /usr/include/c++/12/bits/semaphore_base.h \
  /usr/include/c++/12/bits/atomic_timed_wait.h \
  /usr/include/c++/12/bits/this_thread_sleep.h \
  /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
- /usr/include/aarch64-linux-gnu/bits/semaphore.h \
- /usr/include/c++/12/iostream
+ /usr/include/aarch64-linux-gnu/bits/semaphore.h

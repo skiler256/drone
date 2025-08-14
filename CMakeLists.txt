@@ -17,6 +17,8 @@ file(GLOB_RECURSE SOURCES "${SRC_DIR}/*.cpp")
 # Affiche les sources trouvées pour debug
 message(STATUS "Sources trouvées: ${SOURCES}")
 
+
+
 # Inclure les headers
 include_directories(
     ${INC_DIR}
@@ -33,7 +35,10 @@ link_directories(/usr/local/lib)
 # Créer l'exécutable
 add_executable(exemplecpp ${SOURCES})
 
-
+find_package(OpenCV REQUIRED)
+target_include_directories(exemplecpp PRIVATE
+    ${OpenCV_INCLUDE_DIRS}
+)
 target_link_libraries(exemplecpp
     uWS
     z
@@ -43,4 +48,5 @@ target_link_libraries(exemplecpp
     rt
     wiringPi
     GeographicLib
+    ${OpenCV_LIBS}
 )

@@ -133,3 +133,19 @@ socket.addEventListener("message", (event) => {
     document.getElementById("console").innerHTML = sysData.state3D.pos[2];
   console.log("CAP ", sysData.state3D.att);
 });
+
+function switchView(){
+  const videoView = document.getElementById('videoView');
+  if(videoView.style.visibility == 'hidden') videoView.style.visibility ='visible';
+    else videoView.style.visibility = 'hidden';
+
+    const videoLegend= document.getElementById('videoLegend');
+    if(videoLegend.style.visibility == 'hidden') videoLegend.style.visibility ='visible';
+      else videoLegend.style.visibility = 'hidden';
+}
+
+const gimballMode = document.getElementById('gimballMode');
+
+gimballMode.addEventListener('change', function() {
+  socket.send("GIM" +this.value );
+});

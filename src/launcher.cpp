@@ -9,9 +9,9 @@ void launcher::startCOM()
     std::lock_guard<std::mutex> lock(mtx);
     event.emplace();
     if (event)
-        monitoring.emplace(*event, esp, baro, gps, ins, parameters.COMrefreshRate);
+        monitoring.emplace(*event, esp, baro, gps, ins, gimball, tele, parameters.COMrefreshRate);
     if (monitoring)
-        com.emplace(*monitoring, parameters.COMrefreshRate, parameters.COMport);
+        com.emplace(*monitoring, *this, parameters.COMrefreshRate, parameters.COMport);
 
     std::thread a(&sysMonitoring::runSysMonitoring, &(*monitoring));
     std::thread b(&COM::runCOM, &(*com));
@@ -77,5 +77,14 @@ void launcher::startGIMBALL()
         gimball.emplace(*event, gpio, ins, parameters.GIMBALLrate);
         std::thread a(&GIMBALL::runGimball, &(*gimball));
         a.detach();
+    }
+}
+
+void launcher::startTele()
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    if (event)
+    {
+        tele.emplace(*event);
     }
 }

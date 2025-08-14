@@ -3,12 +3,15 @@
 #include <thread>
 #include <iostream>
 
-sysMonitoring::sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<BMP280> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins, const int refreshRate) : event(event),
-                                                                                                                                                                                       esp(esp),
-                                                                                                                                                                                       baro(baro),
-                                                                                                                                                                                       gps(gps),
-                                                                                                                                                                                       ins(ins),
-                                                                                                                                                                                       refreshRate(refreshRate) {}
+sysMonitoring::sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<BMP280> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins,
+                             std::optional<GIMBALL> &gimball, std::optional<TFluna> &tele, const int refreshRate) : event(event),
+                                                                                                                    esp(esp),
+                                                                                                                    baro(baro),
+                                                                                                                    gps(gps),
+                                                                                                                    ins(ins),
+                                                                                                                    gimball(gimball),
+                                                                                                                    tele(tele),
+                                                                                                                    refreshRate(refreshRate) {}
 
 sysMonitoring::~sysMonitoring()
 {
@@ -34,6 +37,12 @@ void sysMonitoring::runSysMonitoring()
 
             if (ins)
                 data.state3D = ins->getState3D();
+            if (gimball)
+                data.gimball = gimball->getConfig();
+
+            if (tele)
+                data.sensor.Tele = tele->getDist();
+
             data.events = event.getEvents();
 
             data.perf.CPUtemp = getCPUTemp();

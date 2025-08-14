@@ -5,6 +5,8 @@
 #include "../inc/INS.hpp"
 #include "../inc/NEO6m.hpp"
 #include "../inc/PCA9685.hpp"
+#include "../inc/gimball.hpp"
+#include "../inc/TF-luna.hpp"
 
 #include <mutex>
 #include <optional>
@@ -13,7 +15,8 @@
 class sysMonitoring
 {
 public:
-    sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<BMP280> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins, const int refreshRate);
+    sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<BMP280> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins,
+                  std::optional<GIMBALL> &gimall, std::optional<TFluna> &tele, const int refreshRate);
     ~sysMonitoring();
     void runSysMonitoring();
 
@@ -22,6 +25,7 @@ public:
         ESPdata esp;
         BMP280::Data baro;
         NEO6m::gpsState gps;
+        double Tele;
     };
     struct PIperf
     {
@@ -34,6 +38,7 @@ public:
         INS::state3D state3D;
         std::map<std::pair<component, subcomponent>, eventManager::eventLog> events;
         PIperf perf;
+        GIMBALL::config gimball;
     };
 
     sysData getData();
@@ -44,6 +49,8 @@ private:
     std::optional<BMP280> &baro;
     std::optional<NEO6m> &gps;
     std::optional<INS> &ins;
+    std::optional<GIMBALL> &gimball;
+    std::optional<TFluna> &tele;
     int refreshRate;
 
     std::mutex mtx;

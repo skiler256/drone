@@ -8,6 +8,7 @@
 #include "../inc/sysMonitoring.hpp"
 #include "../inc/COM.hpp"
 #include "../inc/gimball.hpp"
+#include "../inc/TF-luna.hpp"
 
 #include <optional>
 #include <mutex>
@@ -24,6 +25,7 @@ public:
     void startESP();
     void startGPS();
     void startBARO();
+    void startTele();
 
     void startPCA();
 
@@ -44,6 +46,7 @@ public:
     std::optional<ESP32> esp;
     std::optional<NEO6m> gps;
     std::optional<BMP280> baro;
+    std::optional<TFluna> tele;
 
     std::optional<INS> ins;
 

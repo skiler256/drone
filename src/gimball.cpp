@@ -24,25 +24,35 @@ void GIMBALL::runGimball()
         std::lock_guard<std::mutex> lockb(mtxLoop);
         const auto start = std::chrono::steady_clock::now();
 
-        std::lock_guard<std::mutex> lock(mtx);
-        if (ins)
         {
-            state = ins->getState3D();
-        }
-        switch (mode)
-        {
-        case CAM_STAB:
-            int angle1 = 90 - state.att(0);
-            int angle2 = 90 + state.att(1);
+            std::lock_guard<std::mutex> lock(mtx);
+            if (ins)
+            {
+                state = ins->getState3D();
+            }
+            switch (configCur.mode)
+            {
+            case CAM_STAB:
+            {
+                int angle1 = 90 - state.att(0);
+                int angle2 = 90 + (state.att(1) + offsets[0]);
 
-            if (angle2 > 180)
-                angle2 = 180;
-            else if (angle2 < 80)
-                angle2 = 80;
+                if (angle2 > 180)
+                    angle2 = 180;
+                else if (angle2 < 80)
+                    angle2 = 80;
 
-            setServo1(angle1);
-            setServo2(angle2);
-            break;
+                setServo1(angle1);
+                setServo2(angle2);
+                break;
+            }
+            case CAM_HORIZONTAL:
+            {
+                setServo1(0);
+                setServo2(90 + offsets[1]);
+                break;
+            }
+            }
         }
         const auto end = std::chrono::steady_clock::now();
         int elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
@@ -64,6 +74,8 @@ void GIMBALL::setServo1(int angle)
     else if (angle < 0)
         angle = 0;
 
+    configCur.servo1 = angle;
+
     const int min = 26;
     const int max = 110;
     const int duty = min + (max - min) * angle / 180;
@@ -72,6 +84,12 @@ void GIMBALL::setServo1(int angle)
 }
 void GIMBALL::setServo2(int angle)
 {
+    if (angle < 0)
+        angle = 0;
+    else if (angle > 180)
+        angle = 180;
+
+    configCur.servo2 = angle;
     const int min = 30;
     const int max = 105;
     const int duty = min + (max - min) * angle / 180;
@@ -90,12 +108,12 @@ void GIMBALL::idle()
 void GIMBALL::set(const int MODE, const int value)
 {
     std::lock_guard<std::mutex> lock(mtx);
-    mode = MODE;
-
-    switch (mode)
+    configCur.mode = MODE;
+    idle();
+    switch (configCur.mode)
     {
     case CAM_LANDING:
-        idle();
+
         setServo1(90);
         std::this_thread::sleep_for(std::chrono::milliseconds(400));
         setServo2(180);
@@ -105,4 +123,29 @@ void GIMBALL::set(const int MODE, const int value)
         idle();
         break;
     }
+}
+
+GIMBALL::config GIMBALL::getConfig()
+{
+    std::lock_guard<std::mutex> lock(mtx);
+    return configCur;
+}
+
+void GIMBALL::doCommand(std::string command)
+{
+    const int pas = 5;
+    if (command == "LAND")
+        set(CAM_LANDING);
+    else if (command == "STAB")
+        set(CAM_STAB);
+    else if (command == "HORIZONTAL")
+        set(CAM_HORIZONTAL);
+    else if (command == "UP")
+        offsets[0] -= pas;
+    else if (command == "DOWN")
+        offsets[0] += pas;
+    else if (command == "LEFT")
+        offsets[1] += pas;
+    else if (command == "RIGHT")
+        offsets[1] -= pas;
 }
