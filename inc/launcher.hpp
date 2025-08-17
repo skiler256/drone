@@ -13,10 +13,13 @@
 #include <optional>
 #include <mutex>
 
+class behaviorCenter;
+
 class launcher
 {
 public:
-    launcher();
+    launcher(behaviorCenter &behavior);
+
 
     void startCOM();
 
@@ -30,6 +33,8 @@ public:
     void startPCA();
 
     void startGIMBALL();
+
+    behaviorCenter &behavior;
 
     struct PARAMETERS
     {

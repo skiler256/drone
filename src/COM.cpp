@@ -1,5 +1,6 @@
 #include "../inc/COM.hpp"
 #include "../inc/launcher.hpp"
+#include "../inc/behaviorCenter.hpp"
 #include <thread>
 #include <signal.h>
 #include <nlohmann/json.hpp>
@@ -85,6 +86,17 @@ void to_json(json &j, const sysMonitoring::PIperf &p)
         {"RAMusage", p.RAMusage}};
 }
 
+void to_json(json &j, const sysMonitoring::stateModule &m)
+{
+    j = json{
+        {"INS", m.INS},
+        {"ESP", m.ESP},
+        {"GPS", m.GPS},
+        {"BMP", m.BMP},
+        {"GIM", m.GIM},
+        {"TEL", m.TEL}};
+}
+
 void to_json(json &j, const sysMonitoring::sysData &s)
 {
 
@@ -92,7 +104,8 @@ void to_json(json &j, const sysMonitoring::sysData &s)
         {"sensor", s.sensor},
         {"state3D", s.state3D},
         {"events", stringifyEventLogMap(s.events)},
-        {"perf", s.perf}};
+        {"perf", s.perf},
+        {"module", s.moduleState}};
 }
 
 COM::COM(sysMonitoring &monitoring, launcher &launch, const int refreshRate, const int port) : monitoring(monitoring), launch(launch), refreshRate(refreshRate), port(port)
@@ -112,39 +125,35 @@ COM::~COM()
 
 void COM::startWS()
 {
-    uWS::App({.key_file_name = "misc/key.pem",
-              .cert_file_name = "misc/cert.pem",
-              .passphrase = "1234"})
-        .ws<dataWS>("/*", {/* Settings */
-                           .compression = uWS::CompressOptions(uWS::DEDICATED_COMPRESSOR | uWS::DEDICATED_DECOMPRESSOR),
-                           .maxPayloadLength = 100 * 1024 * 1024,
-                           .idleTimeout = 16,
-                           .maxBackpressure = 100 * 1024 * 1024,
-                           .closeOnBackpressureLimit = false,
-                           .resetIdleTimeoutOnSend = false,
-                           .sendPingsAutomatically = true,
-                           /* Handlers */
-                           .upgrade = nullptr,
-                           .open = [this](auto *ws)
-                           {
-                  std::lock_guard<std::mutex> lock(wsMTX);
-                  clients.push_back(ws);
-                    /* std::cout<< ws << std::endl;*/ },
-                           .message = [this](auto *ws, std::string_view message, uWS::OpCode opCode)
-                           {
-                               std::cout << message << std::endl;
-                               handleCommand(std::string(message)); },
+    uWS::App app({.key_file_name = "misc/key.pem",
+                  .cert_file_name = "misc/cert.pem",
+                  .passphrase = "1234"});
+    sendLoop = uWS::Loop::get();
+    app.ws<dataWS>("/*", {.compression = uWS::CompressOptions(uWS::DEDICATED_COMPRESSOR | uWS::DEDICATED_DECOMPRESSOR),
+                          .maxPayloadLength = 100 * 1024 * 1024,
+                          .idleTimeout = 16,
+                          .maxBackpressure = 100 * 1024 * 1024,
+                          .closeOnBackpressureLimit = false,
+                          .resetIdleTimeoutOnSend = false,
+                          .sendPingsAutomatically = true,
 
-                           .close = [this](auto *ws, int code, std::string_view message)
-                           {
-                  std::lock_guard<std::mutex> lock(wsMTX);
-                  clients.remove(ws); }})
+                          .upgrade = nullptr,
+
+                          .open = [this](auto *ws)
+                          {
+            std::lock_guard<std::mutex> lk(wsMTX);
+            clients.push_back(ws); },
+
+                          .message = [this](auto *ws, std::string_view msg, uWS::OpCode)
+                          { launch.behavior.interpretCommand(msg); },
+
+                          .close = [this](auto *ws, int /*code*/, std::string_view /*message*/)
+                          {
+            std::lock_guard<std::mutex> lk(wsMTX);
+            clients.remove(ws); }})
         .listen(port, [this](auto *listen_socket)
                 {
-if (listen_socket) {
-    listenSocket = listen_socket;
-
-} })
+        if (listen_socket) listenSocket = listen_socket; })
         .run();
 }
 
@@ -167,15 +176,17 @@ void COM::aquireData()
 
 void COM::sendData()
 {
-    std::lock_guard<std::mutex> locka(dataMTX);
-    std::lock_guard<std::mutex> lockb(wsMTX);
-
-    for (auto *client : clients)
+    if (sendLoop)
     {
-
+        sendLoop->defer([this]()
+                        {
+        std::lock_guard<std::mutex> lock(wsMTX);
+        std::lock_guard<std::mutex> lockb(dataMTX);
         json j = dataSystem;
         std::string jsonStr = j.dump();
-        client->send(jsonStr, uWS::TEXT, false);
+        for (auto *client : clients) {
+            client->send(jsonStr, uWS::TEXT, false);
+        } });
     }
 }
 

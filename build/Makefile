@@ -321,6 +321,30 @@ src/USSensor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/USSensor.cpp.s
 .PHONY : src/USSensor.cpp.s
 
+src/behaviorCenter.o: src/behaviorCenter.cpp.o
+.PHONY : src/behaviorCenter.o
+
+# target to build an object file
+src/behaviorCenter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o
+.PHONY : src/behaviorCenter.cpp.o
+
+src/behaviorCenter.i: src/behaviorCenter.cpp.i
+.PHONY : src/behaviorCenter.i
+
+# target to preprocess a source file
+src/behaviorCenter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.i
+.PHONY : src/behaviorCenter.cpp.i
+
+src/behaviorCenter.s: src/behaviorCenter.cpp.s
+.PHONY : src/behaviorCenter.s
+
+# target to generate assembly for a file
+src/behaviorCenter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.s
+.PHONY : src/behaviorCenter.cpp.s
+
 src/eventManager.o: src/eventManager.cpp.o
 .PHONY : src/eventManager.o
 
@@ -498,6 +522,9 @@ help:
 	@echo "... src/USSensor.o"
 	@echo "... src/USSensor.i"
 	@echo "... src/USSensor.s"
+	@echo "... src/behaviorCenter.o"
+	@echo "... src/behaviorCenter.i"
+	@echo "... src/behaviorCenter.s"
 	@echo "... src/eventManager.o"
 	@echo "... src/eventManager.i"
 	@echo "... src/eventManager.s"

@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o.d"
+  "CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o"
+  "CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/gimball.cpp.o"

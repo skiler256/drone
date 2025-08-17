@@ -645,7 +645,9 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: \
  /usr/include/opencv4/opencv2/video.hpp \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
  /usr/include/opencv4/opencv2/video/background_segm.hpp \
- /home/jules/code/drone/src/../inc/launcher.hpp /usr/include/signal.h \
+ /home/jules/code/drone/src/../inc/launcher.hpp \
+ /home/jules/code/drone/src/../inc/behaviorCenter.hpp \
+ /usr/include/signal.h \
  /usr/include/aarch64-linux-gnu/bits/signum-generic.h \
  /usr/include/aarch64-linux-gnu/bits/signum-arch.h \
  /usr/include/aarch64-linux-gnu/bits/types/sig_atomic_t.h \

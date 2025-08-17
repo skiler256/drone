@@ -59,10 +59,10 @@ ESP32::ESP32(eventManager &event, const char *portName)
 
 ESP32::~ESP32()
 {
-  std::lock_guard<std::mutex> lock(mtx);
-
   loop = false;
   std::lock_guard<std::mutex> lockb(mtxLoop);
+  std::lock_guard<std::mutex> lock(mtx);
+  close(SerialPort);
 }
 
 bool ESP32::conect()

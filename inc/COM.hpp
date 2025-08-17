@@ -32,6 +32,7 @@ private:
 
     void startWS();
     void sendData();
+    // static void sendData(struct us_timer_t *t);
     void aquireData();
 
     void handleVideoClients();
@@ -50,6 +51,7 @@ private:
 
     struct us_listen_socket_t *listenSocket = nullptr;
     std::atomic<bool> loop = true;
+    uWS::Loop *sendLoop = nullptr;
 };
 
 std::string convertToStringAndPrecision(double value, const int precision);

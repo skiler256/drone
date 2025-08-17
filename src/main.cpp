@@ -90,7 +90,7 @@
 //   return 0;
 // }
 
-#include "../inc/launcher.hpp"
+#include "../inc/behaviorCenter.hpp"
 
 #include <signal.h>
 
@@ -104,31 +104,10 @@ void handle_sigint(int signum)
 int main()
 {
   signal(SIGINT, handle_sigint);
-  launcher launch;
-
-  launch.startCOM();
-
-  launch.startBARO();
-  launch.startGPS();
-  launch.startESP();
-  launch.startGIMBALL();
-  launch.startTele();
-
-  launch.startINS();
-  // usleep(20000000);
-
-  // launch.startINS();
-
-  // launch.pca->setPWM(0, 50);
-  launch.gimball->set(CAM_LANDING);
-  usleep(10000000);
-  launch.gimball->set(CAM_STAB);
+  behaviorCenter behavior;
 
   while (true)
   {
-
-    // GIMBALL::config conf = launch.gimball->getConfig();
-    // std::cout << conf.mode << "\n";
     usleep(1000000);
   }
 

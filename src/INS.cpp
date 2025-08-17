@@ -181,9 +181,21 @@ void INS::computeZ()
 {
   std::lock_guard<std::mutex> lock(mtxZ);
 
-  double altitude = ((bmpData.temperature + 273.15) / 0.0065) * (pow(basePressure / bmpData.pressure, 0.1903) - 1) + set.baseAltitude;
+  double altitude = ((bmpData.temperature + 273.15) / 0.0065) * (pow(calibration.pressure / bmpData.pressure, 0.1903) - 1) + set.baseAltitude;
   std::cout << altitude << std::endl;
   projGPS.Forward(coord.latitude, coord.longitude, altitude, z(0), z(1), z(2));
+}
+
+void INS::setCalibration(const INS::CALIBRATION &calibration_)
+{
+  std::lock_guard<std::mutex> lock(mtxZ); // ne touche que GPS et BARO
+  calibration = calibration_;
+  projGPS.Reset(calibration.latitude, calibration.longitude, set.baseAltitude);
+}
+
+INS::settings INS::getSettings()
+{
+  return set;
 }
 
 void INS::printData()

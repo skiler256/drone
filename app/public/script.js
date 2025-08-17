@@ -131,7 +131,9 @@ socket.addEventListener("message", (event) => {
     updateDronePOS(sysData.state3D.pos);
 
     document.getElementById("console").innerHTML = sysData.state3D.pos[2];
-  console.log("CAP ", sysData.state3D.att);
+    renderGPS(sysData.sensor.gps);
+    updateModule(sysData.module)
+  console.log("CAP ", sysData.module);
 });
 
 function switchView(){
@@ -149,3 +151,12 @@ const gimballMode = document.getElementById('gimballMode');
 gimballMode.addEventListener('change', function() {
   socket.send("GIM" +this.value );
 });
+
+function updateModule(moduleState){
+  const btClass = document.querySelectorAll(".MODULEbt");
+
+  for(const bt of btClass){
+    if(moduleState[bt.id]) bt.style.backgroundColor = "green";
+    else bt.style.backgroundColor = "red";
+  }
+}

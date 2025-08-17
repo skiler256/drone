@@ -21,6 +21,14 @@ public:
     int NmoyGPScalib = 10;
     double baseAltitude = 120;
   };
+
+  struct CALIBRATION
+  {
+    double pressure = 1013;
+    double latitude = 44.09;
+    double longitude = 0.76;
+  };
+
   struct state3D
   {
     Eigen::Matrix<double, 3, 1> pos;
@@ -47,6 +55,9 @@ public:
   void printData();
   bool doDebug = false;
 
+  void setCalibration(const CALIBRATION &calibration_);
+  settings getSettings();
+
 private:
   eventManager &event;
   ESP32 &esp;
@@ -69,7 +80,7 @@ private:
   // clibration
   Eigen::Matrix<double, 3, 3> calMagMatrix;
   Eigen::Matrix<double, 3, 1> magBiasVec;
-  double basePressure;
+  CALIBRATION calibration;
 
   // Sensor
   Eigen::Matrix<double, 3, 1> calibratedMag;

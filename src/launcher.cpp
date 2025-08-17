@@ -2,7 +2,7 @@
 #include <iostream>
 #include <thread>
 
-launcher::launcher() : gpio() {}
+launcher::launcher(behaviorCenter &behavior) : behavior(behavior), gpio() {}
 
 void launcher::startCOM()
 {

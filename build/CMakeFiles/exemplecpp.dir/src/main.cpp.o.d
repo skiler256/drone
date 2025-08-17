@@ -1,7 +1,8 @@
 CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /home/jules/code/drone/src/main.cpp /usr/include/stdc-predef.h \
- /home/jules/code/drone/src/../inc/launcher.hpp \
- /home/jules/code/drone/src/../inc/../inc/BMP280.hpp \
+ /home/jules/code/drone/src/../inc/behaviorCenter.hpp \
+ /home/jules/code/drone/src/../inc/../inc/launcher.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/BMP280.hpp \
  /usr/include/c++/12/cstdint \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
@@ -175,7 +176,7 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
  /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
  /usr/include/asm-generic/posix_types.h \
- /home/jules/code/drone/src/../inc/../inc/eventManager.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/eventManager.hpp \
  /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
  /usr/include/c++/12/ext/aligned_buffer.h \
  /usr/include/c++/12/bits/node_handle.h \
@@ -201,7 +202,7 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
  /usr/include/c++/12/bits/fstream.tcc \
- /home/jules/code/drone/src/../inc/../inc/ESP32.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/ESP32.hpp \
  /usr/include/termios.h /usr/include/aarch64-linux-gnu/bits/termios.h \
  /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
  /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
@@ -227,8 +228,8 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /usr/lib/linux/uapi/arm64/asm/unistd.h \
  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
  /usr/include/aarch64-linux-gnu/bits/syscall.h \
- /home/jules/code/drone/src/../inc/../inc/INS.hpp \
- /home/jules/code/drone/src/../inc/../inc/../inc/NEO6m.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/INS.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/../inc/NEO6m.hpp \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
@@ -469,14 +470,14 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.o: \
  /usr/include/GeographicLib/Geocentric.hpp \
  /usr/include/GeographicLib/Constants.hpp \
  /usr/include/GeographicLib/Config.h /usr/include/GeographicLib/Math.hpp \
- /home/jules/code/drone/src/../inc/../inc/PCA9685.hpp \
- /home/jules/code/drone/src/../inc/../inc/sysMonitoring.hpp \
- /home/jules/code/drone/src/../inc/../inc/../inc/gimball.hpp \
- /home/jules/code/drone/src/../inc/../inc/../inc/../inc/gpio.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/PCA9685.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/sysMonitoring.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/../inc/gimball.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/../inc/../inc/gpio.hpp \
  /usr/local/include/wiringPi.h /usr/include/c++/12/iostream \
  /usr/include/c++/12/optional \
- /home/jules/code/drone/src/../inc/../inc/../inc/TF-luna.hpp \
- /home/jules/code/drone/src/../inc/../inc/COM.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/../inc/TF-luna.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/COM.hpp \
  /usr/local/include/uWebSockets/App.h /usr/include/c++/12/charconv \
  /usr/include/c++/12/bit /usr/local/include/uWebSockets/HttpContext.h \
  /usr/local/include/uWebSockets/Loop.h \

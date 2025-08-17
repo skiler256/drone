@@ -16,7 +16,7 @@ class sysMonitoring
 {
 public:
     sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<BMP280> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins,
-                  std::optional<GIMBALL> &gimall, std::optional<TFluna> &tele, const int refreshRate);
+                  std::optional<GIMBALL> &gimball, std::optional<TFluna> &tele, const int refreshRate);
     ~sysMonitoring();
     void runSysMonitoring();
 
@@ -32,6 +32,15 @@ public:
         double CPUtemp;
         double RAMusage;
     };
+    struct stateModule
+    {
+        bool INS = false;
+        bool GPS = false;
+        bool ESP = false;
+        bool BMP = false;
+        bool GIM = false;
+        bool TEL = false;
+    };
     struct sysData
     {
         sensorData sensor;
@@ -39,6 +48,7 @@ public:
         std::map<std::pair<component, subcomponent>, eventManager::eventLog> events;
         PIperf perf;
         GIMBALL::config gimball;
+        stateModule moduleState;
     };
 
     sysData getData();
@@ -61,4 +71,6 @@ private:
 
     std::atomic<bool> loop = true;
     std::mutex mtxLoop;
+
+    friend class behaviorCenter;
 };

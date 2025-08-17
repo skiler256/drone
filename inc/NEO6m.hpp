@@ -53,9 +53,9 @@ private:
   uint32_t makeU4(const int cursor);
 
   int SerialPort;
+  eventManager &event;
   const char *portName;
   termios tty;
-  eventManager &event;
 
   std::mutex mtx;
   std::mutex mtxLoop;
