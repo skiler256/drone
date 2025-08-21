@@ -175,45 +175,9 @@ CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o: \
  /usr/lib/linux/uapi/arm64/asm/bitsperlong.h \
  /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
  /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
- /usr/include/asm-generic/posix_types.h \
- /home/jules/code/drone/src/../inc/../inc/../inc/eventManager.hpp \
- /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
- /usr/include/c++/12/ext/aligned_buffer.h \
- /usr/include/c++/12/bits/node_handle.h \
- /usr/include/c++/12/bits/stl_map.h \
- /usr/include/c++/12/bits/stl_multimap.h \
- /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/utility \
- /usr/include/c++/12/bits/stl_relops.h /usr/include/c++/12/fstream \
- /usr/include/c++/12/istream /usr/include/c++/12/ios \
- /usr/include/c++/12/bits/ios_base.h \
- /usr/include/c++/12/bits/locale_classes.h \
- /usr/include/c++/12/bits/locale_classes.tcc \
- /usr/include/c++/12/streambuf /usr/include/c++/12/bits/streambuf.tcc \
- /usr/include/c++/12/bits/basic_ios.h \
- /usr/include/c++/12/bits/locale_facets.h /usr/include/c++/12/cwctype \
- /usr/include/wctype.h /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
- /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h \
- /usr/include/c++/12/bits/streambuf_iterator.h \
- /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
- /usr/include/c++/12/bits/locale_facets.tcc \
- /usr/include/c++/12/bits/basic_ios.tcc /usr/include/c++/12/ostream \
- /usr/include/c++/12/bits/ostream.tcc \
- /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/bits/codecvt.h \
- /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
- /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
- /usr/include/c++/12/bits/fstream.tcc \
- /home/jules/code/drone/src/../inc/../inc/../inc/ESP32.hpp \
- /usr/include/termios.h /usr/include/aarch64-linux-gnu/bits/termios.h \
- /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
- /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
- /usr/include/c++/12/atomic /usr/include/c++/12/bits/atomic_base.h \
+ /usr/include/asm-generic/posix_types.h /usr/include/c++/12/thread \
+ /usr/include/c++/12/stop_token /usr/include/c++/12/atomic \
+ /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
  /usr/include/c++/12/bits/atomic_wait.h /usr/include/c++/12/climits \
  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
@@ -228,6 +192,50 @@ CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o: \
  /usr/lib/linux/uapi/arm64/asm/unistd.h \
  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
  /usr/include/aarch64-linux-gnu/bits/syscall.h \
+ /usr/include/c++/12/bits/std_thread.h \
+ /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/ostream \
+ /usr/include/c++/12/ios /usr/include/c++/12/bits/ios_base.h \
+ /usr/include/c++/12/bits/locale_classes.h \
+ /usr/include/c++/12/bits/locale_classes.tcc \
+ /usr/include/c++/12/streambuf /usr/include/c++/12/bits/streambuf.tcc \
+ /usr/include/c++/12/bits/basic_ios.h \
+ /usr/include/c++/12/bits/locale_facets.h /usr/include/c++/12/cwctype \
+ /usr/include/wctype.h /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h \
+ /usr/include/c++/12/bits/streambuf_iterator.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
+ /usr/include/c++/12/bits/locale_facets.tcc \
+ /usr/include/c++/12/bits/basic_ios.tcc \
+ /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/semaphore \
+ /usr/include/c++/12/bits/semaphore_base.h \
+ /usr/include/c++/12/bits/atomic_timed_wait.h \
+ /usr/include/c++/12/bits/this_thread_sleep.h \
+ /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
+ /usr/include/aarch64-linux-gnu/bits/semaphore.h \
+ /home/jules/code/drone/src/../inc/../inc/../inc/eventManager.hpp \
+ /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
+ /usr/include/c++/12/ext/aligned_buffer.h \
+ /usr/include/c++/12/bits/node_handle.h \
+ /usr/include/c++/12/bits/stl_map.h \
+ /usr/include/c++/12/bits/stl_multimap.h \
+ /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/utility \
+ /usr/include/c++/12/bits/stl_relops.h /usr/include/c++/12/fstream \
+ /usr/include/c++/12/istream /usr/include/c++/12/bits/istream.tcc \
+ /usr/include/c++/12/bits/codecvt.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+ /usr/include/c++/12/bits/fstream.tcc \
+ /home/jules/code/drone/src/../inc/../inc/../inc/ESP32.hpp \
+ /usr/include/termios.h /usr/include/aarch64-linux-gnu/bits/termios.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
  /home/jules/code/drone/src/../inc/../inc/../inc/INS.hpp \
  /home/jules/code/drone/src/../inc/../inc/../inc/../inc/NEO6m.hpp \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
@@ -481,14 +489,7 @@ CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o: \
  /usr/local/include/uWebSockets/App.h /usr/include/c++/12/charconv \
  /usr/include/c++/12/bit /usr/local/include/uWebSockets/HttpContext.h \
  /usr/local/include/uWebSockets/Loop.h \
- /usr/local/include/uWebSockets/LoopData.h /usr/include/c++/12/thread \
- /usr/include/c++/12/stop_token /usr/include/c++/12/bits/std_thread.h \
- /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/semaphore \
- /usr/include/c++/12/bits/semaphore_base.h \
- /usr/include/c++/12/bits/atomic_timed_wait.h \
- /usr/include/c++/12/bits/this_thread_sleep.h \
- /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
- /usr/include/aarch64-linux-gnu/bits/semaphore.h \
+ /usr/local/include/uWebSockets/LoopData.h \
  /usr/local/include/uWebSockets/PerMessageDeflate.h /usr/include/zlib.h \
  /usr/include/zconf.h /usr/local/include/uWebSockets/MoveOnlyFunction.h \
  /usr/include/c++/12/memory \
@@ -644,4 +645,68 @@ CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o: \
  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
  /usr/include/opencv4/opencv2/video.hpp \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
- /usr/include/opencv4/opencv2/video/background_segm.hpp
+ /usr/include/opencv4/opencv2/video/background_segm.hpp \
+ /home/jules/code/drone/src/../inc/../inc/PROCEDURE.hpp \
+ /usr/include/nlohmann/json.hpp /usr/include/c++/12/iterator \
+ /usr/include/c++/12/bits/stream_iterator.h /usr/include/c++/12/numeric \
+ /usr/include/c++/12/bits/stl_numeric.h \
+ /usr/include/c++/12/pstl/glue_numeric_defs.h \
+ /usr/include/nlohmann/adl_serializer.hpp \
+ /usr/include/nlohmann/detail/abi_macros.hpp \
+ /usr/include/nlohmann/detail/conversions/from_json.hpp \
+ /usr/include/c++/12/forward_list /usr/include/c++/12/bits/forward_list.h \
+ /usr/include/c++/12/bits/forward_list.tcc /usr/include/c++/12/valarray \
+ /usr/include/c++/12/bits/valarray_array.h \
+ /usr/include/c++/12/bits/valarray_array.tcc \
+ /usr/include/c++/12/bits/valarray_before.h \
+ /usr/include/c++/12/bits/slice_array.h \
+ /usr/include/c++/12/bits/valarray_after.h \
+ /usr/include/c++/12/bits/gslice.h \
+ /usr/include/c++/12/bits/gslice_array.h \
+ /usr/include/c++/12/bits/mask_array.h \
+ /usr/include/c++/12/bits/indirect_array.h \
+ /usr/include/nlohmann/detail/exceptions.hpp \
+ /usr/include/nlohmann/detail/value_t.hpp \
+ /usr/include/nlohmann/detail/macro_scope.hpp \
+ /usr/include/nlohmann/detail/meta/detected.hpp \
+ /usr/include/nlohmann/detail/meta/void_t.hpp \
+ /usr/include/nlohmann/thirdparty/hedley/hedley.hpp \
+ /usr/include/c++/12/version \
+ /usr/include/nlohmann/detail/string_escape.hpp \
+ /usr/include/nlohmann/detail/input/position_t.hpp \
+ /usr/include/nlohmann/detail/meta/cpp_future.hpp \
+ /usr/include/nlohmann/detail/meta/type_traits.hpp \
+ /usr/include/nlohmann/detail/iterators/iterator_traits.hpp \
+ /usr/include/nlohmann/detail/meta/call_std/begin.hpp \
+ /usr/include/nlohmann/detail/meta/call_std/end.hpp \
+ /usr/include/nlohmann/json_fwd.hpp \
+ /usr/include/nlohmann/detail/string_concat.hpp \
+ /usr/include/nlohmann/detail/meta/identity_tag.hpp \
+ /usr/include/nlohmann/detail/meta/std_fs.hpp \
+ /usr/include/c++/12/filesystem /usr/include/c++/12/bits/fs_fwd.h \
+ /usr/include/c++/12/bits/fs_path.h /usr/include/c++/12/codecvt \
+ /usr/include/c++/12/bits/fs_dir.h /usr/include/c++/12/bits/fs_ops.h \
+ /usr/include/nlohmann/detail/conversions/to_json.hpp \
+ /usr/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+ /usr/include/c++/12/ranges /usr/include/c++/12/span \
+ /usr/include/nlohmann/byte_container_with_subtype.hpp \
+ /usr/include/nlohmann/detail/hash.hpp \
+ /usr/include/nlohmann/detail/input/binary_reader.hpp \
+ /usr/include/nlohmann/detail/input/input_adapters.hpp \
+ /usr/include/nlohmann/detail/input/json_sax.hpp \
+ /usr/include/nlohmann/detail/input/lexer.hpp \
+ /usr/include/nlohmann/detail/meta/is_sax.hpp \
+ /usr/include/nlohmann/detail/input/parser.hpp \
+ /usr/include/nlohmann/detail/iterators/internal_iterator.hpp \
+ /usr/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+ /usr/include/nlohmann/detail/iterators/iter_impl.hpp \
+ /usr/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+ /usr/include/nlohmann/detail/json_pointer.hpp \
+ /usr/include/nlohmann/detail/json_ref.hpp \
+ /usr/include/nlohmann/detail/output/binary_writer.hpp \
+ /usr/include/nlohmann/detail/output/output_adapters.hpp \
+ /usr/include/nlohmann/detail/output/serializer.hpp \
+ /usr/include/nlohmann/detail/conversions/to_chars.hpp \
+ /usr/include/nlohmann/ordered_map.hpp /usr/include/c++/12/any \
+ /usr/include/nlohmann/detail/macro_unscope.hpp \
+ /usr/include/nlohmann/thirdparty/hedley/hedley_undef.hpp

@@ -12,12 +12,6 @@ void launcher::startCOM()
         monitoring.emplace(*event, esp, baro, gps, ins, gimball, tele, parameters.COMrefreshRate);
     if (monitoring)
         com.emplace(*monitoring, *this, parameters.COMrefreshRate, parameters.COMport);
-
-    std::thread a(&sysMonitoring::runSysMonitoring, &(*monitoring));
-    std::thread b(&COM::runCOM, &(*com));
-
-    a.detach();
-    b.detach();
 }
 
 void launcher::startBARO()
@@ -32,8 +26,6 @@ void launcher::startESP()
     if (event)
     {
         esp.emplace(*event);
-        std::thread a(&ESP32::runESP32, &(*esp));
-        a.detach();
     }
 }
 void launcher::startGPS()
@@ -42,8 +34,6 @@ void launcher::startGPS()
     if (event)
     {
         gps.emplace(*event);
-        std::thread a(&NEO6m::runNEO6m, &(*gps));
-        a.detach();
     }
 }
 
@@ -53,8 +43,6 @@ void launcher::startINS()
     if (event && esp && baro && gps)
     {
         ins.emplace(*event, *esp, *baro, *gps, parameters.insSettings);
-        std::thread a(&INS::runINS, &(*ins));
-        a.detach();
     }
 }
 
@@ -75,8 +63,6 @@ void launcher::startGIMBALL()
     if (event)
     {
         gimball.emplace(*event, gpio, ins, parameters.GIMBALLrate);
-        std::thread a(&GIMBALL::runGimball, &(*gimball));
-        a.detach();
     }
 }
 

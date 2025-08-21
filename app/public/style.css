@@ -172,3 +172,61 @@ body {
     height: 60px;
     /* ou 100% si tu veux que ça remplisse verticalement */
 }
+
+#pageDIV {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: ; */
+    z-index: 2;
+    height: fit-content;
+    width: fit-content;
+    visibility: hidden;
+}
+
+.INSparamDIV {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 6px 0;
+    padding: 8px 12px;
+    background-color: #111;
+    border: 2px solid #555;
+    border-radius: 2px;
+    font-family: monospace;
+}
+
+
+.INSparamDIV h4 {
+    margin: 2vh;
+    font-size: 17px;
+    font-weight: normal;
+    color: #c0c0c0;
+
+}
+
+.INSparamDIV input.INSparamBt {
+    width: 80px;
+    padding: 3px 5px;
+    font-size: 13px;
+    border: 1px solid #555;
+    background-color: #111;
+    color: #c0c0c0;
+    border-radius: 0;
+
+    outline: none;
+}
+
+.INSparamDIV input.INSparamBt:focus {
+    border-color: #aaa;
+
+}
+
+#pageDIV button {
+    background-color: #111;
+    font-size: larger;
+    color: #c0c0c0;
+    border: 1px solid #555;
+
+}

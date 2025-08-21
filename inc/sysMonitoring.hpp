@@ -70,7 +70,7 @@ private:
     double getRAMUsage();
 
     std::atomic<bool> loop = true;
-    std::mutex mtxLoop;
+    std::thread run;
 
     friend class behaviorCenter;
 };

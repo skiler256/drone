@@ -66,7 +66,7 @@ void eventManager::reportEvent(const event &event)
 
     if (events[{event.comp, event.subcomp}].mess != event.mess || event.severity != eventSeverity::INFO)
     {
-        logTXT << toString(event.comp) << " " << toString(event.subcomp) << " " << toString(event.severity) << " " << event.mess << std::endl;
+        // logTXT << toString(event.comp) << " " << toString(event.subcomp) << " " << toString(event.severity) << " " << event.mess << std::endl;
     }
 
     events[{event.comp, event.subcomp}] = {event.severity, event.mess};

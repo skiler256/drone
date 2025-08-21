@@ -134,13 +134,15 @@ NEO6m::NEO6m(eventManager &event, const char *portName)
 
   write(SerialPort, set_rate, sizeof(set_rate));
   tcdrain(SerialPort);
+
+  run = std::thread(&NEO6m::runNEO6m, this);
 }
 
 NEO6m::~NEO6m()
 {
-  std::lock_guard<std::mutex> lock(mtx);
   loop = false;
-  std::lock_guard<std::mutex> lockb(mtxLoop);
+  if (run.joinable())
+    run.join();
 }
 
 std::string charToHex(char c)
@@ -183,7 +185,6 @@ void NEO6m::runNEO6m()
   unsigned char byte;
   while (loop)
   {
-    std::lock_guard<std::mutex> lockb(mtxLoop);
     int n = read(SerialPort, &byte, 1);
     if (n > 0)
     {
@@ -258,8 +259,6 @@ void NEO6m::runNEO6m()
       // }
       // else paket +=charToHex(byte) + " ";
     }
-    if (!loop)
-      return;
   }
 }
 
@@ -359,7 +358,13 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize)
 NEO6m::coordPaket NEO6m::getGPSCoord()
 {
   std::lock_guard<std::mutex> lock(mtx);
-  return {longitude, latitude};
+  if (gpsFixOk)
+    return {latitude, longitude};
+  else
+  {
+    coordPaket coord;
+    return coord;
+  }
 }
 
 NEO6m::gpsState NEO6m::getGPSState()

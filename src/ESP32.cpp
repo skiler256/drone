@@ -34,6 +34,7 @@ ESP32::ESP32(eventManager &event, const char *portName)
         if (buffer[i] == 0x24 && buffer[i + 1] == 0x09)
         {
           event.reportEvent({component::ESP, subcomponent::serial, eventSeverity::INFO, "port serie ouvert"});
+          run = std::thread(&ESP32::runESP32, this);
           return;
         }
       }
@@ -60,8 +61,8 @@ ESP32::ESP32(eventManager &event, const char *portName)
 ESP32::~ESP32()
 {
   loop = false;
-  std::lock_guard<std::mutex> lockb(mtxLoop);
-  std::lock_guard<std::mutex> lock(mtx);
+  if (run.joinable())
+    run.join();
   close(SerialPort);
 }
 
@@ -152,7 +153,6 @@ void ESP32::runESP32()
 
   while (loop)
   {
-    std::lock_guard<std::mutex> lockb(mtxLoop);
     ESPdata dataBuffer;
     uint8_t buffer[2] = {0x00, 0x00};
 
@@ -190,8 +190,6 @@ void ESP32::runESP32()
         }
       }
     }
-    if (!loop)
-      return;
   }
 }
 

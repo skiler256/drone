@@ -43,7 +43,6 @@ private:
     std::mutex wsMTX;
     std::mutex dataMTX;
     std::mutex clientVideo;
-    std::mutex mtxLoop;
 
     std::list<uWS::WebSocket<false, true, dataWS> *> clients;
     std::list<int> clientsVideo;
@@ -51,6 +50,7 @@ private:
 
     struct us_listen_socket_t *listenSocket = nullptr;
     std::atomic<bool> loop = true;
+    std::thread run;
     uWS::Loop *sendLoop = nullptr;
 };
 

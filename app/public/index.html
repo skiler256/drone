@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="dashboard">
+    <div class="dashboard" style="position: absolute; z-index: 1;">
         <div class="panel">
 
             <p id="console"></p>
@@ -29,9 +29,9 @@
                 <div id="satIcons"></div>
                 <canvas id="satsCanva" width="auto" height="auto"></canvas>
             </div>
-            <div><button class="INSbutton">Calibrer<br>GPS</button>
-                <button class="INSbutton">Calibrer<br>Alt.</button>
-                <button class="INSbutton">Parametres<br>INS</button>
+            <div><button class="INSbutton" id="calZbt" onclick="socket.send('PROCALZ');">Calibrer<br>GPS/Alt.</button>
+                <button class="INSbutton" onclick="socket.send('PROUSEINSSAVE');">charger anciens<br>paramètres</button>
+                <button class="INSbutton" onclick="setINS();">Parametres<br>INS</button>
             </div>
         </div>
 
@@ -73,6 +73,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="pageDIV">
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>

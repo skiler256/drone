@@ -6,6 +6,7 @@
 #include <vector>
 
 #include <atomic>
+#include <thread>
 
 std::string charToHex(char c);
 
@@ -18,8 +19,8 @@ public:
 
   struct coordPaket
   {
-    double longitude;
-    double latitude;
+    double latitude = 44;
+    double longitude = 0.7;
   };
 
   struct SatelliteInfo
@@ -58,8 +59,9 @@ private:
   termios tty;
 
   std::mutex mtx;
-  std::mutex mtxLoop;
+
   std::atomic<bool> loop = true;
+  std::thread run;
 
   uint8_t payloadBuffer[1024];
 

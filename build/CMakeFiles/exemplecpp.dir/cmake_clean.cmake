@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o.d"
+  "CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.o"
+  "CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o"

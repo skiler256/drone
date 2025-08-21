@@ -198,19 +198,9 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o: \
  /usr/lib/linux/uapi/arm64/asm/bitsperlong.h \
  /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
  /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
- /usr/include/asm-generic/posix_types.h \
- /home/jules/code/drone/src/../inc/../inc/ESP32.hpp \
- /usr/include/termios.h /usr/include/aarch64-linux-gnu/bits/termios.h \
- /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
- /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
- /usr/include/c++/12/atomic /usr/include/c++/12/bits/atomic_base.h \
+ /usr/include/asm-generic/posix_types.h /usr/include/c++/12/thread \
+ /usr/include/c++/12/stop_token /usr/include/c++/12/atomic \
+ /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
  /usr/include/c++/12/bits/atomic_wait.h /usr/include/c++/12/climits \
  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
@@ -225,6 +215,24 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o: \
  /usr/lib/linux/uapi/arm64/asm/unistd.h \
  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
  /usr/include/aarch64-linux-gnu/bits/syscall.h \
+ /usr/include/c++/12/bits/std_thread.h \
+ /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/semaphore \
+ /usr/include/c++/12/bits/semaphore_base.h \
+ /usr/include/c++/12/bits/atomic_timed_wait.h \
+ /usr/include/c++/12/bits/this_thread_sleep.h \
+ /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
+ /usr/include/aarch64-linux-gnu/bits/semaphore.h \
+ /home/jules/code/drone/src/../inc/../inc/ESP32.hpp \
+ /usr/include/termios.h /usr/include/aarch64-linux-gnu/bits/termios.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
  /home/jules/code/drone/src/../inc/../inc/NEO6m.hpp \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
  /usr/include/c++/12/bits/stl_vector.h \
@@ -466,11 +474,16 @@ CMakeFiles/exemplecpp.dir/src/INS.cpp.o: \
  /usr/include/GeographicLib/Geocentric.hpp \
  /usr/include/GeographicLib/Constants.hpp \
  /usr/include/GeographicLib/Config.h /usr/include/GeographicLib/Math.hpp \
- /usr/include/c++/12/iostream /usr/include/c++/12/thread \
- /usr/include/c++/12/stop_token /usr/include/c++/12/bits/std_thread.h \
- /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/semaphore \
- /usr/include/c++/12/bits/semaphore_base.h \
- /usr/include/c++/12/bits/atomic_timed_wait.h \
- /usr/include/c++/12/bits/this_thread_sleep.h \
- /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
- /usr/include/aarch64-linux-gnu/bits/semaphore.h
+ /usr/include/c++/12/iostream /usr/include/c++/12/iomanip \
+ /usr/include/c++/12/locale \
+ /usr/include/c++/12/bits/locale_facets_nonio.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/12/bits/locale_conv.h \
+ /usr/include/c++/12/bits/quoted_string.h /usr/include/c++/12/random \
+ /usr/include/c++/12/bits/random.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/opt_random.h \
+ /usr/include/c++/12/bits/random.tcc /usr/include/c++/12/numeric \
+ /usr/include/c++/12/bits/stl_numeric.h /usr/include/c++/12/bit \
+ /usr/include/c++/12/pstl/glue_numeric_defs.h

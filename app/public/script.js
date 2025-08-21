@@ -62,7 +62,7 @@ const viewportCanva = document.getElementById('viewport');
 
 const viewport = new THREE.Scene();
 const cameraViewport = new THREE.PerspectiveCamera(45, viewportCanva.width / viewportCanva.height, 0.1, 1000);
-cameraViewport.position.set(14, 14, 9); // vue isométrique
+cameraViewport.position.set(0, 14, 0); // vue isométrique
 cameraViewport.lookAt(0, 0, 0);
 
 const rendererViewport = new THREE.WebGLRenderer({ canvas: viewportCanva });
@@ -108,7 +108,7 @@ function updateAttitudeViewport(att) {
 }
 function updateDronePOS(pos){
   if (!droneModel) return;
-  droneModel.position.set(pos[0],pos[2],pos[1]);
+  droneModel.position.set(pos[0],pos[2],-pos[1]);
 }
 animateViewport();
 
@@ -133,7 +133,24 @@ socket.addEventListener("message", (event) => {
     document.getElementById("console").innerHTML = sysData.state3D.pos[2];
     renderGPS(sysData.sensor.gps);
     updateModule(sysData.module)
-  console.log("CAP ", sysData.module);
+
+const calzBt = document.getElementById('calZbt');
+
+    switch(sysData.state3D.INSstate){
+      case 0:
+      calzBt.style.backgroundColor = "red";
+      break;
+      case 1:
+      calzBt.style.backgroundColor = "orange";
+      break;
+      case 2:
+      calzBt.style.backgroundColor = "green";
+      break;
+
+    }
+
+
+  console.log("CAP ", sysData.sensor);
 });
 
 function switchView(){
@@ -159,4 +176,31 @@ function updateModule(moduleState){
     if(moduleState[bt.id]) bt.style.backgroundColor = "green";
     else bt.style.backgroundColor = "red";
   }
+}
+
+async function setINS(){
+  const pageDIV= document.getElementById("pageDIV");
+  pageDIV.style.visibility = "visible";
+
+  const response = await fetch("INSparam.html");
+  const text = await response.text();
+
+  pageDIV.innerHTML = "";
+  pageDIV.innerHTML = text;
+}
+
+
+function sendINSparam() {
+  let data = {};
+  data.refreshRate = parseInt(document.getElementById("predResfreshRate").value);
+  data.zRefreshRate = parseInt(document.getElementById("zRefreshRate").value);
+  data.alphaHeading = parseFloat(document.getElementById("AlphaHeading").value);
+  data.NGPSattempt = parseInt(document.getElementById("NBgps").value);
+  data.NmoyGPScalib = parseInt(document.getElementById("NBzmoy").value);
+  data.baseAltitude = parseFloat(document.getElementById("baseAlt").value);
+
+  console.log(data);
+
+  socket.send("IPA" + JSON.stringify(data));
+  document.getElementById('pageDIV').style.visibility = 'hidden';
 }

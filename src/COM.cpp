@@ -68,7 +68,8 @@ void to_json(json &j, const INS::state3D &s)
     j = json{
         {"pos", {s.pos(0), s.pos(1), s.pos(2)}},
         {"vel", {s.vel(0), s.vel(1), s.vel(2)}},
-        {"att", {s.att(0), s.att(1), s.att(2)}}};
+        {"att", {s.att(0), s.att(1), s.att(2)}},
+        {"INSstate", s.INSstate}};
 }
 
 void to_json(json &j, const sysMonitoring::sensorData &s)
@@ -112,15 +113,14 @@ COM::COM(sysMonitoring &monitoring, launcher &launch, const int refreshRate, con
 {
     std::lock_guard<std::mutex> locka(dataMTX);
     std::lock_guard<std::mutex> lockb(wsMTX);
+    run = std::thread(&COM::runCOM, this);
 }
 
 COM::~COM()
 {
-    std::lock_guard<std::mutex> locka(dataMTX);
-    std::lock_guard<std::mutex> lockb(wsMTX);
     loop = false;
-    us_listen_socket_close(0, listenSocket);
-    std::lock_guard<std::mutex> lockB(mtxLoop);
+    if (run.joinable())
+        run.join();
 }
 
 void COM::startWS()
@@ -185,6 +185,7 @@ void COM::sendData()
         json j = dataSystem;
         std::string jsonStr = j.dump();
         for (auto *client : clients) {
+            if (client->getUserData()) // ou un flag custom pour "still open"
             client->send(jsonStr, uWS::TEXT, false);
         } });
     }
@@ -198,7 +199,6 @@ void COM::runCOM()
 
     while (loop)
     {
-        std::lock_guard<std::mutex> lock(mtxLoop);
 
         const auto start = std::chrono::steady_clock::now();
 
@@ -212,8 +212,6 @@ void COM::runCOM()
         int remaining_sleep_ms = std::max(0, target_period_ms - elapsed_ms);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
-        if (!loop)
-            return;
     }
 
     server.join();

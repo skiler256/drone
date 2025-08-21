@@ -273,6 +273,30 @@ src/PCA9685.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.s
 .PHONY : src/PCA9685.cpp.s
 
+src/PROCEDURE.o: src/PROCEDURE.cpp.o
+.PHONY : src/PROCEDURE.o
+
+# target to build an object file
+src/PROCEDURE.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.o
+.PHONY : src/PROCEDURE.cpp.o
+
+src/PROCEDURE.i: src/PROCEDURE.cpp.i
+.PHONY : src/PROCEDURE.i
+
+# target to preprocess a source file
+src/PROCEDURE.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.i
+.PHONY : src/PROCEDURE.cpp.i
+
+src/PROCEDURE.s: src/PROCEDURE.cpp.s
+.PHONY : src/PROCEDURE.s
+
+# target to generate assembly for a file
+src/PROCEDURE.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.s
+.PHONY : src/PROCEDURE.cpp.s
+
 src/TF-luna.o: src/TF-luna.cpp.o
 .PHONY : src/TF-luna.o
 
@@ -516,6 +540,9 @@ help:
 	@echo "... src/PCA9685.o"
 	@echo "... src/PCA9685.i"
 	@echo "... src/PCA9685.s"
+	@echo "... src/PROCEDURE.o"
+	@echo "... src/PROCEDURE.i"
+	@echo "... src/PROCEDURE.s"
 	@echo "... src/TF-luna.o"
 	@echo "... src/TF-luna.i"
 	@echo "... src/TF-luna.s"

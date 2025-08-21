@@ -1,29 +1,38 @@
 
+let svgTextSAT = null; // stocke le SVG en mémoire
 
-async function addSatellite(color) {
+// Chargement une seule fois
+async function loadSatSVG() {
+  if (!svgTextSAT) { // si pas encore chargé
     const response = await fetch("texture/satellite.svg");
-    let svgText = await response.text();
-  
-const container = document.getElementById("satIcons");
-container.innerHTML = "";
-
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = svgText;
-  
-    // Récupérer la vraie balise <svg>
-    const svg = wrapper.querySelector("svg");
-    if (!svg) {
-      console.error("SVG non trouvé !");
-      return;
-    }
-  
-    // appliquer couleur et taille
-    svg.style.color = color;       // fonctionne si fill="currentColor" dans SVG
-    svg.style.width = "50px";
-    svg.style.height = "50px";
-  
-    container.appendChild(svg);
+    svgTextSAT = await response.text();
   }
+}
+
+// Ajout d'un satellite
+async function addSatellite(color) {
+  // s'assurer que le SVG est chargé
+  await loadSatSVG();
+
+  const container = document.getElementById("satIcons");
+  container.innerHTML = "";
+
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = svgTextSAT;
+
+  const svg = wrapper.querySelector("svg");
+  if (!svg) {
+    console.error("SVG non trouvé !");
+    return;
+  }
+
+  // appliquer couleur et taille
+  svg.style.color = color; // nécessite fill="currentColor" dans le SVG
+  svg.style.width = "50px";
+  svg.style.height = "50px";
+
+  container.appendChild(svg);
+}
 
 let satChart = null;
 

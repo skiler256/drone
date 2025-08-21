@@ -7,6 +7,8 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
+#include <thread>
+#include <atomic>
 
 #include "eventManager.hpp"
 
@@ -24,12 +26,18 @@ public:
 
   Data getData();
 
+  void runBMP();
+
 private:
   eventManager &event;
   int file;
   uint8_t addr;
+  const char *bus;
   std::mutex mtx;
 
+  Data data;
+
+  void load();
   // Calibration coefficients
   uint16_t dig_T1;
   int16_t dig_T2;
@@ -50,4 +58,7 @@ private:
   static constexpr uint8_t CONFIG = 0xF5;
   static constexpr uint8_t TEMP_REG = 0xFA;
   static constexpr uint8_t PRESS_REG = 0xF7;
+
+  std::atomic<bool> loop = true;
+  std::thread run;
 };

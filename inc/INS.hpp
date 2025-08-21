@@ -34,6 +34,7 @@ public:
     Eigen::Matrix<double, 3, 1> pos;
     Eigen::Matrix<double, 3, 1> vel;
     Eigen::Matrix<double, 3, 1> att;
+    uint8_t INSstate = 0;
   };
   struct Kalman1D
   {
@@ -48,6 +49,28 @@ public:
     double getvelocity();
   };
 
+  struct KalmanLinear
+  {
+    std::chrono::_V2::steady_clock::time_point t;
+    std::mutex mtx;
+
+    Eigen::Matrix<double, 6, 1> x = Eigen::Matrix<double, 6, 1>::Zero();
+
+    Eigen::Matrix<double, 6, 6> getF(double dt);
+    Eigen::Matrix<double, 6, 6> H = Eigen::Matrix<double, 6, 6>::Identity();
+    Eigen::Matrix<double, 6, 3> getB(double dt);
+
+    Eigen::Matrix<double, 6, 6> getQ(double dt);
+    Eigen::Matrix<double, 6, 6> R = Eigen::Matrix<double, 6, 6>::Identity();
+
+    Eigen::Matrix<double, 6, 6> P = Eigen::Matrix<double, 6, 6>::Zero();
+
+    KalmanLinear();
+    void pred(Eigen::Matrix<double, 3, 1> u);
+    void update(Eigen::Matrix<double, 6, 1> z);
+    Eigen::Matrix<double, 6, 1> getX();
+  };
+
   INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::settings &set);
   ~INS();
   void runINS();
@@ -57,6 +80,7 @@ public:
 
   void setCalibration(const CALIBRATION &calibration_);
   settings getSettings();
+  void setSettings(settings set);
 
 private:
   eventManager &event;
@@ -68,6 +92,8 @@ private:
   void computeZ();
   void acquireMPU();
   void acquireZ();
+
+  void linearizeAcc();
 
   // data
   state3D state;
@@ -87,11 +113,13 @@ private:
   Eigen::Matrix<double, 3, 1> z;
   std::chrono::_V2::steady_clock::time_point tz;
   GeographicLib::LocalCartesian projGPS;
+  Eigen::Matrix<double, 3, 1> linearizedAcc;
 
   // filter
   std::chrono::_V2::steady_clock::time_point tMag;
   Eigen::Matrix<double, 3, 1> FilteredCalibratedMag;
   Kalman1D kx, ky, kz;
+  KalmanLinear kalman;
 
   // setting
   settings set;
@@ -100,7 +128,10 @@ private:
   std::mutex mtxDataESP;
   std::mutex mtxState3D;
   std::mutex mtxZ;
-  std::mutex mtxLoop;
 
   std::atomic<bool> loop = true;
+  std::thread run;
+
+  friend class PROCEDURE;
+  friend class behaviorCenter;
 };

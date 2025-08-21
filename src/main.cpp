@@ -93,9 +93,11 @@
 #include "../inc/behaviorCenter.hpp"
 
 #include <signal.h>
+behaviorCenter behavior;
 
 void handle_sigint(int signum)
 {
+  behavior.save();
   killNodeJS();
   std::cout << "\nArret du programme" << std::endl;
   exit(0);
@@ -104,7 +106,7 @@ void handle_sigint(int signum)
 int main()
 {
   signal(SIGINT, handle_sigint);
-  behaviorCenter behavior;
+  behavior;
 
   while (true)
   {
@@ -114,123 +116,46 @@ int main()
   return 0;
 }
 
-// #include <opencv2/opencv.hpp>
+// #include "../inc/behaviorCenter.hpp"
+// #include <fstream>
 // #include <iostream>
-// #include <vector>
-// #include <thread>
-// #include <string>
-// #include <sstream>
-// #include <sys/socket.h>
-// #include <netinet/in.h>
-// #include <unistd.h>
-
-// const int PORT = 8080;
-
-// void clientHandler(int clientSocket, cv::VideoCapture &cap)
-// {
-//   std::string header =
-//       "HTTP/1.0 200 OK\r\n"
-//       "Server: DIYDroneMJPEG\r\n"
-//       "Cache-Control: no-cache\r\n"
-//       "Pragma: no-cache\r\n"
-//       "Content-Type: multipart/x-mixed-replace; boundary=frame\r\n\r\n";
-
-//   send(clientSocket, header.c_str(), header.size(), 0);
-
-//   cv::Mat frame;
-//   double vbat = 15.2; // exemple de variable
-//   std::vector<int> jpegParams = {cv::IMWRITE_JPEG_QUALITY, 80};
-
-//   while (true)
-//   {
-//     if (!cap.read(frame))
-//     {
-//       std::cerr << "Erreur lecture frame\n";
-//       break;
-//     }
-
-//     // Ajouter légende
-//     cv::putText(frame, "DIY Drone", {20, 40},
-//                 cv::FONT_HERSHEY_SIMPLEX, 1.0, {0, 255, 0}, 2);
-//     char buf[64];
-//     snprintf(buf, sizeof(buf), "Vbat: %.2f V", vbat);
-//     cv::putText(frame, buf, {20, 80}, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
-
-//     // Encoder en JPEG
-//     std::vector<uchar> jpegBuffer;
-//     cv::imencode(".jpg", frame, jpegBuffer, jpegParams);
-
-//     // Envoyer la frame au client
-//     std::ostringstream oss;
-//     oss << "--frame\r\n"
-//         << "Content-Type: image/jpeg\r\n"
-//         << "Content-Length: " << jpegBuffer.size() << "\r\n\r\n";
-//     send(clientSocket, oss.str().c_str(), oss.str().size(), 0);
-//     send(clientSocket, reinterpret_cast<char *>(jpegBuffer.data()), jpegBuffer.size(), 0);
-//     send(clientSocket, "\r\n", 2, 0);
-//   }
-
-//   close(clientSocket);
-// }
+// #include <unistd.h> // pour usleep
 
 // int main()
 // {
-//   // Pipeline GStreamer pour caméra NV12
-//   std::string pipeline =
-//       "libcamerasrc ! "
-//       "video/x-raw,width=1920,height=1080,format=NV12,framerate=20/1 ! "
-//       "videoconvert ! video/x-raw,format=BGR ! appsink";
-
-//   cv::VideoCapture cap(pipeline, cv::CAP_GSTREAMER);
-//   if (!cap.isOpened())
+//   std::ofstream file("/home/jules/mesure.txt", std::ios::out | std::ios::trunc);
+//   if (!file.is_open())
 //   {
-//     std::cerr << "Impossible d'ouvrir la caméra.\n";
+//     std::cerr << "Erreur : impossible d'ouvrir le fichier !" << std::endl;
 //     return 1;
 //   }
 
-//   std::cout << "Caméra ouverte ! MJPEG serveur sur port " << PORT << "\n";
-
-//   // Créer socket serveur
-//   int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
-//   if (serverSocket == -1)
-//   {
-//     perror("socket");
-//     return 1;
-//   }
-
-//   sockaddr_in serverAddr{};
-//   serverAddr.sin_family = AF_INET;
-//   serverAddr.sin_addr.s_addr = INADDR_ANY;
-//   serverAddr.sin_port = htons(PORT);
-
-//   int opt = 1;
-//   setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
-
-//   if (bind(serverSocket, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0)
-//   {
-//     perror("bind");
-//     return 1;
-//   }
-//   if (listen(serverSocket, 5) < 0)
-//   {
-//     perror("listen");
-//     return 1;
-//   }
-
-//   std::cout << "En attente de clients...\n";
+//   eventManager event;
+//   ESP32 esp(event);
 
 //   while (true)
 //   {
-//     sockaddr_in clientAddr{};
-//     socklen_t clientLen = sizeof(clientAddr);
-//     int clientSocket = accept(serverSocket, (struct sockaddr *)&clientAddr, &clientLen);
-//     if (clientSocket >= 0)
+//     std::cout << "Acquisition de 500 échantillons..." << std::endl;
+//     for (int i = 0; i < 500; i++)
 //     {
-//       std::thread(clientHandler, clientSocket, std::ref(cap)).detach();
+//       ESPdata data = esp.getData();
+//       file << data.ax << " " << data.ay << " " << data.az << std::endl;
+//       usleep(5000); // 5 ms -> 200 Hz
+//     }
+
+//     file << "# --- Fin d'une série ---" << std::endl;
+//     file.flush();
+
+//     std::cout << "Série terminée. Appuyez sur [Entrée] pour continuer, ou 'q' + [Entrée] pour quitter." << std::endl;
+//     std::string input;
+//     std::getline(std::cin, input);
+//     if (input == "q" || input == "Q")
+//     {
+//       break;
 //     }
 //   }
 
-//   cap.release();
-//   close(serverSocket);
+//   file.close();
+//   std::cout << "Fin du programme." << std::endl;
 //   return 0;
 // }

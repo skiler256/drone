@@ -174,45 +174,9 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: \
  /usr/lib/linux/uapi/arm64/asm/bitsperlong.h \
  /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
  /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
- /usr/include/asm-generic/posix_types.h \
- /home/jules/code/drone/src/../inc/../inc/eventManager.hpp \
- /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
- /usr/include/c++/12/ext/aligned_buffer.h \
- /usr/include/c++/12/bits/node_handle.h \
- /usr/include/c++/12/bits/stl_map.h \
- /usr/include/c++/12/bits/stl_multimap.h \
- /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/utility \
- /usr/include/c++/12/bits/stl_relops.h /usr/include/c++/12/fstream \
- /usr/include/c++/12/istream /usr/include/c++/12/ios \
- /usr/include/c++/12/bits/ios_base.h \
- /usr/include/c++/12/bits/locale_classes.h \
- /usr/include/c++/12/bits/locale_classes.tcc \
- /usr/include/c++/12/streambuf /usr/include/c++/12/bits/streambuf.tcc \
- /usr/include/c++/12/bits/basic_ios.h \
- /usr/include/c++/12/bits/locale_facets.h /usr/include/c++/12/cwctype \
- /usr/include/wctype.h /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
- /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h \
- /usr/include/c++/12/bits/streambuf_iterator.h \
- /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
- /usr/include/c++/12/bits/locale_facets.tcc \
- /usr/include/c++/12/bits/basic_ios.tcc /usr/include/c++/12/ostream \
- /usr/include/c++/12/bits/ostream.tcc \
- /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/bits/codecvt.h \
- /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
- /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
- /usr/include/c++/12/bits/fstream.tcc \
- /home/jules/code/drone/src/../inc/../inc/ESP32.hpp \
- /usr/include/termios.h /usr/include/aarch64-linux-gnu/bits/termios.h \
- /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
- /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
- /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
- /usr/include/c++/12/atomic /usr/include/c++/12/bits/atomic_base.h \
+ /usr/include/asm-generic/posix_types.h /usr/include/c++/12/thread \
+ /usr/include/c++/12/stop_token /usr/include/c++/12/atomic \
+ /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
  /usr/include/c++/12/bits/atomic_wait.h /usr/include/c++/12/climits \
  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
@@ -227,6 +191,50 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: \
  /usr/lib/linux/uapi/arm64/asm/unistd.h \
  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
  /usr/include/aarch64-linux-gnu/bits/syscall.h \
+ /usr/include/c++/12/bits/std_thread.h \
+ /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/ostream \
+ /usr/include/c++/12/ios /usr/include/c++/12/bits/ios_base.h \
+ /usr/include/c++/12/bits/locale_classes.h \
+ /usr/include/c++/12/bits/locale_classes.tcc \
+ /usr/include/c++/12/streambuf /usr/include/c++/12/bits/streambuf.tcc \
+ /usr/include/c++/12/bits/basic_ios.h \
+ /usr/include/c++/12/bits/locale_facets.h /usr/include/c++/12/cwctype \
+ /usr/include/wctype.h /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h \
+ /usr/include/c++/12/bits/streambuf_iterator.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_inline.h \
+ /usr/include/c++/12/bits/locale_facets.tcc \
+ /usr/include/c++/12/bits/basic_ios.tcc \
+ /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/semaphore \
+ /usr/include/c++/12/bits/semaphore_base.h \
+ /usr/include/c++/12/bits/atomic_timed_wait.h \
+ /usr/include/c++/12/bits/this_thread_sleep.h \
+ /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
+ /usr/include/aarch64-linux-gnu/bits/semaphore.h \
+ /home/jules/code/drone/src/../inc/../inc/eventManager.hpp \
+ /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
+ /usr/include/c++/12/ext/aligned_buffer.h \
+ /usr/include/c++/12/bits/node_handle.h \
+ /usr/include/c++/12/bits/stl_map.h \
+ /usr/include/c++/12/bits/stl_multimap.h \
+ /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/utility \
+ /usr/include/c++/12/bits/stl_relops.h /usr/include/c++/12/fstream \
+ /usr/include/c++/12/istream /usr/include/c++/12/bits/istream.tcc \
+ /usr/include/c++/12/bits/codecvt.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+ /usr/include/c++/12/bits/fstream.tcc \
+ /home/jules/code/drone/src/../inc/../inc/ESP32.hpp \
+ /usr/include/termios.h /usr/include/aarch64-linux-gnu/bits/termios.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-struct.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cc.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-baud.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-tcflow.h \
+ /usr/include/aarch64-linux-gnu/bits/termios-misc.h \
  /home/jules/code/drone/src/../inc/../inc/INS.hpp \
  /home/jules/code/drone/src/../inc/../inc/../inc/NEO6m.hpp \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
@@ -480,14 +488,7 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: \
  /usr/local/include/uWebSockets/App.h /usr/include/c++/12/charconv \
  /usr/include/c++/12/bit /usr/local/include/uWebSockets/HttpContext.h \
  /usr/local/include/uWebSockets/Loop.h \
- /usr/local/include/uWebSockets/LoopData.h /usr/include/c++/12/thread \
- /usr/include/c++/12/stop_token /usr/include/c++/12/bits/std_thread.h \
- /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/semaphore \
- /usr/include/c++/12/bits/semaphore_base.h \
- /usr/include/c++/12/bits/atomic_timed_wait.h \
- /usr/include/c++/12/bits/this_thread_sleep.h \
- /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
- /usr/include/aarch64-linux-gnu/bits/semaphore.h \
+ /usr/local/include/uWebSockets/LoopData.h \
  /usr/local/include/uWebSockets/PerMessageDeflate.h /usr/include/zlib.h \
  /usr/include/zconf.h /usr/local/include/uWebSockets/MoveOnlyFunction.h \
  /usr/include/c++/12/memory \

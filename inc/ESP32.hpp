@@ -5,6 +5,8 @@
 #include <termios.h>
 #include <atomic>
 
+#include <thread>
+
 #pragma pack(push, 1) // désactive l'alignement mémoire
 struct ESPdata
 {
@@ -35,9 +37,9 @@ private:
   termios tty;
 
   std::mutex mtx;
-  std::mutex mtxLoop;
 
   bool conect();
 
   std::atomic<bool> loop = true;
+  std::thread run;
 };

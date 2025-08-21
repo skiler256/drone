@@ -208,7 +208,14 @@ CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o: \
  /usr/include/aarch64-linux-gnu/sys/syscall.h \
  /usr/lib/linux/uapi/arm64/asm/unistd.h \
  /usr/lib/linux/uapi/arm64/asm/unistd_64.h \
- /usr/include/aarch64-linux-gnu/bits/syscall.h /usr/include/fcntl.h \
+ /usr/include/aarch64-linux-gnu/bits/syscall.h /usr/include/c++/12/thread \
+ /usr/include/c++/12/stop_token /usr/include/c++/12/bits/std_thread.h \
+ /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/semaphore \
+ /usr/include/c++/12/bits/semaphore_base.h \
+ /usr/include/c++/12/bits/atomic_timed_wait.h \
+ /usr/include/c++/12/bits/this_thread_sleep.h \
+ /usr/include/aarch64-linux-gnu/sys/time.h /usr/include/semaphore.h \
+ /usr/include/aarch64-linux-gnu/bits/semaphore.h /usr/include/fcntl.h \
  /usr/include/aarch64-linux-gnu/bits/fcntl.h \
  /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
  /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \

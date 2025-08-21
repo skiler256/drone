@@ -8,20 +8,20 @@ GIMBALL::GIMBALL(eventManager &event, GPIO &gpio, std::optional<INS> &ins, const
                                                                                                     refreshRate(refreshRate)
 {
     idle();
+    run = std::thread(&GIMBALL::runGimball, this);
 }
 
 GIMBALL::~GIMBALL()
 {
-    std::lock_guard<std::mutex> lock(mtx);
     loop = false;
-    std::lock_guard<std::mutex> lockb(mtxLoop);
+    if (run.joinable())
+        run.join();
 }
 
 void GIMBALL::runGimball()
 {
     while (loop)
     {
-        std::lock_guard<std::mutex> lockb(mtxLoop);
         const auto start = std::chrono::steady_clock::now();
 
         {
@@ -61,8 +61,6 @@ void GIMBALL::runGimball()
         int remaining_sleep_ms = std::max(0, target_period_ms - elapsed_ms);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
-        if (!loop)
-            return;
     }
 }
 

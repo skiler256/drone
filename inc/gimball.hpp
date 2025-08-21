@@ -6,6 +6,7 @@
 #include <mutex>
 #include <atomic>
 #include <optional>
+#include <thread>
 
 #include <string>
 
@@ -43,8 +44,8 @@ private:
     int refreshRate;
 
     std::mutex mtx;
-    std::mutex mtxLoop;
     std::atomic<bool> loop = true;
+    std::thread run;
 
     int mode = 0;
     int offsets[2] = {0, 0};

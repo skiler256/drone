@@ -1,9 +1,27 @@
 #include "BMP280.hpp"
 
 BMP280::BMP280(eventManager &event, uint8_t address, const char *bus)
-    : event(event), file(-1), addr(address)
+    : event(event), file(-1), addr(address), bus(bus)
 {
   std::lock_guard<std::mutex> lock(mtx);
+
+  load();
+  run = std::thread(&BMP280::runBMP, this);
+}
+
+BMP280::~BMP280()
+{
+  loop = false;
+  if (run.joinable())
+    run.join();
+  if (file >= 0)
+  {
+    close(file);
+  }
+}
+
+void BMP280::load()
+{
   file = open(bus, O_RDWR);
   if (ioctl(file, I2C_SLAVE, addr) < 0)
   {
@@ -50,83 +68,96 @@ BMP280::BMP280(eventManager &event, uint8_t address, const char *bus)
   usleep(1000);
 }
 
-BMP280::~BMP280()
+void BMP280::runBMP()
 {
-  std::lock_guard<std::mutex> lock(mtx);
-  if (file >= 0)
+
+  while (loop)
   {
-    close(file);
+    const auto start = std::chrono::steady_clock::now();
+    {
+      std::lock_guard<std::mutex> lock(mtx);
+
+      if (file < 0)
+      {
+        return;
+      }
+
+      uint8_t regT = TEMP_REG;
+      write(file, &regT, 1);
+      usleep(1000);
+
+      char dataT[3];
+      read(file, dataT, sizeof(dataT));
+      int32_t adc_T = ((int32_t)dataT[0] << 12) |
+                      ((int32_t)dataT[1] << 4) |
+                      ((int32_t)dataT[2] >> 4);
+
+      uint8_t regP = PRESS_REG;
+      write(file, &regP, 1);
+      usleep(1000);
+
+      char dataP[3];
+      read(file, dataP, sizeof(dataP));
+      int32_t adc_P = ((int32_t)dataP[0] << 12) |
+                      ((int32_t)dataP[1] << 4) |
+                      ((int32_t)dataP[2] >> 4);
+
+      int32_t var1 = ((((adc_T >> 3) - ((int32_t)dig_T1 << 1))) * ((int32_t)dig_T2)) >> 11;
+      int32_t var2 = (((((adc_T >> 4) - (int32_t)dig_T1) * ((adc_T >> 4) - (int32_t)dig_T1)) >> 12) *
+                      (int32_t)dig_T3) >>
+                     14;
+      t_fine = var1 + var2;
+      double temperature = (t_fine * 5 + 128) / 25600.0;
+
+      int64_t v1 = (int64_t)t_fine - 128000;
+      int64_t v2 = v1 * v1 * (int64_t)dig_P6;
+      v2 += ((v1 * (int64_t)dig_P5) << 17);
+      v2 += ((int64_t)dig_P4 << 35);
+      int64_t p_acc = ((v1 * v1 * (int64_t)dig_P3) >> 8) + ((v1 * (int64_t)dig_P2) << 12);
+      p_acc = ((((int64_t)1 << 47) + p_acc) * (int64_t)dig_P1) >> 33;
+
+      double pressure;
+      if (p_acc == 0)
+      {
+        pressure = 0; // protection div0
+      }
+      else
+      {
+        int64_t p = 1048576 - adc_P;
+        p = (((p << 31) - v2) * 3125) / p_acc;
+        v1 = ((int64_t)dig_P9 * (p >> 13) * (p >> 13)) >> 25;
+        v2 = ((int64_t)dig_P8 * p) >> 19;
+        p = ((p + v1 + v2) >> 8) + ((int64_t)dig_P7 << 4);
+        pressure = (double)p / 25600.0;
+      }
+
+      if (temperature > 50 || temperature < -10 || pressure < 900 || pressure > 1100)
+      {
+        event.reportEvent({component::BMP, subcomponent::computing, eventSeverity::CRITICAL,
+                           "valeur calculee anormale"});
+        file = -1;
+        load();
+      }
+      else
+      {
+        event.reportEvent({component::BMP, subcomponent::computing, eventSeverity::INFO,
+                           "valeur calculee normale"});
+        data = {temperature, pressure};
+      }
+    }
+
+    const auto end = std::chrono::steady_clock::now();
+    int elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+
+    int target_period_ms = static_cast<int>(1000.0 / 4);
+    int remaining_sleep_ms = std::max(0, target_period_ms - elapsed_ms);
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
   }
 }
 
 BMP280::Data BMP280::getData()
 {
   std::lock_guard<std::mutex> lock(mtx);
-
-  if (file < 0)
-  {
-    return {0.0, 0.0};
-  }
-
-  uint8_t regT = TEMP_REG;
-  write(file, &regT, 1);
-  usleep(1000);
-
-  char dataT[3];
-  read(file, dataT, sizeof(dataT));
-  int32_t adc_T = ((int32_t)dataT[0] << 12) |
-                  ((int32_t)dataT[1] << 4) |
-                  ((int32_t)dataT[2] >> 4);
-
-  uint8_t regP = PRESS_REG;
-  write(file, &regP, 1);
-  usleep(1000);
-
-  char dataP[3];
-  read(file, dataP, sizeof(dataP));
-  int32_t adc_P = ((int32_t)dataP[0] << 12) |
-                  ((int32_t)dataP[1] << 4) |
-                  ((int32_t)dataP[2] >> 4);
-
-  int32_t var1 = ((((adc_T >> 3) - ((int32_t)dig_T1 << 1))) * ((int32_t)dig_T2)) >> 11;
-  int32_t var2 = (((((adc_T >> 4) - (int32_t)dig_T1) * ((adc_T >> 4) - (int32_t)dig_T1)) >> 12) *
-                  (int32_t)dig_T3) >>
-                 14;
-  t_fine = var1 + var2;
-  double temperature = (t_fine * 5 + 128) / 25600.0;
-
-  int64_t v1 = (int64_t)t_fine - 128000;
-  int64_t v2 = v1 * v1 * (int64_t)dig_P6;
-  v2 += ((v1 * (int64_t)dig_P5) << 17);
-  v2 += ((int64_t)dig_P4 << 35);
-  int64_t p_acc = ((v1 * v1 * (int64_t)dig_P3) >> 8) + ((v1 * (int64_t)dig_P2) << 12);
-  p_acc = ((((int64_t)1 << 47) + p_acc) * (int64_t)dig_P1) >> 33;
-
-  double pressure;
-  if (p_acc == 0)
-  {
-    pressure = 0; // protection div0
-  }
-  else
-  {
-    int64_t p = 1048576 - adc_P;
-    p = (((p << 31) - v2) * 3125) / p_acc;
-    v1 = ((int64_t)dig_P9 * (p >> 13) * (p >> 13)) >> 25;
-    v2 = ((int64_t)dig_P8 * p) >> 19;
-    p = ((p + v1 + v2) >> 8) + ((int64_t)dig_P7 << 4);
-    pressure = (double)p / 25600.0;
-  }
-
-  if (temperature > 50 || temperature < -10 || pressure < 900 || pressure > 1100)
-  {
-    event.reportEvent({component::BMP, subcomponent::computing, eventSeverity::CRITICAL,
-                       "valeur calculee anormale"});
-  }
-  else
-  {
-    event.reportEvent({component::BMP, subcomponent::computing, eventSeverity::INFO,
-                       "valeur calculee normale"});
-  }
-
-  return {temperature, pressure};
+  return data;
 }

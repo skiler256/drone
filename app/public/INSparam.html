@@ -1,0 +1,26 @@
+<div class="INSparamDIV">
+    <h4>Nb. échantillons de calibration </h4>
+    <input type="text" class="INSparamBt" id="NBzmoy" value="10">
+</div>
+<div class="INSparamDIV">
+    <h4>Nb. tentative GPS </h4>
+    <input type="text" class="INSparamBt" id="NBgps" value="500">
+</div>
+<div class="INSparamDIV">
+    <h4>Coef. alpha post-filtre IIR CAP </h4>
+    <input type="text" class="INSparamBt" id="AlphaHeading" value="0.5">
+</div>
+<div class="INSparamDIV">
+    <h4>Altitude de base (m) </h4>
+    <input type="text" class="INSparamBt" id="baseAlt" value="120">
+</div>
+<div class="INSparamDIV">
+    <h4>Fréquence de prédiction </h4>
+    <input type="text" class="INSparamBt" id="predResfreshRate" value="200">
+</div>
+<div class="INSparamDIV">
+    <h4>Fréqeunce de mise à jour </h4>
+    <input type="text" class="INSparamBt" id="zRefreshRate" value="1">
+</div>
+<button onclick="document.getElementById('pageDIV').style.visibility = 'hidden';">Annuler</button>
+<button onclick="sendINSparam();">Envoyer</button>
