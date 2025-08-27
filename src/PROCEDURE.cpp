@@ -9,7 +9,7 @@ void PROCEDURE::calibrateZ()
     {
         if (launch.ins->state.INSstate != 1)
         {
-            INS::CALIBRATION calibration;
+            INS::CALIBRATION calibration{0, 0, 0};
             INS::settings set = launch.ins->getSettings();
 
             launch.ins->state.INSstate = 1;
@@ -45,6 +45,7 @@ void PROCEDURE::calibrateZ()
 
             launch.ins->setCalibration(calibration);
             dataSave.INScal = calibration;
+            save();
 
             launch.ins->state.INSstate = 2;
         }

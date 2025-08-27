@@ -69,6 +69,7 @@ void to_json(json &j, const INS::state3D &s)
         {"pos", {s.pos(0), s.pos(1), s.pos(2)}},
         {"vel", {s.vel(0), s.vel(1), s.vel(2)}},
         {"att", {s.att(0), s.att(1), s.att(2)}},
+        {"accNED", {s.accNED(0), s.accNED(1), s.accNED(2)}},
         {"INSstate", s.INSstate}};
 }
 

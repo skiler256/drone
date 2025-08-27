@@ -1,4 +1,5 @@
 #include "../inc/ESP32.hpp"
+#include "../inc/INS.hpp"
 #include <chrono>
 #include <cstdint>
 #include <fcntl.h>
@@ -9,8 +10,8 @@
 #include <unistd.h>
 #include <cstring>
 
-ESP32::ESP32(eventManager &event, const char *portName)
-    : event(event), portName(portName)
+ESP32::ESP32(eventManager &event, std::optional<INS> &ins, const char *portName)
+    : event(event), ins(ins), portName(portName)
 {
   std::lock_guard<std::mutex> lock(mtx);
   uint8_t buffer[200];
@@ -185,6 +186,8 @@ void ESP32::runESP32()
         case 0x02:
         {
           event.reportEvent({component::ESP, subcomponent::parser, eventSeverity::INFO, "reception d un paquet"});
+          if (ins)
+            ins->updateMPU(data);
           break;
         }
         }

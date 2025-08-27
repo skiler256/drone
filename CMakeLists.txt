@@ -39,13 +39,13 @@ include_directories(
 
 # Ajouter le dossier contenant uSockets.a
 link_directories(/usr/local/lib)
-
+link_directories(/usr/include)
 # Créer l'exécutable
 add_executable(exemplecpp ${SOURCES})
 
 find_package(OpenCV REQUIRED)
 target_include_directories(exemplecpp PRIVATE
-    ${OpenCV_INCLUDE_DIRS}
+    ${OpenCV_INCLUDE_DIRS}s
 )
 target_link_libraries(exemplecpp
     uWS

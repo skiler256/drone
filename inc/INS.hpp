@@ -8,6 +8,10 @@
 #include <eigen3/Eigen/Dense>
 #include <GeographicLib/LocalCartesian.hpp>
 #include <atomic>
+#include <stdint.h>
+#include <optional>
+
+#define NB_vs 2
 
 class INS
 {
@@ -34,6 +38,7 @@ public:
     Eigen::Matrix<double, 3, 1> pos;
     Eigen::Matrix<double, 3, 1> vel;
     Eigen::Matrix<double, 3, 1> att;
+    Eigen::Matrix<double, 3, 1> accNED;
     uint8_t INSstate = 0;
   };
   struct Kalman1D
@@ -57,23 +62,37 @@ public:
     Eigen::Matrix<double, 6, 1> x = Eigen::Matrix<double, 6, 1>::Zero();
 
     Eigen::Matrix<double, 6, 6> getF(double dt);
-    Eigen::Matrix<double, 6, 6> H = Eigen::Matrix<double, 6, 6>::Identity();
     Eigen::Matrix<double, 6, 3> getB(double dt);
 
     Eigen::Matrix<double, 6, 6> getQ(double dt);
-    Eigen::Matrix<double, 6, 6> R = Eigen::Matrix<double, 6, 6>::Identity();
 
     Eigen::Matrix<double, 6, 6> P = Eigen::Matrix<double, 6, 6>::Zero();
 
     KalmanLinear();
     void pred(Eigen::Matrix<double, 3, 1> u);
-    void update(Eigen::Matrix<double, 6, 1> z);
+    void update(Eigen::Matrix<double, 6, 1> z, int hAcc, uint32_t sAcc, double dt);
     Eigen::Matrix<double, 6, 1> getX();
   };
 
-  INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::settings &set);
+  struct HPfilter
+  {
+    double a;
+    double x[2] = {0, 0};
+    double y[2] = {0, 0};
+
+    HPfilter(double dt, double fc);
+    double update(double X);
+  };
+
+  struct IIRfilter
+  {
+    double y = 0;
+    double update(double x, double alpha);
+  };
+
+  INS(eventManager &event, std::optional<BMP280> &bmp, INS::settings &set);
   ~INS();
-  void runINS();
+
   state3D getState3D();
   void printData();
   bool doDebug = false;
@@ -82,17 +101,21 @@ public:
   settings getSettings();
   void setSettings(settings set);
 
+  void updateMPU(ESPdata data);
+  void updateGPS(NEO6m::coordPaket coord, int velNED[3], uint32_t pAcc, uint32_t sAcc);
+  void updataBMP(BMP280::Data data);
+
 private:
   eventManager &event;
-  ESP32 &esp;
-  BMP280 &baro;
-  NEO6m &gps;
+  std::optional<BMP280> &bmp;
+  // setting
+  settings set;
+  Kalman1D kx, ky, kz;
+  HPfilter HPxacc, HPyacc, HPzacc;
+  IIRfilter altIIR;
 
   void computeHeading();
   void computeZ();
-  void acquireMPU();
-  void acquireZ();
-
   void linearizeAcc();
 
   // data
@@ -100,8 +123,6 @@ private:
 
   // raw sensor data
   ESPdata dataESP;
-  NEO6m::coordPaket coord;
-  BMP280::Data bmpData;
 
   // clibration
   Eigen::Matrix<double, 3, 3> calMagMatrix;
@@ -110,27 +131,24 @@ private:
 
   // Sensor
   Eigen::Matrix<double, 3, 1> calibratedMag;
-  Eigen::Matrix<double, 3, 1> z;
-  std::chrono::_V2::steady_clock::time_point tz;
   GeographicLib::LocalCartesian projGPS;
   Eigen::Matrix<double, 3, 1> linearizedAcc;
+  std::chrono::_V2::steady_clock::time_point tz;
+  double prevAlt[NB_vs] = {};
 
   // filter
   std::chrono::_V2::steady_clock::time_point tMag;
   Eigen::Matrix<double, 3, 1> FilteredCalibratedMag;
-  Kalman1D kx, ky, kz;
+  // Kalman1D kx, ky, kz;
   KalmanLinear kalman;
 
   // setting
-  settings set;
+  // settings set;
 
   // mutex
   std::mutex mtxDataESP;
   std::mutex mtxState3D;
   std::mutex mtxZ;
-
-  std::atomic<bool> loop = true;
-  std::thread run;
 
   friend class PROCEDURE;
   friend class behaviorCenter;

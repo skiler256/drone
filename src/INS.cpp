@@ -5,11 +5,14 @@
 #include <thread>
 #include <random>
 
-INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::settings &set)
-    : event(event), esp(esp), baro(baro), gps(gps), set(set),
+INS::INS(eventManager &event, std::optional<BMP280> &bmp, INS::settings &set)
+    : event(event), bmp(bmp), set(set),
       kx(100.0, 800.0),
       ky(100.0, 800.0),
       kz(100.0, 800.0),
+      HPxacc(0.005, 1),
+      HPyacc(0.005, 1),
+      HPzacc(0.005, 1),
       kalman()
 {
 
@@ -24,81 +27,17 @@ INS::INS(eventManager &event, ESP32 &esp, BMP280 &baro, NEO6m &gps, INS::setting
   magBiasVec << 192.046411, -68.294232, 508.612908;
   calMagMatrix << 1.110525, -0.009313, -0.005285, -0.009313, 1.148244, 0.001096,
       -0.005285, 0.001096, 1.207234;
-
-  run = std::thread(&INS::runINS, this);
 }
 
 INS::~INS()
 {
-  loop = false;
-  if (run.joinable())
-    run.join();
 }
 
-void INS::runINS()
-{
-  while (loop)
-  {
-    const auto start = std::chrono::steady_clock::now();
-
-    acquireMPU();
-    computeHeading();
-    linearizeAcc();
-    kalman.pred(linearizedAcc);
-    {
-      std::lock_guard<std::mutex> lock(mtxState3D);
-      auto x = kalman.getX();
-      state.pos << x(0), x(1), x(2);
-      state.vel << x(3), x(4), x(5);
-    }
-
-    if (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - tz).count() >= (1000 / set.zRefreshRate))
-    {
-      tz = std::chrono::steady_clock::now();
-      acquireZ();
-      computeZ();
-      static std::random_device rd;
-      static std::mt19937 gen(rd());
-
-      // Position horizontale dans un cercle de 2.5 m
-      std::uniform_real_distribution<double> dist_angle(0, 2 * M_PI);
-      std::uniform_real_distribution<double> dist_radius(0, 2);
-      double r = dist_radius(gen);
-      double theta = dist_angle(gen);
-      double x = r * cos(theta);
-      double y = r * sin(theta);
-
-      // Position verticale +/- 0.5 m
-      std::uniform_real_distribution<double> dist_z(-0.25, 0.25);
-      double z_pos = dist_z(gen);
-
-      // Vitesse +/- 2 m/s
-      std::uniform_real_distribution<double> dist_vel(-1, 1);
-      double vx = dist_vel(gen);
-      double vy = dist_vel(gen);
-      double vz = dist_vel(gen);
-
-      Eigen::Matrix<double, 6, 1> z;
-      z << x, y, z_pos, vx, vy, vz;
-
-      kalman.update(z);
-    }
-
-    const auto end = std::chrono::steady_clock::now();
-    int elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-
-    int target_period_ms = static_cast<int>(1000.0 / set.refreshRate);
-    int remaining_sleep_ms = std::max(0, target_period_ms - elapsed_ms);
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
-  }
-}
-
-void INS::acquireMPU()
+void INS::updateMPU(ESPdata data)
 {
   {
     std::lock_guard<std::mutex> lock(mtxDataESP);
-    dataESP = esp.getData();
+    dataESP = data;
     event.reportEvent({component::INS, subcomponent::dataLink, eventSeverity::INFO, "reception donne esp32"});
   }
   {
@@ -106,15 +45,84 @@ void INS::acquireMPU()
     state.att(0) = -dataESP.roll;
     state.att(1) = dataESP.pitch;
   }
+
+  computeHeading();
+  linearizeAcc();
+  kalman.pred(linearizedAcc);
+
+  {
+    std::lock_guard<std::mutex> lock(mtxState3D);
+    auto x = kalman.getX();
+    state.pos << x(0), x(1), x(2);
+    state.vel << x(3), x(4), x(5);
+    state.accNED = linearizedAcc;
+  }
 }
 
-void INS::acquireZ()
+void INS::updateGPS(NEO6m::coordPaket coord, int velNED[3], uint32_t pAcc, uint32_t sAcc)
 {
-  std::lock_guard<std::mutex> lock(mtxZ);
+  double alt = set.baseAltitude;
+  Eigen::Matrix<double, 6, 1> z;
+  const double dt = std::chrono::duration_cast<std::chrono::microseconds>(
+                        std::chrono::steady_clock::now() - tz)
+                        .count() *
+                    1e-6;
+  tz = std::chrono::steady_clock::now();
 
-  coord = gps.getGPSCoord();
+  if (bmp)
+  {
+    BMP280::Data bmpData = bmp->getData();
+    alt = ((bmpData.temperature + 273.15) / 0.0065) * (pow(calibration.pressure / bmpData.pressure, 0.1903) - 1) + set.baseAltitude;
+    alt = altIIR.update(alt, 0.5);
+    alt = std::round(alt * 10) / 10;
 
-  bmpData = baro.getData();
+    // for (int i = 0; i < NB_vs - 1; i++)
+    //   prevAlt[i + 1] = prevAlt[i];
+    // prevAlt[0] = alt;
+
+    // double t[NB_vs];
+    // for (int i = 0; i < NB_vs; i++)
+    //   t[i] = dt * (i);
+
+    // double tmoy = 0, ymoy = 0;
+    // for (int i = 0; i < NB_vs; i++)
+    // {
+    //   tmoy += t[i];
+    //   ymoy += prevAlt[i];
+    // }
+    // tmoy /= NB_vs;
+    // ymoy /= NB_vs;
+
+    // double ySUM = 0;
+    // for (int i = 0; i < NB_vs; i++)
+    //   ySUM += (t[i] - tmoy) * (prevAlt[i] - ymoy);
+
+    // double tSum = 0;
+    // for (int i = 0; i < NB_vs; i++)
+    //   tSum += pow((t[i] - tmoy), 2);
+
+    // z(2) = std::round((ySUM / tSum) * 10) / -10;
+
+    // std::cout << "VS mon con : " << z(2) << " " << alt << "\n";
+  }
+
+  projGPS.Forward(coord.latitude, coord.longitude, alt, z(1), z(0), z(2));
+
+  // std::cout << coord.latitude << " " << coord.longitude << " " << alt << "\n";
+
+  z(3) = velNED[0] * 1e-2;
+  z(4) = velNED[1] * 1e-2;
+  z(5) = velNED[2] * 1e-2;
+
+  kalman.update(z, pAcc, sAcc, dt);
+  // state.pos << z(0), z(1), z(2);
+
+  {
+    std::lock_guard<std::mutex> lock(mtxState3D);
+    auto x = kalman.getX();
+    state.pos << x(0), x(1), x(2);
+    state.vel << x(3), x(4), x(5);
+  }
 }
 
 void INS::computeHeading()
@@ -193,15 +201,17 @@ void INS::linearizeAcc()
     rawAcc << dataESP.ax, dataESP.ay, dataESP.az;
   }
 
-  // Eigen::Matrix<double, 3, 1> b;
-  // b << 0.038001, 0.002424, 0.003792;
+  // // Biais combiné
+  // Eigen::Vector3d b;
+  // b << 0.037606, 0.002619, 0.002727;
 
-  // Eigen::Matrix<double, 3, 3> Ainv;
-  // Ainv << 0.997986, 0.000071, 0.000114,
-  //     0.000071, 0.997792, 0.000190,
-  //     0.000114, 0.000190, 0.987754;
+  // // Correction pour scale/misalignment/soft-iron : A^{-1}
+  // Eigen::Matrix3d Ainv;
+  // Ainv << 0.997876, 0.000120, 0.000503,
+  //     0.000120, 0.997789, 0.000197,
+  //     0.000503, 0.000197, 0.988591;
 
-  // rawAcc = Ainv * (rawAcc - b); // Moyen bof ...
+  // rawAcc = Ainv * (rawAcc - b);
 
   {
     std::lock_guard<std::mutex> lockState3D(mtxState3D);
@@ -229,28 +239,22 @@ void INS::linearizeAcc()
   linearizedAcc = linearizedAcc.unaryExpr([](double v)
                                           { return std::round(v * 10.0) / 10.0; });
   linearizedAcc(2) -= 0.1;
+  linearizedAcc(0) = HPxacc.update(linearizedAcc(0));
+  linearizedAcc(1) = HPyacc.update(linearizedAcc(1));
+  linearizedAcc(2) = HPzacc.update(linearizedAcc(2));
 
-  std::cout
-      << std::fixed << std::setprecision(1)
-      << linearizedAcc(0) << " "
-      << linearizedAcc(1) << " "
-      << linearizedAcc(2) << "\n";
-}
-
-void INS::computeZ()
-{
-  std::lock_guard<std::mutex> lock(mtxZ);
-
-  double altitude = ((bmpData.temperature + 273.15) / 0.0065) * (pow(calibration.pressure / bmpData.pressure, 0.1903) - 1) + set.baseAltitude;
-  std::cout << coord.latitude << std::endl;
-  projGPS.Forward(coord.latitude, coord.longitude, altitude, z(0), z(1), z(2));
+  // std::cout
+  //     << std::fixed << std::setprecision(1)
+  //     << linearizedAcc(0) << " "
+  //     << linearizedAcc(1) << " "
+  //     << linearizedAcc(2) << "\n";
 }
 
 void INS::setCalibration(const INS::CALIBRATION &calibration_)
 {
   std::lock_guard<std::mutex> lock(mtxZ); // ne touche que GPS et BARO
   calibration = calibration_;
-  std::cout << set.baseAltitude << "\n";
+  // std::cout << set.baseAltitude << " " << calibration.pressure << " " << calibration.longitude << " " << calibration.pressure << "\n";
   projGPS.Reset(calibration.latitude, calibration.longitude, set.baseAltitude);
 }
 
@@ -272,6 +276,13 @@ void INS::printData()
 {
   std::lock_guard<std::mutex> lock(mtxState3D);
   std::cout << "yaw : " << state.att(2) << "roll : " << state.att(0) << "pitch : " << state.att(1) << std::endl;
+}
+
+INS::state3D INS::getState3D()
+{
+  std::lock_guard<std::mutex> lock(mtxState3D);
+  // state.pos = z; // A ENLEVER!!!
+  return state;
 }
 
 // Kalman 1D :
@@ -311,22 +322,8 @@ void INS::Kalman1D::update(double z, double dt)
 double INS::Kalman1D::getvalue() { return x(0); }
 double INS::Kalman1D::getvelocity() { return x(1); }
 
-INS::state3D INS::getState3D()
-{
-  std::lock_guard<std::mutex> lock(mtxState3D);
-  // state.pos = z; // A ENLEVER!!!
-  return state;
-}
-
 INS::KalmanLinear::KalmanLinear() : t(std::chrono::steady_clock::now())
 {
-
-  R(0, 0) = 0.5 * 0.5; // variance de position X (m²)
-  R(1, 1) = 0.5 * 0.5; // variance Y
-  R(2, 2) = 0.5 * 0.5; // variance Z
-  R(3, 3) = 0.2 * 0.2; // variance vitesse X
-  R(4, 4) = 0.2 * 0.2; // Y
-  R(5, 5) = 0.2 * 0.2; // Z
 }
 
 Eigen::Matrix<double, 6, 6> INS::KalmanLinear::getQ(double dt)
@@ -380,9 +377,26 @@ void INS::KalmanLinear::pred(Eigen::Matrix<double, 3, 1> u)
   P = F * P * F.transpose() + Q;
 }
 
-void INS::KalmanLinear::update(Eigen::Matrix<double, 6, 1> z)
+void INS::KalmanLinear::update(Eigen::Matrix<double, 6, 1> z, int hAcc, uint32_t sAcc, double dt)
 {
   std::lock_guard<std::mutex> lock(mtx);
+
+  Eigen::Matrix<double, 6, 6> R;
+
+  double sigma_Alt = 0.2;
+
+  R.setZero();
+  // Position
+  R(0, 0) = pow(hAcc * 1e-3, 2); // px
+  R(1, 1) = pow(hAcc * 1e-3, 2); // py
+  R(2, 2) = pow(sigma_Alt, 2);   // pz
+  // Vitesse
+  R(3, 3) = pow(sAcc * 1e-3, 2); // vx
+  R(4, 4) = pow(sAcc * 1e-3, 2); // vy
+  // R(5, 5) = (2 * pow(sigma_Alt, 2)) / (pow(dt, 2)); // vz
+  R(5, 5) = pow(sAcc * 1e-3, 2);
+
+  Eigen::Matrix<double, 6, 6> H = Eigen::Matrix<double, 6, 6>::Identity();
 
   Eigen::Matrix<double, 6, 6> S;
   S = H * P * H.transpose() + R;
@@ -393,6 +407,9 @@ void INS::KalmanLinear::update(Eigen::Matrix<double, 6, 1> z)
   Eigen::Matrix<double, 6, 1> y;
   y = z - H * x;
 
+  // double d2 = (y.transpose() * S.ldlt().solve(y))(0, 0);
+
+  // if (d2 <= 11.070)
   x = x + K * y;
 }
 
@@ -400,4 +417,26 @@ Eigen::Matrix<double, 6, 1> INS::KalmanLinear::getX()
 {
   std::lock_guard<std::mutex> lock(mtx);
   return x;
+}
+
+INS::HPfilter::HPfilter(double dt, double fc)
+{
+  double RC = 1 / (2 * M_PI * fc);
+  a = RC / (RC + dt);
+}
+
+double INS::HPfilter::update(double X)
+{
+  x[1] = x[0];
+  x[0] = X;
+  y[1] = y[0];
+
+  y[0] = a * (y[1] + x[0] - x[1]);
+  return y[0];
+}
+
+double INS::IIRfilter::update(double x, double alpha)
+{
+  y = alpha * x + (1 - alpha) * y;
+  return y;
 }

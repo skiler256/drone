@@ -95,7 +95,7 @@ double sysMonitoring::getRAMUsage()
 
     unsigned long usedKB = memTotal - memFree - buffers - cached;
     float usedMB = usedKB / 1024.0;
-    float usedGB = usedMB / 1024.0;
+    // float usedGB = usedMB / 1024.0;
 
     return (double)usedMB;
 }

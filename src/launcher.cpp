@@ -25,7 +25,7 @@ void launcher::startESP()
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        esp.emplace(*event);
+        esp.emplace(*event, ins);
     }
 }
 void launcher::startGPS()
@@ -33,16 +33,16 @@ void launcher::startGPS()
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        gps.emplace(*event);
+        gps.emplace(*event, ins);
     }
 }
 
 void launcher::startINS()
 {
     std::lock_guard<std::mutex> lock(mtx);
-    if (event && esp && baro && gps)
+    if (event)
     {
-        ins.emplace(*event, *esp, *baro, *gps, parameters.insSettings);
+        ins.emplace(*event, baro, parameters.insSettings);
     }
 }
 

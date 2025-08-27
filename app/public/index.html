@@ -16,11 +16,35 @@
             <div id="DIV_message">
                 <input id="message" type="text">
                 <button id="send">envoyer</button>
+                <div class="gauge" id="gauge_TEMP">
+                    <img src="texture/gauge/TEMP.png" class="cadran" alt="">
+                    <img src="texture/gauge/cross.png" class="needle" id="needle_TEMP" alt="">
+                </div>
             </div>
 
         </div>
 
-        <div class="panel" id="horizonContainer">
+        <div class="panel" id="navGaugePanel">
+            <div id="ALTpanel">
+                <div class="gauge" id="gauge_ALT">
+                    <img src="texture/gauge/ALT.png" class="cadran" alt="">
+                    <img src="texture/gauge/cross.png" class="needle" id="needle_ALT" alt="">
+                </div>
+                <div class="gauge" id="gauge_VS">
+                    <img src="texture/gauge/VS.png" class="cadran" alt="">
+                    <img src="texture/gauge/cross.png" class="needle" id="needle_VS" alt="">
+
+                </div>
+            </div>
+            <div class="gauge" id="gauge_ACC">
+                <img src="texture/gauge/ACC.png" class="cadran" alt="">
+                <img src="texture/gauge/ACCcross.png" class="needle" id="needle_ACC" alt="">
+
+            </div>
+
+        </div>
+
+        <div class=" panel" id="horizonContainer">
             <canvas id="horizonCanvas"></canvas>
             <img id="crosshair" src="texture/crosshair.png" />
         </div>
@@ -30,7 +54,8 @@
                 <canvas id="satsCanva" width="auto" height="auto"></canvas>
             </div>
             <div><button class="INSbutton" id="calZbt" onclick="socket.send('PROCALZ');">Calibrer<br>GPS/Alt.</button>
-                <button class="INSbutton" onclick="socket.send('PROUSEINSSAVE');">charger anciens<br>paramètres</button>
+                <button class="INSbutton" onclick="socket.send('PROUSEINSSAVE');">charger
+                    anciens<br>paramètres</button>
                 <button class="INSbutton" onclick="setINS();">Parametres<br>INS</button>
             </div>
         </div>
@@ -80,6 +105,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
 <script src="scriptSATS.js"></script>
 <script src="script.js"></script>
 

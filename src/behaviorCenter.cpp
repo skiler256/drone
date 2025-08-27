@@ -2,6 +2,8 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 saveData dataSave;
+const char *saveFile = "/home/jules/save.drn";
+std::mutex saveMtx;
 
 void from_json(const json &j, INS::settings &s)
 {
@@ -97,6 +99,7 @@ void behaviorCenter::interpretCommand(std::string_view msg)
             json j = json::parse(commandCore);
             INS::settings set = j.get<INS::settings>();
             dataSave.INSsettings = set;
+            save();
             if (launch.ins)
                 launch.ins->setSettings(set);
         }
@@ -115,7 +118,7 @@ uint8_t read(std::ifstream &file, int addr)
     return file.get();
 }
 
-void behaviorCenter::save(saveData data)
+void save(saveData data)
 {
     std::lock_guard<std::mutex> lock(saveMtx);
     std::ofstream file(saveFile, std::ios::trunc);
@@ -132,7 +135,7 @@ void behaviorCenter::save(saveData data)
     file.close();
 }
 
-void behaviorCenter::save()
+void save()
 {
     std::lock_guard<std::mutex> lock(saveMtx);
     std::ofstream file(saveFile, std::ios::trunc);

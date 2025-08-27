@@ -1,4 +1,5 @@
 #include "BMP280.hpp"
+#include "../inc/INS.hpp"
 
 BMP280::BMP280(eventManager &event, uint8_t address, const char *bus)
     : event(event), file(-1), addr(address), bus(bus)

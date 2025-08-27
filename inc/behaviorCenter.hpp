@@ -15,21 +15,21 @@ struct saveData
 };
 extern saveData dataSave;
 
+extern const char *saveFile;
+extern std::mutex saveMtx;
+void save(saveData data);
+void save();
+void save(saveData data);
+
 class behaviorCenter
 {
 public:
     behaviorCenter();
     void interpretCommand(std::string_view msg);
-    void save();
 
 private:
     launcher launch;
     PROCEDURE procedure;
-    const char *saveFile = "/home/jules/save.drn";
-
-    std::mutex saveMtx;
-
-    void save(saveData data);
 
     saveData getSave();
 };

@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
 
+#DIV_message {
+    height: 10vh;
+}
+
 #horizonContainer {
     position: relative;
     width: 100%;
@@ -122,7 +126,6 @@ body {
     bottom: 10%;
 }
 
-#gimballMode {}
 
 .dpad {
     display: flex;
@@ -229,4 +232,76 @@ body {
     color: #c0c0c0;
     border: 1px solid #555;
 
+}
+
+.gauge {
+    margin: 2vh;
+    position: relative;
+}
+
+.gauge img.cadran {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    /* nécessaire pour z-index */
+    z-index: 1;
+    /* cadran en dessous */
+}
+
+.gauge img.needle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 50%;
+    z-index: 2;
+    /* aiguille au-dessus */
+}
+
+
+
+#gauge_TEMP {
+    width: 40%;
+}
+
+#ALTpanel {
+    display: flex;
+    /* active flexbox */
+    flex-direction: row;
+    /* les enfants côte à côte */
+    align-items: center;
+    /* aligne verticalement */
+    justify-content: space-between;
+    /* espace entre eux */
+
+}
+
+#navGaugePanel {
+    grid-column: 1;
+    grid-row: 2/6;
+}
+
+#gauge_ALT {
+    width: 60%;
+}
+
+#gauge_VS {
+    width: 35%;
+}
+
+#gauge_ACC {
+
+    width: 50%;
+
+}
+
+#needle_ACC {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

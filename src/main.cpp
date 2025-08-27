@@ -97,7 +97,7 @@ behaviorCenter behavior;
 
 void handle_sigint(int signum)
 {
-  behavior.save();
+  save();
   killNodeJS();
   std::cout << "\nArret du programme" << std::endl;
   exit(0);
@@ -106,7 +106,7 @@ void handle_sigint(int signum)
 int main()
 {
   signal(SIGINT, handle_sigint);
-  behavior;
+  // behavior;
 
   while (true)
   {

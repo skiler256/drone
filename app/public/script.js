@@ -1,4 +1,4 @@
-alert("lance");
+
 
 let scene, camera, renderer, sphere;
 let textureUrl = "texture/horizon.jpg"; // ← remplace par ton fichier
@@ -80,12 +80,22 @@ loader.load('texture/drone3D.glb', function (gltf) {
     droneModel = gltf.scene;
     droneModel.scale.set(1, 1, 1); // ajuste si besoin
     viewport.add(droneModel);
+        droneModel.traverse((child) => {
+        if (child.isMesh) {
+            // Si le mesh a un matériau, on change sa couleurs
+            if (child.material) {
+                child.material.color.set(0xe8fc03); // Rouge par exemple
+            }
+        }
+    });
 }, undefined, function (error) {
     console.error('Erreur lors du chargement du modèle :', error);
 });
 
 
 const light = new THREE.DirectionalLight(0xffffff, 1);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+viewport.add(ambientLight);
 light.position.set(5, 10, 7);
 viewport.add(light);
 
@@ -112,9 +122,10 @@ function updateDronePOS(pos){
 }
 animateViewport();
 
-const socket = new WebSocket("ws://jean-drone.local:9001/");
+const socket = new WebSocket("ws://192.168.1.31:9001/");
 
 let sysData = {};
+
 
 
 
@@ -150,7 +161,11 @@ const calzBt = document.getElementById('calZbt');
     }
 
 
+    updateGauge(sysData);
+
   console.log("CAP ", sysData.sensor);
+  
+  console.log("state ", sysData.state3D);
 });
 
 function switchView(){
@@ -203,4 +218,33 @@ function sendINSparam() {
 
   socket.send("IPA" + JSON.stringify(data));
   document.getElementById('pageDIV').style.visibility = 'hidden';
+}
+
+function updateGauge(data){
+  const needle_TEMP = document.getElementById("needle_TEMP");
+  gsap.to(needle_TEMP, { rotation: 90+(330*data.perf.CPUtemp/100), duration: 0.5, ease: "power1.out" });
+
+  const needle_VS = document.getElementById("needle_VS");
+  gsap.to(needle_VS, { rotation: 180+(165*data.state3D.vel[2]), duration: 0.5, ease: "power1.out" });
+
+  const needle_ALT = document.getElementById("needle_ALT");
+  gsap.to(needle_ALT, { rotation: 105+(330*data.state3D.pos[2]/10), duration: 0.5, ease: "power1.out" });
+
+  {
+    const gauge = document.getElementById("gauge_ACC");
+    const needle = document.getElementById("needle_ACC");
+    const maxMoveX = gauge.clientWidth / 2;  
+    const maxMoveY = gauge.clientHeight / 2; 
+
+    accX = Math.max(-9.81, Math.min(9.81, data.state3D.accNED[1]));
+    accY = Math.max(-9.81, Math.min(9.81, data.state3D.accNED[0]));
+
+    const x = (accX / 9.81) * maxMoveX;
+    const y = -(accY / 9.81) * maxMoveY;
+
+    // Animer avec GSAP
+    gsap.to(needle, { duration: 0.1, x: x, y: y });
+
+  }
+
 }

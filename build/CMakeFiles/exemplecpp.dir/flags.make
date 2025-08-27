@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/jules/code/drone/inc -I/usr/include/eigen3 -I/usr/local/include/uWebSockets -I/home/jules/libs/websocketpp -I/home/jules/code/drone/external/uWebSockets/uSockets/src -isystem /usr/include/opencv4
+CXX_INCLUDES = -I/home/jules/code/drone/inc -I/usr/include/eigen3 -I/usr/local/include/uWebSockets -I/home/jules/libs/websocketpp -I/home/jules/code/drone/external/uWebSockets/uSockets/src -I/usr/include/opencv4s -isystem /usr/include/opencv4
 
 CXX_FLAGS = -g -O0 -Wall -pthread -std=gnu++20
 
