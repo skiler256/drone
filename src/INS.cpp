@@ -5,7 +5,7 @@
 #include <thread>
 #include <random>
 
-INS::INS(eventManager &event, std::optional<BMP280> &bmp, INS::settings &set)
+INS::INS(eventManager &event, std::optional<MS5611> &bmp, INS::settings &set)
     : event(event), bmp(bmp), set(set),
       kx(100.0, 800.0),
       ky(100.0, 800.0),
@@ -53,7 +53,7 @@ void INS::updateMPU(ESPdata data)
   {
     std::lock_guard<std::mutex> lock(mtxState3D);
     auto x = kalman.getX();
-    state.pos << x(0), x(1), x(2);
+    state.pos << x(0), x(1), currAlt;
     state.vel << x(3), x(4), x(5);
     state.accNED = linearizedAcc;
   }
@@ -71,11 +71,13 @@ void INS::updateGPS(NEO6m::coordPaket coord, int velNED[3], uint32_t pAcc, uint3
 
   if (bmp)
   {
-    BMP280::Data bmpData = bmp->getData();
-    alt = ((bmpData.temperature + 273.15) / 0.0065) * (pow(calibration.pressure / bmpData.pressure, 0.1903) - 1) + set.baseAltitude;
+    MS5611::Data bmpData = bmp->getData();
+    // alt = ((bmpData.temperature + 273.15) / 0.0065) * (pow(calibration.pressure / bmpData.pressure, 0.1903) - 1) + set.baseAltitude;
+    alt = 44330.0 * (1.0 - pow(bmpData.pressure / calibration.pressure, 0.1903)) + set.baseAltitude;
     alt = altIIR.update(alt, 0.5);
     alt = std::round(alt * 10) / 10;
 
+    currAlt = alt - set.baseAltitude;
     // for (int i = 0; i < NB_vs - 1; i++)
     //   prevAlt[i + 1] = prevAlt[i];
     // prevAlt[0] = alt;
@@ -120,7 +122,7 @@ void INS::updateGPS(NEO6m::coordPaket coord, int velNED[3], uint32_t pAcc, uint3
   {
     std::lock_guard<std::mutex> lock(mtxState3D);
     auto x = kalman.getX();
-    state.pos << x(0), x(1), x(2);
+    state.pos << x(0), x(1), currAlt;
     state.vel << x(3), x(4), x(5);
   }
 }
@@ -256,6 +258,7 @@ void INS::setCalibration(const INS::CALIBRATION &calibration_)
   calibration = calibration_;
   // std::cout << set.baseAltitude << " " << calibration.pressure << " " << calibration.longitude << " " << calibration.pressure << "\n";
   projGPS.Reset(calibration.latitude, calibration.longitude, set.baseAltitude);
+  kalman.resetX();
 }
 
 INS::settings INS::getSettings()
@@ -411,6 +414,12 @@ void INS::KalmanLinear::update(Eigen::Matrix<double, 6, 1> z, int hAcc, uint32_t
 
   // if (d2 <= 11.070)
   x = x + K * y;
+}
+
+void INS::KalmanLinear::resetX()
+{
+  std::lock_guard<std::mutex> lock(mtx);
+  x = Eigen::Matrix<double, 6, 1>::Zero();
 }
 
 Eigen::Matrix<double, 6, 1> INS::KalmanLinear::getX()

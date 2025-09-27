@@ -28,6 +28,7 @@ function init() {
         scene.add(sphere);
     });
 
+
     // window.addEventListener('resize', onWindowResize, false);
 }
 
@@ -63,8 +64,9 @@ const viewportCanva = document.getElementById('viewport');
 const viewport = new THREE.Scene();
 const cameraViewport = new THREE.PerspectiveCamera(45, viewportCanva.width / viewportCanva.height, 0.1, 1000);
 cameraViewport.position.set(0, 14, 0); // vue isométrique
-cameraViewport.lookAt(0, 0, 0);
 
+cameraViewport.lookAt(0, 0, 0);
+cameraViewport.rotation.z = Math.PI / -2;
 const rendererViewport = new THREE.WebGLRenderer({ canvas: viewportCanva });
 rendererViewport.setSize(viewportCanva.clientWidth, viewportCanva.clientHeight, false);
 
@@ -84,12 +86,16 @@ loader.load('texture/drone3D.glb', function (gltf) {
         if (child.isMesh) {
             // Si le mesh a un matériau, on change sa couleurs
             if (child.material) {
-                child.material.color.set(0xe8fc03); // Rouge par exemple
+                child.material.color.set(0xFFFFFF); // Rouge par exemple
             }
         }
     });
 }, undefined, function (error) {
     console.error('Erreur lors du chargement du modèle :', error);
+});
+const textureLoader = new THREE.TextureLoader();
+textureLoader.load('texture/fondCiel.jpg', function (texture) {
+  viewport.background = texture;
 });
 
 
@@ -118,7 +124,7 @@ function updateAttitudeViewport(att) {
 }
 function updateDronePOS(pos){
   if (!droneModel) return;
-  droneModel.position.set(pos[0],pos[2],-pos[1]);
+  droneModel.position.set(pos[0],pos[2],pos[1]);
 }
 animateViewport();
 
@@ -246,5 +252,10 @@ function updateGauge(data){
     gsap.to(needle, { duration: 0.1, x: x, y: y });
 
   }
+  const Xcoord = document.getElementById("Xcoord");
+  const Ycoord = document.getElementById("Ycoord");
+
+  Xcoord.innerText = "Nord : " +Math.round( data.state3D.pos[0]* 10)/10 + "m";
+  Ycoord.innerText = "Est : "+ Math.round( data.state3D.pos[1]*10)/10 + "m";
 
 }

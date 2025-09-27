@@ -25,10 +25,11 @@ void to_json(json &j, const ESPdata &d)
         {"az", d.az},
         {"mx", d.mx},
         {"my", d.my},
-        {"mz", d.mz}};
+        {"mz", d.mz},
+        {"distances", {d.distances[0], d.distances[1], d.distances[2], d.distances[3], d.distances[4], d.distances[5]}}};
 }
 
-void to_json(json &j, const BMP280::Data &d)
+void to_json(json &j, const MS5611::Data &d)
 {
     j = json{
         {"temp", d.temperature},
@@ -290,7 +291,7 @@ void COM::handleVideoServer(std::list<int> &clientsVideo, cv::VideoCapture &cap)
     {
         if (!cap.read(frame))
         {
-            std::cout << "Erreur capture caméra\n";
+            // std::cout << "Erreur capture caméra\n";
             continue;
         }
 

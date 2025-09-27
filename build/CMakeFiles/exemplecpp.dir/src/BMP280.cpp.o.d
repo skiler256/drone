@@ -223,6 +223,7 @@ CMakeFiles/exemplecpp.dir/src/BMP280.cpp.o: \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
  /usr/include/c++/12/bits/fstream.tcc \
  /home/jules/code/drone/src/../inc/INS.hpp \
+ /home/jules/code/drone/src/../inc/../inc/MS5611.hpp \
  /home/jules/code/drone/src/../inc/../inc/ESP32.hpp \
  /usr/include/termios.h /usr/include/aarch64-linux-gnu/bits/termios.h \
  /usr/include/aarch64-linux-gnu/bits/termios-struct.h \

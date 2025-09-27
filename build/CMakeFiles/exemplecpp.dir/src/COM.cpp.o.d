@@ -266,19 +266,7 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: \
  /usr/local/include/uWebSockets/WebSocketContextData.h \
  /usr/local/include/uWebSockets/WebSocketContext.h \
  /home/jules/code/drone/src/../inc/../inc/sysMonitoring.hpp \
- /home/jules/code/drone/src/../inc/../inc/../inc/BMP280.hpp \
- /usr/include/fcntl.h /usr/include/aarch64-linux-gnu/bits/fcntl.h \
- /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
- /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
- /usr/include/linux/falloc.h /usr/include/aarch64-linux-gnu/bits/stat.h \
- /usr/include/aarch64-linux-gnu/bits/struct_stat.h \
- /usr/include/aarch64-linux-gnu/sys/ioctl.h \
- /usr/include/aarch64-linux-gnu/bits/ioctls.h \
- /usr/lib/linux/uapi/arm64/asm/ioctls.h /usr/include/asm-generic/ioctls.h \
- /usr/include/linux/ioctl.h /usr/lib/linux/uapi/arm64/asm/ioctl.h \
- /usr/include/asm-generic/ioctl.h \
- /usr/include/aarch64-linux-gnu/bits/ioctl-types.h \
- /usr/include/aarch64-linux-gnu/sys/ttydefaults.h \
+ /home/jules/code/drone/src/../inc/../inc/../inc/MS5611.hpp \
  /usr/include/linux/i2c-dev.h /usr/include/linux/types.h \
  /usr/lib/linux/uapi/arm64/asm/types.h /usr/include/asm-generic/types.h \
  /usr/include/asm-generic/int-ll64.h \
@@ -286,6 +274,18 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: \
  /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
  /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
  /usr/include/asm-generic/posix_types.h \
+ /usr/include/aarch64-linux-gnu/sys/ioctl.h \
+ /usr/include/aarch64-linux-gnu/bits/ioctls.h \
+ /usr/lib/linux/uapi/arm64/asm/ioctls.h /usr/include/asm-generic/ioctls.h \
+ /usr/include/linux/ioctl.h /usr/lib/linux/uapi/arm64/asm/ioctl.h \
+ /usr/include/asm-generic/ioctl.h \
+ /usr/include/aarch64-linux-gnu/bits/ioctl-types.h \
+ /usr/include/aarch64-linux-gnu/sys/ttydefaults.h /usr/include/fcntl.h \
+ /usr/include/aarch64-linux-gnu/bits/fcntl.h \
+ /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/aarch64-linux-gnu/bits/stat.h \
+ /usr/include/aarch64-linux-gnu/bits/struct_stat.h \
  /home/jules/code/drone/src/../inc/../inc/../inc/eventManager.hpp \
  /usr/include/c++/12/fstream /usr/include/c++/12/bits/codecvt.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
@@ -646,6 +646,8 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
  /usr/include/opencv4/opencv2/video/background_segm.hpp \
  /home/jules/code/drone/src/../inc/launcher.hpp \
+ /home/jules/code/drone/src/../inc/../inc/BMP280.hpp \
+ /home/jules/code/drone/src/../inc/../inc/ATm328p.hpp \
  /home/jules/code/drone/src/../inc/behaviorCenter.hpp \
  /home/jules/code/drone/src/../inc/../inc/PROCEDURE.hpp \
  /usr/include/signal.h \

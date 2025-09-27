@@ -17,6 +17,7 @@ struct ESPdata
   double roll = 0.0, pitch = 0.0, yaw = 0.0;
   double ax = 0.0, ay = 0.0, az = 0.0;
   double mx = 0.0, my = 0.0, mz = 0.0;
+  int distances[6] = {};
 };
 #pragma pack(pop)
 

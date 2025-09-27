@@ -34,7 +34,7 @@ void PROCEDURE::calibrateZ()
                 calibration.latitude += coord.latitude;
                 calibration.longitude += coord.longitude;
 
-                BMP280::Data bmp;
+                MS5611::Data bmp;
                 bmp = launch.baro->getData();
 
                 calibration.pressure += bmp.pressure;

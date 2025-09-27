@@ -164,7 +164,7 @@ void ESP32::runESP32()
 
     if (buffer[0] == 0x24 && buffer[1] == 0x09)
     {
-      n = readSafe(SerialPort, reinterpret_cast<uint8_t *>(&dataBuffer), 73);
+      n = readSafe(SerialPort, reinterpret_cast<uint8_t *>(&dataBuffer), 97);
       n = readSafe(SerialPort, reinterpret_cast<uint8_t *>(&buffer), 2);
       if (n != true)
         continue;
@@ -188,6 +188,7 @@ void ESP32::runESP32()
           event.reportEvent({component::ESP, subcomponent::parser, eventSeverity::INFO, "reception d un paquet"});
           if (ins)
             ins->updateMPU(data);
+          std::cout << data.distances[0] << "\n";
           break;
         }
         }

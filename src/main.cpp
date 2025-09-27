@@ -108,6 +108,8 @@ int main()
   signal(SIGINT, handle_sigint);
   // behavior;
 
+  std::cout << sizeof(sysMonitoring::sysData) << "\n";
+
   while (true)
   {
     usleep(1000000);
@@ -115,47 +117,3 @@ int main()
 
   return 0;
 }
-
-// #include "../inc/behaviorCenter.hpp"
-// #include <fstream>
-// #include <iostream>
-// #include <unistd.h> // pour usleep
-
-// int main()
-// {
-//   std::ofstream file("/home/jules/mesure.txt", std::ios::out | std::ios::trunc);
-//   if (!file.is_open())
-//   {
-//     std::cerr << "Erreur : impossible d'ouvrir le fichier !" << std::endl;
-//     return 1;
-//   }
-
-//   eventManager event;
-//   ESP32 esp(event);
-
-//   while (true)
-//   {
-//     std::cout << "Acquisition de 500 échantillons..." << std::endl;
-//     for (int i = 0; i < 500; i++)
-//     {
-//       ESPdata data = esp.getData();
-//       file << data.ax << " " << data.ay << " " << data.az << std::endl;
-//       usleep(5000); // 5 ms -> 200 Hz
-//     }
-
-//     file << "# --- Fin d'une série ---" << std::endl;
-//     file.flush();
-
-//     std::cout << "Série terminée. Appuyez sur [Entrée] pour continuer, ou 'q' + [Entrée] pour quitter." << std::endl;
-//     std::string input;
-//     std::getline(std::cin, input);
-//     if (input == "q" || input == "Q")
-//     {
-//       break;
-//     }
-//   }
-
-//   file.close();
-//   std::cout << "Fin du programme." << std::endl;
-//   return 0;
-// }

@@ -87,11 +87,12 @@ void behaviorCenter::interpretCommand(std::string_view msg)
                 std::thread(&PROCEDURE::calibrateZ, procedure).detach();
             else if (commandCore == "USEINSSAVE" && launch.ins)
             {
-                saveData save = getSave();
-                launch.ins->setCalibration(save.INScal);
-                launch.ins->setSettings(save.INSsettings);
+                saveData save_ = getSave();
+                launch.ins->setCalibration(save_.INScal);
+                launch.ins->setSettings(save_.INSsettings);
                 launch.ins->state.INSstate = 2;
-                dataSave = save;
+                dataSave = save_;
+                save();
             }
         }
         else if (ID == "IPA")

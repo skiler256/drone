@@ -129,6 +129,30 @@ exemplecpp/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/build
 .PHONY : exemplecpp/fast
 
+src/ATm328p.o: src/ATm328p.cpp.o
+.PHONY : src/ATm328p.o
+
+# target to build an object file
+src/ATm328p.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/ATm328p.cpp.o
+.PHONY : src/ATm328p.cpp.o
+
+src/ATm328p.i: src/ATm328p.cpp.i
+.PHONY : src/ATm328p.i
+
+# target to preprocess a source file
+src/ATm328p.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/ATm328p.cpp.i
+.PHONY : src/ATm328p.cpp.i
+
+src/ATm328p.s: src/ATm328p.cpp.s
+.PHONY : src/ATm328p.s
+
+# target to generate assembly for a file
+src/ATm328p.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/ATm328p.cpp.s
+.PHONY : src/ATm328p.cpp.s
+
 src/BMP280.o: src/BMP280.cpp.o
 .PHONY : src/BMP280.o
 
@@ -224,6 +248,30 @@ src/INS.s: src/INS.cpp.s
 src/INS.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/INS.cpp.s
 .PHONY : src/INS.cpp.s
+
+src/MS5611.o: src/MS5611.cpp.o
+.PHONY : src/MS5611.o
+
+# target to build an object file
+src/MS5611.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/MS5611.cpp.o
+.PHONY : src/MS5611.cpp.o
+
+src/MS5611.i: src/MS5611.cpp.i
+.PHONY : src/MS5611.i
+
+# target to preprocess a source file
+src/MS5611.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/MS5611.cpp.i
+.PHONY : src/MS5611.cpp.i
+
+src/MS5611.s: src/MS5611.cpp.s
+.PHONY : src/MS5611.s
+
+# target to generate assembly for a file
+src/MS5611.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/MS5611.cpp.s
+.PHONY : src/MS5611.cpp.s
 
 src/NEO6m.o: src/NEO6m.cpp.o
 .PHONY : src/NEO6m.o
@@ -522,6 +570,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... exemplecpp"
+	@echo "... src/ATm328p.o"
+	@echo "... src/ATm328p.i"
+	@echo "... src/ATm328p.s"
 	@echo "... src/BMP280.o"
 	@echo "... src/BMP280.i"
 	@echo "... src/BMP280.s"
@@ -534,6 +585,9 @@ help:
 	@echo "... src/INS.o"
 	@echo "... src/INS.i"
 	@echo "... src/INS.s"
+	@echo "... src/MS5611.o"
+	@echo "... src/MS5611.i"
+	@echo "... src/MS5611.s"
 	@echo "... src/NEO6m.o"
 	@echo "... src/NEO6m.i"
 	@echo "... src/NEO6m.s"

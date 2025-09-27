@@ -1,6 +1,6 @@
 #pragma once
 #include "../inc/eventManager.hpp"
-#include "../inc/BMP280.hpp"
+#include "../inc/MS5611.hpp"
 #include "../inc/ESP32.hpp"
 #include "../inc/NEO6m.hpp"
 #include <mutex>
@@ -71,6 +71,7 @@ public:
     KalmanLinear();
     void pred(Eigen::Matrix<double, 3, 1> u);
     void update(Eigen::Matrix<double, 6, 1> z, int hAcc, uint32_t sAcc, double dt);
+    void resetX();
     Eigen::Matrix<double, 6, 1> getX();
   };
 
@@ -90,7 +91,7 @@ public:
     double update(double x, double alpha);
   };
 
-  INS(eventManager &event, std::optional<BMP280> &bmp, INS::settings &set);
+  INS(eventManager &event, std::optional<MS5611> &bmp, INS::settings &set);
   ~INS();
 
   state3D getState3D();
@@ -103,11 +104,11 @@ public:
 
   void updateMPU(ESPdata data);
   void updateGPS(NEO6m::coordPaket coord, int velNED[3], uint32_t pAcc, uint32_t sAcc);
-  void updataBMP(BMP280::Data data);
+  void updataBMP(MS5611::Data data);
 
 private:
   eventManager &event;
-  std::optional<BMP280> &bmp;
+  std::optional<MS5611> &bmp;
   // setting
   settings set;
   Kalman1D kx, ky, kz;
@@ -135,6 +136,7 @@ private:
   Eigen::Matrix<double, 3, 1> linearizedAcc;
   std::chrono::_V2::steady_clock::time_point tz;
   double prevAlt[NB_vs] = {};
+  double currAlt = 0;
 
   // filter
   std::chrono::_V2::steady_clock::time_point tMag;

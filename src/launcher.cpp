@@ -9,7 +9,10 @@ void launcher::startCOM()
     std::lock_guard<std::mutex> lock(mtx);
     event.emplace();
     if (event)
+    {
         monitoring.emplace(*event, esp, baro, gps, ins, gimball, tele, parameters.COMrefreshRate);
+        telemetry.emplace(*event, monitoring);
+    }
     if (monitoring)
         com.emplace(*monitoring, *this, parameters.COMrefreshRate, parameters.COMport);
 }

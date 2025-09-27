@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/exemplecpp.dir/src/ATm328p.cpp.o"
+  "CMakeFiles/exemplecpp.dir/src/ATm328p.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/BMP280.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/BMP280.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/COM.cpp.o"
@@ -7,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/INS.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/INS.cpp.o.d"
+  "CMakeFiles/exemplecpp.dir/src/MS5611.cpp.o"
+  "CMakeFiles/exemplecpp.dir/src/MS5611.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o"

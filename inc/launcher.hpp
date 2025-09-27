@@ -9,6 +9,8 @@
 #include "../inc/COM.hpp"
 #include "../inc/gimball.hpp"
 #include "../inc/TF-luna.hpp"
+#include "../inc/MS5611.hpp"
+#include "../inc/ATm328p.hpp"
 
 #include <optional>
 #include <mutex>
@@ -19,7 +21,6 @@ class launcher
 {
 public:
     launcher(behaviorCenter &behavior);
-
 
     void startCOM();
 
@@ -50,7 +51,7 @@ public:
 
     std::optional<ESP32> esp;
     std::optional<NEO6m> gps;
-    std::optional<BMP280> baro;
+    std::optional<MS5611> baro;
     std::optional<TFluna> tele;
 
     std::optional<INS> ins;
@@ -58,6 +59,7 @@ public:
     std::optional<PCA9685> pca;
 
     std::optional<sysMonitoring> monitoring;
+    std::optional<ATm328p> telemetry;
     std::optional<COM> com;
 
     std::optional<GIMBALL> gimball;

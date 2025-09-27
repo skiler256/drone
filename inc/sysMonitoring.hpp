@@ -1,5 +1,5 @@
 #pragma once
-#include "../inc/BMP280.hpp"
+#include "../inc/MS5611.hpp"
 #include "../inc/ESP32.hpp"
 #include "../inc/eventManager.hpp"
 #include "../inc/INS.hpp"
@@ -15,7 +15,7 @@
 class sysMonitoring
 {
 public:
-    sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<BMP280> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins,
+    sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<MS5611> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins,
                   std::optional<GIMBALL> &gimball, std::optional<TFluna> &tele, const int refreshRate);
     ~sysMonitoring();
     void runSysMonitoring();
@@ -23,7 +23,7 @@ public:
     struct sensorData
     {
         ESPdata esp;
-        BMP280::Data baro;
+        MS5611::Data baro;
         NEO6m::gpsState gps;
         double Tele;
     };
@@ -50,13 +50,27 @@ public:
         GIMBALL::config gimball;
         stateModule moduleState;
     };
+    struct telP1
+    {
+        int32_t latitude = 0;
+        int32_t longitude = 0;
+        int16_t pos[3] = {};
+        int16_t att[3] = {};
+        int16_t cpuTemp = 0;
+    };
+    struct telemetryPaket
+    {
+        telP1 p1;
+    };
 
     sysData getData();
+    telemetryPaket getTelemetryData();
+    telemetryPaket &getTelemetryDataRef();
 
 private:
     eventManager &event;
     std::optional<ESP32> &esp;
-    std::optional<BMP280> &baro;
+    std::optional<MS5611> &baro;
     std::optional<NEO6m> &gps;
     std::optional<INS> &ins;
     std::optional<GIMBALL> &gimball;
@@ -64,7 +78,9 @@ private:
     int refreshRate;
 
     std::mutex mtx;
+    std::mutex Telemtx;
     sysData data;
+    telemetryPaket telemetryData;
 
     double getCPUTemp();
     double getRAMUsage();

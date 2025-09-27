@@ -238,6 +238,7 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: \
  /usr/include/c++/12/optional \
  /usr/include/c++/12/bits/enable_special_members.h \
  /home/jules/code/drone/src/../inc/../inc/INS.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/MS5611.hpp \
  /home/jules/code/drone/src/../inc/../inc/../inc/NEO6m.hpp \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
  /usr/include/c++/12/bits/stl_vector.h \
@@ -644,4 +645,5 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: \
  /usr/include/opencv4/opencv2/stitching/detail/camera.hpp \
  /usr/include/opencv4/opencv2/video.hpp \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
- /usr/include/opencv4/opencv2/video/background_segm.hpp
+ /usr/include/opencv4/opencv2/video/background_segm.hpp \
+ /home/jules/code/drone/src/../inc/../inc/ATm328p.hpp
