@@ -57,6 +57,7 @@ public:
         int16_t pos[3] = {};
         int16_t att[3] = {};
         int16_t cpuTemp = 0;
+        uint8_t state = 0;
     };
     struct telemetryPaket
     {

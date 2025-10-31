@@ -61,6 +61,26 @@ void sysMonitoring::runSysMonitoring()
                 telemetryData.p1.pos[i] = static_cast<int16_t>(std::lround(data.state3D.pos(i) * 10));
                 telemetryData.p1.att[i] = static_cast<int16_t>(std::lround(data.state3D.att(i) * 10));
             }
+            uint8_t stateBuff = 0;
+
+            if (data.moduleState.INS)
+                stateBuff |= (1 << 0);
+            if (data.moduleState.GPS)
+                stateBuff |= (1 << 1);
+            if (data.moduleState.ESP)
+                stateBuff |= (1 << 2);
+            if (data.moduleState.BMP)
+                stateBuff |= (1 << 3);
+            if (data.moduleState.GIM)
+                stateBuff |= (1 << 4);
+            if (data.moduleState.TEL)
+                stateBuff |= (1 << 5);
+            if (data.state3D.INSstate == 2)
+                stateBuff |= (1 << 6);
+            if (data.sensor.gps.gpsFixOk)
+                stateBuff |= (1 << 7);
+
+            telemetryData.p1.state = stateBuff;
         }
 
         const auto end = std::chrono::steady_clock::now();
