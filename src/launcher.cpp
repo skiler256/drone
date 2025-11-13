@@ -10,7 +10,7 @@ void launcher::startCOM()
     event.emplace();
     if (event)
     {
-        monitoring.emplace(*event, esp, baro, gps, ins, gimball, tele, parameters.COMrefreshRate);
+        monitoring.emplace(*this, parameters.COMrefreshRate);
         telemetry.emplace(*event, monitoring);
     }
     if (monitoring)
@@ -29,6 +29,7 @@ void launcher::startESP()
     if (event)
     {
         esp.emplace(*event, ins);
+        mag.emplace(*event);
     }
 }
 void launcher::startGPS()

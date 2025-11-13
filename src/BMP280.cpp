@@ -6,6 +6,8 @@ BMP280::BMP280(eventManager &event, uint8_t address, const char *bus)
 {
   std::lock_guard<std::mutex> lock(mtx);
 
+  event.declare(this, component::BMP);
+
   load();
   run = std::thread(&BMP280::runBMP, this);
 }
@@ -19,6 +21,8 @@ BMP280::~BMP280()
   {
     close(file);
   }
+
+  event.erase(this);
 }
 
 void BMP280::load()
@@ -26,13 +30,13 @@ void BMP280::load()
   file = open(bus, O_RDWR);
   if (ioctl(file, I2C_SLAVE, addr) < 0)
   {
-    event.reportEvent({component::BMP, subcomponent::i2c, eventSeverity::CRITICAL, "impossible d ouvrir port i2c"});
+    event.report(this, category::connection, {severity::CRITICAL, "impossible de se connecter au port i2c"});
     close(file);
     file = -1;
     return;
   }
   else
-    event.reportEvent({component::BMP, subcomponent::i2c, eventSeverity::INFO, "port i2c ouvert"});
+    event.report(this, category::connection, {severity::INFO, "connecter au port i2c"});
 
   uint8_t reg = COEF;
   write(file, &reg, 1);
@@ -134,15 +138,13 @@ void BMP280::runBMP()
 
       if (temperature > 50 || temperature < -10 || pressure < 900 || pressure > 1100)
       {
-        event.reportEvent({component::BMP, subcomponent::computing, eventSeverity::CRITICAL,
-                           "valeur calculee anormale"});
+        event.report(this, category::calculation, {severity::CRITICAL, "valeur anormale"});
         file = -1;
         load();
       }
       else
       {
-        event.reportEvent({component::BMP, subcomponent::computing, eventSeverity::INFO,
-                           "valeur calculee normale"});
+        event.report(this, category::calculation, {severity::INFO, "valeur normale"});
         data = {temperature, pressure};
       }
     }

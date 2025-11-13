@@ -1,6 +1,7 @@
 #include "../inc/COM.hpp"
 #include "../inc/launcher.hpp"
 #include "../inc/behaviorCenter.hpp"
+#include "../inc/eventManager.hpp"
 #include <thread>
 #include <signal.h>
 #include <nlohmann/json.hpp>
@@ -106,9 +107,10 @@ void to_json(json &j, const sysMonitoring::sysData &s)
     j = json{
         {"sensor", s.sensor},
         {"state3D", s.state3D},
-        {"events", stringifyEventLogMap(s.events)},
+        {"events", strigifyEvents(s.events, s.IDs)},
         {"perf", s.perf},
-        {"module", s.moduleState}};
+        {"module", s.moduleState},
+        {"vBat", s.vBat}};
 }
 
 COM::COM(sysMonitoring &monitoring, launcher &launch, const int refreshRate, const int port) : monitoring(monitoring), launch(launch), refreshRate(refreshRate), port(port)
@@ -278,6 +280,47 @@ void COM::handleVideoClients()
     return;
 }
 
+void drawWarning(cv::Mat &frame,
+                 const cv::Scalar &bgColor,     // fond
+                 const cv::Scalar &borderColor, // bordure
+                 const cv::Scalar &textColor)   // texte
+{
+    // Taille du bloc (moitié largeur, moitié hauteur)
+    int w = frame.cols / 2;
+    int h = frame.rows / 2;
+
+    // Position pour centrer le rectangle
+    int x = (frame.cols - w) / 2;
+    int y = (frame.rows - h) / 2;
+
+    cv::Rect zone(x, y, w, h);
+
+    // Bloc opaque
+    cv::rectangle(frame, zone, bgColor, cv::FILLED);
+
+    // Bordure
+    cv::rectangle(frame, zone, borderColor, 4);
+
+    // Texte
+    std::string txt = "WARNING";
+    int baseline = 0;
+    int fontFace = cv::FONT_HERSHEY_SIMPLEX;
+    double fontScale = 2.0;
+    int thickness = 4;
+
+    cv::Size textSize = cv::getTextSize(txt, fontFace, fontScale, thickness, &baseline);
+
+    cv::Point pos(
+        x + (w - textSize.width) / 2,
+        y + (h + textSize.height) / 2);
+
+    // Ombre derrière le texte
+    cv::putText(frame, txt, pos + cv::Point(3, 3), fontFace, fontScale, cv::Scalar(0, 0, 0), thickness + 2);
+
+    // Texte avec couleur paramétrable
+    cv::putText(frame, txt, pos, fontFace, fontScale, textColor, thickness);
+}
+
 void COM::handleVideoServer(std::list<int> &clientsVideo, cv::VideoCapture &cap)
 {
     cv::Mat frame;
@@ -286,6 +329,9 @@ void COM::handleVideoServer(std::list<int> &clientsVideo, cv::VideoCapture &cap)
     // Taille cible (format 16:9)
     int targetWidth = 1280;
     int targetHeight = 720;
+
+    int messageInc = 0;
+    bool isWarning = false;
 
     while (loop)
     {
@@ -338,12 +384,27 @@ void COM::handleVideoServer(std::list<int> &clientsVideo, cv::VideoCapture &cap)
             std::lock_guard<std::mutex> lock(dataMTX);
 
             char buf[64];
-            snprintf(buf, sizeof(buf), "Vbat: %.2f V", dataSystem.state3D.att(2));
+            snprintf(buf, sizeof(buf), "Vbat: %.2f V", dataSystem.vBat);
             cv::putText(output, buf, {20, 80}, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
+
+            snprintf(buf, sizeof(buf), "Cap: %.0f deg.", dataSystem.state3D.att[2]);
+            cv::putText(output, buf, {600, 80}, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
+
+            snprintf(buf, sizeof(buf), "Vel: %.2f km/h", sqrt(pow(dataSystem.state3D.vel[0], 2) + pow(dataSystem.state3D.vel[1], 2) + pow(dataSystem.state3D.vel[2], 2)) * 3.6);
+            cv::putText(output, buf, {20, 550}, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
+
+            snprintf(buf, sizeof(buf), "Alt: %.2f m", dataSystem.state3D.pos[2]);
+            cv::putText(output, buf, {20, 600}, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
+
+            snprintf(buf, sizeof(buf), "Nord: %.2f m", dataSystem.state3D.pos[0]);
+            cv::putText(output, buf, {20, 650}, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
+
+            snprintf(buf, sizeof(buf), "Est: %.2f m", dataSystem.state3D.pos[1]);
+            cv::putText(output, buf, {20, 700}, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
 
             int cx = frame.cols / 2;
             int cy = frame.rows / 2;
-            int crossSize = 20; // longueur des bras en pixels
+            int crossSize = 20;
             int thickness = 2;
             cv::line(output, cv::Point(cx - crossSize, cy), cv::Point(cx + crossSize, cy), {255, 255, 255}, thickness);
             cv::line(output, cv::Point(cx, cy - crossSize), cv::Point(cx, cy + crossSize), {255, 255, 255}, thickness);
@@ -351,6 +412,50 @@ void COM::handleVideoServer(std::list<int> &clientsVideo, cv::VideoCapture &cap)
             std::string text = convertToStringAndPrecision(dataSystem.sensor.Tele, 1) + "m";
             cv::Point textPos(cx + 30, cy + crossSize + 30);
             cv::putText(output, text, textPos, cv::FONT_HERSHEY_SIMPLEX, 1.0, {255, 255, 255}, 2);
+        }
+
+        if (isWarning)
+        {
+            if (messageInc < 2)
+            {
+                drawWarning(output,
+                            cv::Scalar(0, 255, 255),
+                            cv::Scalar(255, 255, 255),
+                            cv::Scalar(0, 0, 255));
+
+                messageInc++;
+            }
+            else if (messageInc < 5)
+            {
+                drawWarning(output,
+                            cv::Scalar(0, 255, 255),
+                            cv::Scalar(0, 0, 255),
+                            cv::Scalar(255, 255, 255));
+
+                messageInc++;
+            }
+            else
+            {
+                drawWarning(output,
+                            cv::Scalar(0, 255, 255),
+                            cv::Scalar(255, 255, 255),
+                            cv::Scalar(0, 0, 255));
+                messageInc = 1;
+                if (launch.event)
+                {
+                    if (launch.event->hasSeverityOrAbove(severity::WARNING))
+                        isWarning = true;
+                    else
+                        isWarning = false;
+                }
+            }
+        }
+        else
+        {
+            if (launch.event->hasSeverityOrAbove(severity::WARNING))
+                isWarning = true;
+            else
+                isWarning = false;
         }
 
         // Encoder en JPEG

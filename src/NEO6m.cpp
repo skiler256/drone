@@ -12,13 +12,14 @@ NEO6m::NEO6m(eventManager &event, std::optional<INS> &ins, const char *portName)
     : event(event), ins(ins), portName(portName),
       SerialPort(open(portName, O_RDWR | O_NOCTTY))
 {
+  event.declare(this, component::GPS);
 
   std::lock_guard<std::mutex> lock(mtx);
 
   if (tcgetattr(SerialPort, &tty) < 0)
-    event.reportEvent({component::GPS, subcomponent::serial, eventSeverity::CRITICAL, "impossible d ouvrir le port serie"});
+    event.report(this, category::connection, {severity::CRITICAL, "impossible d'ouvrir le port série"});
   else
-    event.reportEvent({component::GPS, subcomponent::serial, eventSeverity::INFO, "port serie ouvert"});
+    event.report(this, category::connection, {severity::INFO, "port série ouvert"});
 
   cfsetospeed(&tty, B9600);
   cfsetispeed(&tty, B9600);
@@ -53,9 +54,9 @@ NEO6m::NEO6m(eventManager &event, std::optional<INS> &ins, const char *portName)
   SerialPort = open(portName, O_RDWR | O_NOCTTY);
 
   if (tcgetattr(SerialPort, &tty) < 0)
-    event.reportEvent({component::GPS, subcomponent::serial, eventSeverity::CRITICAL, "impossible d ouvrir le port serie"});
+    event.report(this, category::connection, {severity::CRITICAL, "impossible d'ouvrir le port série"});
   else
-    event.reportEvent({component::GPS, subcomponent::serial, eventSeverity::INFO, "port serie ouvert"});
+    event.report(this, category::connection, {severity::INFO, "port série ouvert"});
 
   cfsetospeed(&tty, B115200);
   cfsetispeed(&tty, B115200);
@@ -179,6 +180,8 @@ NEO6m::~NEO6m()
   loop = false;
   if (run.joinable())
     run.join();
+
+  event.erase(this);
 }
 
 std::string charToHex(char c)
@@ -303,7 +306,7 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize)
   // std::cout << " Classe : " << charToHex(CLASS) << " ID : " << charToHex(ID)
   //           << " taille du payload : " << payloadSize << std::endl;
 
-  event.reportEvent({component::GPS, subcomponent::parser, eventSeverity::INFO, "reception d un paquet ID : " + std::to_string((int)ID)});
+  event.report(this, category::parser, {severity::INFO, "reception d un paquet ID : " + std::to_string((int)ID)});
 
   std::lock_guard<std::mutex> lock(mtx);
 

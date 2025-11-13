@@ -38,12 +38,18 @@ ATm328p::ATm328p(eventManager &event, std::optional<sysMonitoring> &monitoring, 
     tcsetattr(SerialPort, TCSANOW, &tty);
 
     Tx = std::thread(&ATm328p::runTx, this);
+    Rx = std::thread(&ATm328p::runRx, this);
 }
 ATm328p::~ATm328p()
 {
     loopTx = false;
     if (Tx.joinable())
         Tx.join();
+
+    loopRx = false;
+    if (Rx.joinable())
+        Rx.join();
+
     close(SerialPort);
 }
 
@@ -116,5 +122,78 @@ void ATm328p::runTx()
         int remaining_sleep_ms = std::max(0, target_period_ms - elapsed_ms);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(remaining_sleep_ms));
+    }
+}
+
+// void printPaket(const ATmegaPaket &p)
+// {
+//     std::cout << "=== Paket reçu ===\n";
+
+//     std::cout << "Angles (rad): "
+//               << p.att[0] << ", "
+//               << p.att[1] << ", "
+//               << p.att[2] << "\n";
+
+//     std::cout << "Acc (raw): "
+//               << p.acc[0] << ", "
+//               << p.acc[1] << ", "
+//               << p.acc[2] << "\n";
+
+//     std::cout << "Batterie (raw): "
+//               << p.vBat << "\n";
+
+//     std::cout << "Commande: "
+//               << (int)p.telCommand << "\n";
+
+//     std::cout << "===================\n";
+// }
+
+void ATm328p::runRx()
+{
+    const int frameSize = 2 + sizeof(ATmegaPaket);
+    uint8_t frame[128]; // largement assez
+    int idx = 0;
+    bool sync = false;
+
+    while (loopRx)
+    {
+        uint8_t b;
+        int n = read(SerialPort, &b, 1);
+        if (n <= 0)
+            continue;
+
+        if (!sync)
+        {
+            if (b == 0x24)
+            {
+                frame[0] = b;
+                idx = 1;
+                sync = true;
+            }
+            continue;
+        }
+
+        frame[idx++] = b;
+
+        if (idx == 2)
+        {
+            if (frame[1] != 0x09)
+            {
+                sync = false;
+                idx = 0;
+            }
+            continue;
+        }
+
+        if (idx == frameSize)
+        {
+            ATmegaPaket data;
+            memcpy(&data, frame + 2, sizeof(data));
+
+            vBat = data.vBat / 100.0;
+
+            sync = false;
+            idx = 0;
+        }
     }
 }

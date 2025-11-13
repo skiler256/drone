@@ -11,6 +11,7 @@
 #include "../inc/TF-luna.hpp"
 #include "../inc/MS5611.hpp"
 #include "../inc/ATm328p.hpp"
+#include "../inc/LIS3MDL.hpp"
 
 #include <optional>
 #include <mutex>
@@ -52,6 +53,7 @@ public:
     std::optional<ESP32> esp;
     std::optional<NEO6m> gps;
     std::optional<MS5611> baro;
+    std::optional<LIS3MDL> mag;
     std::optional<TFluna> tele;
 
     std::optional<INS> ins;

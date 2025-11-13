@@ -62,7 +62,10 @@ void behaviorCenter::interpretCommand(std::string_view msg)
                 if (launch.monitoring->data.moduleState.ESP)
                     launch.startESP();
                 else
+                {
                     launch.esp.reset();
+                    launch.mag.reset();
+                }
             }
             if (commandCore == "TEL")
             {

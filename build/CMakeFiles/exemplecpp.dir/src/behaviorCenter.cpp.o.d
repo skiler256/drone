@@ -648,6 +648,7 @@ CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o: \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
  /usr/include/opencv4/opencv2/video/background_segm.hpp \
  /home/jules/code/drone/src/../inc/../inc/../inc/ATm328p.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/LIS3MDL.hpp \
  /home/jules/code/drone/src/../inc/../inc/PROCEDURE.hpp \
  /usr/include/nlohmann/json.hpp /usr/include/c++/12/iterator \
  /usr/include/c++/12/bits/stream_iterator.h /usr/include/c++/12/numeric \

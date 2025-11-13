@@ -4,15 +4,8 @@
 #include <thread>
 #include <iostream>
 
-sysMonitoring::sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<MS5611> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins,
-                             std::optional<GIMBALL> &gimball, std::optional<TFluna> &tele, const int refreshRate) : event(event),
-                                                                                                                    esp(esp),
-                                                                                                                    baro(baro),
-                                                                                                                    gps(gps),
-                                                                                                                    ins(ins),
-                                                                                                                    gimball(gimball),
-                                                                                                                    tele(tele),
-                                                                                                                    refreshRate(refreshRate) { run = std::thread(&sysMonitoring::runSysMonitoring, this); }
+sysMonitoring::sysMonitoring(launcher &lau, const int refreshRate) : lau(lau),
+                                                                     refreshRate(refreshRate) { run = std::thread(&sysMonitoring::runSysMonitoring, this); }
 
 sysMonitoring::~sysMonitoring()
 {
@@ -29,22 +22,25 @@ void sysMonitoring::runSysMonitoring()
 
         {
             std::lock_guard<std::mutex> lock(mtx);
-            if (esp)
-                data.sensor.esp = esp->getData();
-            if (baro)
-                data.sensor.baro = baro->getData(); // peut etre ah .. voilou voilou
-            if (gps)
-                data.sensor.gps = gps->getGPSState();
+            if (lau.esp)
+                data.sensor.esp = lau.esp->getData();
+            if (lau.baro)
+                data.sensor.baro = lau.baro->getData(); // peut etre ah .. voilou voilou
+            if (lau.gps)
+                data.sensor.gps = lau.gps->getGPSState();
 
-            if (ins)
-                data.state3D = ins->getState3D();
-            if (gimball)
-                data.gimball = gimball->getConfig();
+            if (lau.ins)
+                data.state3D = lau.ins->getState3D();
+            if (lau.gimball)
+                data.gimball = lau.gimball->getConfig();
 
-            if (tele)
-                data.sensor.Tele = tele->getDist();
+            if (lau.tele)
+                data.sensor.Tele = lau.tele->getDist();
+            if (lau.telemetry)
+                data.vBat = lau.telemetry->vBat;
 
-            data.events = event.getEvents();
+            data.events = lau.event->getEvents();
+            data.IDs = lau.event->getIDs();
 
             data.perf.CPUtemp = getCPUTemp();
             data.perf.RAMusage = getRAMUsage();

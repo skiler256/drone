@@ -23,7 +23,7 @@ void PROCEDURE::calibrateZ()
             }
             if (!launch.gps->isFix())
             {
-                launch.event->reportEvent({component::INS, subcomponent::dataLink, eventSeverity::CRITICAL, "impossible d'obtenir un FIX 3D"});
+                launch.event->report(this, category::signal, {severity::WARNING, "pas de fix3D"});
                 launch.ins->state.INSstate = 0;
                 return;
             }

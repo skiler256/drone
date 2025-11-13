@@ -1,3 +1,60 @@
+
+
+// enum class eventSeverity
+// {
+//     INFO,
+//     WARNING,
+//     CRITICAL,
+//     FATAL
+// };
+
+// enum class subcomponent
+// {
+//     serial,
+//     i2c,
+//     computing,
+//     dataLink,
+//     parser
+// };
+
+// struct event
+// {
+//     component comp;
+//     subcomponent subcomp;
+//     eventSeverity severity;
+//     std::string mess;
+// };
+
+// class eventManager
+// {
+// public:
+//     eventManager();
+
+//     void reportEvent(const event &event);
+//     void clearEvent(const event &event);
+
+//     struct eventLog
+//     {
+//         eventSeverity severity;
+//         std::string mess;
+//     };
+
+//     std::map<std::pair<component, subcomponent>, eventLog> getEvents();
+
+//     bool hasEventAtLeast(eventSeverity minSeverity);
+
+//     bool doLog = false;
+
+// private:
+//     std::mutex mtx;
+//     std::ofstream logTXT;
+
+//     // data
+//     std::map<std::pair<component, subcomponent>, eventLog> events;
+// };
+
+// std::string stringifyEventLogMap(const std::map<std::pair<component, subcomponent>, eventManager::eventLog> &events);
+
 #pragma once
 #include <mutex>
 #include <string>
@@ -5,7 +62,24 @@
 #include <utility>
 #include <fstream>
 
-enum class eventSeverity
+enum class component
+{
+    GPS,
+    ESP,
+    BMP,
+    INS,
+};
+
+enum class category
+{
+    connection,
+    calculation,
+    parser,
+    signal
+
+};
+
+enum class severity
 {
     INFO,
     WARNING,
@@ -13,56 +87,36 @@ enum class eventSeverity
     FATAL
 };
 
-enum class component
-{
-    GPS,
-    ESP,
-    BMP,
-    INS,
-    PCA
-};
-
-enum class subcomponent
-{
-    serial,
-    i2c,
-    computing,
-    dataLink,
-    parser
-};
-
 struct event
 {
-    component comp;
-    subcomponent subcomp;
-    eventSeverity severity;
-    std::string mess;
+    severity sev;
+    std::string msg;
 };
 
 class eventManager
 {
+
 public:
-    eventManager();
+    void declare(const void *ptr, component module);
+    void erase(const void *ptr);
 
-    void reportEvent(const event &event);
-    void clearEvent(const event &event);
+    void report(const void *ptr, category cat, event e);
+    void clear(const void *ptr, category cat);
 
-    struct eventLog
-    {
-        eventSeverity severity;
-        std::string mess;
-    };
+    bool hasSeverityOrAbove(severity sev);
 
-    std::map<std::pair<component, subcomponent>, eventLog> getEvents();
-
-    bool doLog = false;
+    std::map<const void *, component> &getIDs();
+    std::map<std::pair<const void *, category>, event> &getEvents();
 
 private:
     std::mutex mtx;
-    std::ofstream logTXT;
+    std::map<const void *, component> IDs;
 
-    // data
-    std::map<std::pair<component, subcomponent>, eventLog> events;
+    std::map<std::pair<const void *, category>, event> events;
 };
 
-std::string stringifyEventLogMap(const std::map<std::pair<component, subcomponent>, eventManager::eventLog> &events);
+std::string strigifyEvents(const std::map<std::pair<const void *, category>, event> &events, const std::map<const void *, component> &IDs);
+
+std::string componentToStr(component c);
+std::string categoryToStr(category c);
+std::string severityToStr(severity s);

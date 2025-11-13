@@ -9,22 +9,20 @@ PCA9685::PCA9685(eventManager &event, const uint8_t PCA9685_addr,
                  const char *bus)
     : event(event), file(open(bus, O_RDWR))
 {
-  std::lock_guard<std::mutex> lock(mtx);
+  //   std::lock_guard<std::mutex> lock(mtx);
 
-  if (ioctl(file, I2C_SLAVE, PCA9685_addr) != 1)
-    event.reportEvent({component::PCA, subcomponent::i2c, eventSeverity::INFO, "port i2c ouvert"});
+  //   if (ioctl(file, I2C_SLAVE, PCA9685_addr) != 1)
 
-  else
-    event.reportEvent({component::PCA, subcomponent::i2c, eventSeverity::FATAL, "impossible d ouvrir le port i2c"});
+  //     else
 
-  char config[2] = {MODE1, 0b00100001};
-  write(file, config, 2);
+  //         char config[2] = {MODE1, 0b00100001};
+  //   write(file, config, 2);
 
-  std::fill(std::begin(OUTPUTregister), std::end(OUTPUTregister), 0);
+  //   std::fill(std::begin(OUTPUTregister), std::end(OUTPUTregister), 0);
 
-  OUTPUTregister[0] = 0x06;
+  //   OUTPUTregister[0] = 0x06;
 
-  usleep(100000);
+  //   usleep(100000);
 }
 
 PCA9685::~PCA9685()
@@ -55,7 +53,6 @@ void PCA9685::runPCA9685()
 
 void PCA9685::setPWM(const int output, double pwm)
 {
-  event.reportEvent({component::PCA, subcomponent::dataLink, eventSeverity::INFO, "pwm mit a jour SORTIE : " + std::to_string(output) + " NIVEAU : " + std::to_string((int)pwm)});
   std::lock_guard<std::mutex> lock(mtx);
 
   if (pwm < 0.0)

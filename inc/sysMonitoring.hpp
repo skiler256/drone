@@ -12,11 +12,12 @@
 #include <optional>
 #include <atomic>
 
+class launcher;
+
 class sysMonitoring
 {
 public:
-    sysMonitoring(eventManager &event, std::optional<ESP32> &esp, std::optional<MS5611> &baro, std::optional<NEO6m> &gps, std::optional<INS> &ins,
-                  std::optional<GIMBALL> &gimball, std::optional<TFluna> &tele, const int refreshRate);
+    sysMonitoring(launcher &lau, const int refreshRate);
     ~sysMonitoring();
     void runSysMonitoring();
 
@@ -43,12 +44,15 @@ public:
     };
     struct sysData
     {
+
         sensorData sensor;
         INS::state3D state3D;
-        std::map<std::pair<component, subcomponent>, eventManager::eventLog> events;
+        std::map<std::pair<const void *, category>, event> events;
+        std::map<const void *, component> IDs;
         PIperf perf;
         GIMBALL::config gimball;
         stateModule moduleState;
+        float vBat = 0;
     };
     struct telP1
     {
@@ -69,13 +73,14 @@ public:
     telemetryPaket &getTelemetryDataRef();
 
 private:
-    eventManager &event;
-    std::optional<ESP32> &esp;
-    std::optional<MS5611> &baro;
-    std::optional<NEO6m> &gps;
-    std::optional<INS> &ins;
-    std::optional<GIMBALL> &gimball;
-    std::optional<TFluna> &tele;
+    // eventManager &event;
+    // std::optional<ESP32> &esp;
+    // std::optional<MS5611> &baro;
+    // std::optional<NEO6m> &gps;
+    // std::optional<INS> &ins;
+    // std::optional<GIMBALL> &gimball;
+    // std::optional<TFluna> &tele;
+    launcher &lau;
     int refreshRate;
 
     std::mutex mtx;

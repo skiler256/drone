@@ -249,6 +249,30 @@ src/INS.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/INS.cpp.s
 .PHONY : src/INS.cpp.s
 
+src/LIS3MDL.o: src/LIS3MDL.cpp.o
+.PHONY : src/LIS3MDL.o
+
+# target to build an object file
+src/LIS3MDL.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/LIS3MDL.cpp.o
+.PHONY : src/LIS3MDL.cpp.o
+
+src/LIS3MDL.i: src/LIS3MDL.cpp.i
+.PHONY : src/LIS3MDL.i
+
+# target to preprocess a source file
+src/LIS3MDL.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/LIS3MDL.cpp.i
+.PHONY : src/LIS3MDL.cpp.i
+
+src/LIS3MDL.s: src/LIS3MDL.cpp.s
+.PHONY : src/LIS3MDL.s
+
+# target to generate assembly for a file
+src/LIS3MDL.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/LIS3MDL.cpp.s
+.PHONY : src/LIS3MDL.cpp.s
+
 src/MS5611.o: src/MS5611.cpp.o
 .PHONY : src/MS5611.o
 
@@ -585,6 +609,9 @@ help:
 	@echo "... src/INS.o"
 	@echo "... src/INS.i"
 	@echo "... src/INS.s"
+	@echo "... src/LIS3MDL.o"
+	@echo "... src/LIS3MDL.i"
+	@echo "... src/LIS3MDL.s"
 	@echo "... src/MS5611.o"
 	@echo "... src/MS5611.i"
 	@echo "... src/MS5611.s"

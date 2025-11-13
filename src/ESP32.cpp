@@ -14,6 +14,9 @@ ESP32::ESP32(eventManager &event, std::optional<INS> &ins, const char *portName)
     : event(event), ins(ins), portName(portName)
 {
   std::lock_guard<std::mutex> lock(mtx);
+
+  event.declare(this, component::ESP);
+
   uint8_t buffer[200];
   int attempt = 0;
   while (SerialPort < 0 && attempt < 50)
@@ -34,7 +37,7 @@ ESP32::ESP32(eventManager &event, std::optional<INS> &ins, const char *portName)
       {
         if (buffer[i] == 0x24 && buffer[i + 1] == 0x09)
         {
-          event.reportEvent({component::ESP, subcomponent::serial, eventSeverity::INFO, "port serie ouvert"});
+          event.report(this, category::connection, {severity::INFO, "port série ouvert"});
           run = std::thread(&ESP32::runESP32, this);
           return;
         }
@@ -56,7 +59,7 @@ ESP32::ESP32(eventManager &event, std::optional<INS> &ins, const char *portName)
     }
     attempt++;
   }
-  event.reportEvent({component::ESP, subcomponent::serial, eventSeverity::CRITICAL, "impossible d ouvrir le port serie"});
+  event.report(this, category::connection, {severity::CRITICAL, "impossible d'ouvrir le port série"});
 }
 
 ESP32::~ESP32()
@@ -65,6 +68,8 @@ ESP32::~ESP32()
   if (run.joinable())
     run.join();
   close(SerialPort);
+
+  event.erase(this);
 }
 
 bool ESP32::conect()
@@ -185,10 +190,10 @@ void ESP32::runESP32()
 
         case 0x02:
         {
-          event.reportEvent({component::ESP, subcomponent::parser, eventSeverity::INFO, "reception d un paquet"});
+          event.report(this, category::parser, {severity::INFO, "reception d un paquet"});
           if (ins)
             ins->updateMPU(data);
-          std::cout << data.distances[0] << "\n";
+          // std::cout << data.distances[0] << "\n";
           break;
         }
         }

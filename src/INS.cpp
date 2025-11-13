@@ -15,6 +15,7 @@ INS::INS(eventManager &event, std::optional<MS5611> &bmp, INS::settings &set)
       HPzacc(0.005, 1),
       kalman()
 {
+  event.declare(this, component::INS);
 
   tMag = std::chrono::steady_clock::now();
   tz = std::chrono::steady_clock::now();
@@ -31,6 +32,7 @@ INS::INS(eventManager &event, std::optional<MS5611> &bmp, INS::settings &set)
 
 INS::~INS()
 {
+  event.erase(this);
 }
 
 void INS::updateMPU(ESPdata data)
@@ -38,7 +40,7 @@ void INS::updateMPU(ESPdata data)
   {
     std::lock_guard<std::mutex> lock(mtxDataESP);
     dataESP = data;
-    event.reportEvent({component::INS, subcomponent::dataLink, eventSeverity::INFO, "reception donne esp32"});
+    // event.report({component::INS, subcomponent::dataLink, eventSeverity::INFO, "reception donne esp32"});
   }
   {
     std::lock_guard<std::mutex> lockState3D(mtxState3D);

@@ -12,6 +12,19 @@
 
 class sysMonitoring;
 
+#pragma pack(push, 1)
+
+struct ATmegaPaket
+{
+
+    float att[3];
+    int16_t acc[3];
+    int16_t vBat;
+    uint8_t telCommand = 0;
+};
+
+#pragma pack(pop)
+
 class ATm328p
 {
 public:
@@ -19,6 +32,9 @@ public:
     ~ATm328p();
 
     void runTx();
+    void runRx();
+
+    float vBat = 0.0;
 
 private:
     eventManager &event;
@@ -28,5 +44,7 @@ private:
     termios tty;
 
     std::atomic<bool> loopTx = true;
+    std::atomic<bool> loopRx = true;
     std::thread Tx;
+    std::thread Rx;
 };

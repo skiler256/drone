@@ -642,4 +642,5 @@ CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: \
  /usr/include/opencv4/opencv2/video.hpp \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
  /usr/include/opencv4/opencv2/video/background_segm.hpp \
- /home/jules/code/drone/src/../inc/../inc/ATm328p.hpp
+ /home/jules/code/drone/src/../inc/../inc/ATm328p.hpp \
+ /home/jules/code/drone/src/../inc/../inc/LIS3MDL.hpp

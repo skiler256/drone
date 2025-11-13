@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/INS.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/INS.cpp.o.d"
+  "CMakeFiles/exemplecpp.dir/src/LIS3MDL.cpp.o"
+  "CMakeFiles/exemplecpp.dir/src/LIS3MDL.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/MS5611.cpp.o"
   "CMakeFiles/exemplecpp.dir/src/MS5611.cpp.o.d"
   "CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o"

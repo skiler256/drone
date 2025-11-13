@@ -128,7 +128,7 @@ function updateDronePOS(pos){
 }
 animateViewport();
 
-const socket = new WebSocket("ws://192.168.1.31:9001/");
+const socket = new WebSocket("ws://192.168.1.24:9001/");
 
 let sysData = {};
 
@@ -171,7 +171,7 @@ const calzBt = document.getElementById('calZbt');
 
   console.log("CAP ", sysData.sensor);
   
-  console.log("state ", sysData.state3D);
+  console.log("state ", sysData);
 });
 
 function switchView(){
