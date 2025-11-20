@@ -647,4 +647,5 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: \
  /usr/include/opencv4/opencv2/video/tracking.hpp \
  /usr/include/opencv4/opencv2/video/background_segm.hpp \
  /home/jules/code/drone/src/../inc/../inc/ATm328p.hpp \
- /home/jules/code/drone/src/../inc/../inc/LIS3MDL.hpp
+ /home/jules/code/drone/src/../inc/../inc/LIS3MDL.hpp \
+ /home/jules/code/drone/src/../inc/../inc/SensorFusion.hpp

@@ -369,6 +369,30 @@ src/PROCEDURE.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.s
 .PHONY : src/PROCEDURE.cpp.s
 
+src/SensorFusion.o: src/SensorFusion.cpp.o
+.PHONY : src/SensorFusion.o
+
+# target to build an object file
+src/SensorFusion.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o
+.PHONY : src/SensorFusion.cpp.o
+
+src/SensorFusion.i: src/SensorFusion.cpp.i
+.PHONY : src/SensorFusion.i
+
+# target to preprocess a source file
+src/SensorFusion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.i
+.PHONY : src/SensorFusion.cpp.i
+
+src/SensorFusion.s: src/SensorFusion.cpp.s
+.PHONY : src/SensorFusion.s
+
+# target to generate assembly for a file
+src/SensorFusion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/exemplecpp.dir/build.make CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.s
+.PHONY : src/SensorFusion.cpp.s
+
 src/TF-luna.o: src/TF-luna.cpp.o
 .PHONY : src/TF-luna.o
 
@@ -624,6 +648,9 @@ help:
 	@echo "... src/PROCEDURE.o"
 	@echo "... src/PROCEDURE.i"
 	@echo "... src/PROCEDURE.s"
+	@echo "... src/SensorFusion.o"
+	@echo "... src/SensorFusion.i"
+	@echo "... src/SensorFusion.s"
 	@echo "... src/TF-luna.o"
 	@echo "... src/TF-luna.i"
 	@echo "... src/TF-luna.s"

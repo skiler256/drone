@@ -649,4 +649,5 @@ CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.o: \
  /usr/include/opencv4/opencv2/video/background_segm.hpp \
  /home/jules/code/drone/src/../inc/../inc/../inc/ATm328p.hpp \
  /home/jules/code/drone/src/../inc/../inc/../inc/LIS3MDL.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/SensorFusion.hpp \
  /home/jules/code/drone/src/../inc/behaviorCenter.hpp

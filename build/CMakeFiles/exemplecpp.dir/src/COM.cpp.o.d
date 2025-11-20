@@ -649,6 +649,7 @@ CMakeFiles/exemplecpp.dir/src/COM.cpp.o: \
  /home/jules/code/drone/src/../inc/../inc/BMP280.hpp \
  /home/jules/code/drone/src/../inc/../inc/ATm328p.hpp \
  /home/jules/code/drone/src/../inc/../inc/LIS3MDL.hpp \
+ /home/jules/code/drone/src/../inc/../inc/SensorFusion.hpp \
  /home/jules/code/drone/src/../inc/behaviorCenter.hpp \
  /home/jules/code/drone/src/../inc/../inc/PROCEDURE.hpp \
  /usr/include/signal.h \

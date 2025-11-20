@@ -12,6 +12,7 @@
 #include "../inc/MS5611.hpp"
 #include "../inc/ATm328p.hpp"
 #include "../inc/LIS3MDL.hpp"
+#include "../inc/SensorFusion.hpp"
 
 #include <optional>
 #include <mutex>
@@ -56,7 +57,9 @@ public:
     std::optional<LIS3MDL> mag;
     std::optional<TFluna> tele;
 
-    std::optional<INS> ins;
+    std::optional<SensorFusion> sens;
+
+    std::optional<INS> *ins;
 
     std::optional<PCA9685> pca;
 

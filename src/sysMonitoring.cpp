@@ -29,8 +29,8 @@ void sysMonitoring::runSysMonitoring()
             if (lau.gps)
                 data.sensor.gps = lau.gps->getGPSState();
 
-            if (lau.ins)
-                data.state3D = lau.ins->getState3D();
+            if (lau.ins && lau.ins->has_value())
+                data.state3D = lau.ins->value().getState3D();
             if (lau.gimball)
                 data.gimball = lau.gimball->getConfig();
 

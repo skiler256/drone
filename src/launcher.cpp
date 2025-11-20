@@ -2,9 +2,7 @@
 #include <iostream>
 #include <thread>
 
-launcher::launcher(behaviorCenter &behavior) : behavior(behavior), gpio() {}
-
-void launcher::startCOM()
+launcher::launcher(behaviorCenter &behavior) : behavior(behavior), gpio()
 {
     std::lock_guard<std::mutex> lock(mtx);
     event.emplace();
@@ -12,9 +10,28 @@ void launcher::startCOM()
     {
         monitoring.emplace(*this, parameters.COMrefreshRate);
         telemetry.emplace(*event, monitoring);
+
+        sens.emplace(*this);
+        ins = sens->getINSptr();
     }
     if (monitoring)
         com.emplace(*monitoring, *this, parameters.COMrefreshRate, parameters.COMport);
+}
+
+void launcher::startCOM()
+{
+    // std::lock_guard<std::mutex> lock(mtx);
+    // event.emplace();
+    // if (event)
+    // {
+    //     monitoring.emplace(*this, parameters.COMrefreshRate);
+    //     telemetry.emplace(*event, monitoring);
+
+    //     sens.emplace(*this);
+    //     ins = sens->getINSref();
+    // }
+    // if (monitoring)
+    //     com.emplace(*monitoring, *this, parameters.COMrefreshRate, parameters.COMport);
 }
 
 void launcher::startBARO()
@@ -28,7 +45,7 @@ void launcher::startESP()
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        esp.emplace(*event, ins);
+        esp.emplace(*event, *ins);
         mag.emplace(*event);
     }
 }
@@ -37,7 +54,7 @@ void launcher::startGPS()
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        gps.emplace(*event, ins);
+        gps.emplace(*event, *ins);
     }
 }
 
@@ -46,7 +63,7 @@ void launcher::startINS()
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        ins.emplace(*event, baro, parameters.insSettings);
+        // ins.emplace(*event, baro, parameters.insSettings);
     }
 }
 
@@ -66,7 +83,7 @@ void launcher::startGIMBALL()
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        gimball.emplace(*event, gpio, ins, parameters.GIMBALLrate);
+        gimball.emplace(*event, gpio, *ins, parameters.GIMBALLrate);
     }
 }
 

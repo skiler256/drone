@@ -209,10 +209,24 @@ CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jules/code/drone/src/PROCEDURE.cpp -o CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.s
 
+CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
+CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o: /home/jules/code/drone/src/SensorFusion.cpp
+CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o -MF CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o -c /home/jules/code/drone/src/SensorFusion.cpp
+
+CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jules/code/drone/src/SensorFusion.cpp > CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.i
+
+CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jules/code/drone/src/SensorFusion.cpp -o CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.s
+
 CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
 CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o: /home/jules/code/drone/src/TF-luna.cpp
 CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o -MF CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o -c /home/jules/code/drone/src/TF-luna.cpp
 
 CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.i: cmake_force
@@ -226,7 +240,7 @@ CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.s: cmake_force
 CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
 CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o: /home/jules/code/drone/src/USSensor.cpp
 CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o -MF CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o -c /home/jules/code/drone/src/USSensor.cpp
 
 CMakeFiles/exemplecpp.dir/src/USSensor.cpp.i: cmake_force
@@ -240,7 +254,7 @@ CMakeFiles/exemplecpp.dir/src/USSensor.cpp.s: cmake_force
 CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
 CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o: /home/jules/code/drone/src/behaviorCenter.cpp
 CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o -MF CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o -c /home/jules/code/drone/src/behaviorCenter.cpp
 
 CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.i: cmake_force
@@ -254,7 +268,7 @@ CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.s: cmake_force
 CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
 CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o: /home/jules/code/drone/src/eventManager.cpp
 CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o -MF CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/eventManager.cpp.o -c /home/jules/code/drone/src/eventManager.cpp
 
 CMakeFiles/exemplecpp.dir/src/eventManager.cpp.i: cmake_force
@@ -268,7 +282,7 @@ CMakeFiles/exemplecpp.dir/src/eventManager.cpp.s: cmake_force
 CMakeFiles/exemplecpp.dir/src/gimball.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
 CMakeFiles/exemplecpp.dir/src/gimball.cpp.o: /home/jules/code/drone/src/gimball.cpp
 CMakeFiles/exemplecpp.dir/src/gimball.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/exemplecpp.dir/src/gimball.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/exemplecpp.dir/src/gimball.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/gimball.cpp.o -MF CMakeFiles/exemplecpp.dir/src/gimball.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/gimball.cpp.o -c /home/jules/code/drone/src/gimball.cpp
 
 CMakeFiles/exemplecpp.dir/src/gimball.cpp.i: cmake_force
@@ -282,7 +296,7 @@ CMakeFiles/exemplecpp.dir/src/gimball.cpp.s: cmake_force
 CMakeFiles/exemplecpp.dir/src/gpio.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
 CMakeFiles/exemplecpp.dir/src/gpio.cpp.o: /home/jules/code/drone/src/gpio.cpp
 CMakeFiles/exemplecpp.dir/src/gpio.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/exemplecpp.dir/src/gpio.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/exemplecpp.dir/src/gpio.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/gpio.cpp.o -MF CMakeFiles/exemplecpp.dir/src/gpio.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/gpio.cpp.o -c /home/jules/code/drone/src/gpio.cpp
 
 CMakeFiles/exemplecpp.dir/src/gpio.cpp.i: cmake_force
@@ -296,7 +310,7 @@ CMakeFiles/exemplecpp.dir/src/gpio.cpp.s: cmake_force
 CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
 CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: /home/jules/code/drone/src/launcher.cpp
 CMakeFiles/exemplecpp.dir/src/launcher.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/exemplecpp.dir/src/launcher.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/exemplecpp.dir/src/launcher.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/launcher.cpp.o -MF CMakeFiles/exemplecpp.dir/src/launcher.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/launcher.cpp.o -c /home/jules/code/drone/src/launcher.cpp
 
 CMakeFiles/exemplecpp.dir/src/launcher.cpp.i: cmake_force
@@ -310,7 +324,7 @@ CMakeFiles/exemplecpp.dir/src/launcher.cpp.s: cmake_force
 CMakeFiles/exemplecpp.dir/src/main.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
 CMakeFiles/exemplecpp.dir/src/main.cpp.o: /home/jules/code/drone/src/main.cpp
 CMakeFiles/exemplecpp.dir/src/main.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/exemplecpp.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/exemplecpp.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/main.cpp.o -MF CMakeFiles/exemplecpp.dir/src/main.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/main.cpp.o -c /home/jules/code/drone/src/main.cpp
 
 CMakeFiles/exemplecpp.dir/src/main.cpp.i: cmake_force
@@ -324,7 +338,7 @@ CMakeFiles/exemplecpp.dir/src/main.cpp.s: cmake_force
 CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: CMakeFiles/exemplecpp.dir/flags.make
 CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: /home/jules/code/drone/src/sysMonitoring.cpp
 CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o: CMakeFiles/exemplecpp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o -MF CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o.d -o CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.o -c /home/jules/code/drone/src/sysMonitoring.cpp
 
 CMakeFiles/exemplecpp.dir/src/sysMonitoring.cpp.i: cmake_force
@@ -347,6 +361,7 @@ exemplecpp_OBJECTS = \
 "CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o" \
 "CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o" \
 "CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.o" \
+"CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o" \
 "CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o" \
 "CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o" \
 "CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o" \
@@ -370,6 +385,7 @@ exemplecpp: CMakeFiles/exemplecpp.dir/src/MS5611.cpp.o
 exemplecpp: CMakeFiles/exemplecpp.dir/src/NEO6m.cpp.o
 exemplecpp: CMakeFiles/exemplecpp.dir/src/PCA9685.cpp.o
 exemplecpp: CMakeFiles/exemplecpp.dir/src/PROCEDURE.cpp.o
+exemplecpp: CMakeFiles/exemplecpp.dir/src/SensorFusion.cpp.o
 exemplecpp: CMakeFiles/exemplecpp.dir/src/TF-luna.cpp.o
 exemplecpp: CMakeFiles/exemplecpp.dir/src/USSensor.cpp.o
 exemplecpp: CMakeFiles/exemplecpp.dir/src/behaviorCenter.cpp.o
@@ -436,7 +452,7 @@ exemplecpp: /usr/lib/aarch64-linux-gnu/libopencv_photo.so.4.6.0
 exemplecpp: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.6.0
 exemplecpp: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.6.0
 exemplecpp: CMakeFiles/exemplecpp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable exemplecpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jules/code/drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX executable exemplecpp"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exemplecpp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

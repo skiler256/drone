@@ -5,14 +5,14 @@ PROCEDURE::PROCEDURE(launcher &launch) : launch(launch) {}
 
 void PROCEDURE::calibrateZ()
 {
-    if (launch.ins && launch.gps && launch.baro)
+    if (launch.ins && launch.ins->has_value() && launch.gps && launch.baro)
     {
-        if (launch.ins->state.INSstate != 1)
+        if (launch.ins->value().state.INSstate != 1)
         {
             INS::CALIBRATION calibration{0, 0, 0};
-            INS::settings set = launch.ins->getSettings();
+            INS::settings set = launch.ins->value().getSettings();
 
-            launch.ins->state.INSstate = 1;
+            launch.ins->value().state.INSstate = 1;
 
             int GPSattempt = 0;
             while (!launch.gps->isFix() && GPSattempt < set.NGPSattempt)
@@ -24,7 +24,7 @@ void PROCEDURE::calibrateZ()
             if (!launch.gps->isFix())
             {
                 launch.event->report(this, category::signal, {severity::WARNING, "pas de fix3D"});
-                launch.ins->state.INSstate = 0;
+                launch.ins->value().state.INSstate = 0;
                 return;
             }
             for (int i = 0; i < set.NmoyGPScalib; i++)
@@ -43,11 +43,11 @@ void PROCEDURE::calibrateZ()
             calibration.longitude /= set.NmoyGPScalib;
             calibration.pressure /= set.NmoyGPScalib;
 
-            launch.ins->setCalibration(calibration);
+            launch.ins->value().setCalibration(calibration);
             dataSave.INScal = calibration;
             save();
 
-            launch.ins->state.INSstate = 2;
+            launch.ins->value().state.INSstate = 2;
         }
     }
 }

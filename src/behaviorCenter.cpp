@@ -17,7 +17,7 @@ void from_json(const json &j, INS::settings &s)
 
 behaviorCenter::behaviorCenter() : launch(*this), procedure(launch)
 {
-    launch.startCOM();
+    // launch.startCOM(); integrer au constructeur
 }
 
 void behaviorCenter::interpretCommand(std::string_view msg)
@@ -35,10 +35,10 @@ void behaviorCenter::interpretCommand(std::string_view msg)
             if (commandCore == "INS")
             {
                 launch.monitoring->data.moduleState.INS ^= true;
-                if (launch.monitoring->data.moduleState.INS)
+                if (launch.monitoring->data.moduleState.INS && launch.ins)
                     launch.startINS();
-                else
-                    launch.ins.reset();
+                else if (launch.ins) // vérifie si le pointeur existe
+                    launch.ins->reset();
             }
             if (commandCore == "GPS")
             {
@@ -88,12 +88,12 @@ void behaviorCenter::interpretCommand(std::string_view msg)
         {
             if (commandCore == "CALZ")
                 std::thread(&PROCEDURE::calibrateZ, procedure).detach();
-            else if (commandCore == "USEINSSAVE" && launch.ins)
+            else if (commandCore == "USEINSSAVE" && launch.ins && launch.ins->has_value())
             {
                 saveData save_ = getSave();
-                launch.ins->setCalibration(save_.INScal);
-                launch.ins->setSettings(save_.INSsettings);
-                launch.ins->state.INSstate = 2;
+                launch.ins->value().setCalibration(save_.INScal);
+                launch.ins->value().setSettings(save_.INSsettings);
+                launch.ins->value().state.INSstate = 2;
                 dataSave = save_;
                 save();
             }
@@ -104,8 +104,8 @@ void behaviorCenter::interpretCommand(std::string_view msg)
             INS::settings set = j.get<INS::settings>();
             dataSave.INSsettings = set;
             save();
-            if (launch.ins)
-                launch.ins->setSettings(set);
+            if (launch.ins && launch.ins->has_value())
+                launch.ins->value().setSettings(set);
         }
     }
 }
