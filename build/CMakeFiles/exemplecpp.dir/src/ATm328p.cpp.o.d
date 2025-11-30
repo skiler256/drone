@@ -482,6 +482,7 @@ CMakeFiles/exemplecpp.dir/src/ATm328p.cpp.o: \
  /home/jules/code/drone/src/../inc/../inc/../inc/gpio.hpp \
  /usr/local/include/wiringPi.h /usr/include/c++/12/iostream \
  /home/jules/code/drone/src/../inc/../inc/TF-luna.hpp \
+ /home/jules/code/drone/src/../inc/SensorFusion.hpp \
  /usr/include/c++/12/iomanip /usr/include/c++/12/locale \
  /usr/include/c++/12/bits/locale_facets_nonio.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \

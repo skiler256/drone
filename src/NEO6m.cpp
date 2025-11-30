@@ -1,5 +1,5 @@
 #include "../inc/NEO6m.hpp"
-#include "../inc/INS.hpp"
+#include "../inc/SensorFusion.hpp"
 #include <fcntl.h>
 #include <iomanip>
 #include <iostream>
@@ -8,13 +8,16 @@
 #include <termios.h>
 #include <unistd.h>
 
-NEO6m::NEO6m(eventManager &event, std::optional<INS> &ins, const char *portName)
-    : event(event), ins(ins), portName(portName),
+NEO6m::NEO6m(eventManager &event, std::optional<SensorFusion> &sens, const char *portName)
+    : event(event), sens(sens), portName(portName),
       SerialPort(open(portName, O_RDWR | O_NOCTTY))
 {
   event.declare(this, component::GPS);
+  if (sens)
+    sens->ident(this, sensor::GPS);
 
-  std::lock_guard<std::mutex> lock(mtx);
+  std::lock_guard<std::mutex>
+      lock(mtx);
 
   if (tcgetattr(SerialPort, &tty) < 0)
     event.report(this, category::connection, {severity::CRITICAL, "impossible d'ouvrir le port série"});
@@ -363,10 +366,11 @@ void NEO6m::handlUBX(uint8_t CLASS, uint8_t ID, uint16_t payloadSize)
         longitude = makeI4(4) * 1e-7;
         latitude = makeI4(8) * 1e-7;
 
-        if (gpsFixOk && ins) // Mise a jour INS
+        if (gpsFixOk && sens) // Mise a jour INS
         {
-          NEO6m::coordPaket coord = {latitude, longitude};
-          ins->updateGPS(coord, velNED, hAcc, sAcc);
+          // NEO6m::coordPaket coord = {latitude, longitude};
+          getGPSState(); // maj du paquet state
+          sens->update(this, &state);
         }
 
         // std::cout<<std::setprecision(7) <<longitude<<" "
@@ -428,7 +432,6 @@ NEO6m::coordPaket NEO6m::getGPSCoord()
 NEO6m::gpsState NEO6m::getGPSState()
 {
   std::lock_guard<std::mutex> lock(mtx);
-  gpsState state;
 
   state.sats = sats;
   state.coord = {longitude, latitude};

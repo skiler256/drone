@@ -34,32 +34,32 @@ void behaviorCenter::interpretCommand(std::string_view msg)
         {
             if (commandCore == "INS")
             {
-                launch.monitoring->data.moduleState.INS ^= true;
-                if (launch.monitoring->data.moduleState.INS && launch.ins)
+
+                if (!launch.monitoring->data.moduleState.INS && launch.ins)
                     launch.startINS();
                 else if (launch.ins) // vérifie si le pointeur existe
                     launch.ins->reset();
             }
             if (commandCore == "GPS")
             {
-                launch.monitoring->data.moduleState.GPS ^= true;
-                if (launch.monitoring->data.moduleState.GPS)
+
+                if (!launch.monitoring->data.moduleState.GPS)
                     launch.startGPS();
                 else
                     launch.gps.reset();
             }
             if (commandCore == "BMP")
             {
-                launch.monitoring->data.moduleState.BMP ^= true;
-                if (launch.monitoring->data.moduleState.BMP)
+
+                if (!launch.monitoring->data.moduleState.BMP)
                     launch.startBARO();
                 else
                     launch.baro.reset();
             }
             if (commandCore == "ESP")
             {
-                launch.monitoring->data.moduleState.ESP ^= true;
-                if (launch.monitoring->data.moduleState.ESP)
+
+                if (!launch.monitoring->data.moduleState.ESP)
                     launch.startESP();
                 else
                 {
@@ -69,16 +69,16 @@ void behaviorCenter::interpretCommand(std::string_view msg)
             }
             if (commandCore == "TEL")
             {
-                launch.monitoring->data.moduleState.TEL ^= true;
-                if (launch.monitoring->data.moduleState.TEL)
+
+                if (!launch.monitoring->data.moduleState.TEL)
                     launch.startTele();
                 else
                     launch.tele.reset();
             }
             if (commandCore == "GIM")
             {
-                launch.monitoring->data.moduleState.GIM ^= true;
-                if (launch.monitoring->data.moduleState.GIM)
+
+                if (!launch.monitoring->data.moduleState.GIM)
                     launch.startGIMBALL();
                 else
                     launch.gimball.reset();

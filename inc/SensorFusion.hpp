@@ -2,6 +2,7 @@
 #include <optional>
 #include <map>
 #include "../inc/INS.hpp"
+#include <fstream>
 
 class launcher;
 
@@ -11,7 +12,8 @@ enum class sensor
     GPS,
     MAG,
     MPUaux,
-    BARO
+    BARO,
+    TEL
 };
 
 class SensorFusion
@@ -28,6 +30,8 @@ public:
 
 private:
     launcher &lau;
+
+    std::ofstream file;
 
     std::mutex mtx;
 

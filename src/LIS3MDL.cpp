@@ -1,8 +1,12 @@
 #include "../inc/LIS3MDL.hpp"
+#include "../inc/SensorFusion.hpp"
 #include <iostream>
 
-LIS3MDL::LIS3MDL(eventManager &event, uint8_t address, const char *bus) : event(event)
+LIS3MDL::LIS3MDL(eventManager &event, std::optional<SensorFusion> &sens, uint8_t address, const char *bus) : event(event), sens(sens)
 {
+    if (sens)
+        sens->ident(this, sensor::MAG);
+
     file = open(bus, O_RDWR);
     ioctl(file, I2C_SLAVE, address);
 
@@ -68,7 +72,10 @@ void LIS3MDL::run()
             mag[1] = rawY * LIS3MDL_SCALE_8G;
             mag[2] = rawZ * LIS3MDL_SCALE_8G;
 
-            std::cout << "X=" << mag[0] << " mG, Y=" << mag[1] << " mG, Z=" << mag[2] << " mG\n";
+            if (sens)
+                sens->update(this, &mag);
+
+            // std::cout << "X=" << mag[0] << " mG, Y=" << mag[1] << " mG, Z=" << mag[2] << " mG\n";
         }
     }
     usleep(5000);

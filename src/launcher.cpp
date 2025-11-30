@@ -9,9 +9,9 @@ launcher::launcher(behaviorCenter &behavior) : behavior(behavior), gpio()
     if (event)
     {
         monitoring.emplace(*this, parameters.COMrefreshRate);
-        telemetry.emplace(*event, monitoring);
-
         sens.emplace(*this);
+        telemetry.emplace(*event, sens, monitoring);
+
         ins = sens->getINSptr();
     }
     if (monitoring)
@@ -38,15 +38,15 @@ void launcher::startBARO()
 {
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
-        baro.emplace(*event);
+        baro.emplace(*event, sens);
 }
 void launcher::startESP()
 {
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        esp.emplace(*event, *ins);
-        mag.emplace(*event);
+        esp.emplace(*event, sens);
+        mag.emplace(*event, sens);
     }
 }
 void launcher::startGPS()
@@ -54,7 +54,7 @@ void launcher::startGPS()
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        gps.emplace(*event, *ins);
+        gps.emplace(*event, sens);
     }
 }
 
@@ -63,7 +63,7 @@ void launcher::startINS()
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        // ins.emplace(*event, baro, parameters.insSettings);
+        ins->emplace(*event, parameters.insSettings);
     }
 }
 
@@ -92,6 +92,6 @@ void launcher::startTele()
     std::lock_guard<std::mutex> lock(mtx);
     if (event)
     {
-        tele.emplace(*event);
+        tele.emplace(*event, sens);
     }
 }

@@ -219,8 +219,9 @@ CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/semaphore.h \
  /usr/include/c++/12/optional \
  /usr/include/c++/12/bits/enable_special_members.h \
- /home/jules/code/drone/src/../inc/INS.hpp \
- /home/jules/code/drone/src/../inc/../inc/MS5611.hpp \
+ /home/jules/code/drone/src/../inc/SensorFusion.hpp \
+ /home/jules/code/drone/src/../inc/../inc/INS.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/MS5611.hpp \
  /usr/include/linux/i2c-dev.h /usr/include/linux/types.h \
  /usr/lib/linux/uapi/arm64/asm/types.h /usr/include/asm-generic/types.h \
  /usr/include/asm-generic/int-ll64.h \
@@ -234,7 +235,7 @@ CMakeFiles/exemplecpp.dir/src/ESP32.cpp.o: \
  /usr/include/linux/ioctl.h /usr/lib/linux/uapi/arm64/asm/ioctl.h \
  /usr/include/asm-generic/ioctl.h \
  /usr/include/aarch64-linux-gnu/bits/ioctl-types.h \
- /home/jules/code/drone/src/../inc/../inc/NEO6m.hpp \
+ /home/jules/code/drone/src/../inc/../inc/../inc/NEO6m.hpp \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \

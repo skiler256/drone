@@ -1,7 +1,12 @@
 #include "../inc/MS5611.hpp"
+#include "../inc/SensorFusion.hpp"
 
-MS5611::MS5611(eventManager &event, uint8_t address, const char *bus) : event(event)
+MS5611::MS5611(eventManager &event, std::optional<SensorFusion> &sens, uint8_t address, const char *bus) : event(event), sens(sens)
 {
+
+    if (sens)
+        sens->ident(this, sensor::BARO);
+
     file = open(bus, O_RDWR);
     ioctl(file, I2C_SLAVE, address);
 
@@ -69,6 +74,9 @@ void MS5611::task()
         std::lock_guard<std::mutex> lock(mtx);
         data.temperature = tempFilter.update(temp, 0.05);
         data.pressure = presFilter.update(pres, 0.05);
+
+        if (sens)
+            sens->update(this, &data);
     }
 }
 

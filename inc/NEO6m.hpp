@@ -9,14 +9,14 @@
 #include <thread>
 #include <optional>
 
-class INS;
+class SensorFusion;
 
 std::string charToHex(char c);
 
 class NEO6m
 {
 public:
-  NEO6m(eventManager &event, std::optional<INS> &ins, const char *portName = "/dev/ttyAMA1");
+  NEO6m(eventManager &event, std::optional<SensorFusion> &sens, const char *portName = "/dev/ttyAMA1");
   ~NEO6m();
   void runNEO6m();
 
@@ -55,7 +55,7 @@ public:
 
 private:
   eventManager &event;
-  std::optional<INS> &ins;
+  std::optional<SensorFusion> &sens;
   const char *portName;
   int SerialPort;
 
@@ -74,6 +74,7 @@ private:
   uint8_t payloadBuffer[1024];
 
   // GPS data
+  gpsState state;
 
   int timeArray[6] = {0, 0, 0, 0, 0, 0};
 

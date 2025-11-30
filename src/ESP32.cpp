@@ -1,5 +1,6 @@
 #include "../inc/ESP32.hpp"
-#include "../inc/INS.hpp"
+// #include "../inc/INS.hpp"
+#include "../inc/SensorFusion.hpp"
 #include <chrono>
 #include <cstdint>
 #include <fcntl.h>
@@ -10,12 +11,14 @@
 #include <unistd.h>
 #include <cstring>
 
-ESP32::ESP32(eventManager &event, std::optional<INS> &ins, const char *portName)
-    : event(event), ins(ins), portName(portName)
+ESP32::ESP32(eventManager &event, std::optional<SensorFusion> &sen, const char *portName)
+    : event(event), sen(sen), portName(portName)
 {
   std::lock_guard<std::mutex> lock(mtx);
 
   event.declare(this, component::ESP);
+  if (sen)
+    sen->ident(this, sensor::ESP);
 
   uint8_t buffer[200];
   int attempt = 0;
@@ -191,8 +194,13 @@ void ESP32::runESP32()
         case 0x02:
         {
           event.report(this, category::parser, {severity::INFO, "reception d un paquet"});
-          if (ins)
-            ins->updateMPU(data);
+          //          if (ins)
+          //            ins->updateMPU(data);
+
+          if (sen)
+          {
+            sen->update(this, &data);
+          }
           // std::cout << data.distances[0] << "\n";
           break;
         }

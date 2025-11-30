@@ -1,8 +1,13 @@
 #include "../inc/TF-luna.hpp"
+#include "../inc/SensorFusion.hpp"
 
-TFluna::TFluna(eventManager &event, const uint8_t TFluna_addr, const char *bus) : event(event), file(open(bus, O_RDWR))
+TFluna::TFluna(eventManager &event, std::optional<SensorFusion> &sens, const uint8_t TFluna_addr, const char *bus) : event(event), sens(sens), file(open(bus, O_RDWR))
 {
     std::lock_guard<std::mutex> lock(mtx);
+
+    if (sens)
+        sens->ident(this, sensor::TEL);
+
     ioctl(file, I2C_SLAVE, TFluna_addr);
 
     char config[2] = {POWER, 0x00};

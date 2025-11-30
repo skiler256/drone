@@ -44,6 +44,13 @@ void sysMonitoring::runSysMonitoring()
 
             data.perf.CPUtemp = getCPUTemp();
             data.perf.RAMusage = getRAMUsage();
+
+            data.moduleState.INS = (lau.ins && lau.ins->has_value());
+            data.moduleState.BMP = lau.baro.has_value();
+            data.moduleState.GPS = lau.gps.has_value();
+            data.moduleState.ESP = lau.esp.has_value();
+            data.moduleState.GIM = lau.gimball.has_value();
+            data.moduleState.TEL = lau.tele.has_value();
         }
 
         {

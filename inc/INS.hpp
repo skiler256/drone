@@ -91,7 +91,7 @@ public:
     double update(double x, double alpha);
   };
 
-  INS(eventManager &event, std::optional<MS5611> &bmp, INS::settings &set);
+  INS(eventManager &event, INS::settings &set);
   ~INS();
 
   state3D getState3D();
@@ -102,22 +102,21 @@ public:
   settings getSettings();
   void setSettings(settings set);
 
-  void updateMPU(ESPdata data);
+  // void updateMPU(ESPdata data);
   void updateGPS(NEO6m::coordPaket coord, int velNED[3], uint32_t pAcc, uint32_t sAcc);
   void updataBMP(MS5611::Data data);
 
+  void updateAcc(Eigen::Matrix<double, 3, 1> rawAcc);
+  void updatePR(double pitch, double roll);
+  void updateMag(Eigen::Matrix<double, 3, 1> mag);
+  void updateBaro(double press, double temp);
+
 private:
   eventManager &event;
-  std::optional<MS5611> &bmp;
   // setting
   settings set;
-  Kalman1D kx, ky, kz;
   HPfilter HPxacc, HPyacc, HPzacc;
   IIRfilter altIIR;
-
-  void computeHeading();
-  void computeZ();
-  void linearizeAcc();
 
   // data
   state3D state;
@@ -126,31 +125,28 @@ private:
   ESPdata dataESP;
 
   // clibration
-  Eigen::Matrix<double, 3, 3> calMagMatrix;
-  Eigen::Matrix<double, 3, 1> magBiasVec;
   CALIBRATION calibration;
 
   // Sensor
-  Eigen::Matrix<double, 3, 1> calibratedMag;
+
   GeographicLib::LocalCartesian projGPS;
+  std::chrono::_V2::steady_clock::time_point tz; // pour dt maj
   Eigen::Matrix<double, 3, 1> linearizedAcc;
-  std::chrono::_V2::steady_clock::time_point tz;
-  double prevAlt[NB_vs] = {};
   double currAlt = 0;
 
   // filter
-  std::chrono::_V2::steady_clock::time_point tMag;
-  Eigen::Matrix<double, 3, 1> FilteredCalibratedMag;
+
   // Kalman1D kx, ky, kz;
   KalmanLinear kalman;
 
   // setting
-  // settings set;
 
   // mutex
   std::mutex mtxDataESP;
   std::mutex mtxState3D;
   std::mutex mtxZ;
+
+  void updateState3D();
 
   friend class PROCEDURE;
   friend class behaviorCenter;

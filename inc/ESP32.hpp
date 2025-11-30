@@ -8,7 +8,7 @@
 #include <thread>
 #include <optional>
 
-class INS;
+class SensorFusion;
 
 #pragma pack(push, 1) // désactive l'alignement mémoire
 struct ESPdata
@@ -26,7 +26,7 @@ bool readSafe(int fd, uint8_t *output, size_t size, int timeout = 10);
 class ESP32
 {
 public:
-  ESP32(eventManager &event, std::optional<INS> &ins, const char *portName = "/dev/ttyAMA0");
+  ESP32(eventManager &event, std::optional<SensorFusion> &sen, const char *portName = "/dev/ttyAMA0");
   ~ESP32();
 
   void runESP32();
@@ -35,8 +35,8 @@ public:
 
 private:
   ESPdata data;
+  std::optional<SensorFusion> &sen;
   eventManager &event;
-  std::optional<INS> &ins;
   int SerialPort = -1;
   const char *portName;
   termios tty;

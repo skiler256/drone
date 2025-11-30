@@ -25,10 +25,12 @@ struct ATmegaPaket
 
 #pragma pack(pop)
 
+class SensorFusion;
+
 class ATm328p
 {
 public:
-    ATm328p(eventManager &event, std::optional<sysMonitoring> &monitoring, const char *portName = "/dev/ttyAMA2");
+    ATm328p(eventManager &event, std::optional<SensorFusion> &sens, std::optional<sysMonitoring> &monitoring, const char *portName = "/dev/ttyAMA2");
     ~ATm328p();
 
     void runTx();
@@ -38,6 +40,7 @@ public:
 
 private:
     eventManager &event;
+    std::optional<SensorFusion> &sens;
     std::optional<sysMonitoring> &monitoring;
     const char *portName;
     int SerialPort;

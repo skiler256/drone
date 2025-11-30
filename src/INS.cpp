@@ -5,11 +5,8 @@
 #include <thread>
 #include <random>
 
-INS::INS(eventManager &event, std::optional<MS5611> &bmp, INS::settings &set)
-    : event(event), bmp(bmp), set(set),
-      kx(100.0, 800.0),
-      ky(100.0, 800.0),
-      kz(100.0, 800.0),
+INS::INS(eventManager &event, INS::settings &set)
+    : event(event), set(set),
       HPxacc(0.005, 1),
       HPyacc(0.005, 1),
       HPzacc(0.005, 1),
@@ -17,17 +14,7 @@ INS::INS(eventManager &event, std::optional<MS5611> &bmp, INS::settings &set)
 {
   event.declare(this, component::INS);
 
-  tMag = std::chrono::steady_clock::now();
   tz = std::chrono::steady_clock::now();
-
-  calibratedMag << 0.0, 0.0, 0.0;
-  FilteredCalibratedMag << 0.0, 0.0, 0.0;
-  linearizedAcc << 0.0, 0.0, 0.0;
-
-  // Magneto
-  magBiasVec << 192.046411, -68.294232, 508.612908;
-  calMagMatrix << 1.110525, -0.009313, -0.005285, -0.009313, 1.148244, 0.001096,
-      -0.005285, 0.001096, 1.207234;
 }
 
 INS::~INS()
@@ -35,109 +22,63 @@ INS::~INS()
   event.erase(this);
 }
 
-void INS::updateMPU(ESPdata data)
+void INS::updateAcc(Eigen::Matrix<double, 3, 1> rawAcc)
 {
-  {
-    std::lock_guard<std::mutex> lock(mtxDataESP);
-    dataESP = data;
-    // event.report({component::INS, subcomponent::dataLink, eventSeverity::INFO, "reception donne esp32"});
-  }
-  {
+  double pitch, roll, yaw;
+
+  { // recuperer les angles
     std::lock_guard<std::mutex> lockState3D(mtxState3D);
-    state.att(0) = -dataESP.roll;
-    state.att(1) = dataESP.pitch;
+    pitch = state.att(1) * M_PI / 180.0;
+    roll = state.att(0) * M_PI / 180.0;
+    yaw = state.att(2) * M_PI / 180.0;
   }
 
-  computeHeading();
-  linearizeAcc();
+  Eigen::Matrix<double, 3, 3> Rx_inv;
+  Rx_inv << 1, 0, 0, 0, cos(roll), sin(roll), 0, -sin(roll), cos(roll);
+
+  Eigen::Matrix<double, 3, 3> Ry_inv;
+  Ry_inv << cos(pitch), 0, -sin(pitch), 0, 1, 0, sin(pitch), 0, cos(pitch);
+
+  Eigen::Matrix<double, 3, 3> Rz_inv;
+  Rz_inv << cos(yaw), sin(yaw), 0, -sin(yaw), cos(yaw), 0, 0, 0, 1;
+
+  Eigen::Matrix<double, 3, 3> R = Rz_inv * Ry_inv * Rx_inv; // rotations
+
+  linearizedAcc = R * rawAcc;
+  linearizedAcc(2) -= 1;
+  linearizedAcc(1) *= -1; // inverser axe y --> NED
+
+  linearizedAcc *= 9.81;
+  linearizedAcc = linearizedAcc.unaryExpr([](double v)
+                                          { return std::round(v * 10.0) / 10.0; });
+  linearizedAcc(2) -= 0.1;
+  linearizedAcc(0) = HPxacc.update(linearizedAcc(0));
+  linearizedAcc(1) = HPyacc.update(linearizedAcc(1));
+  linearizedAcc(2) = HPzacc.update(linearizedAcc(2)); // filtrage
+
   kalman.pred(linearizedAcc);
 
-  {
-    std::lock_guard<std::mutex> lock(mtxState3D);
-    auto x = kalman.getX();
-    state.pos << x(0), x(1), currAlt;
-    state.vel << x(3), x(4), x(5);
-    state.accNED = linearizedAcc;
-  }
+  updateState3D();
 }
 
-void INS::updateGPS(NEO6m::coordPaket coord, int velNED[3], uint32_t pAcc, uint32_t sAcc)
+void INS::updateState3D()
 {
-  double alt = set.baseAltitude;
-  Eigen::Matrix<double, 6, 1> z;
-  const double dt = std::chrono::duration_cast<std::chrono::microseconds>(
-                        std::chrono::steady_clock::now() - tz)
-                        .count() *
-                    1e-6;
-  tz = std::chrono::steady_clock::now();
-
-  if (bmp)
-  {
-    MS5611::Data bmpData = bmp->getData();
-    // alt = ((bmpData.temperature + 273.15) / 0.0065) * (pow(calibration.pressure / bmpData.pressure, 0.1903) - 1) + set.baseAltitude;
-    alt = 44330.0 * (1.0 - pow(bmpData.pressure / calibration.pressure, 0.1903)) + set.baseAltitude;
-    alt = altIIR.update(alt, 0.5);
-    alt = std::round(alt * 10) / 10;
-
-    currAlt = alt - set.baseAltitude;
-    // for (int i = 0; i < NB_vs - 1; i++)
-    //   prevAlt[i + 1] = prevAlt[i];
-    // prevAlt[0] = alt;
-
-    // double t[NB_vs];
-    // for (int i = 0; i < NB_vs; i++)
-    //   t[i] = dt * (i);
-
-    // double tmoy = 0, ymoy = 0;
-    // for (int i = 0; i < NB_vs; i++)
-    // {
-    //   tmoy += t[i];
-    //   ymoy += prevAlt[i];
-    // }
-    // tmoy /= NB_vs;
-    // ymoy /= NB_vs;
-
-    // double ySUM = 0;
-    // for (int i = 0; i < NB_vs; i++)
-    //   ySUM += (t[i] - tmoy) * (prevAlt[i] - ymoy);
-
-    // double tSum = 0;
-    // for (int i = 0; i < NB_vs; i++)
-    //   tSum += pow((t[i] - tmoy), 2);
-
-    // z(2) = std::round((ySUM / tSum) * 10) / -10;
-
-    // std::cout << "VS mon con : " << z(2) << " " << alt << "\n";
-  }
-
-  projGPS.Forward(coord.latitude, coord.longitude, alt, z(1), z(0), z(2));
-
-  // std::cout << coord.latitude << " " << coord.longitude << " " << alt << "\n";
-
-  z(3) = velNED[0] * 1e-2;
-  z(4) = velNED[1] * 1e-2;
-  z(5) = velNED[2] * 1e-2;
-
-  kalman.update(z, pAcc, sAcc, dt);
-  // state.pos << z(0), z(1), z(2);
-
-  {
-    std::lock_guard<std::mutex> lock(mtxState3D);
-    auto x = kalman.getX();
-    state.pos << x(0), x(1), currAlt;
-    state.vel << x(3), x(4), x(5);
-  }
+  std::lock_guard<std::mutex> lock(mtxState3D);
+  auto x = kalman.getX();
+  state.pos << x(0), x(1), currAlt;
+  state.vel << x(3), x(4), x(5);
+  state.accNED = linearizedAcc;
 }
 
-void INS::computeHeading()
+void INS::updatePR(double pitch, double roll)
 {
-  Eigen::Vector3d rawMag;
-  {
-    std::lock_guard<std::mutex> lock(mtxDataESP);
-    rawMag << dataESP.my, dataESP.mx, -dataESP.mz;
-  }
+  std::lock_guard<std::mutex> lock(mtxState3D);
+  state.att(1) = pitch;
+  state.att(0) = roll;
+}
 
-  calibratedMag = calMagMatrix * (rawMag - magBiasVec);
+void INS::updateMag(Eigen::Matrix<double, 3, 1> mag)
+{
 
   double pitch;
   double roll;
@@ -156,28 +97,14 @@ void INS::computeHeading()
 
   Eigen::Matrix<double, 3, 3> R = Ry_inv * Rx_inv;
 
-  calibratedMag = R * calibratedMag;
-
-  const double dt = std::chrono::duration_cast<std::chrono::microseconds>(
-                        std::chrono::steady_clock::now() - tMag)
-                        .count() *
-                    1e-6;
-  tMag = std::chrono::steady_clock::now();
-
-  kx.update(calibratedMag(0), dt);
-  FilteredCalibratedMag(0) = kx.getvalue();
-
-  ky.update(calibratedMag(1), dt);
-  FilteredCalibratedMag(1) = ky.getvalue();
-
-  kz.update(calibratedMag(2), dt);
-  FilteredCalibratedMag(2) = kz.getvalue();
+  mag = R * mag;
 
   double heading =
-      std::atan2(FilteredCalibratedMag(1), FilteredCalibratedMag(0));
+      std::atan2(mag(1), mag(0));
   heading *= 180.0 / M_PI;
   // if (heading < 0)
   //     heading += 360.0;
+  // std::cout << heading << "\n";
 
   {
 
@@ -191,67 +118,45 @@ void INS::computeHeading()
     state.att(2) = state.att(2) + set.alphaHeading * delta;
     // std::cout << state.att(2) << "\n";
   }
+
+  // !! revoir pour PID
 }
 
-void INS::linearizeAcc()
+void INS::updateBaro(double press, double temp)
 {
-  double pitch;
-  double roll;
-  double yaw;
+  std::lock_guard<std::mutex> lock(mtxZ);
 
-  Eigen::Matrix<double, 3, 1> rawAcc;
-  {
-    std::lock_guard<std::mutex> lock(mtxDataESP);
-    rawAcc << dataESP.ax, dataESP.ay, dataESP.az;
-  }
+  double alt = ((temp + 273.15) / 0.0065) * (pow(calibration.pressure / press, 0.1903) - 1);
+  // alt = 44330.0 * (1.0 - pow(press / calibration.pressure, 0.1903)) + set.baseAltitude;
+  alt = altIIR.update(alt, 0.5);
+  alt = std::round(alt * 10) / 10;
 
-  // // Biais combiné
-  // Eigen::Vector3d b;
-  // b << 0.037606, 0.002619, 0.002727;
+  currAlt = alt;
 
-  // // Correction pour scale/misalignment/soft-iron : A^{-1}
-  // Eigen::Matrix3d Ainv;
-  // Ainv << 0.997876, 0.000120, 0.000503,
-  //     0.000120, 0.997789, 0.000197,
-  //     0.000503, 0.000197, 0.988591;
+  // std::cout << alt << "\n";
+}
 
-  // rawAcc = Ainv * (rawAcc - b);
+void INS::updateGPS(NEO6m::coordPaket coord, int velNED[3], uint32_t pAcc, uint32_t sAcc)
+{
+  std::lock_guard<std::mutex> lock(mtxZ);
+  const double dt = std::chrono::duration_cast<std::chrono::microseconds>(
+                        std::chrono::steady_clock::now() - tz)
+                        .count() *
+                    1e-6;
+  tz = std::chrono::steady_clock::now();
 
-  {
-    std::lock_guard<std::mutex> lockState3D(mtxState3D);
-    pitch = state.att(1) * M_PI / 180.0;
-    roll = state.att(0) * M_PI / 180.0;
-    yaw = state.att(2) * M_PI / 180.0;
-  }
+  Eigen::Matrix<double, 6, 1> z;
 
-  Eigen::Matrix<double, 3, 3> Rx_inv;
-  Rx_inv << 1, 0, 0, 0, cos(roll), sin(roll), 0, -sin(roll), cos(roll);
+  projGPS.Forward(coord.latitude, coord.longitude, currAlt + set.baseAltitude, z(1), z(0), z(2));
 
-  Eigen::Matrix<double, 3, 3> Ry_inv;
-  Ry_inv << cos(pitch), 0, -sin(pitch), 0, 1, 0, sin(pitch), 0, cos(pitch);
+  z(3) = velNED[0] * 1e-2;
+  z(4) = velNED[1] * 1e-2;
+  z(5) = velNED[2] * 1e-2;
 
-  Eigen::Matrix<double, 3, 3> Rz_inv;
-  Rz_inv << cos(yaw), sin(yaw), 0, -sin(yaw), cos(yaw), 0, 0, 0, 1;
+  kalman.update(z, pAcc, sAcc, dt);
+  // state.pos << z(0), z(1), z(2);
 
-  Eigen::Matrix<double, 3, 3> R = Rz_inv * Ry_inv * Rx_inv;
-
-  linearizedAcc = R * rawAcc;
-  linearizedAcc(2) -= 1;
-  linearizedAcc(1) *= -1; // inverser axe y --> NED
-
-  linearizedAcc *= 9.81;
-  linearizedAcc = linearizedAcc.unaryExpr([](double v)
-                                          { return std::round(v * 10.0) / 10.0; });
-  linearizedAcc(2) -= 0.1;
-  linearizedAcc(0) = HPxacc.update(linearizedAcc(0));
-  linearizedAcc(1) = HPyacc.update(linearizedAcc(1));
-  linearizedAcc(2) = HPzacc.update(linearizedAcc(2));
-
-  // std::cout
-  //     << std::fixed << std::setprecision(1)
-  //     << linearizedAcc(0) << " "
-  //     << linearizedAcc(1) << " "
-  //     << linearizedAcc(2) << "\n";
+  updateState3D();
 }
 
 void INS::setCalibration(const INS::CALIBRATION &calibration_)
@@ -280,13 +185,39 @@ void INS::setSettings(INS::settings set_)
 void INS::printData()
 {
   std::lock_guard<std::mutex> lock(mtxState3D);
-  std::cout << "yaw : " << state.att(2) << "roll : " << state.att(0) << "pitch : " << state.att(1) << std::endl;
+
+  std::cout << std::fixed << std::setprecision(3); // 3 décimales, lisible
+
+  std::cout << "\n===== INS State =====\n";
+
+  std::cout << "Position (m)  : "
+            << "X=" << state.pos(0) << "  "
+            << "Y=" << state.pos(1) << "  "
+            << "Z=" << state.pos(2) << "\n";
+
+  std::cout << "Vitesse (m/s) : "
+            << "VX=" << state.vel(0) << "  "
+            << "VY=" << state.vel(1) << "  "
+            << "VZ=" << state.vel(2) << "\n";
+
+  std::cout << "Acc NED (m/s²): "
+            << "N=" << state.accNED(0) << "  "
+            << "E=" << state.accNED(1) << "  "
+            << "D=" << state.accNED(2) << "\n";
+
+  std::cout << "Attitude (rad): "
+            << "Roll=" << state.att(0) << "  "
+            << "Pitch=" << state.att(1) << "  "
+            << "Yaw=" << state.att(2) << "\n";
+
+  std::cout << "INS state     : " << (int)state.INSstate << "\n";
+
+  std::cout << "=====================\n";
 }
 
 INS::state3D INS::getState3D()
 {
   std::lock_guard<std::mutex> lock(mtxState3D);
-  // state.pos = z; // A ENLEVER!!!
   return state;
 }
 

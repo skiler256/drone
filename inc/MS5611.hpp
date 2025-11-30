@@ -7,8 +7,11 @@
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
+#include <optional>
 
 #include "eventManager.hpp"
+
+class SensorFusion;
 
 class MS5611
 {
@@ -29,13 +32,14 @@ public:
         }
     };
 
-    MS5611(eventManager &event, uint8_t address = 0x77, const char *bus = "/dev/i2c-4");
+    MS5611(eventManager &event, std::optional<SensorFusion> &sens, uint8_t address = 0x77, const char *bus = "/dev/i2c-4");
     ~MS5611();
 
     Data getData();
 
 private:
     eventManager &event;
+    std::optional<SensorFusion> &sens;
     int file;
     uint16_t C[7];
     Data data;

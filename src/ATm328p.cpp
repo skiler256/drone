@@ -1,5 +1,6 @@
 #include "../inc/ATm328p.hpp"
 #include "../inc/sysMonitoring.hpp"
+#include "../inc/SensorFusion.hpp"
 #include <fcntl.h>
 #include <iomanip>
 #include <iostream>
@@ -8,8 +9,9 @@
 #include <termios.h>
 #include <unistd.h>
 
-ATm328p::ATm328p(eventManager &event, std::optional<sysMonitoring> &monitoring, const char *portName)
+ATm328p::ATm328p(eventManager &event, std::optional<SensorFusion> &sens, std::optional<sysMonitoring> &monitoring, const char *portName)
     : event(event),
+      sens(sens),
       portName(portName),
       SerialPort(open(portName, O_RDWR | O_NOCTTY | O_SYNC)),
       monitoring(monitoring)
@@ -18,6 +20,9 @@ ATm328p::ATm328p(eventManager &event, std::optional<sysMonitoring> &monitoring, 
     //     event.reportEvent({component::GPS, subcomponent::serial, eventSeverity::CRITICAL, "impossible d ouvrir le port serie"});
     //   else
     //     event.reportEvent({component::GPS, subcomponent::serial, eventSeverity::INFO, "port serie ouvert"});
+
+    if (sens)
+        sens->ident(this, sensor::MPUaux);
 
     cfsetospeed(&tty, B115200);
     cfsetispeed(&tty, B115200);
@@ -191,6 +196,9 @@ void ATm328p::runRx()
             memcpy(&data, frame + 2, sizeof(data));
 
             vBat = data.vBat / 100.0;
+
+            if (sens)
+                sens->update(this, &data);
 
             sync = false;
             idx = 0;
